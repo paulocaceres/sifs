@@ -6,5 +6,6 @@
 	</head>
 	<body>
 		Hola Grailsola!
+		FAFAFAF
 	</body>
 </html>
