@@ -6,6 +6,7 @@
 	</head>
 	<body>
 		Hola Grailsola!
-		FAFAFAF
+		<br>
+		Update para Guchi.
 	</body>
 </html>
