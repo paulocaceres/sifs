@@ -2,7 +2,6 @@ package sifs.prj
 
 class Recurso {
 
-	Integer id
 	String nombre
 	Integer cantidad
 	String direccion
@@ -11,7 +10,7 @@ class Recurso {
     }
 
 	String toString() {
-		"$id, $nombre, $cantidad, $direccion"
+		"$nombre, $cantidad, $direccion"
 	}
 	
 }

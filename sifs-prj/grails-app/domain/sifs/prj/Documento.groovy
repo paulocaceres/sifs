@@ -2,7 +2,6 @@ package sifs.prj
 
 class Documento {
 	
-	Integer id
 	String tipo
 	String descripcion
 
@@ -10,7 +9,7 @@ class Documento {
     }
 
 	String toString() {
-		"$id, $tipo, $descripcion"
+		"$tipo, $descripcion"
 	}
 
 	

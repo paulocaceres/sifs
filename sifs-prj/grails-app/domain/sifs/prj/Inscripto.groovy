@@ -2,7 +2,6 @@ package sifs.prj
 
 class Inscripto {
 	
-	Integer id
 	Curso curso
 	Date fecha
 
@@ -10,7 +9,7 @@ class Inscripto {
     }
 	
 	String toString() {
-		"$id, $curso, $fecha"
+		"$curso, ${fecha.format('dd/MM/yyyy')}"
 	}
 
 

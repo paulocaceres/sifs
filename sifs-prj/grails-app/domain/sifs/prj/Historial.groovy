@@ -2,7 +2,6 @@ package sifs.prj
 
 class Historial {
 	
-	Integer id
 	Persona persona
 	Curso curso
 	Date fechaAprobacion
@@ -12,7 +11,7 @@ class Historial {
     }
 
 	String toString() {
-		"$id, $persona, $curso, $fechaAprobacion, $calificacion"
+		"$persona, $curso, ${fechaAprobacion.format('dd/MM/yyyy')}, $calificacion"
 	}
 
 }

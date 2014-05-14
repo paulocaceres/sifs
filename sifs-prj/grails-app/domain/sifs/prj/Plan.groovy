@@ -2,7 +2,6 @@ package sifs.prj
 
 class Plan {
 	
-	Integer id
 	String nombre
 	String descripcion
 	Date validez
@@ -11,7 +10,7 @@ class Plan {
     }
 
 	String toString() {
-		"$id, $nombre, $descripcion, $validez"
+		"$nombre, $descripcion, ${validez.format('dd/MM/yyyy')}"
 	}
 	
 }

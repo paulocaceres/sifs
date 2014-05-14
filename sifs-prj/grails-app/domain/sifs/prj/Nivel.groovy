@@ -2,7 +2,6 @@ package sifs.prj
 
 class Nivel {
 
-	Integer id
 	String nombre
 	String nivelCol
 	
@@ -10,7 +9,7 @@ class Nivel {
     }
 	
 	String toString() {
-		"$id, $nombre, $nivelCol"
+		"$nombre, $nivelCol"
 	}
 
 }

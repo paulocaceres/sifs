@@ -2,7 +2,6 @@ package sifs.prj
 
 class Persona {
 	
-	Integer id
 	Zona zona
 	Persona superior
 	//Status status
@@ -12,14 +11,14 @@ class Persona {
 	String apellido
 	String mail
 	String direccion
-	String provincia
+	Provincia provincia
 	Boolean bloqueado
 
     static constraints = {
     }
 
 	String toString() {
-		"$id, $zona, $superior, $documentoNumero, $nombre, $apellido, $mail, $direccion, $provincia, $bloqueado"
+		"$zona, $superior, $documentoNumero, $nombre, $apellido, $mail, $direccion, $provincia, $bloqueado"
 	}
 
 }

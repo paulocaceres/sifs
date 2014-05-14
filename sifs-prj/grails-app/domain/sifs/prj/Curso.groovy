@@ -2,7 +2,6 @@ package sifs.prj
 
 class Curso {
 	
-	Integer id
 	Plan plan
 	Zona zona
 	//Recurso recurso
@@ -18,7 +17,7 @@ class Curso {
     }
 	
 	String toString() {
-		"$id, $plan, $zona, $contenido, $correlativas, $inscripto, $nivel, $nombre, $fecha, $cupo"
+		"$plan, $zona, $contenido, $correlativas, $inscripto, $nivel, $nombre, ${fecha.format('dd/MM/yyyy')}, $cupo"
 	}
 
 }
