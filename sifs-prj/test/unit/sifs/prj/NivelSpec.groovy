@@ -7,7 +7,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
 @TestFor(Nivel)
-class NivelSpec extends Specification {
+class NivelSpec {
 
     def setup() {
     }
@@ -15,6 +15,11 @@ class NivelSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void testToString() {
+		def unNivel = new Nivel(nombre: 'unNombre',
+								nivelCol: 'unNivelCol')
+		
+		assertEquals 'unNombre, unNivelCol', unNivel.toString()
     }
+
 }

@@ -7,7 +7,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
 @TestFor(Provincia)
-class ProvinciaSpec extends Specification {
+class ProvinciaSpec {
 
     def setup() {
     }
@@ -15,6 +15,10 @@ class ProvinciaSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void testToString() {
+		def unaProvincia = new Provincia(descripcion: 'unaDescripcion')
+		
+		assertEquals 'unaDescripcion', unaProvincia.toString()
     }
+
 }

@@ -7,7 +7,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
 @TestFor(Contenido)
-class ContenidoSpec extends Specification {
+class ContenidoSpec {
 
     def setup() {
     }
@@ -15,6 +15,11 @@ class ContenidoSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void testToString() {
+		def unContenido = new Contenido(nombre: 'unNombre',
+										descripcion: 'unaDescripcion')
+		
+		assertEquals 'unNombre, unaDescripcion', unContenido.toString()
     }
+
 }
