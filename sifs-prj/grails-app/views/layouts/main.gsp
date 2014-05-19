@@ -19,7 +19,21 @@
 		<r:layoutResources />
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
+	<table>
+		<tr bgcolor="#ABBF78">
+			<td>
+				<div>
+					<img src="${resource(dir: 'images', file: 'Scout-logo.PNG')}" alt="SIFS"/>
+					<img src="${resource(dir: 'images', file: 'Sifs-logo.PNG')}" alt="SIFS"/>
+				</div>
+			</td>
+			<sec:ifLoggedIn>
+			<td align="right" valign="middle" style="text-align:right;vertical-align:middle;">
+            	 	<g:link controller="logout">Logout</g:link>
+        	</td>
+        	</sec:ifLoggedIn>
+		</tr>
+	</table>	
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
