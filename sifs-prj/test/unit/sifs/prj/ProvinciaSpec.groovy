@@ -1,5 +1,7 @@
 package sifs.prj
 
+import com.sifs.prj.Provincia;
+
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 

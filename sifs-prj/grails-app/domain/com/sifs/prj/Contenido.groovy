@@ -1,15 +1,15 @@
-package sifs.prj
+package com.sifs.prj
 
-class Nivel {
+class Contenido {
 
 	String nombre
-	String nivelCol
+	String descripcion
 	
     static constraints = {
     }
 	
 	String toString() {
-		"$nombre, $nivelCol"
+		"$nombre, $descripcion"
 	}
 
 }

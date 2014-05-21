@@ -1,4 +1,4 @@
-package sifs.prj
+package com.sifs.prj
 
 class Recurso {
 

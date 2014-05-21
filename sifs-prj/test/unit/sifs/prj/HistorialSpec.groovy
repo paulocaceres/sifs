@@ -1,5 +1,14 @@
 package sifs.prj
 
+import com.sifs.prj.Contenido;
+import com.sifs.prj.Curso;
+import com.sifs.prj.Historial;
+import com.sifs.prj.Nivel;
+import com.sifs.prj.Persona;
+import com.sifs.prj.Plan;
+import com.sifs.prj.Provincia;
+import com.sifs.prj.Zona;
+
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 

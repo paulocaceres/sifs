@@ -1,14 +1,14 @@
-package sifs.prj
+package com.sifs.prj
 
-class Provincia {
+class Zona {
 	
-	String descripcion
+	String nombre
 
     static constraints = {
     }
 
 	String toString() {
-		"$descripcion"
+		"$nombre"
 	}
 	
 }

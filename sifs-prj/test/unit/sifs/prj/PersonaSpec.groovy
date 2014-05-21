@@ -1,5 +1,9 @@
 package sifs.prj
 
+import com.sifs.prj.Persona;
+import com.sifs.prj.Provincia;
+import com.sifs.prj.Zona;
+
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
