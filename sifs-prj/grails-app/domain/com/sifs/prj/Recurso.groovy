@@ -4,13 +4,13 @@ class Recurso {
 
 	String nombre
 	Integer cantidad
-	String direccion
+	Direccion direccion
 
     static constraints = {
     }
 
 	String toString() {
-		"$nombre, $cantidad, $direccion"
+		"$nombre, $cantidad"
 	}
 	
 }

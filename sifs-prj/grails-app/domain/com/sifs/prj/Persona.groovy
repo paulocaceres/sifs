@@ -10,15 +10,14 @@ class Persona {
 	String nombre
 	String apellido
 	String mail
-	String direccion
-	Provincia provincia
+	Direccion direccion
 	Boolean bloqueado
 
     static constraints = {
     }
 
 	String toString() {
-		"$zona, $superior, $documentoNumero, $nombre, $apellido, $mail, $direccion, $provincia, $bloqueado"
+		"$zona, $superior, $documentoNumero, $nombre, $apellido, $mail, $bloqueado"
 	}
 
 }
