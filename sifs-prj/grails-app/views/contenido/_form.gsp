@@ -1,4 +1,4 @@
-<%@ page import="com.sifs.prj.Contenido" %>
+<%@ page import="ar.org.scouts.sifs.domain.Contenido" %>
 
 
 

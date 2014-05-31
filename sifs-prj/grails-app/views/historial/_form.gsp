@@ -1,4 +1,4 @@
-<%@ page import="com.sifs.prj.Historial" %>
+<%@ page import="ar.org.scouts.sifs.domain.Historial" %>
 
 
 
@@ -16,7 +16,7 @@
 		<g:message code="historial.curso.label" default="Curso" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="curso" name="curso.id" from="${com.sifs.prj.Curso.list()}" optionKey="id" required="" value="${historialInstance?.curso?.id}" class="many-to-one"/>
+	<g:select id="curso" name="curso.id" from="${ar.org.scouts.sifs.domain.Curso.list()}" optionKey="id" required="" value="${historialInstance?.curso?.id}" class="many-to-one"/>
 
 </div>
 
@@ -34,7 +34,7 @@
 		<g:message code="historial.persona.label" default="Persona" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="persona" name="persona.id" from="${com.sifs.prj.Persona.list()}" optionKey="id" required="" value="${historialInstance?.persona?.id}" class="many-to-one"/>
+	<g:select id="persona" name="persona.id" from="${ar.org.scouts.sifs.domain.Persona.list()}" optionKey="id" required="" value="${historialInstance?.persona?.id}" class="many-to-one"/>
 
 </div>
 

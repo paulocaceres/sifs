@@ -1,5 +1,5 @@
 
-<%@ page import="com.sifs.prj.Nivel" %>
+<%@ page import="ar.org.scouts.sifs.domain.Nivel" %>
 <!DOCTYPE html>
 <html>
 	<head>

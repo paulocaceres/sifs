@@ -1,4 +1,4 @@
-<%@ page import="com.sifs.prj.Zona" %>
+<%@ page import="ar.org.scouts.sifs.domain.Zona" %>
 
 
 

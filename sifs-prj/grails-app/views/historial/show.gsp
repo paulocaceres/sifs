@@ -1,5 +1,5 @@
 
-<%@ page import="com.sifs.prj.Historial" %>
+<%@ page import="ar.org.scouts.sifs.domain.Historial" %>
 <!DOCTYPE html>
 <html>
 	<head>

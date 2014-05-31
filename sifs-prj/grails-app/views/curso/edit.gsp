@@ -1,4 +1,4 @@
-<%@ page import="com.sifs.prj.Curso" %>
+<%@ page import="ar.org.scouts.sifs.domain.Curso" %>
 <!DOCTYPE html>
 <html>
 	<head>
