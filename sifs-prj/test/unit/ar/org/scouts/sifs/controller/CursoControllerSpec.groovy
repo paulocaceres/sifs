@@ -2,9 +2,15 @@ package ar.org.scouts.sifs.controller
 
 
 
-import ar.org.scouts.sifs.domain.Curso;
 import grails.test.mixin.*
 import spock.lang.*
+import ar.org.scouts.sifs.domain.Contenido
+import ar.org.scouts.sifs.domain.Curso
+import ar.org.scouts.sifs.domain.Nivel
+import ar.org.scouts.sifs.domain.Persona
+import ar.org.scouts.sifs.domain.Plan
+import ar.org.scouts.sifs.domain.Provincia
+import ar.org.scouts.sifs.domain.Zona
 
 @TestFor(CursoController)
 @Mock(Curso)
@@ -13,7 +19,15 @@ class CursoControllerSpec extends Specification {
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["plan"] = new Plan(	nombre: 'unNombre', descripcion: 'unaDescripcion', validez: Date.parse('dd/MM/yyyy', '31/12/2014'))
+        params["zona"] = new Zona(nombre: 'unNombre')
+        params["contenido"] = new Contenido(nombre: 'unNombre', descripcion: 'unaDescripcion')
+        params["correlativas"] = 1
+        params["inscripto"] = new Persona(	zona: new Zona(nombre: 'unNombre'), superior: null, documentoNumero: 'unDocumentoNumero', nombre: 'unNombre', apellido: 'unApellido', mail: 'unMail', direccion: 'unaDireccion', provincia: new Provincia(descripcion: 'unaDescripcion'), bloqueado: false)
+        params["nivel"] = new Nivel(nombre: 'unNombre', nivelCol: 'unNivelCol')
+        params["nombre"] = 'unNombre'
+        params["fecha"] = Date.parse('dd/MM/yyyy', '31/12/2014')
+        params["cupo"] = 10
     }
 
     void "Test the index action returns the correct model"() {
