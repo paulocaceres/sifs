@@ -13,8 +13,8 @@ class ContenidoControllerSpec extends Specification {
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        params["nombre"] = 'unNombre'
-        params["descripcion"] = 'unaDescripcion'
+        params["nombre"] 		= 	'unNombre'
+        params["descripcion"] 	= 	'unaDescripcion'
     }
 
     void "Test the index action returns the correct model"() {

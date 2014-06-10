@@ -1,7 +1,10 @@
 package ar.org.scouts.sifs.domain
 
-import grails.test.mixin.TestFor
-import spock.lang.Specification
+
+
+import grails.test.mixin.*
+
+
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
@@ -9,16 +12,20 @@ import spock.lang.Specification
 @TestFor(Zona)
 class ZonaSpec {
 
-    def setup() {
-    }
 
-    def cleanup() {
-    }
+	def setup() {
+	}
 
-    void testToString() {
-		def unaZona = new Zona(nombre: 'unNombre')
-		
-		assertEquals 'unNombre', unaZona.toString()
-    }
+
+	def cleanup() {
+	}
+
+
+	void testToString() {
+		def unaZona = new Zona(nombre: 'zona.nombre')
+
+		assertEquals 'zona.nombre', unaZona.toString()
+	}
+
 
 }

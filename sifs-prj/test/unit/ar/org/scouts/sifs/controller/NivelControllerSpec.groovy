@@ -13,7 +13,8 @@ class NivelControllerSpec extends Specification {
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["nombre"] 	= 'nombre'
+        params["nivelCol"] 	= 'nivelCol'
     }
 
     void "Test the index action returns the correct model"() {

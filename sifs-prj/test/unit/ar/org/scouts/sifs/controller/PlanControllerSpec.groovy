@@ -2,9 +2,9 @@ package ar.org.scouts.sifs.controller
 
 
 
-import ar.org.scouts.sifs.domain.Plan;
 import grails.test.mixin.*
 import spock.lang.*
+import ar.org.scouts.sifs.domain.Plan
 
 @TestFor(PlanController)
 @Mock(Plan)
@@ -13,7 +13,9 @@ class PlanControllerSpec extends Specification {
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["nombre"] = 'nombre'
+        params["descripcion"] = 'descripcion'
+        params["validez"] = Date.parse('dd/MM/yyyy', '31/12/2014')
     }
 
     void "Test the index action returns the correct model"() {

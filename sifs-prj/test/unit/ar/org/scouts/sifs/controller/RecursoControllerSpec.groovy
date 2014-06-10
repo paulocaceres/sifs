@@ -2,9 +2,11 @@ package ar.org.scouts.sifs.controller
 
 
 
-import ar.org.scouts.sifs.domain.Recurso;
 import grails.test.mixin.*
 import spock.lang.*
+import ar.org.scouts.sifs.domain.Direccion
+import ar.org.scouts.sifs.domain.Provincia
+import ar.org.scouts.sifs.domain.Recurso
 
 @TestFor(RecursoController)
 @Mock(Recurso)
@@ -13,7 +15,14 @@ class RecursoControllerSpec extends Specification {
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["nombre"] = 'nombre'
+        params["cantidad"] = 1
+        params["direccion"] = new Direccion(	calle: 			'calle', 
+												numero: 		'numero', 
+												adicional: 		'adicional', 
+												codigoPostal: 	'codigoPostal', 
+												ciudad: 		'ciudad', 
+												provincia: 		new Provincia(descripcion: 'unaDescripcion'))
     }
 
     void "Test the index action returns the correct model"() {

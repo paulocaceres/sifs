@@ -16,10 +16,11 @@ class NivelSpec {
     }
 
     void testToString() {
-		def unNivel = new Nivel(nombre: 'unNombre',
-								nivelCol: 'unNivelCol')
+		def unNivel = new Nivel(nombre: 'nivel.nombre',
+								nivelCol: 'nivel.nivelCol')
 		
-		assertEquals 'unNombre, unNivelCol', unNivel.toString()
+		assertEquals 	'nivel.nombre, ' +
+						'nivel.nivelCol', unNivel.toString()
     }
 
 }

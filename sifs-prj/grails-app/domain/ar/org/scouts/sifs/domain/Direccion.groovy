@@ -1,7 +1,7 @@
 package ar.org.scouts.sifs.domain
 
 class Direccion {
-	
+
 	String calle
 	String numero
 	String adicional
@@ -9,6 +9,11 @@ class Direccion {
 	String ciudad
 	Provincia provincia
 
-    static constraints = {
-    }
+	static constraints = {
+	}
+
+	String toString() {
+		"$calle, $numero, $adicional, $codigoPostal, $ciudad, $provincia"
+	}
+
 }

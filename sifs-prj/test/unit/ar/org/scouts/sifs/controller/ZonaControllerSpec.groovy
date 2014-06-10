@@ -13,7 +13,7 @@ class ZonaControllerSpec extends Specification {
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["nombre"] = 'nombre'
     }
 
     void "Test the index action returns the correct model"() {

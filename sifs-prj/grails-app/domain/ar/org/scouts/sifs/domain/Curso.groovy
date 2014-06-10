@@ -5,7 +5,7 @@ class Curso {
 	
 	Plan plan
 	Zona zona
-	//Recurso recurso
+	Recurso recurso
 	Contenido contenido
 	Integer correlativas
 	Persona inscripto
@@ -18,7 +18,7 @@ class Curso {
     }
 	
 	String toString() {
-		"$plan, $zona, $contenido, $correlativas, $inscripto, $nivel, $nombre, ${fecha.format('dd/MM/yyyy')}, $cupo"
+		"$plan, $zona, $recurso, $contenido, $correlativas, $inscripto, $nivel, $nombre, ${fecha.format('dd/MM/yyyy')}, $cupo"
 	}
 
 }

@@ -10,7 +10,7 @@ class Recurso {
     }
 
 	String toString() {
-		"$nombre, $cantidad"
+		"$nombre, $cantidad, $direccion"
 	}
 	
 }

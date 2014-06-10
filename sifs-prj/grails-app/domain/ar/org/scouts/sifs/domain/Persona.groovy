@@ -17,7 +17,7 @@ class Persona {
     }
 
 	String toString() {
-		"$zona, $superior, $documentoNumero, $nombre, $apellido, $mail, $bloqueado"
+		"$zona, $superior, $documentoNumero, $nombre, $apellido, $mail, $direccion, $bloqueado"
 	}
 
 }

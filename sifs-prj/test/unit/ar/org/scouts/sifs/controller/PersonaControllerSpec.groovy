@@ -2,9 +2,12 @@ package ar.org.scouts.sifs.controller
 
 
 
-import ar.org.scouts.sifs.domain.Persona;
 import grails.test.mixin.*
 import spock.lang.*
+import ar.org.scouts.sifs.domain.Direccion
+import ar.org.scouts.sifs.domain.Persona
+import ar.org.scouts.sifs.domain.Provincia
+import ar.org.scouts.sifs.domain.Zona
 
 @TestFor(PersonaController)
 @Mock(Persona)
@@ -13,7 +16,21 @@ class PersonaControllerSpec extends Specification {
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["zona"] 				= 	new Zona(nombre: 'unNombre')
+        params["superior"] 			= 	null
+        //params["status"] 			= 	'status'
+        //params["documentoTipo"] 	=	'documentoTipo'
+        params["documentoNumero"] 	= 	'documentoNumero'
+        params["nombre"] 			= 	'nombre'
+        params["apellido"] 			= 	'apellido'
+        params["mail"] 				= 	'mail'
+        params["direccion"] 		= 	new Direccion(	calle: 			'calle', 
+														numero: 		'numero', 
+														adicional: 		'adicional', 
+														codigoPostal: 	'codigoPostal', 
+														ciudad: 		'ciudad', 
+														provincia: 		new Provincia(descripcion: 'unaDescripcion'))
+        params["bloqueado"] 		=	false
     }
 
     void "Test the index action returns the correct model"() {

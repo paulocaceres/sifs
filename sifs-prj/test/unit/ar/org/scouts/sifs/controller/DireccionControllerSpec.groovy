@@ -2,9 +2,10 @@ package ar.org.scouts.sifs.controller
 
 
 
-import ar.org.scouts.sifs.domain.Direccion;
 import grails.test.mixin.*
 import spock.lang.*
+import ar.org.scouts.sifs.domain.Direccion
+import ar.org.scouts.sifs.domain.Provincia
 
 @TestFor(DireccionController)
 @Mock(Direccion)
@@ -13,7 +14,12 @@ class DireccionControllerSpec extends Specification {
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["calle"] 		= 	'calle'
+        params["numero"] 		= 	'numero'
+        params["adicional"] 	= 	'adicional'
+        params["codigoPostal"] 	= 	'codigoPostal'
+        params["ciudad"] 		= 	'ciudad'
+        params["provincia"] 	= 	new Provincia(descripcion: 'descripcion')
     }
 
     void "Test the index action returns the correct model"() {

@@ -1,7 +1,10 @@
 package ar.org.scouts.sifs.domain
 
-import grails.test.mixin.TestFor
-import spock.lang.Specification
+
+
+import grails.test.mixin.*
+
+
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
@@ -9,17 +12,22 @@ import spock.lang.Specification
 @TestFor(Documento)
 class DocumentoSpec {
 
-    def setup() {
-    }
 
-    def cleanup() {
-    }
+	def setup() {
+	}
 
-    void testToString() {
-		def unDocumento = new Documento(tipo: 'unTipo',
-										descripcion: 'unaDescripcion')
-		
-		assertEquals 'unTipo, unaDescripcion', unDocumento.toString()
-    }
+
+	def cleanup() {
+	}
+
+
+	void testToString() {
+		def unDocumento = new Documento(tipo: 			'documento.tipo',
+										descripcion: 	'documento.descripcion')
+
+		assertEquals 	'documento.tipo, ' +
+						'documento.descripcion', unDocumento.toString()
+	}
+
 
 }
