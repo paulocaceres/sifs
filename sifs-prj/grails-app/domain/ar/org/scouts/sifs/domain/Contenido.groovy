@@ -5,7 +5,8 @@ class Contenido {
 	String nombre
 	String descripcion
 	
-    static constraints = {
+
+	static constraints = {
     }
 	
 	String toString() {
