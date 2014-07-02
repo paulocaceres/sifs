@@ -1,19 +1,20 @@
-package ar.org.scouts.sifs.controller
+package ar.org.scouts.sifs
 
 
 
-import ar.org.scouts.sifs.domain.Provincia;
+import ar.org.scouts.sifs.Contenido;
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(ProvinciaController)
-@Mock(Provincia)
-class ProvinciaControllerSpec extends Specification {
+@TestFor(ContenidoController)
+@Mock(Contenido)
+class ContenidoControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        params["descripcion"] = 'descripcion'
+        params["nombre"] 		= 	'unNombre'
+        params["descripcion"] 	= 	'unaDescripcion'
     }
 
     void "Test the index action returns the correct model"() {
@@ -22,8 +23,8 @@ class ProvinciaControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.provinciaInstanceList
-            model.provinciaInstanceCount == 0
+            !model.contenidoInstanceList
+            model.contenidoInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -31,32 +32,32 @@ class ProvinciaControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.provinciaInstance!= null
+            model.contenidoInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
 
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
-            def provincia = new Provincia()
-            provincia.validate()
-            controller.save(provincia)
+            def contenido = new Contenido()
+            contenido.validate()
+            controller.save(contenido)
 
         then:"The create view is rendered again with the correct model"
-            model.provinciaInstance!= null
+            model.contenidoInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            provincia = new Provincia(params)
+            contenido = new Contenido(params)
 
-            controller.save(provincia)
+            controller.save(contenido)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/provincia/show/1'
+            response.redirectedUrl == '/contenido/show/1'
             controller.flash.message != null
-            Provincia.count() == 1
+            Contenido.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -68,11 +69,11 @@ class ProvinciaControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def provincia = new Provincia(params)
-            controller.show(provincia)
+            def contenido = new Contenido(params)
+            controller.show(contenido)
 
         then:"A model is populated containing the domain instance"
-            model.provinciaInstance == provincia
+            model.contenidoInstance == contenido
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -84,11 +85,11 @@ class ProvinciaControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def provincia = new Provincia(params)
-            controller.edit(provincia)
+            def contenido = new Contenido(params)
+            controller.edit(contenido)
 
         then:"A model is populated containing the domain instance"
-            model.provinciaInstance == provincia
+            model.contenidoInstance == contenido
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -97,28 +98,28 @@ class ProvinciaControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/provincia/index'
+            response.redirectedUrl == '/contenido/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def provincia = new Provincia()
-            provincia.validate()
-            controller.update(provincia)
+            def contenido = new Contenido()
+            contenido.validate()
+            controller.update(contenido)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.provinciaInstance == provincia
+            model.contenidoInstance == contenido
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            provincia = new Provincia(params).save(flush: true)
-            controller.update(provincia)
+            contenido = new Contenido(params).save(flush: true)
+            controller.update(contenido)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/provincia/show/$provincia.id"
+            response.redirectedUrl == "/contenido/show/$contenido.id"
             flash.message != null
     }
 
@@ -128,23 +129,23 @@ class ProvinciaControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/provincia/index'
+            response.redirectedUrl == '/contenido/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def provincia = new Provincia(params).save(flush: true)
+            def contenido = new Contenido(params).save(flush: true)
 
         then:"It exists"
-            Provincia.count() == 1
+            Contenido.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(provincia)
+            controller.delete(contenido)
 
         then:"The instance is deleted"
-            Provincia.count() == 0
-            response.redirectedUrl == '/provincia/index'
+            Contenido.count() == 0
+            response.redirectedUrl == '/contenido/index'
             flash.message != null
     }
 }

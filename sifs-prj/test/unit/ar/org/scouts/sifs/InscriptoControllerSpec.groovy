@@ -1,25 +1,43 @@
-package ar.org.scouts.sifs.controller
+package ar.org.scouts.sifs
 
 
 
 import grails.test.mixin.*
 import spock.lang.*
-import ar.org.scouts.sifs.domain.Direccion
-import ar.org.scouts.sifs.domain.Provincia
+import ar.org.scouts.sifs.Contenido
+import ar.org.scouts.sifs.Curso
+import ar.org.scouts.sifs.Inscripto
+import ar.org.scouts.sifs.Nivel
+import ar.org.scouts.sifs.Persona
+import ar.org.scouts.sifs.Plan
+import ar.org.scouts.sifs.Provincia
+import ar.org.scouts.sifs.Zona
 
-@TestFor(DireccionController)
-@Mock(Direccion)
-class DireccionControllerSpec extends Specification {
+@TestFor(InscriptoController)
+@Mock(Inscripto)
+class InscriptoControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        params["calle"] 		= 	'calle'
-        params["numero"] 		= 	'numero'
-        params["adicional"] 	= 	'adicional'
-        params["codigoPostal"] 	= 	'codigoPostal'
-        params["ciudad"] 		= 	'ciudad'
-        params["provincia"] 	= 	new Provincia(descripcion: 'descripcion')
+        params["curso"]	=	new Curso(	plan: new Plan(	nombre: 'unNombre', descripcion: 'unaDescripcion', validez: Date.parse('dd/MM/yyyy', '31/12/2014')),
+										zona: new Zona(nombre: 'unNombre'),
+										contenido: new Contenido(nombre: 'unNombre', descripcion: 'unaDescripcion'),
+										correlativas: 1,
+										inscripto: new Persona(	zona: new Zona(nombre: 'unNombre'),
+																superior: null,
+																documentoNumero: 'unDocumentoNumero',
+																nombre: 'unNombre',
+																apellido: 'unApellido',
+																mail: 'unMail',
+																direccion: 'unaDireccion',
+																provincia: new Provincia(descripcion: 'unaDescripcion'),
+																bloqueado: false),
+										nivel: new Nivel(nombre: 'unNombre', nivelCol: 'unNivelCol'),
+										nombre: 'unNombre',
+										fecha: Date.parse('dd/MM/yyyy', '31/12/2014'),
+										cupo: 10)
+        params["fecha"]	=	Date.parse('dd/MM/yyyy', '31/12/2014')
     }
 
     void "Test the index action returns the correct model"() {
@@ -28,8 +46,8 @@ class DireccionControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.direccionInstanceList
-            model.direccionInstanceCount == 0
+            !model.inscriptoInstanceList
+            model.inscriptoInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -37,32 +55,32 @@ class DireccionControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.direccionInstance!= null
+            model.inscriptoInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
 
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
-            def direccion = new Direccion()
-            direccion.validate()
-            controller.save(direccion)
+            def inscripto = new Inscripto()
+            inscripto.validate()
+            controller.save(inscripto)
 
         then:"The create view is rendered again with the correct model"
-            model.direccionInstance!= null
+            model.inscriptoInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            direccion = new Direccion(params)
+            inscripto = new Inscripto(params)
 
-            controller.save(direccion)
+            controller.save(inscripto)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/direccion/show/1'
+            response.redirectedUrl == '/inscripto/show/1'
             controller.flash.message != null
-            Direccion.count() == 1
+            Inscripto.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -74,11 +92,11 @@ class DireccionControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def direccion = new Direccion(params)
-            controller.show(direccion)
+            def inscripto = new Inscripto(params)
+            controller.show(inscripto)
 
         then:"A model is populated containing the domain instance"
-            model.direccionInstance == direccion
+            model.inscriptoInstance == inscripto
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -90,11 +108,11 @@ class DireccionControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def direccion = new Direccion(params)
-            controller.edit(direccion)
+            def inscripto = new Inscripto(params)
+            controller.edit(inscripto)
 
         then:"A model is populated containing the domain instance"
-            model.direccionInstance == direccion
+            model.inscriptoInstance == inscripto
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -103,28 +121,28 @@ class DireccionControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/direccion/index'
+            response.redirectedUrl == '/inscripto/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def direccion = new Direccion()
-            direccion.validate()
-            controller.update(direccion)
+            def inscripto = new Inscripto()
+            inscripto.validate()
+            controller.update(inscripto)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.direccionInstance == direccion
+            model.inscriptoInstance == inscripto
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            direccion = new Direccion(params).save(flush: true)
-            controller.update(direccion)
+            inscripto = new Inscripto(params).save(flush: true)
+            controller.update(inscripto)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/direccion/show/$direccion.id"
+            response.redirectedUrl == "/inscripto/show/$inscripto.id"
             flash.message != null
     }
 
@@ -134,23 +152,23 @@ class DireccionControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/direccion/index'
+            response.redirectedUrl == '/inscripto/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def direccion = new Direccion(params).save(flush: true)
+            def inscripto = new Inscripto(params).save(flush: true)
 
         then:"It exists"
-            Direccion.count() == 1
+            Inscripto.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(direccion)
+            controller.delete(inscripto)
 
         then:"The instance is deleted"
-            Direccion.count() == 0
-            response.redirectedUrl == '/direccion/index'
+            Inscripto.count() == 0
+            response.redirectedUrl == '/inscripto/index'
             flash.message != null
     }
 }

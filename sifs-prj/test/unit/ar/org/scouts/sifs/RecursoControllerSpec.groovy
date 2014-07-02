@@ -1,21 +1,28 @@
-package ar.org.scouts.sifs.controller
+package ar.org.scouts.sifs
 
 
 
 import grails.test.mixin.*
 import spock.lang.*
-import ar.org.scouts.sifs.domain.Plan
+import ar.org.scouts.sifs.Direccion
+import ar.org.scouts.sifs.Provincia
+import ar.org.scouts.sifs.Recurso
 
-@TestFor(PlanController)
-@Mock(Plan)
-class PlanControllerSpec extends Specification {
+@TestFor(RecursoController)
+@Mock(Recurso)
+class RecursoControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
         params["nombre"] = 'nombre'
-        params["descripcion"] = 'descripcion'
-        params["validez"] = Date.parse('dd/MM/yyyy', '31/12/2014')
+        params["cantidad"] = 1
+        params["direccion"] = new Direccion(	calle: 			'calle', 
+												numero: 		'numero', 
+												adicional: 		'adicional', 
+												codigoPostal: 	'codigoPostal', 
+												ciudad: 		'ciudad', 
+												provincia: 		new Provincia(descripcion: 'unaDescripcion'))
     }
 
     void "Test the index action returns the correct model"() {
@@ -24,8 +31,8 @@ class PlanControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.planInstanceList
-            model.planInstanceCount == 0
+            !model.recursoInstanceList
+            model.recursoInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -33,32 +40,32 @@ class PlanControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.planInstance!= null
+            model.recursoInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
 
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
-            def plan = new Plan()
-            plan.validate()
-            controller.save(plan)
+            def recurso = new Recurso()
+            recurso.validate()
+            controller.save(recurso)
 
         then:"The create view is rendered again with the correct model"
-            model.planInstance!= null
+            model.recursoInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            plan = new Plan(params)
+            recurso = new Recurso(params)
 
-            controller.save(plan)
+            controller.save(recurso)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/plan/show/1'
+            response.redirectedUrl == '/recurso/show/1'
             controller.flash.message != null
-            Plan.count() == 1
+            Recurso.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -70,11 +77,11 @@ class PlanControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def plan = new Plan(params)
-            controller.show(plan)
+            def recurso = new Recurso(params)
+            controller.show(recurso)
 
         then:"A model is populated containing the domain instance"
-            model.planInstance == plan
+            model.recursoInstance == recurso
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -86,11 +93,11 @@ class PlanControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def plan = new Plan(params)
-            controller.edit(plan)
+            def recurso = new Recurso(params)
+            controller.edit(recurso)
 
         then:"A model is populated containing the domain instance"
-            model.planInstance == plan
+            model.recursoInstance == recurso
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -99,28 +106,28 @@ class PlanControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/plan/index'
+            response.redirectedUrl == '/recurso/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def plan = new Plan()
-            plan.validate()
-            controller.update(plan)
+            def recurso = new Recurso()
+            recurso.validate()
+            controller.update(recurso)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.planInstance == plan
+            model.recursoInstance == recurso
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            plan = new Plan(params).save(flush: true)
-            controller.update(plan)
+            recurso = new Recurso(params).save(flush: true)
+            controller.update(recurso)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/plan/show/$plan.id"
+            response.redirectedUrl == "/recurso/show/$recurso.id"
             flash.message != null
     }
 
@@ -130,23 +137,23 @@ class PlanControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/plan/index'
+            response.redirectedUrl == '/recurso/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def plan = new Plan(params).save(flush: true)
+            def recurso = new Recurso(params).save(flush: true)
 
         then:"It exists"
-            Plan.count() == 1
+            Recurso.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(plan)
+            controller.delete(recurso)
 
         then:"The instance is deleted"
-            Plan.count() == 0
-            response.redirectedUrl == '/plan/index'
+            Recurso.count() == 0
+            response.redirectedUrl == '/recurso/index'
             flash.message != null
     }
 }

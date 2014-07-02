@@ -1,20 +1,25 @@
-package ar.org.scouts.sifs.controller
+package ar.org.scouts.sifs
 
 
 
-import ar.org.scouts.sifs.domain.Contenido;
 import grails.test.mixin.*
 import spock.lang.*
+import ar.org.scouts.sifs.Direccion
+import ar.org.scouts.sifs.Provincia
 
-@TestFor(ContenidoController)
-@Mock(Contenido)
-class ContenidoControllerSpec extends Specification {
+@TestFor(DireccionController)
+@Mock(Direccion)
+class DireccionControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        params["nombre"] 		= 	'unNombre'
-        params["descripcion"] 	= 	'unaDescripcion'
+        params["calle"] 		= 	'calle'
+        params["numero"] 		= 	'numero'
+        params["adicional"] 	= 	'adicional'
+        params["codigoPostal"] 	= 	'codigoPostal'
+        params["ciudad"] 		= 	'ciudad'
+        params["provincia"] 	= 	new Provincia(descripcion: 'descripcion')
     }
 
     void "Test the index action returns the correct model"() {
@@ -23,8 +28,8 @@ class ContenidoControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.contenidoInstanceList
-            model.contenidoInstanceCount == 0
+            !model.direccionInstanceList
+            model.direccionInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -32,32 +37,32 @@ class ContenidoControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.contenidoInstance!= null
+            model.direccionInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
 
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
-            def contenido = new Contenido()
-            contenido.validate()
-            controller.save(contenido)
+            def direccion = new Direccion()
+            direccion.validate()
+            controller.save(direccion)
 
         then:"The create view is rendered again with the correct model"
-            model.contenidoInstance!= null
+            model.direccionInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            contenido = new Contenido(params)
+            direccion = new Direccion(params)
 
-            controller.save(contenido)
+            controller.save(direccion)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/contenido/show/1'
+            response.redirectedUrl == '/direccion/show/1'
             controller.flash.message != null
-            Contenido.count() == 1
+            Direccion.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -69,11 +74,11 @@ class ContenidoControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def contenido = new Contenido(params)
-            controller.show(contenido)
+            def direccion = new Direccion(params)
+            controller.show(direccion)
 
         then:"A model is populated containing the domain instance"
-            model.contenidoInstance == contenido
+            model.direccionInstance == direccion
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -85,11 +90,11 @@ class ContenidoControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def contenido = new Contenido(params)
-            controller.edit(contenido)
+            def direccion = new Direccion(params)
+            controller.edit(direccion)
 
         then:"A model is populated containing the domain instance"
-            model.contenidoInstance == contenido
+            model.direccionInstance == direccion
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -98,28 +103,28 @@ class ContenidoControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/contenido/index'
+            response.redirectedUrl == '/direccion/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def contenido = new Contenido()
-            contenido.validate()
-            controller.update(contenido)
+            def direccion = new Direccion()
+            direccion.validate()
+            controller.update(direccion)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.contenidoInstance == contenido
+            model.direccionInstance == direccion
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            contenido = new Contenido(params).save(flush: true)
-            controller.update(contenido)
+            direccion = new Direccion(params).save(flush: true)
+            controller.update(direccion)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/contenido/show/$contenido.id"
+            response.redirectedUrl == "/direccion/show/$direccion.id"
             flash.message != null
     }
 
@@ -129,23 +134,23 @@ class ContenidoControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/contenido/index'
+            response.redirectedUrl == '/direccion/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def contenido = new Contenido(params).save(flush: true)
+            def direccion = new Direccion(params).save(flush: true)
 
         then:"It exists"
-            Contenido.count() == 1
+            Direccion.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(contenido)
+            controller.delete(direccion)
 
         then:"The instance is deleted"
-            Contenido.count() == 0
-            response.redirectedUrl == '/contenido/index'
+            Direccion.count() == 0
+            response.redirectedUrl == '/direccion/index'
             flash.message != null
     }
 }

@@ -1,21 +1,20 @@
-package ar.org.scouts.sifs.controller
+package ar.org.scouts.sifs
 
 
 
-import ar.org.scouts.sifs.domain.Documento;
+import ar.org.scouts.sifs.Nivel;
 import grails.test.mixin.*
 import spock.lang.*
 
-
-@TestFor(DocumentoController)
-@Mock(Documento)
-class DocumentoControllerSpec extends Specification {
+@TestFor(NivelController)
+@Mock(Nivel)
+class NivelControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        params["tipo"] 			= 	'tipo'
-        params["descripcion"] 	= 	'descripcion'
+        params["nombre"] 	= 'nombre'
+        params["nivelCol"] 	= 'nivelCol'
     }
 
     void "Test the index action returns the correct model"() {
@@ -24,8 +23,8 @@ class DocumentoControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.documentoInstanceList
-            model.documentoInstanceCount == 0
+            !model.nivelInstanceList
+            model.nivelInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -33,32 +32,32 @@ class DocumentoControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.documentoInstance!= null
+            model.nivelInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
 
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
-            def documento = new Documento()
-            documento.validate()
-            controller.save(documento)
+            def nivel = new Nivel()
+            nivel.validate()
+            controller.save(nivel)
 
         then:"The create view is rendered again with the correct model"
-            model.documentoInstance!= null
+            model.nivelInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            documento = new Documento(params)
+            nivel = new Nivel(params)
 
-            controller.save(documento)
+            controller.save(nivel)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/documento/show/1'
+            response.redirectedUrl == '/nivel/show/1'
             controller.flash.message != null
-            Documento.count() == 1
+            Nivel.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -70,11 +69,11 @@ class DocumentoControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def documento = new Documento(params)
-            controller.show(documento)
+            def nivel = new Nivel(params)
+            controller.show(nivel)
 
         then:"A model is populated containing the domain instance"
-            model.documentoInstance == documento
+            model.nivelInstance == nivel
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -86,11 +85,11 @@ class DocumentoControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def documento = new Documento(params)
-            controller.edit(documento)
+            def nivel = new Nivel(params)
+            controller.edit(nivel)
 
         then:"A model is populated containing the domain instance"
-            model.documentoInstance == documento
+            model.nivelInstance == nivel
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -99,28 +98,28 @@ class DocumentoControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/documento/index'
+            response.redirectedUrl == '/nivel/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def documento = new Documento()
-            documento.validate()
-            controller.update(documento)
+            def nivel = new Nivel()
+            nivel.validate()
+            controller.update(nivel)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.documentoInstance == documento
+            model.nivelInstance == nivel
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            documento = new Documento(params).save(flush: true)
-            controller.update(documento)
+            nivel = new Nivel(params).save(flush: true)
+            controller.update(nivel)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/documento/show/$documento.id"
+            response.redirectedUrl == "/nivel/show/$nivel.id"
             flash.message != null
     }
 
@@ -130,23 +129,23 @@ class DocumentoControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/documento/index'
+            response.redirectedUrl == '/nivel/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def documento = new Documento(params).save(flush: true)
+            def nivel = new Nivel(params).save(flush: true)
 
         then:"It exists"
-            Documento.count() == 1
+            Nivel.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(documento)
+            controller.delete(nivel)
 
         then:"The instance is deleted"
-            Documento.count() == 0
-            response.redirectedUrl == '/documento/index'
+            Nivel.count() == 0
+            response.redirectedUrl == '/nivel/index'
             flash.message != null
     }
 }

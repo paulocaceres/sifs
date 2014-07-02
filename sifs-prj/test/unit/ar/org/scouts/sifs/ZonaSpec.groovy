@@ -1,4 +1,4 @@
-package ar.org.scouts.sifs.domain
+package ar.org.scouts.sifs
 
 
 
@@ -9,8 +9,8 @@ import grails.test.mixin.*
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(Provincia)
-class ProvinciaSpec {
+@TestFor(Zona)
+class ZonaSpec {
 
 
 	def setup() {
@@ -22,9 +22,9 @@ class ProvinciaSpec {
 
 
 	void testToString() {
-		def unaProvincia = new Provincia(descripcion: 'provincia.descripcion')
+		def unaZona = new Zona(nombre: 'zona.nombre')
 
-		assertEquals 'provincia.descripcion', unaProvincia.toString()
+		assertEquals 'zona.nombre', unaZona.toString()
 	}
 
 

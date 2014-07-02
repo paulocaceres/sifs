@@ -1,19 +1,19 @@
-package ar.org.scouts.sifs.controller
+package ar.org.scouts.sifs
 
 
 
 import grails.test.mixin.*
 import spock.lang.*
-import ar.org.scouts.sifs.domain.Contenido
-import ar.org.scouts.sifs.domain.Curso
-import ar.org.scouts.sifs.domain.Direccion
-import ar.org.scouts.sifs.domain.Historial
-import ar.org.scouts.sifs.domain.Nivel
-import ar.org.scouts.sifs.domain.Persona
-import ar.org.scouts.sifs.domain.Plan
-import ar.org.scouts.sifs.domain.Provincia
-import ar.org.scouts.sifs.domain.Recurso
-import ar.org.scouts.sifs.domain.Zona
+import ar.org.scouts.sifs.Contenido
+import ar.org.scouts.sifs.Curso
+import ar.org.scouts.sifs.Direccion
+import ar.org.scouts.sifs.Historial
+import ar.org.scouts.sifs.Nivel
+import ar.org.scouts.sifs.Persona
+import ar.org.scouts.sifs.Plan
+import ar.org.scouts.sifs.Provincia
+import ar.org.scouts.sifs.Recurso
+import ar.org.scouts.sifs.Zona
 
 @TestFor(HistorialController)
 @Mock(Historial)

@@ -1,19 +1,36 @@
-package ar.org.scouts.sifs.controller
+package ar.org.scouts.sifs
 
 
 
-import ar.org.scouts.sifs.domain.Zona;
 import grails.test.mixin.*
 import spock.lang.*
+import ar.org.scouts.sifs.Direccion
+import ar.org.scouts.sifs.Persona
+import ar.org.scouts.sifs.Provincia
+import ar.org.scouts.sifs.Zona
 
-@TestFor(ZonaController)
-@Mock(Zona)
-class ZonaControllerSpec extends Specification {
+@TestFor(PersonaController)
+@Mock(Persona)
+class PersonaControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        params["nombre"] = 'nombre'
+        params["zona"] 				= 	new Zona(nombre: 'unNombre')
+        params["superior"] 			= 	null
+        //params["status"] 			= 	'status'
+        //params["documentoTipo"] 	=	'documentoTipo'
+        params["documentoNumero"] 	= 	'documentoNumero'
+        params["nombre"] 			= 	'nombre'
+        params["apellido"] 			= 	'apellido'
+        params["mail"] 				= 	'mail'
+        params["direccion"] 		= 	new Direccion(	calle: 			'calle', 
+														numero: 		'numero', 
+														adicional: 		'adicional', 
+														codigoPostal: 	'codigoPostal', 
+														ciudad: 		'ciudad', 
+														provincia: 		new Provincia(descripcion: 'unaDescripcion'))
+        params["bloqueado"] 		=	false
     }
 
     void "Test the index action returns the correct model"() {
@@ -22,8 +39,8 @@ class ZonaControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.zonaInstanceList
-            model.zonaInstanceCount == 0
+            !model.personaInstanceList
+            model.personaInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -31,32 +48,32 @@ class ZonaControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.zonaInstance!= null
+            model.personaInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
 
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
-            def zona = new Zona()
-            zona.validate()
-            controller.save(zona)
+            def persona = new Persona()
+            persona.validate()
+            controller.save(persona)
 
         then:"The create view is rendered again with the correct model"
-            model.zonaInstance!= null
+            model.personaInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            zona = new Zona(params)
+            persona = new Persona(params)
 
-            controller.save(zona)
+            controller.save(persona)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/zona/show/1'
+            response.redirectedUrl == '/persona/show/1'
             controller.flash.message != null
-            Zona.count() == 1
+            Persona.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -68,11 +85,11 @@ class ZonaControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def zona = new Zona(params)
-            controller.show(zona)
+            def persona = new Persona(params)
+            controller.show(persona)
 
         then:"A model is populated containing the domain instance"
-            model.zonaInstance == zona
+            model.personaInstance == persona
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -84,11 +101,11 @@ class ZonaControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def zona = new Zona(params)
-            controller.edit(zona)
+            def persona = new Persona(params)
+            controller.edit(persona)
 
         then:"A model is populated containing the domain instance"
-            model.zonaInstance == zona
+            model.personaInstance == persona
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -97,28 +114,28 @@ class ZonaControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/zona/index'
+            response.redirectedUrl == '/persona/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def zona = new Zona()
-            zona.validate()
-            controller.update(zona)
+            def persona = new Persona()
+            persona.validate()
+            controller.update(persona)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.zonaInstance == zona
+            model.personaInstance == persona
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            zona = new Zona(params).save(flush: true)
-            controller.update(zona)
+            persona = new Persona(params).save(flush: true)
+            controller.update(persona)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/zona/show/$zona.id"
+            response.redirectedUrl == "/persona/show/$persona.id"
             flash.message != null
     }
 
@@ -128,23 +145,23 @@ class ZonaControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/zona/index'
+            response.redirectedUrl == '/persona/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def zona = new Zona(params).save(flush: true)
+            def persona = new Persona(params).save(flush: true)
 
         then:"It exists"
-            Zona.count() == 1
+            Persona.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(zona)
+            controller.delete(persona)
 
         then:"The instance is deleted"
-            Zona.count() == 0
-            response.redirectedUrl == '/zona/index'
+            Persona.count() == 0
+            response.redirectedUrl == '/persona/index'
             flash.message != null
     }
 }

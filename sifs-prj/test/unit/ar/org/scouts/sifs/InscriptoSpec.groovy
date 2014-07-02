@@ -1,4 +1,4 @@
-package ar.org.scouts.sifs.domain
+package ar.org.scouts.sifs
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification

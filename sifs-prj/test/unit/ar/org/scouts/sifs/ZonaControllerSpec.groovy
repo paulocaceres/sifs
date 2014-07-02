@@ -1,43 +1,19 @@
-package ar.org.scouts.sifs.controller
+package ar.org.scouts.sifs
 
 
 
+import ar.org.scouts.sifs.Zona;
 import grails.test.mixin.*
 import spock.lang.*
-import ar.org.scouts.sifs.domain.Contenido
-import ar.org.scouts.sifs.domain.Curso
-import ar.org.scouts.sifs.domain.Inscripto
-import ar.org.scouts.sifs.domain.Nivel
-import ar.org.scouts.sifs.domain.Persona
-import ar.org.scouts.sifs.domain.Plan
-import ar.org.scouts.sifs.domain.Provincia
-import ar.org.scouts.sifs.domain.Zona
 
-@TestFor(InscriptoController)
-@Mock(Inscripto)
-class InscriptoControllerSpec extends Specification {
+@TestFor(ZonaController)
+@Mock(Zona)
+class ZonaControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        params["curso"]	=	new Curso(	plan: new Plan(	nombre: 'unNombre', descripcion: 'unaDescripcion', validez: Date.parse('dd/MM/yyyy', '31/12/2014')),
-										zona: new Zona(nombre: 'unNombre'),
-										contenido: new Contenido(nombre: 'unNombre', descripcion: 'unaDescripcion'),
-										correlativas: 1,
-										inscripto: new Persona(	zona: new Zona(nombre: 'unNombre'),
-																superior: null,
-																documentoNumero: 'unDocumentoNumero',
-																nombre: 'unNombre',
-																apellido: 'unApellido',
-																mail: 'unMail',
-																direccion: 'unaDireccion',
-																provincia: new Provincia(descripcion: 'unaDescripcion'),
-																bloqueado: false),
-										nivel: new Nivel(nombre: 'unNombre', nivelCol: 'unNivelCol'),
-										nombre: 'unNombre',
-										fecha: Date.parse('dd/MM/yyyy', '31/12/2014'),
-										cupo: 10)
-        params["fecha"]	=	Date.parse('dd/MM/yyyy', '31/12/2014')
+        params["nombre"] = 'nombre'
     }
 
     void "Test the index action returns the correct model"() {
@@ -46,8 +22,8 @@ class InscriptoControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.inscriptoInstanceList
-            model.inscriptoInstanceCount == 0
+            !model.zonaInstanceList
+            model.zonaInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -55,32 +31,32 @@ class InscriptoControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.inscriptoInstance!= null
+            model.zonaInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
 
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
-            def inscripto = new Inscripto()
-            inscripto.validate()
-            controller.save(inscripto)
+            def zona = new Zona()
+            zona.validate()
+            controller.save(zona)
 
         then:"The create view is rendered again with the correct model"
-            model.inscriptoInstance!= null
+            model.zonaInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            inscripto = new Inscripto(params)
+            zona = new Zona(params)
 
-            controller.save(inscripto)
+            controller.save(zona)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/inscripto/show/1'
+            response.redirectedUrl == '/zona/show/1'
             controller.flash.message != null
-            Inscripto.count() == 1
+            Zona.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -92,11 +68,11 @@ class InscriptoControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def inscripto = new Inscripto(params)
-            controller.show(inscripto)
+            def zona = new Zona(params)
+            controller.show(zona)
 
         then:"A model is populated containing the domain instance"
-            model.inscriptoInstance == inscripto
+            model.zonaInstance == zona
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -108,11 +84,11 @@ class InscriptoControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def inscripto = new Inscripto(params)
-            controller.edit(inscripto)
+            def zona = new Zona(params)
+            controller.edit(zona)
 
         then:"A model is populated containing the domain instance"
-            model.inscriptoInstance == inscripto
+            model.zonaInstance == zona
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -121,28 +97,28 @@ class InscriptoControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/inscripto/index'
+            response.redirectedUrl == '/zona/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def inscripto = new Inscripto()
-            inscripto.validate()
-            controller.update(inscripto)
+            def zona = new Zona()
+            zona.validate()
+            controller.update(zona)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.inscriptoInstance == inscripto
+            model.zonaInstance == zona
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            inscripto = new Inscripto(params).save(flush: true)
-            controller.update(inscripto)
+            zona = new Zona(params).save(flush: true)
+            controller.update(zona)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/inscripto/show/$inscripto.id"
+            response.redirectedUrl == "/zona/show/$zona.id"
             flash.message != null
     }
 
@@ -152,23 +128,23 @@ class InscriptoControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/inscripto/index'
+            response.redirectedUrl == '/zona/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def inscripto = new Inscripto(params).save(flush: true)
+            def zona = new Zona(params).save(flush: true)
 
         then:"It exists"
-            Inscripto.count() == 1
+            Zona.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(inscripto)
+            controller.delete(zona)
 
         then:"The instance is deleted"
-            Inscripto.count() == 0
-            response.redirectedUrl == '/inscripto/index'
+            Zona.count() == 0
+            response.redirectedUrl == '/zona/index'
             flash.message != null
     }
 }
