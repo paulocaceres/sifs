@@ -1,6 +1,6 @@
-import ar.org.scouts.sifs.domain.security.SifsRole;
-import ar.org.scouts.sifs.domain.security.SifsUser;
-import ar.org.scouts.sifs.domain.security.SifsUserSifsRole;
+import ar.org.scouts.sifs.security.SifsRole;
+import ar.org.scouts.sifs.security.SifsUser;
+import ar.org.scouts.sifs.security.SifsUserSifsRole;
 
 class BootStrap {
 
