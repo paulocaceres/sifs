@@ -1,5 +1,5 @@
 
-<%@ page import="ar.org.scouts.sifs.domain.Zona" %>
+<%@ page import="ar.org.scouts.sifs.Zona" %>
 <!DOCTYPE html>
 <html>
 	<head>

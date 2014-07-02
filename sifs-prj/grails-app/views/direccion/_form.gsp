@@ -1,4 +1,4 @@
-<%@ page import="ar.org.scouts.sifs.domain.Direccion" %>
+<%@ page import="ar.org.scouts.sifs.Direccion" %>
 
 
 
@@ -52,7 +52,7 @@
 		<g:message code="direccion.provincia.label" default="Provincia" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="provincia" name="provincia.id" from="${ar.org.scouts.sifs.domain.Provincia.list()}" optionKey="id" required="" value="${direccionInstance?.provincia?.id}" class="many-to-one"/>
+	<g:select id="provincia" name="provincia.id" from="${ar.org.scouts.sifs.Provincia.list()}" optionKey="id" required="" value="${direccionInstance?.provincia?.id}" class="many-to-one"/>
 
 </div>
 

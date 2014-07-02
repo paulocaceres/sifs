@@ -1,4 +1,4 @@
-<%@ page import="ar.org.scouts.sifs.domain.Persona" %>
+<%@ page import="ar.org.scouts.sifs.Persona" %>
 
 
 
@@ -25,7 +25,7 @@
 		<g:message code="persona.direccion.label" default="Direccion" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="direccion" name="direccion.id" from="${ar.org.scouts.sifs.domain.Direccion.list()}" optionKey="id" required="" value="${personaInstance?.direccion?.id}" class="many-to-one"/>
+	<g:select id="direccion" name="direccion.id" from="${ar.org.scouts.sifs.Direccion.list()}" optionKey="id" required="" value="${personaInstance?.direccion?.id}" class="many-to-one"/>
 
 </div>
 
@@ -61,7 +61,7 @@
 		<g:message code="persona.superior.label" default="Superior" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="superior" name="superior.id" from="${ar.org.scouts.sifs.domain.Persona.list()}" optionKey="id" required="" value="${personaInstance?.superior?.id}" class="many-to-one"/>
+	<g:select id="superior" name="superior.id" from="${ar.org.scouts.sifs.Persona.list()}" optionKey="id" required="" value="${personaInstance?.superior?.id}" class="many-to-one"/>
 
 </div>
 
@@ -70,7 +70,7 @@
 		<g:message code="persona.zona.label" default="Zona" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.domain.Zona.list()}" optionKey="id" required="" value="${personaInstance?.zona?.id}" class="many-to-one"/>
+	<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.list()}" optionKey="id" required="" value="${personaInstance?.zona?.id}" class="many-to-one"/>
 
 </div>
 
