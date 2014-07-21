@@ -10,6 +10,7 @@ class Persona {
 	Zona zona
 	Persona superior
 	Boolean bloqueado
+	String[] roles 
 	//Status status
 	//TipoDocumento documentoTipo
 
@@ -20,7 +21,7 @@ class Persona {
 		mail()
 		direccion()
 		zona()
-		superior()
+		superior(nullable: true)
 		bloqueado()
     }
 
