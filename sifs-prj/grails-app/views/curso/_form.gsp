@@ -74,6 +74,14 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'recurso', 'error')} required">
+	<label for="recurso">
+		<g:message code="curso.recurso.label" default="Recurso" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="recurso" name="recurso.id" from="${ar.org.scouts.sifs.Recurso.list()}" optionKey="id" required="" value="${cursoInstance?.recurso?.id}" class="many-to-one"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'zona', 'error')} required">
 	<label for="zona">
 		<g:message code="curso.zona.label" default="Zona" />
