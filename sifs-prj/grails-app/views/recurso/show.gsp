@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="direccion-label" class="property-label"><g:message code="recurso.direccion.label" default="Direccion" /></span>
 					
-						<span class="property-value" aria-labelledby="direccion-label"><g:fieldValue bean="${recursoInstance}" field="direccion"/></span>
+						<span class="property-value" aria-labelledby="direccion-label"><g:link controller="direccion" action="show" id="${recursoInstance?.direccion?.id}">${recursoInstance?.direccion?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

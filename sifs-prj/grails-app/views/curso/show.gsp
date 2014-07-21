@@ -95,6 +95,17 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${cursoInstance?.recurso}">
+					<li class="fieldcontain">
+						<span id="recurso-label" class="property-label">
+							<g:message code="curso.recurso.label" default="Recurso" />
+						</span>
+						<span class="property-value" aria-labelledby="recurso-label">
+							<g:link controller="recurso" action="show" id="${cursoInstance?.recurso?.id}">${cursoInstance?.recurso?.encodeAsHTML()}</g:link>
+						</span>
+					</li>
+				</g:if>
+			
 				<g:if test="${cursoInstance?.zona}">
 				<li class="fieldcontain">
 					<span id="zona-label" class="property-label"><g:message code="curso.zona.label" default="Zona" /></span>

@@ -26,7 +26,7 @@
 					
 						<g:sortableColumn property="cantidad" title="${message(code: 'recurso.cantidad.label', default: 'Cantidad')}" />
 					
-						<g:sortableColumn property="direccion" title="${message(code: 'recurso.direccion.label', default: 'Direccion')}" />
+						<th><g:message code="recurso.direccion.label" default="Direccion" /></th>
 					
 						<g:sortableColumn property="nombre" title="${message(code: 'recurso.nombre.label', default: 'Nombre')}" />
 					

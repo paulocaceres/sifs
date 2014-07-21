@@ -11,12 +11,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: recursoInstance, field: 'direccion', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: recursoInstance, field: 'direccion', 'error')} required">
 	<label for="direccion">
 		<g:message code="recurso.direccion.label" default="Direccion" />
-		
+		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="direccion" value="${recursoInstance?.direccion}"/>
+	<g:select id="direccion" name="direccion.id" from="${ar.org.scouts.sifs.Direccion.list()}" optionKey="id" required="" value="${recursoInstance?.direccion?.id}" class="many-to-one"/>
 
 </div>
 
