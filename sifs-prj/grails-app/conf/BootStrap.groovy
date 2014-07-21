@@ -1,6 +1,8 @@
-import ar.org.scouts.sifs.security.SifsRole;
-import ar.org.scouts.sifs.security.SifsUser;
-import ar.org.scouts.sifs.security.SifsUserSifsRole;
+import ar.org.scouts.sifs.Provincia
+import ar.org.scouts.sifs.Zona
+import ar.org.scouts.sifs.security.SifsRole
+import ar.org.scouts.sifs.security.SifsUser
+import ar.org.scouts.sifs.security.SifsUserSifsRole
 
 class BootStrap {
 
@@ -8,7 +10,7 @@ class BootStrap {
 
 	def init = { servletContext ->
 
-		if(!SifsUser.count()){
+		if (!SifsUser.count()) {
 			/*The default password is 'password'*/
 			def password = 'password'
 			def user = new SifsUser(username: 'paulito', password: password, enabled: true, accountExpired: false , accountLocked: false, passwordExpired: false)
@@ -19,7 +21,14 @@ class BootStrap {
 			/*create the first user role map*/
 			SifsUserSifsRole.create user , role , true
 		}
+		
+		def provincia = new Provincia(descripcion: 'Buenos Aires').save()
+
+		def zona = new Zona(nombre: '3').save()
+		
 	}
+
 	def destroy = {
 	}
+
 }
