@@ -3,9 +3,8 @@ package ar.org.scouts.sifs
 
 
 import static org.springframework.http.HttpStatus.*
-import ar.org.scouts.sifs.Persona;
-import grails.transaction.Transactional
 import grails.plugins.springsecurity.Secured
+import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -23,6 +22,10 @@ class PersonaController {
     }
 
     def create() {
+		params.roles = []
+		params.zona = new Zona()
+		params.direccion = new Direccion()
+		params.direccion.provincia = new Provincia()
         respond new Persona(params)
     }
 
