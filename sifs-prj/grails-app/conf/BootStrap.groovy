@@ -22,9 +22,40 @@ class BootStrap {
 			SifsUserSifsRole.create user , role , true
 		}
 		
-		def provincia = new Provincia(descripcion: 'Buenos Aires').save()
-
-		def zona = new Zona(nombre: '3').save()
+		new Provincia(descripcion: 'Buenos Aires').save()
+		new Provincia(descripcion: 'Catamarca').save()
+		new Provincia(descripcion: 'Chaco').save()
+		new Provincia(descripcion: 'Chubut').save()
+		new Provincia(descripcion: 'Corrientes').save()
+		new Provincia(descripcion: 'Córdoba').save()
+		new Provincia(descripcion: 'Entre Ríos').save()
+		new Provincia(descripcion: 'Formosa').save()
+		new Provincia(descripcion: 'Jujuy').save()
+		new Provincia(descripcion: 'La Pampa').save()
+		new Provincia(descripcion: 'La Rioja').save()
+		new Provincia(descripcion: 'Mendoza').save()
+		new Provincia(descripcion: 'Misiones').save()
+		new Provincia(descripcion: 'Neuquén').save()
+		new Provincia(descripcion: 'Río Negro').save()
+		new Provincia(descripcion: 'Salta').save()
+		new Provincia(descripcion: 'San Juan').save()
+		new Provincia(descripcion: 'San Luis').save()
+		new Provincia(descripcion: 'Santa Cruz').save()
+		new Provincia(descripcion: 'Santa Fe').save()
+		new Provincia(descripcion: 'Santiago del Estero').save()
+		new Provincia(descripcion: 'Tierra del Fuego, Antártida e Islas del Atlántico Sur').save()
+		new Provincia(descripcion: 'Tucumán').save()
+		
+		new Zona(nombre: 'I').save()
+		new Zona(nombre: 'II').save()
+		new Zona(nombre: 'III').save()
+		new Zona(nombre: 'IV').save()
+		new Zona(nombre: 'V').save()
+		new Zona(nombre: 'VI').save()
+		new Zona(nombre: 'VII').save()
+		new Zona(nombre: 'VIII').save()
+		new Zona(nombre: 'IX').save()
+		new Zona(nombre: 'X').save()
 		
 	}
 
