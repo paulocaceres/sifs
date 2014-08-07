@@ -3,7 +3,7 @@ package ar.org.scouts.sifs
 
 
 import static org.springframework.http.HttpStatus.*
-import ar.org.scouts.sifs.Zona;
+import grails.converters.*
 import grails.transaction.Transactional
 import grails.plugins.springsecurity.Secured
 
@@ -104,4 +104,10 @@ class ZonaController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+	def ajaxGetDistritos() {
+		def zona = Zona.get(params.id)
+		render zona?.distritos as JSON
+	}
+
 }

@@ -1,3 +1,4 @@
+import ar.org.scouts.sifs.Distrito
 import ar.org.scouts.sifs.Provincia
 import ar.org.scouts.sifs.Zona
 import ar.org.scouts.sifs.security.SifsRole
@@ -46,17 +47,19 @@ class BootStrap {
 		new Provincia(descripcion: 'Tierra del Fuego, Antártida e Islas del Atlántico Sur').save()
 		new Provincia(descripcion: 'Tucumán').save()
 		
-		new Zona(nombre: 'I').save()
-		new Zona(nombre: 'II').save()
-		new Zona(nombre: 'III').save()
-		new Zona(nombre: 'IV').save()
-		new Zona(nombre: 'V').save()
-		new Zona(nombre: 'VI').save()
-		new Zona(nombre: 'VII').save()
-		new Zona(nombre: 'VIII').save()
-		new Zona(nombre: 'IX').save()
-		new Zona(nombre: 'X').save()
+		Zona zona
+		zona = new Zona(nombre: 'Zona01')
+		zona.addToDistritos(new Distrito(nombre: 'Distrito01a'))
+		zona.addToDistritos(new Distrito(nombre: 'Distrito01b'))
+		zona.addToDistritos(new Distrito(nombre: 'Distrito01c'))
+		zona.save()
 		
+		zona = new Zona(nombre: 'Zona02')
+		zona.addToDistritos(new Distrito(nombre: 'Distrito02a'))
+		zona.addToDistritos(new Distrito(nombre: 'Distrito02b'))
+		zona.addToDistritos(new Distrito(nombre: 'Distrito02c'))
+		zona.save()
+
 	}
 
 	def destroy = {

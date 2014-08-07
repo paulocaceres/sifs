@@ -1,10 +1,11 @@
 package ar.org.scouts.sifs
 
-class Zona {
+class Distrito {
 	
 	String nombre
-	static hasMany = [distritos: Distrito]
-
+	
+	static belongTo = [zona: Zona]
+	
     static constraints = {
     }
 

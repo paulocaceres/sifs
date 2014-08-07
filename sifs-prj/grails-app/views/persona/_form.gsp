@@ -1,6 +1,16 @@
 <%@ page import="ar.org.scouts.sifs.Persona"%>
 <%@ page import="ar.org.scouts.sifs.Provincia"%>
 <%@ page import="ar.org.scouts.sifs.Zona"%>
+<%@ page import="ar.org.scouts.sifs.Distrito"%>
+
+
+
+<g:javascript library='jquery'/>
+
+<g:javascript src="application.js" />
+
+
+
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'documentoNumero', 'error')} ">
 	<label for="documentoNumero">
 		<g:message code="persona.documentoNumero.label" default="Documento Numero" />
@@ -81,7 +91,14 @@
 		<g:message code="persona.zona.label" default="Zona" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select optionKey="id" from="${Zona.list()}" name="zona.id" value="${personaInstance?.zona?.id}" />
+	<g:select optionKey="id" from="${Zona.list()}" name="zona.id" value="${personaInstance?.zona?.id}" onchange="${remoteFunction(controller:'zona', action:'ajaxGetDistritos', params:'\'id=\' + escape(this.value)', onSuccess:'updateDistrito(data)')}" />
+</div>
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'distrito', 'error')} required">
+	<label for="distrito">
+		<g:message code="persona.zona.distrito.label" default="Distrito" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select optionKey="id" from="${Distrito.list()}" name="distrito.id" />
 </div>
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'superior', 'error')} required">
 	<label for="superior">
@@ -95,3 +112,45 @@
 	</label>
 	<g:checkBox name="bloqueado" value="${personaInstance?.bloqueado}" />
 </div>
+
+
+
+<script>
+
+
+	function updateDistrito(distritos) {
+		// The response comes back as a bunch-o-JSON 
+		
+		if (distritos) {
+			var rselect = document.getElementById('distrito.id')
+		
+			// Clear all previous options
+			var l = rselect.length
+			while (l > 0) {
+				l--
+				rselect.remove(l)
+			}
+		
+			// Rebuild the select
+			for (var i=0; i < distritos.length; i++) {
+				var distrito = distritos[i]
+				var opt = document.createElement('option');
+				opt.text = distrito.nombre
+				opt.value = distrito.id
+				try {
+					rselect.add(opt, null) // standards compliant; doesn't work in IE
+				} catch(ex) {
+					rselect.add(opt) // IE only
+				}
+			}
+		}
+	}
+
+
+	// This is called when the page loads to initialize distrito
+	var zselect = document.getElementById('zona.id');
+	var zopt = zselect.options[zselect.selectedIndex];
+	<g:remoteFunction controller="zona" action="ajaxGetDistritos" params="'id='+zopt.value" onSuccess="updateDistrito(data)" />
+
+
+</script>
