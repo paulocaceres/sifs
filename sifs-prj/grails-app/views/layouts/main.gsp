@@ -14,11 +14,73 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'menu.css')}" type="text/css">
+		<script type="text/javascript" src="../js/menu.js"></script>
 		<g:layoutHead/>
-		<g:javascript library="application"/>		
+		<g:javascript library="application"/>	
+		<g:javascript library="jquery"/>
 		<r:layoutResources />
 	</head>
 	<body>
+	
+	<!-- ===================================================================================== -->
+	<div id="menu">
+		<ul class="menu">
+			<li><a href="#" class="parent"><span>Home</span></a>
+				<div><ul>
+					<li><a href="#" class="parent"><span>Sub Item 1</span></a>
+						<div><ul>
+							<li><a href="#" class="parent"><span>Sub Item 1.1</span></a>
+								<div><ul>
+								<li><a href="#"><span>Sub Item 1.1.1</span></a></li>
+								<li><a href="#"><span>Sub Item 1.1.2</span></a></li>
+								</ul></div>
+							</li>
+							<li><a href="#"><span>Sub Item 1.2</span></a></li>
+							<li><a href="#"><span>Sub Item 1.3</span></a></li>
+							<li><a href="#"><span>Sub Item 1.4</span></a></li>
+							<li><a href="#"><span>Sub Item 1.5</span></a></li>
+							<li><a href="#"><span>Sub Item 1.6</span></a></li>
+							<li><a href="#" class="parent"><span>Sub Item 1.7</span></a>
+								<div><ul>
+								<li><a href="#"><span>Sub Item 1.7.1</span></a></li>
+								<li><a href="#"><span>Sub Item 1.7.2</span></a></li>
+								</ul></div>
+							</li>
+						</ul></div>
+					</li>
+					<li><a href="#"><span>Sub Item 2</span></a></li>
+					<li><a href="#"><span>Sub Item 3</span></a></li>
+				</ul></div>
+			</li>
+			<li><a href="#"><span>Product Info</span></a>
+				<div><ul>
+					<li><a href="#" class="parent"><span>Sub Item 1</span></a>
+						<div><ul>
+						<li><a href="#"><span>Sub Item 1.1</span></a></li>
+						<li><a href="#"><span>Sub Item 1.2</span></a></li>
+						</ul></div>
+					</li>
+					<li><a href="#" class="parent"><span>Sub Item 2</span></a>
+						<div><ul>
+						<li><a href="#"><span>Sub Item 2.1</span></a></li>
+						<li><a href="#"><span>Sub Item 2.2</span></a></li>
+						</ul></div>
+					</li>
+					<li><a href="#"><span>Sub Item 3</span></a></li>
+					<li><a href="#"><span>Sub Item 4</span></a></li>
+					<li><a href="#"><span>Sub Item 5</span></a></li>
+					<li><a href="#"><span>Sub Item 6</span></a></li>
+					<li><a href="#"><span>Sub Item 7</span></a></li>
+				</ul></div>
+			</li>
+			<li><a href="#"><span>Help</span></a></li>
+			<li class="last"><a href="#"><span>Contacts</span></a></li>
+		</ul>
+	</div>	
+	
+<!-- ===================================================================================== -->		
+	
 	<table>
 		<tr bgcolor="#ABBF78">
 			<td>
@@ -27,13 +89,17 @@
 					<img src="${resource(dir: 'images', file: 'Sifs-logo.PNG')}" alt="SIFS"/>
 				</div>
 			</td>
-			<sec:ifLoggedIn>
+			
+	
+			
+		<sec:ifLoggedIn>
 			<td align="right" valign="middle" style="text-align:right;vertical-align:middle;">
-            	 	<g:link controller="logout">Logout</g:link>
+            	 	
+            	 	<a class="parent" href="../logout/index"><span>Logout</span></a>
         	</td>
-        	</sec:ifLoggedIn>
-		</tr>
-	</table>	
+        </sec:ifLoggedIn>
+	</tr>
+</table>	
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
