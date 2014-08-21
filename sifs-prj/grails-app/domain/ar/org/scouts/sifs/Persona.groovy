@@ -8,6 +8,8 @@ class Persona {
 	String mail
 	Direccion direccion
 	Zona zona
+	Distrito distrito
+	Grupo grupo
 	Persona superior
 	Boolean bloqueado
 	String[] roles 

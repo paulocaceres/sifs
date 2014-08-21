@@ -2,6 +2,7 @@
 <%@ page import="ar.org.scouts.sifs.Provincia"%>
 <%@ page import="ar.org.scouts.sifs.Zona"%>
 <%@ page import="ar.org.scouts.sifs.Distrito"%>
+<%@ page import="ar.org.scouts.sifs.Grupo"%>
 
 
 
@@ -98,7 +99,14 @@
 		<g:message code="persona.zona.distrito.label" default="Distrito" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select optionKey="id" from="${Distrito.list()}" name="distrito.id" />
+	<g:select optionKey="id" from="${Distrito.list()}" name="distrito.id" value="${personaInstance?.distrito?.id}" onchange="${remoteFunction(controller:'distrito', action:'ajaxGetGrupos', params:'\'id=\' + escape(this.value)', onSuccess:'updateGrupo(data)')}" />
+</div>
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'grupo', 'error')} required">
+	<label for="grupo">
+		<g:message code="persona.zona.grupo.label" default="Grupo" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select optionKey="id" from="${Grupo.list()}" name="grupo.id" value="${personaInstance?.grupo?.id}" />
 </div>
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'superior', 'error')} required">
 	<label for="superior">
@@ -145,12 +153,46 @@
 			}
 		}
 	}
-
-
+	
+	
+	function updateGrupo(grupos) {
+		// The response comes back as a bunch-o-JSON
+		
+		if (grupos) {
+			var rselect = document.getElementById('grupo.id')
+		
+			// Clear all previous options
+			var l = rselect.length
+			while (l > 0) {
+				l--
+				rselect.remove(l)
+			}
+		
+			// Rebuild the select
+			for (var i=0; i < grupos.length; i++) {
+				var grupo = grupos[i]
+				var opt = document.createElement('option');
+				opt.text = grupo.nombre
+				opt.value = grupo.id
+				try {
+					rselect.add(opt, null) // standards compliant; doesn't work in IE
+				} catch(ex) {
+					rselect.add(opt) // IE only
+				}
+			}
+		}
+	}
+	
+	
 	// This is called when the page loads to initialize distrito
 	var zselect = document.getElementById('zona.id');
 	var zopt = zselect.options[zselect.selectedIndex];
 	<g:remoteFunction controller="zona" action="ajaxGetDistritos" params="'id='+zopt.value" onSuccess="updateDistrito(data)" />
+
+	// This is called when the page loads to initialize grupo
+	zselect = document.getElementById('distrito.id');
+	zopt = zselect.options[zselect.selectedIndex];
+	<g:remoteFunction controller="distrito" action="ajaxGetGrupos" params="'id='+zopt.value" onSuccess="updateGrupo(data)" />
 
 
 </script>

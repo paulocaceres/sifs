@@ -5,7 +5,9 @@ class Zona {
 	String nombre
 	static hasMany = [distritos: Distrito]
 
-    static constraints = {
+
+	
+	static constraints = {
     }
 
 	String toString() {
