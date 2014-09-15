@@ -92,21 +92,21 @@
 		<g:message code="persona.zona.label" default="Zona" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select optionKey="id" from="${Zona.list()}" name="zona.id" value="${personaInstance?.zona?.id}" onchange="${remoteFunction(controller:'zona', action:'ajaxGetDistritos', params:'\'id=\' + escape(this.value)', onSuccess:'updateDistrito(data)')}" />
+	<g:select optionKey="id" from="${Zona.list()}" noSelection="${['null':'Select One...']}" name="zona.id" value="${personaInstance?.zona?.id}" onchange="${remoteFunction(controller:'zona', action:'ajaxGetDistritos', params:'\'id=\' + escape(this.value)', onSuccess:'updateDistrito(data)')}" />
 </div>
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'distrito', 'error')} required">
 	<label for="distrito">
 		<g:message code="persona.zona.distrito.label" default="Distrito" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select optionKey="id" from="${Distrito.list()}" name="distrito.id" value="${personaInstance?.distrito?.id}" onchange="${remoteFunction(controller:'distrito', action:'ajaxGetGrupos', params:'\'id=\' + escape(this.value)', onSuccess:'updateGrupo(data)')}" />
+	<g:select optionKey="id" from="${Distrito.list()}" noSelection="${['null':'Select One...']}" name="distrito.id" value="${personaInstance?.distrito?.id}" onchange="${remoteFunction(controller:'distrito', action:'ajaxGetGrupos', params:'\'id=\' + escape(this.value)', onSuccess:'updateGrupo(data)')}" />
 </div>
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'grupo', 'error')} required">
 	<label for="grupo">
 		<g:message code="persona.zona.grupo.label" default="Grupo" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select optionKey="id" from="${Grupo.list()}" name="grupo.id" value="${personaInstance?.grupo?.id}" />
+	<g:select optionKey="id" from="${Grupo.list()}" noSelection="${['null':'Select One...']}" name="grupo.id" value="${personaInstance?.grupo?.id}" />
 </div>
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'superior', 'error')} required">
 	<label for="superior">
@@ -127,7 +127,8 @@
 
 
 	function updateDistrito(distritos) {
-		// The response comes back as a bunch-o-JSON 
+		// The response comes back as a bunch-o-JSON
+		alert('updateDistrito'); 
 		
 		if (distritos) {
 			var rselect = document.getElementById('distrito.id')
@@ -157,6 +158,7 @@
 	
 	function updateGrupo(grupos) {
 		// The response comes back as a bunch-o-JSON
+		alert('updateGrupo');
 		
 		if (grupos) {
 			var rselect = document.getElementById('grupo.id')
@@ -185,14 +187,18 @@
 	
 	
 	// This is called when the page loads to initialize distrito
-	var zselect = document.getElementById('zona.id');
-	var zopt = zselect.options[zselect.selectedIndex];
-	<g:remoteFunction controller="zona" action="ajaxGetDistritos" params="'id='+zopt.value" onSuccess="updateDistrito(data)" />
+<%--	var zselect = document.getElementById('zona.id');--%>
+<%--	var zopt = zselect.options[zselect.selectedIndex];--%>
+<%--	<g:remoteFunction controller="zona" action="ajaxGetDistritos" params="'id='+zopt.value" onSuccess="updateDistrito(data)" />--%>
 
 	// This is called when the page loads to initialize grupo
-	zselect = document.getElementById('distrito.id');
-	zopt = zselect.options[zselect.selectedIndex];
-	<g:remoteFunction controller="distrito" action="ajaxGetGrupos" params="'id='+zopt.value" onSuccess="updateGrupo(data)" />
+<%--	zselect = document.getElementById('distrito.id');--%>
+<%--	zopt = zselect.options[zselect.selectedIndex];--%>
+<%--	<g:remoteFunction controller="distrito" action="ajaxGetGrupos" params="'id='+zopt.value" onSuccess="updateGrupo(data)" />--%>
+
+<%--	document.getElementById('zona.id').selectedIndex = -1;--%>
+<%--	document.getElementById('distrito.id').selectedIndex = -1;--%>
+<%--	document.getElementById('grupo.id').selectedIndex = -1;--%>
 
 
 </script>

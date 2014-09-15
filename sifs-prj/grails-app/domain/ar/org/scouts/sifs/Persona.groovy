@@ -22,7 +22,9 @@ class Persona {
 		apellido()
 		mail()
 		direccion()
-		zona()
+		zona(nullable: true)
+		distrito(nullable: true)
+		grupo(nullable: true)
 		superior(nullable: true)
 		bloqueado()
     }
