@@ -1,5 +1,6 @@
 <%@ page import="ar.org.scouts.sifs.Persona"%>
 <%@ page import="ar.org.scouts.sifs.Provincia"%>
+<%@ page import="ar.org.scouts.sifs.security.Rol"%>
 <%@ page import="ar.org.scouts.sifs.Zona"%>
 <%@ page import="ar.org.scouts.sifs.Distrito"%>
 <%@ page import="ar.org.scouts.sifs.Grupo"%>
@@ -38,7 +39,10 @@
 		<g:message code="persona.roles.label" default="Roles" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="roles" value="${personaInstance?.roles}" />
+	<g:each var="rol" in="${Rol.list()}" >
+<%--		<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance?.authorities.contains(rol)}"/>${rol.authority}--%>
+		<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="false"/>${rol.authority}
+	</g:each> 
 </div>
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'mail', 'error')} ">
 	<label for="mail">
@@ -118,7 +122,14 @@
 	<label for="bloqueado">
 		<g:message code="persona.bloqueado.label" default="Bloqueado" />
 	</label>
-	<g:checkBox name="bloqueado" value="${personaInstance?.bloqueado}" />
+	<g:checkBox name="bloqueado" value="${personaInstance?.accountLocked}" />
+</div>
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'password', 'error')} ">
+	<label for="password">
+		<g:message code="persona.password.label" default="Password" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="password" value="${personaInstance?.password}" />
 </div>
 
 

@@ -5,6 +5,8 @@ package ar.org.scouts.sifs
 import static org.springframework.http.HttpStatus.*
 import grails.plugins.springsecurity.Secured
 import grails.transaction.Transactional
+import ar.org.scouts.sifs.security.PersonaRol
+import ar.org.scouts.sifs.security.Rol
 
 @Transactional(readOnly = true)
 @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -22,10 +24,10 @@ class PersonaController {
     }
 
     def create() {
-		params.roles = []
 		params.zona = new Zona()
 		params.direccion = new Direccion()
 		params.direccion.provincia = new Provincia()
+
         respond new Persona(params)
     }
 
@@ -41,8 +43,24 @@ class PersonaController {
             return
         }
 
-        personaInstance.save flush:true
 
+		personaInstance.save flush:true
+
+		personaInstance.authorities.clear()
+		params.each {
+			name, value ->
+			def rolId = name.find(/^rolRaw\[(\d+)\]$/) {
+				match, pid -> return pid
+			}
+			if (rolId) {
+				def rol = Rol.get(rolId as long)
+				PersonaRol.create(personaInstance, rol, true)
+			}
+	
+		}
+
+		personaInstance.save flush:true
+		
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'personaInstance.label', default: 'Persona'), personaInstance.id])

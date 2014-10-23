@@ -1,10 +1,11 @@
+import ar.org.scouts.sifs.Direccion
 import ar.org.scouts.sifs.Distrito
 import ar.org.scouts.sifs.Grupo
+import ar.org.scouts.sifs.Persona
 import ar.org.scouts.sifs.Provincia
 import ar.org.scouts.sifs.Zona
-import ar.org.scouts.sifs.security.SifsRole
-import ar.org.scouts.sifs.security.SifsUser
-import ar.org.scouts.sifs.security.SifsUserSifsRole
+import ar.org.scouts.sifs.security.PersonaRol
+import ar.org.scouts.sifs.security.Rol
 
 class BootStrap {
 
@@ -12,16 +13,44 @@ class BootStrap {
 
 	def init = { servletContext ->
 
-		if (!SifsUser.count()) {
-			/*The default password is 'password'*/
+		if (!Persona.count()) {
+			
+			def unaProvincia = new Provincia(descripcion: 'persona.direccion.provincia.descripcion')
+			unaProvincia.save(flush: true, insert: true)
+			
+			def unaDireccion = new Direccion(	calle: 'persona.direccion.calle', 
+														numero: 'persona.direccion.numero', 
+														adicional: 'persona.direccion.adicional', 
+														codigoPostal: 'persona.direccion.codigoPostal', 
+														ciudad: 'persona.direccion.ciudad', 
+														provincia: unaProvincia)
+			unaDireccion.save(flush: true, insert: true)
+			
+			
 			def password = 'password'
-			def user = new SifsUser(username: 'paulito', password: password, enabled: true, accountExpired: false , accountLocked: false, passwordExpired: false)
-				.save(flush: true, insert: true)
-			def role = new SifsRole(authority: 'ROLE_USER')
+			def user = new Persona(	documentoNumero: 	'25227067',
+											password: 			password,
+											nombre: 			'persona.nombre',
+											apellido: 			'persona.apellido',
+											mail: 				'persona.mail',
+											direccion: 			unaDireccion,
+											//zona: 				new Zona(nombre: 'persona.zona.nombre'),
+											//superior: 			null,
+											enabled: 			true, 
+											accountExpired: 	false, 
+											accountLocked: 		false, 
+											passwordExpired: 	false)
 				.save(flush: true, insert: true)
 
+			def rol = new Rol(authority: 'ROLE_ADMIN')
+				.save(flush: true, insert: true)
+
+			rol = new Rol(authority: 'ROLE_USER')
+				.save(flush: true, insert: true)
+
+				
 			/*create the first user role map*/
-			SifsUserSifsRole.create user , role , true
+			PersonaRol.create(user, rol, true)
 		}
 		
 		new Provincia(descripcion: 'Buenos Aires').save()

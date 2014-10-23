@@ -115,7 +115,8 @@ log4j = {
 }
 
 // Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'ar.org.scouts.sifs.security.SifsUser'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'ar.org.scouts.sifs.security.SifsUserSifsRole'
-grails.plugins.springsecurity.authority.className = 'ar.org.scouts.sifs.security.SifsRole'
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'ar.org.scouts.sifs.Persona'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'ar.org.scouts.sifs.security.PersonaRol'
+grails.plugins.springsecurity.userLookup.usernamePropertyName='documentoNumero'
+grails.plugins.springsecurity.authority.className = 'ar.org.scouts.sifs.security.Rol'
 grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/home'

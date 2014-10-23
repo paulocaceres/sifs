@@ -102,13 +102,13 @@
 							</g:link></span></li>
 				</g:if>
 	
-				<g:if test="${personaInstance?.bloqueado}">
-					<li class="fieldcontain"><span id="bloqueado-label"
-						class="property-label"><g:message
-								code="persona.bloqueado.label" default="Bloqueado" /></span> <span
-						class="property-value" aria-labelledby="bloqueado-label"><g:formatBoolean
-								boolean="${personaInstance?.bloqueado}" /></span></li>
-				</g:if>
+<%--				<g:if test="${personaInstance?.bloqueado}">--%>
+<%--					<li class="fieldcontain"><span id="bloqueado-label"--%>
+<%--						class="property-label"><g:message--%>
+<%--								code="persona.bloqueado.label" default="Bloqueado" /></span> <span--%>
+<%--						class="property-value" aria-labelledby="bloqueado-label"><g:formatBoolean--%>
+<%--								boolean="${personaInstance?.bloqueado}" /></span></li>--%>
+<%--				</g:if>--%>
 	
 			</ol>
 			<g:form url="[resource:personaInstance, action:'delete']"
