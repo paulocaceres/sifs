@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main"/>
-		<title>Welcome to SIFSS</title>
+		<title>Bienvenido al Sitema Integral de Formacion Scout - SIFS</title>
 		<style type="text/css" media="screen">
 			#status {
 				background-color: #eee;
@@ -82,20 +82,23 @@
 	</head>
 	<body>
 		<div id="page-body" role="main">
-			<h1>Welcome to SIFS</h1>
-			<p>Congratulations, you have successfully started your first Grails application! At the moment
-			   this is the default page, feel free to modify it to either redirect to a controller or display whatever
-			   content you may choose. Below is a list of controllers that are currently deployed in this application,
-			   click on each to execute its default action:</p>
+			<h1>Bienvenido al Sistema Integral de Formacion Scout - SIFS</h1>
+			<p>Con esta herramineta ud. podra centralizar y mejorar el actual proceso de administración e inscripción de 
+			   los cursos de capacitación que son exigidos en la formación de líderes. Optimizar la seguridad, los tiempos y 
+			   la asignación de recursos de la organización involucrados en los planes de capacitación.
+			   Disponer y adecuar los planes de formación requeridos para las funciones actuales y futuras.
+			 </p>
 
 			<div id="controller-list" role="navigation">
-				<h2>Available Oprations:</h2>
+				<h2>Operaciones disponibles:</h2>
 				<ul>
-					<li>Agregar Curso</li>
-					<li>Agregar Formador</li>
-					<li>Agregar Plan</li>
-					<li>Agregar Recurso</li>
-					<li>Agregar Zona</li>
+					<li><a href="${createLink(controller: 'curso')}"><span>Cursos</span></a></li>
+					<li><a href="${createLink(controller: 'distrito')}"><span>Distritos</span></a></li>
+					<li><a href="${createLink(controller: 'zona')}"><span>Zonas</span></a></li>
+					<li><a href="${createLink(controller: 'grupo')}"><span>Grupos</span></a></li>
+					<li><a href="${createLink(controller: 'contenido')}"><span>Contenidos</span></a></li>
+					<li><a href="${createLink(controller: 'recurso')}"><span>Recursos</span></a></li>
+					<li><a href="${createLink(controller: 'persona')}"><span>Personas</span></a></li>
 				</ul>
 			</div>
 		</div>
