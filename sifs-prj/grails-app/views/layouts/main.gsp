@@ -26,23 +26,112 @@
 	<!-- ===================================================================================== -->
 	<div id="menu">
 		<ul class="menu">
-			<li><a href="#" class="parent"><span>Home</span></a>
-				<div><ul>
-					<li><a href=""><span>Sub Item 1</span></a></li>
-					<li><a href="#"><span>Sub Item 2</span></a></li>
-					<li><a href="#"><span>Sub Item 3</span></a></li>
-				</ul></div>
-			</li>
-			<li><a href="#" class="parent"><span>Product Info</span></a>
-				<div><ul>
-					<li><a href="#"><span>Sub Item 1</span></a></li>
-					<li><a href="#"><span>Sub Item 2</span></a></li>
-					<li><a href="#"><span>Sub Item 3</span></a></li>
-					<li><a href="#"><span>Sub Item 4</span></a></li>
-				</ul></div>
-			</li>
-			<li><a href="#" class="parent"><span>Help</span></a></li>
-			<li><a href="#"><span>Contacts</span></a></li>
+			<li><a href="/sifs-prj/home" class="parent"><span>Home</span></a></li>
+			<sec:ifAllGranted roles="ROLE_CURSANTE">
+				<li><a href="#" class="parent"><span>Cursante</span></a>
+					<div><ul>
+						<li><a href="#"><span>Mi Perfil</span></a></li>
+						<li><a href="#"><span>Inscripcion a Cursos</span></a></li>
+						<li><a href="#"><span>Habilitaciones</span></a></li>
+						<li><a href="#"><span>Cursos Aprobados</span></a></li>
+					</ul></div>
+				</li>
+			</sec:ifAllGranted>
+			<sec:ifAllGranted roles="ROLE_SUPERVISOR">
+				<li><a href="#" class="parent"><span>Supervisor</span></a>
+					<div><ul>
+						<li><a href="#"><span>Aprobacion Perfiles</span></a></li>
+						<li><a href="#"><span>Aprobacion Cursos</span></a></li>
+						<li><a href="#"><span>Bloquear Usuarios</span></a></li>
+						<li><a href="#"><span>Mis Cursos Aprobados</span></a></li>
+					</ul></div>
+				</li>
+			</sec:ifAllGranted>
+			<sec:ifAllGranted roles="ROLE_FORMADOR">
+				<li><a href="#" class="parent"><span>Formador</span></a>
+					<div><ul>
+						<li><a href="#"><span>Recursos</span></a></li>
+						<li><a href="#"><span>Asignacion de Formador</span></a></li>
+						<li><a href="#"><span>Validar Inscripciones</span></a></li>
+						<li><a href="#"><span>Asignar Cupos</span></a></li>
+						<li><a href="#"><span>Asignacion de Directores</span></a></li>
+					</ul></div>
+				</li>
+			</sec:ifAllGranted>
+			<sec:ifAllGranted roles="ROLE_DNF">
+				<li><a href="#" class="parent"><span>Director Nac. Formacion</span></a>
+					<div><ul>
+						<li><a href="#"><span>Cursos</span></a></li>
+						<li><a href="#"><span>Planes</span></a></li>
+						<li><a href="#"><span>Contenidos</span></a></li>
+					</ul></div>
+				</li>
+			</sec:ifAllGranted>
+			<sec:ifAllGranted roles="ROLE_DNRA">
+				<li><a href="#" class="parent"><span>Director Nac. Recursos</span></a>
+					<div><ul>
+						<li><a href="#"><span>Esquema Bloqueo de Usuarios</span></a></li>
+						<li><a href="#"><span>Autorizaciones</span></a></li>
+					</ul></div>
+				</li>
+			</sec:ifAllGranted>
+			<sec:ifAllGranted roles="ROLE_ADMIN">
+				<li><a href="#" class="parent"><span>Administradores</span></a>
+					<div><ul>
+						<li><a href="#" class="parent"><span>Cursante</span></a>
+					    	<div><ul>
+								<li><a href="#"><span>Mi Perfil</span></a></li>
+								<li><a href="#"><span>Inscripcion a Cursos</span></a></li>
+								<li><a href="#"><span>Habilitaciones</span></a></li>
+								<li><a href="#"><span>Cursos Aprobados</span></a></li>
+					    	</ul></div>
+				        </li>
+				        
+				        <li><a href="#" class="parent"><span>Supervisor</span></a>
+							<div><ul>
+								<li><a href="#"><span>Aprobacion Perfiles</span></a></li>
+								<li><a href="#"><span>Aprobacion Cursos</span></a></li>
+								<li><a href="#"><span>Bloquear Usuarios</span></a></li>
+								<li><a href="#"><span>Mis Cursos Aprobados</span></a></li>
+							</ul></div>
+						</li>
+						
+						<li><a href="#" class="parent"><span>Formador</span></a>
+							<div><ul>
+								<li><a href="#"><span>Recursos</span></a></li>
+								<li><a href="#"><span>Asignacion de Formador</span></a></li>
+								<li><a href="#"><span>Validar Inscripciones</span></a></li>
+								<li><a href="#"><span>Asignar Cupos</span></a></li>
+								<li><a href="#"><span>Asignacion de Directores</span></a></li>
+							</ul></div>
+						</li>
+						
+						<li><a href="#" class="parent"><span>Director Nac. Formacion</span></a>
+							<div><ul>
+								<li><a href="#"><span>Cursos</span></a></li>
+								<li><a href="#"><span>Planes</span></a></li>
+								<li><a href="#"><span>Contenidos</span></a></li>
+							</ul></div>
+						</li>
+						
+						<li><a href="#" class="parent"><span>Director Nac. Recursos</span></a>
+							<div><ul>
+								<li><a href="#"><span>Esquema Bloqueo de Usuarios</span></a></li>
+								<li><a href="#"><span>Autorizaciones</span></a></li>
+							</ul></div>
+						</li>
+			        
+						<li><a href="${createLink(controller: 'distrito')}"><span>Distritos</span></a></li>
+						<li><a href="${createLink(controller: 'zona')}"><span>Zonas</span></a></li>
+						<li><a href="${createLink(controller: 'grupo')}"><span>Grupos</span></a></li>
+						<li><a href="${createLink(controller: 'provincia')}"><span>Provincias</span></a></li>
+						<li><a href="${createLink(controller: 'nivel')}"><span>Niveles</span></a></li>
+					</ul></div>
+				</li>
+			</sec:ifAllGranted>
+			
+			<li><a href="#" class="parent"><span>Ayuda</span></a></li>
+			<li><a href="#"><span>Contacto</span></a></li>
 			<sec:ifLoggedIn>
 				<li class="last"><a href="${createLink(controller: 'logout')}"><span>Logout</span></a></li>
 			</sec:ifLoggedIn>

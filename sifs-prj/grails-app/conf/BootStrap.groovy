@@ -25,8 +25,7 @@ class BootStrap {
 														ciudad: 'persona.direccion.ciudad', 
 														provincia: unaProvincia)
 			unaDireccion.save(flush: true, insert: true)
-			
-			
+						
 			def password = 'password'
 			def user = new Persona(	documentoNumero: 	'25227067',
 											password: 			password,
@@ -41,16 +40,82 @@ class BootStrap {
 											accountLocked: 		false, 
 											passwordExpired: 	false)
 				.save(flush: true, insert: true)
+			
+			def cursante = new Persona(	documentoNumero: 	'11111111',
+					password: 			password,
+					nombre: 			'Cursante',
+					apellido: 			'Apellido',
+					mail: 				'XXX@gmail.com',
+					direccion: 			unaDireccion,
+					enabled: 			true,
+					accountExpired: 	false,
+					accountLocked: 		false,
+					passwordExpired: 	false)
+			.save(flush: true, insert: true)
 
-			def rol = new Rol(authority: 'ROLE_ADMIN')
-				.save(flush: true, insert: true)
+			def supervisor = new Persona(	documentoNumero: 	'22222222',
+				password: 			password,
+				nombre: 			'Supervisor',
+				apellido: 			'Apellido',
+				mail: 				'XXX@gmail.com',
+				direccion: 			unaDireccion,
+				enabled: 			true,
+				accountExpired: 	false,
+				accountLocked: 		false,
+				passwordExpired: 	false)
+			.save(flush: true, insert: true)
 
-			rol = new Rol(authority: 'ROLE_USER')
-				.save(flush: true, insert: true)
-
+			def formador = new Persona(	documentoNumero: 	'33333333',
+				password: 			password,
+				nombre: 			'Formador',
+				apellido: 			'Apellido',
+				mail: 				'XXX@gmail.com',
+				direccion: 			unaDireccion,
+				enabled: 			true,
+				accountExpired: 	false,
+				accountLocked: 		false,
+				passwordExpired: 	false)
+			.save(flush: true, insert: true)
+			
+			def dnf = new Persona(	documentoNumero: 	'44444444',
+				password: 			password,
+				nombre: 			'Dir. Nac. Formacion',
+				apellido: 			'Apellido',
+				mail: 				'XXX@gmail.com',
+				direccion: 			unaDireccion,
+				enabled: 			true,
+				accountExpired: 	false,
+				accountLocked: 		false,
+				passwordExpired: 	false)
+			.save(flush: true, insert: true)
+			
+			def dnra = new Persona(	documentoNumero: 	'55555555',
+				password: 			password,
+				nombre: 			'Dir. Nac. Recursos',
+				apellido: 			'Apellido',
+				mail: 				'XXX@gmail.com',
+				direccion: 			unaDireccion,
+				enabled: 			true,
+				accountExpired: 	false,
+				accountLocked: 		false,
+				passwordExpired: 	false)
+			.save(flush: true, insert: true)
+			
+			def rol  = new Rol(authority: 'ROLE_ADMIN').save(flush: true, insert: true)
+			def rol1 = new Rol(authority: 'ROLE_CURSANTE').save(flush: true, insert: true)
+			def rol2 = new Rol(authority: 'ROLE_SUPERVISOR').save(flush: true, insert: true)
+			def rol3 = new Rol(authority: 'ROLE_FORMADOR').save(flush: true, insert: true)
+			def rol4 = new Rol(authority: 'ROLE_DNF').save(flush: true, insert: true)
+			def rol5 = new Rol(authority: 'ROLE_DNRA').save(flush: true, insert: true)
 				
 			/*create the first user role map*/
 			PersonaRol.create(user, rol, true)
+			PersonaRol.create(cursante, rol1, true)
+			PersonaRol.create(supervisor, rol2, true)
+			PersonaRol.create(formador, rol3, true)
+			PersonaRol.create(dnf, rol4, true)
+			PersonaRol.create(dnra, rol5, true)
+			
 		}
 		
 		new Provincia(descripcion: 'Buenos Aires').save()
