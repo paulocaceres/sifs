@@ -1,3 +1,16 @@
+import java.awt.Font
+import java.awt.Color
+
+import com.octo.captcha.service.multitype.GenericManageableCaptchaService
+import com.octo.captcha.engine.GenericCaptchaEngine
+import com.octo.captcha.image.gimpy.GimpyFactory
+import com.octo.captcha.component.word.wordgenerator.RandomWordGenerator
+import com.octo.captcha.component.image.wordtoimage.ComposedWordToImage
+import com.octo.captcha.component.image.fontgenerator.RandomFontGenerator
+import com.octo.captcha.component.image.backgroundgenerator.GradientBackgroundGenerator
+import com.octo.captcha.component.image.color.SingleColorGenerator
+import com.octo.captcha.component.image.textpaster.NonLinearTextPaster
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -61,6 +74,18 @@ grails {
         // escapes all not-encoded output at final stage of outputting
         // filteringCodecForContentType.'text/html' = 'html'
     }
+	
+	mail {
+		to = "sifs.paulo@gmail.com"
+		host = "smtp.gmail.com"
+		port = 465
+		username = "sifs.paulo@gmail.com"
+		password = "welcome90081"
+		props = ["mail.smtp.auth":"true",
+			"mail.smtp.socketFactory.port":"465",
+			"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+			"mail.smtp.socketFactory.fallback":"false"]
+	}
 }
 
  
@@ -113,6 +138,40 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+jcaptchas {
+	captchaImage = new GenericManageableCaptchaService(
+		new GenericCaptchaEngine(
+			new GimpyFactory(
+				new RandomWordGenerator(
+					"abcdefghijklmnopqrstuvwxyz1234567890" // allowed characters
+				),
+				new ComposedWordToImage(
+					new RandomFontGenerator(
+						20, // min font size
+						30, // max font size
+						[new Font("Arial", 0, 10)] as Font[] // font type
+					),
+					new GradientBackgroundGenerator(
+						140, // background width
+						35, // background height
+						new SingleColorGenerator(new Color(0, 60, 0)), // first background colour
+						new SingleColorGenerator(new Color(20, 20, 20)) // second background colour
+					),
+					new NonLinearTextPaster(
+						6, // minimal length of text
+						6, // maximal length of text
+						new Color(0, 255, 0) // text colour
+					)
+				)
+			)
+		),
+		180, // minGuarantedStorageDelayInSeconds
+		180000 // maxCaptchaStoreSize
+	)
+}
+
+grails.views.javascript.library="jquery"
 
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'ar.org.scouts.sifs.Persona'

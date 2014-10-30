@@ -15,10 +15,17 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'menu.css')}" type="text/css">
-		<script type="text/javascript" src="../js/menu.js"></script>
+		<script src="/sifs-prj/static/js/jquery.js" type="text/javascript" ></script>
+        <script src="/sifs-prj/static/js/application.js" type="text/javascript" ></script>
+        <script type="text/javascript" src="/sifs-prj/static/js/menu.js"></script>
+		
 		<g:layoutHead/>
-		<g:javascript library="application"/>	
-		<g:javascript library="jquery"/>
+			
+		<!--  g:javascript library="jquery" plugin="jquery"/>
+		<script type="text/javascript">jQuery.noConflict();</script>
+		<g:javascript library="application"/>
+		<script type="text/javascript" src="../js/menu.js"></script>
+		-->
 		<r:layoutResources />
 	</head>
 	<body>
@@ -26,7 +33,9 @@
 	<!-- ===================================================================================== -->
 	<div id="menu">
 		<ul class="menu">
+		    <sec:ifLoggedIn>
 			<li><a href="/sifs-prj/home" class="parent"><span>Home</span></a></li>
+			</sec:ifLoggedIn>
 			<sec:ifAllGranted roles="ROLE_CURSANTE">
 				<li><a href="#" class="parent"><span>Cursante</span></a>
 					<div><ul>
@@ -129,11 +138,10 @@
 					</ul></div>
 				</li>
 			</sec:ifAllGranted>
-			
-			<li><a href="#" class="parent"><span>Ayuda</span></a></li>
-			<li><a href="#"><span>Contacto</span></a></li>
 			<sec:ifLoggedIn>
-				<li class="last"><a href="${createLink(controller: 'logout')}"><span>Logout</span></a></li>
+			<li><a href="#" class="parent"><span>Ayuda</span></a></li>
+			<li><a href="${createLink(controller: 'contactForm')}"><span>Contacto</span></a></li>
+		    <li class="last"><a href="${createLink(controller: 'logout')}"><span>Logout</span></a></li>
 			</sec:ifLoggedIn>
 		</ul>
 	</div>	

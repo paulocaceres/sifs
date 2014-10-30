@@ -88,7 +88,8 @@
 			   la asignación de recursos de la organización involucrados en los planes de capacitación.
 			   Disponer y adecuar los planes de formación requeridos para las funciones actuales y futuras.
 			 </p>
-
+			
+			
 			<div id="controller-list" role="navigation">
 				<h2>Operaciones disponibles:</h2>
 				<ul>
