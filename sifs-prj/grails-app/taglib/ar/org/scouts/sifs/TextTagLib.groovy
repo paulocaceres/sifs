@@ -119,25 +119,25 @@ class TextTagLib {
 		}
 		if(password && password == "password") type = 'password'
 
-		out << "<input type=\"${type}\" id=\"${attrs.remove('id')}\" name=\"${attrs.remove('name')}\" value=\"${value}\" ${readonly}onkeyup=\""
+		out << "<input type=\"${type}\" id=\"${attrs.remove('id')}\" name=\"${attrs.remove('name')}\" value=\"${value}\" ${readonly} "
 
-		if (attrs.params) {
-			if (attrs.params instanceof Map) {
-				attrs.params.put(paramName,
-					new org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue('this.value'))
-			} else {
-				attrs.params += "+'${paramName}='+this.value"
-			}
-		} else {
-			attrs.params = "'${paramName}='+this.value"
-		}
-
-		out << remoteFunction(attrs)
-		
+//		if (attrs.params) {
+//			if (attrs.params instanceof Map) {
+//				attrs.params.put(paramName,
+//					new org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue('this.value'))
+//			} else {
+//				attrs.params += "+'${paramName}='+this.value"
+//			}
+//		} else {
+//			attrs.params = "'${paramName}='+this.value"
+//		}
+//
+//		out << remoteFunction(attrs)
+//		
 		attrs.remove('params')
-		out << "\""
-
-		attrs.remove('url')
+//		out << "\""
+//
+//		attrs.remove('url')
 		attrs.each {
 			k,v-> out << " $k=\"$v\""
 		}
@@ -176,24 +176,24 @@ class TextTagLib {
 			readonly = 'readonly=\"readonly\" '
 		}
 
-		out << "<textarea id=\"${attrs.remove('id')}\" name=\"${attrs.remove('name')}\" ${cols}${rows}${readonly}onkeyup=\""
+		out << "<textarea id=\"${attrs.remove('id')}\" name=\"${attrs.remove('name')}\" ${cols}${rows}${readonly} "
 
-		if (attrs.params) {
-			if (attrs.params instanceof Map) {
-				attrs.params.put(paramName,
-					new org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue('this.value'))
-			} else {
-				attrs.params += "+'${paramName}='+this.value"
-			}
-		} else {
-			attrs.params = "'${paramName}='+this.value"
-		}
-
-		out << remoteFunction(attrs)
+//		if (attrs.params) {
+//			if (attrs.params instanceof Map) {
+//				attrs.params.put(paramName,
+//					new org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue('this.value'))
+//			} else {
+//				attrs.params += "+'${paramName}='+this.value"
+//			}
+//		} else {
+//			attrs.params = "'${paramName}='+this.value"
+//		}
+//
+//		out << remoteFunction(attrs)
 
 		attrs.remove('params')
-		out << "\""
-		out <<" />${value}</textarea>"
+//		out << "\""
+		out <<">${value}</textarea>"
 	}
 
 	/**
