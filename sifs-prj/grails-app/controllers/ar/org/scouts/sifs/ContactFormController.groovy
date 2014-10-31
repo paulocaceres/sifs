@@ -144,6 +144,7 @@ class ContactFormController {
                     mailService.sendMail {
                         to toEmailAddress
                         from contactFormInstance.yourFullName + " <" + contactFormInstance.yourEmailAddress + ">"
+						replyTo contactFormInstance.yourEmailAddress
                         subject contactFormInstance.subject
                         body contactFormInstance.message
                     }

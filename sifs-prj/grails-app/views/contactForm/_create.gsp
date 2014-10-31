@@ -5,10 +5,12 @@
                         <div id="flashMessage">${flash.message}</div>
                     </g:if>
                     <g:hasErrors bean="${contactFormInstance}">
-                        <div id="errorMessage"><g:message
-                        code="uk.co.anthonycampbell.grails.contactform.ContactForm.validation.fail.message"
-                        default="A problem was encountered when trying to process your form.
-                        Please ensure that all the fields are complete and try again."/></div>
+                        <div id="errorMessage">
+                        	<g:message
+                        		code="uk.co.anthonycampbell.grails.contactform.ContactForm.validation.fail.message"
+                        		default="A problem was encountered when trying to process your form.
+                        		Please ensure that all the fields are complete and try again."/>
+                        </div>
                     </g:hasErrors>
                         <g:formRemote id="formContactForm" name="formContactForm" action="send"
                         method="post"
