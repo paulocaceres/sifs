@@ -3,13 +3,13 @@ package ar.org.scouts.sifs
 class Nivel {
 
 	String nombre
-	String nivelCol
+	//String nivelCol
 	
     static constraints = {
     }
 	
 	String toString() {
-		"$nombre, $nivelCol"
+		"$nombre"
 	}
 
 }

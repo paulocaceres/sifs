@@ -23,98 +23,47 @@
 			</g:if>
 			<ol class="property-list curso">
 			
-				<g:if test="${cursoInstance?.contenido}">
-				<li class="fieldcontain">
-					<span id="contenido-label" class="property-label"><g:message code="curso.contenido.label" default="Contenido" /></span>
-					
-						<span class="property-value" aria-labelledby="contenido-label"><g:link controller="contenido" action="show" id="${cursoInstance?.contenido?.id}">${cursoInstance?.contenido?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${cursoInstance?.correlativas}">
-				<li class="fieldcontain">
-					<span id="correlativas-label" class="property-label"><g:message code="curso.correlativas.label" default="Correlativas" /></span>
-					
-						<span class="property-value" aria-labelledby="correlativas-label"><g:fieldValue bean="${cursoInstance}" field="correlativas"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${cursoInstance?.cupo}">
-				<li class="fieldcontain">
-					<span id="cupo-label" class="property-label"><g:message code="curso.cupo.label" default="Cupo" /></span>
-					
-						<span class="property-value" aria-labelledby="cupo-label"><g:fieldValue bean="${cursoInstance}" field="cupo"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${cursoInstance?.fecha}">
-				<li class="fieldcontain">
-					<span id="fecha-label" class="property-label"><g:message code="curso.fecha.label" default="Fecha" /></span>
-					
-						<span class="property-value" aria-labelledby="fecha-label"><g:formatDate date="${cursoInstance?.fecha}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${cursoInstance?.inscripto}">
-				<li class="fieldcontain">
-					<span id="inscripto-label" class="property-label"><g:message code="curso.inscripto.label" default="Inscripto" /></span>
-					
-						<span class="property-value" aria-labelledby="inscripto-label"><g:link controller="persona" action="show" id="${cursoInstance?.inscripto?.id}">${cursoInstance?.inscripto?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${cursoInstance?.nivel}">
-				<li class="fieldcontain">
-					<span id="nivel-label" class="property-label"><g:message code="curso.nivel.label" default="Nivel" /></span>
-					
-						<span class="property-value" aria-labelledby="nivel-label"><g:link controller="nivel" action="show" id="${cursoInstance?.nivel?.id}">${cursoInstance?.nivel?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${cursoInstance?.nombre}">
 				<li class="fieldcontain">
 					<span id="nombre-label" class="property-label"><g:message code="curso.nombre.label" default="Nombre" /></span>
-					
-						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${cursoInstance}" field="nombre"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${cursoInstance?.plan}">
-				<li class="fieldcontain">
-					<span id="plan-label" class="property-label"><g:message code="curso.plan.label" default="Plan" /></span>
-					
-						<span class="property-value" aria-labelledby="plan-label"><g:link controller="plan" action="show" id="${cursoInstance?.plan?.id}">${cursoInstance?.plan?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${cursoInstance?.recurso}">
-					<li class="fieldcontain">
-						<span id="recurso-label" class="property-label">
-							<g:message code="curso.recurso.label" default="Recurso" />
+						<span class="property-value" aria-labelledby="nombre-label">
+							<g:fieldValue bean="${cursoInstance}" field="nombre"/>
 						</span>
-						<span class="property-value" aria-labelledby="recurso-label">
-							<g:link controller="recurso" action="show" id="${cursoInstance?.recurso?.id}">${cursoInstance?.recurso?.encodeAsHTML()}</g:link>
-						</span>
-					</li>
-				</g:if>
-			
-				<g:if test="${cursoInstance?.zona}">
-				<li class="fieldcontain">
-					<span id="zona-label" class="property-label"><g:message code="curso.zona.label" default="Zona" /></span>
-					
-						<span class="property-value" aria-labelledby="zona-label"><g:link controller="zona" action="show" id="${cursoInstance?.zona?.id}">${cursoInstance?.zona?.encodeAsHTML()}</g:link></span>
-					
 				</li>
 				</g:if>
-			
+				
+				<g:if test="${cursoInstance?.nivel}">
+				<li class="fieldcontain">
+					<span id="nivel-label" class="property-label"><g:message code="curso.nivel.label" default="Nivel" /></span>
+						<span class="property-value" aria-labelledby="nivel-label">
+							<g:fieldValue bean="${cursoInstance}" field="nivel.nombre"/>
+						</span>
+				</li>
+				</g:if>
+				
+				<g:if test="${cursoInstance?.descripcion}">
+				<li class="fieldcontain">
+					<span id="descripcion-label" class="property-label"><g:message code="curso.descripcion.label" default="Descripcion" /></span>
+						<span class="property-value" aria-labelledby="descripcion-label">
+							<g:fieldValue bean="${cursoInstance}" field="descripcion"/>
+						</span>
+				</li>
+				</g:if>
+				
+				<g:if test="${cursoInstance?.correlativas}">
+				<li class="fieldcontain">
+					<span id="descripcion-label" class="property-label">
+						<g:message code="curso.correlativas.label" default="Correlativas" />
+					</span>
+					
+					<g:each var="c" in="${cursoInstance?.correlativas?.sort { it.nombre } }">
+							<span class="property-value" aria-labelledby="correlativas-label">
+								<g:link action="show" id="${c.id}">${c.nombre}</g:link>
+							</span>
+					</g:each>					
+				</li>
+				</g:if>
+	
 			</ol>
 			<g:form url="[resource:cursoInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

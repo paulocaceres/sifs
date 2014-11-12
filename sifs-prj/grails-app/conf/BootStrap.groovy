@@ -1,6 +1,8 @@
+import ar.org.scouts.sifs.Curso
 import ar.org.scouts.sifs.Direccion
 import ar.org.scouts.sifs.Distrito
 import ar.org.scouts.sifs.Grupo
+import ar.org.scouts.sifs.Nivel
 import ar.org.scouts.sifs.Persona
 import ar.org.scouts.sifs.Provincia
 import ar.org.scouts.sifs.Zona
@@ -284,7 +286,30 @@ class BootStrap {
 		zona03.addToDistritos(distrito08)
 		zona03.addToDistritos(distrito09)
 		zona03.save()
-
+		
+		Nivel nivel1 = new Nivel(nombre: 'Zonal')
+		nivel1.save(flush: true, insert: true)
+		
+		Nivel nivel2 = new Nivel(nombre: 'Nacional')
+		nivel2.save(flush: true, insert: true)
+		
+		Curso curso1 = new Curso(nombre:'Modulo 1 A', descripcion:'Modulo 1 A', nivel: nivel1).save(flush: true, insert: true)
+		
+		Curso curso2 = new Curso(nombre:'Modulo 1 B', descripcion:'Modulo 1 B', nivel: nivel1).save(flush: true, insert: true)
+		
+		Curso curso3 = new Curso(nombre:'Modulo 2', descripcion:'Modulo 2', nivel: nivel1).save(flush: true, insert: true)
+		
+		Curso curso4 = new Curso(nombre:'Modulo 3', descripcion:'Modulo 3', nivel: nivel1).save(flush: true, insert: true)
+		
+		Curso curso5 = new Curso(nombre:'Modulo 4', descripcion:'Modulo 4', nivel: nivel2).save(flush: true, insert: true)
+		
+		Curso curso6 = new Curso(nombre:'Modulo 5', descripcion:'Modulo 5', nivel: nivel2).save(flush: true, insert: true)
+		
+		Curso curso7 = new Curso(nombre:'Modulo 6 G', descripcion:'Modulo 6 G', nivel: nivel2).save(flush: true, insert: true)
+		
+		Curso curso8 = new Curso(nombre:'Modulo 6 E', descripcion:'Modulo 6 E', nivel: nivel2).save(flush: true, insert: true)
+	
+		
 	}
 
 

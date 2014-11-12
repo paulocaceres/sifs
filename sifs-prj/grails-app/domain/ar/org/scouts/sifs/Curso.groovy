@@ -5,20 +5,36 @@ class Curso {
 	
 	Plan plan
 	Zona zona
-	Recurso recurso
-	Contenido contenido
-	Integer correlativas
-	Persona inscripto
 	Nivel nivel
 	String nombre
+	String descripcion
 	Date fecha
 	Integer cupo
-
+	static hasMany = [correlativas: Curso,
+		              contenidos: Contenido,
+					  recursos: Recurso,
+					  inscriptos: Persona
+					  ]
+	
     static constraints = {
-    }
+		contenidos nullable:true
+		cupo nullable:true
+		fecha nullable:true
+		inscriptos nullable:true
+		plan(nullable:true)
+		recursos nullable:true
+		zona(nullable:true)
+		nivel(nullable:true)
+	}
 	
 	String toString() {
-		"$plan, $zona, $recurso, $contenido, $correlativas, $inscripto, $nivel, $nombre, ${fecha.format('dd/MM/yyyy')}, $cupo"
+		"$nombre"
+	}
+	
+	//  this additional setter is used in the multiselect list to convert
+	//    the ids selected in the checkbox list to the corresponding domain objects
+	public void setCursosIds(List ids) {
+		this.correlativas = ids.collect { Curso.get(it) }
 	}
 
 }

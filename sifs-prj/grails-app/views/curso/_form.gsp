@@ -38,12 +38,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'inscripto', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'inscripto', 'error')} ">
 	<label for="inscripto">
 		<g:message code="curso.inscripto.label" default="Inscripto" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="inscripto" name="inscripto.id" from="${ar.org.scouts.sifs.Persona.list()}" optionKey="id" required="" value="${cursoInstance?.inscripto?.id}" class="many-to-one"/>
+	<g:select id="inscripto" name="inscripto.id" from="${ar.org.scouts.sifs.Persona.list()}" optionKey="id" value="${cursoInstance?.inscripto?.id}" class="many-to-one"/>
 
 </div>
 
