@@ -32,7 +32,9 @@
 	
 	<!-- ===================================================================================== -->
 	<div id="menu">
+		<sec:ifLoggedIn>
 		<ul class="menu">
+		</sec:ifLoggedIn>
 		    <sec:ifLoggedIn>
 			<li><a href="/sifs-prj/home" class="parent"><span>Home</span></a></li>
 			</sec:ifLoggedIn>
@@ -143,7 +145,9 @@
 			<li><a href="${createLink(controller: 'contactForm')}"><span>Contacto</span></a></li>
 		    <li class="last"><a href="${createLink(controller: 'logout')}"><span>Logout</span></a></li>
 			</sec:ifLoggedIn>
+		<sec:ifLoggedIn>	
 		</ul>
+		</sec:ifLoggedIn>
 	</div>	
 	
 <!-- ===================================================================================== -->		
