@@ -3,7 +3,7 @@ package ar.org.scouts.sifs
 
 class Curso {
 	
-	Plan plan
+	//Plan plan
 	Zona zona
 	Nivel nivel
 	String nombre
@@ -21,7 +21,7 @@ class Curso {
 		cupo nullable:true
 		fecha nullable:true
 		inscriptos nullable:true
-		plan(nullable:true)
+		//plan(nullable:true)
 		recursos nullable:true
 		zona(nullable:true)
 		nivel(nullable:true)

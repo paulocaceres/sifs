@@ -24,9 +24,9 @@
 			<thead>
 					<tr>
 					
-						<g:sortableColumn property="descripcion" title="${message(code: 'plan.descripcion.label', default: 'Descripcion')}" />
-					
 						<g:sortableColumn property="nombre" title="${message(code: 'plan.nombre.label', default: 'Nombre')}" />
+						
+						<g:sortableColumn property="descripcion" title="${message(code: 'plan.descripcion.label', default: 'Descripcion')}" />
 					
 						<g:sortableColumn property="validez" title="${message(code: 'plan.validez.label', default: 'Validez')}" />
 					
@@ -36,11 +36,11 @@
 				<g:each in="${planInstanceList}" status="i" var="planInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${planInstance.id}">${fieldValue(bean: planInstance, field: "descripcion")}</g:link></td>
+						<td><g:link action="show" id="${planInstance.id}">${fieldValue(bean: planInstance, field: "nombre")}</g:link></td>
 					
-						<td>${fieldValue(bean: planInstance, field: "nombre")}</td>
+						<td>${fieldValue(bean: planInstance, field: "descripcion")}</td>
 					
-						<td><g:formatDate date="${planInstance.validez}" /></td>
+						<td><g:formatDate date="${planInstance.validez}" format="dd-MM-yyyy" /></td>
 					
 					</tr>
 				</g:each>

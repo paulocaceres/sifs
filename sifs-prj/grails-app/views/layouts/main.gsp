@@ -72,8 +72,8 @@
 			<sec:ifAllGranted roles="ROLE_DNF">
 				<li><a href="#" class="parent"><span>Director Nac. Formacion</span></a>
 					<div><ul>
-						<li><a href="#"><span>Cursos</span></a></li>
-						<li><a href="#"><span>Planes</span></a></li>
+						<li><a href="${createLink(controller: 'curso')}"><span>Cursos</span></a></li>
+						<li><a href="${createLink(controller: 'plan')}"><span>Planes</span></a></li>
 						<li><a href="#"><span>Contenidos</span></a></li>
 					</ul></div>
 				</li>
@@ -119,8 +119,8 @@
 						
 						<li><a href="#" class="parent"><span>Director Nac. Formacion</span></a>
 							<div><ul>
-								<li><a href="#"><span>Cursos</span></a></li>
-								<li><a href="#"><span>Planes</span></a></li>
+								<li><a href="${createLink(controller: 'curso')}"><span>Cursos</span></a></li>
+								<li><a href="${createLink(controller: 'plan')}"><span>Planes</span></a></li>
 								<li><a href="#"><span>Contenidos</span></a></li>
 							</ul></div>
 						</li>
