@@ -12,15 +12,15 @@ class Curso {
 	Integer cupo
 	static hasMany = [correlativas: Curso,
 		              contenidos: Contenido,
-					  recursos: Recurso,
-					  inscriptos: Persona
+					  recursos: Recurso
+					  //inscriptos: Persona
 					  ]
 	
     static constraints = {
 		contenidos nullable:true
 		cupo nullable:true
 		fecha nullable:true
-		inscriptos nullable:true
+		//inscriptos nullable:true
 		//plan(nullable:true)
 		recursos nullable:true
 		zona(nullable:true)

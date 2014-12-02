@@ -1,5 +1,7 @@
 package ar.org.scouts.sifs
 
+import java.util.List;
+
 import ar.org.scouts.sifs.security.PersonaRol
 import ar.org.scouts.sifs.security.Rol
 
@@ -24,6 +26,9 @@ class Persona {
 	//static hasMany = [roles: SifsRole]
 	//Status status
 	//TipoDocumento documentoTipo
+	
+	static hasMany = [cursosAprobados : Curso,
+					  cursosAnotados : Curso]
 
     static constraints = {
 		documentoNumero blank: false, unique: true
@@ -36,6 +41,8 @@ class Persona {
 		grupo(nullable: true)
 		superior(nullable: true)
 		password blank: false
+		cursosAprobados(nullable: true)
+		cursosAnotados(nullable : true)
 }
 
 	String toString() {
@@ -66,5 +73,11 @@ class Persona {
 
 	protected void encodePassword() {
 		password = springSecurityService.encodePassword(password)
+	}
+	
+	//  this additional setter is used in the multiselect list to convert
+	//    the ids selected in the checkbox list to the corresponding domain objects
+	public void setCursosAnotadosIds(List ids) {
+		this.cursosAnotados = ids.collect { Curso.get(it) }
 	}
 }

@@ -42,7 +42,7 @@
 				<li><a href="#" class="parent"><span>Cursante</span></a>
 					<div><ul>
 						<li><a href="#"><span>Mi Perfil</span></a></li>
-						<li><a href="#"><span>Inscripcion a Cursos</span></a></li>
+						<li><a href="${createLink(controller: 'inscripcionCurso')}"><span>Inscripcion a Cursos</span></a></li>
 						<li><a href="#"><span>Habilitaciones</span></a></li>
 						<li><a href="#"><span>Cursos Aprobados</span></a></li>
 					</ul></div>
@@ -92,7 +92,7 @@
 						<li><a href="#" class="parent"><span>Cursante</span></a>
 					    	<div><ul>
 								<li><a href="#"><span>Mi Perfil</span></a></li>
-								<li><a href="#"><span>Inscripcion a Cursos</span></a></li>
+								<li><a href="${createLink(controller: 'inscripcionCurso')}"><span>Inscripcion a Cursos</span></a></li>
 								<li><a href="#"><span>Habilitaciones</span></a></li>
 								<li><a href="#"><span>Cursos Aprobados</span></a></li>
 					    	</ul></div>

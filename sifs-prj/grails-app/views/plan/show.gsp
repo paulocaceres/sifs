@@ -1,5 +1,6 @@
 
 <%@ page import="ar.org.scouts.sifs.Plan" %>
+<%@ page import="ar.org.scouts.sifs.Curso" %>
 <!DOCTYPE html>
 <html>
 	<head>
