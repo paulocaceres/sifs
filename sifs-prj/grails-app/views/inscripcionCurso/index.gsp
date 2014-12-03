@@ -31,9 +31,6 @@
 		</div>
 		<div id="create-curso" class="content scaffold-create" role="main">
 			<h1><g:message code="default.incripcionCurso.label" args="[entityName]" default="Inscripcion a Cursos"/></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
 			<g:form url="[action:'save']" >
 				<fieldset class="form">
 					<g:render template="alta"/>

@@ -35,7 +35,7 @@ class Persona {
 		nombre()
 		apellido()
 		mail()
-		direccion()
+		direccion(nullable : true)
 		zona(nullable: true)
 		distrito(nullable: true)
 		grupo(nullable: true)
@@ -46,7 +46,7 @@ class Persona {
 }
 
 	String toString() {
-		"$zona, $superior, $documentoNumero, $nombre, $apellido, $mail, $direccion"
+		"$documentoNumero, $nombre, $apellido, $mail"
 	}
 
 	static mapping = {
@@ -77,7 +77,7 @@ class Persona {
 	
 	//  this additional setter is used in the multiselect list to convert
 	//    the ids selected in the checkbox list to the corresponding domain objects
-	public void setCursosAnotadosIds(List ids) {
-		this.cursosAnotados = ids.collect { Curso.get(it) }
-	}
+	//public void setCursosAnotadosIds(List ids) {
+	//	this.cursosAnotados = ids.collect { Curso.get(it) }
+	//}
 }

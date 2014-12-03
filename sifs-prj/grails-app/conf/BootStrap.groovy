@@ -48,7 +48,7 @@ class BootStrap {
 					nombre: 			'Cursante',
 					apellido: 			'Apellido',
 					mail: 				'XXX@gmail.com',
-					direccion: 			unaDireccion,
+					//direccion: 			unaDireccion,
 					enabled: 			true,
 					accountExpired: 	false,
 					accountLocked: 		false,

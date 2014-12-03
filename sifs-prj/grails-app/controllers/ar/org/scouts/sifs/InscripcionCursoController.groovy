@@ -25,7 +25,7 @@ class InscripcionCursoController {
 		def inscripcionCursoInstanceList = null
 		
 		if(persona != null){
-			if(persona.cursosAprobados?.size() == 0) {
+			if(persona.cursosAprobados?.size() == 0 && persona.cursosAnotados?.size() == 0) {
 				def criteria = Curso.createCriteria()
 				inscripcionCursoInstanceList = criteria.list {
 					sizeEq("correlativas", 0)
@@ -33,7 +33,7 @@ class InscripcionCursoController {
 				
 			} else {
 			 	def ofertaCursos = []
-				def cursosAprobadosIds = getCursosAprobadosIds(persona) 
+				def cursosAprobadosIds = getCursosAprobadosAnotadosIds(persona) 
 				def c = Curso.createCriteria();
 				def listaCursos = c.list {
 						not {'in'("id",cursosAprobadosIds)}	
@@ -55,31 +55,32 @@ class InscripcionCursoController {
 	def save() {
 		def persona = Persona.get(springSecurityService.currentUser.id);
 		def cursosSeleccionadosInstance = null
+		def successInscripcionMessage = null
 		
 		if (persona != null) {
 			def cursoIds = params.list('cursosAnotadosIds')
 			if(cursoIds.size() > 0) {
 				cursosSeleccionadosInstance = cursoIds.collect { Curso.get(it) }
-				persona.cursosAnotados = cursosSeleccionadosInstance
+				cursosSeleccionadosInstance.each() {
+					persona.addToCursosAnotados(it)
+				}
 				persona.save flush:true
+				successInscripcionMessage = message(code: 'default.inscripcionCursoSuccess.message')
 			} else {
 				notSelected()
 				return
 			}
 		}
-
-		request.withFormat {
-			form multipartForm {
-				flash.message = message(code: 'default.inscripcionCursoSuccess.message')
-				redirect action:"show"
-			}
-			'*' { respond cursosSeleccionadosInstance, [status: CREATED] }
-		}
+		
+		return [cursosInstanceList : cursosSeleccionadosInstance, customMessage: successInscripcionMessage, status: CREATED]
 	}
 	
-	def getCursosAprobadosIds(Persona p) {
+	def getCursosAprobadosAnotadosIds(Persona p) {
 		def ids = []
 		p.cursosAprobados.each() {
+			ids.add(it.id)
+		}
+		p.cursosAnotados.each() {
 			ids.add(it.id)
 		}
 		return ids
