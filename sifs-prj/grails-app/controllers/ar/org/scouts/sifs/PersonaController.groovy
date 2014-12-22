@@ -27,7 +27,6 @@ class PersonaController {
 		params.zona = new Zona()
 		params.direccion = new Direccion()
 		params.direccion.provincia = new Provincia()
-
         respond new Persona(params)
     }
 
@@ -44,7 +43,8 @@ class PersonaController {
         }
 
 
-		personaInstance.save flush:true
+        personaInstance.save flush:true
+
 
 		personaInstance.authorities.clear()
 		params.each {
@@ -125,4 +125,12 @@ class PersonaController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+
+	static ArrayList<Persona> superiores() {
+		def superiores = Persona.list()
+        return superiores
+    }
+
+	
 }

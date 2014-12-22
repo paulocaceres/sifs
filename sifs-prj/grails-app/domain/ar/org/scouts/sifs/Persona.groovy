@@ -1,19 +1,17 @@
 package ar.org.scouts.sifs
 
-import java.util.List;
-
 import ar.org.scouts.sifs.security.PersonaRol
 import ar.org.scouts.sifs.security.Rol
 
 class Persona {
-	
+
 	transient springSecurityService
 
 	String documentoNumero
 	String nombre
 	String apellido
 	String mail
-	Direccion direccion
+	static hasOne = [direccion: Direccion]
 	Zona zona
 	Distrito distrito
 	Grupo grupo
@@ -23,19 +21,15 @@ class Persona {
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
-	//static hasMany = [roles: SifsRole]
-	//Status status
-	//TipoDocumento documentoTipo
-	
+
+	static belongsTo = [ superior: Persona ]
+
 	static hasMany = [cursosAprobados : Curso,
 					  cursosAnotados : Curso]
 
-    static constraints = {
+	static constraints = {
 		documentoNumero blank: false, unique: true
-		nombre()
-		apellido()
-		mail()
-		direccion(nullable : true)
+		direccion(nullable: true)
 		zona(nullable: true)
 		distrito(nullable: true)
 		grupo(nullable: true)
@@ -43,7 +37,7 @@ class Persona {
 		password blank: false
 		cursosAprobados(nullable: true)
 		cursosAnotados(nullable : true)
-}
+	}
 
 	String toString() {
 		"$documentoNumero, $nombre, $apellido, $mail"
@@ -54,13 +48,13 @@ class Persona {
 	}
 
 	Set<Rol> getAuthorities() {
-		def emi01 = PersonaRol.findAllByPersona(this)
-		emi01.collect { it.rol } as Set
+		PersonaRol.findAllByPersona(this).collect { it.rol } as Set
 	}
 
 	boolean hasRol(Rol rol) {
 	   PersonaRol.countByPersonaAndRol(this, rol) > 0
 	}
+	
 	def beforeInsert() {
 		encodePassword()
 	}
@@ -74,10 +68,11 @@ class Persona {
 	protected void encodePassword() {
 		password = springSecurityService.encodePassword(password)
 	}
-	
+
 	//  this additional setter is used in the multiselect list to convert
 	//    the ids selected in the checkbox list to the corresponding domain objects
 	//public void setCursosAnotadosIds(List ids) {
 	//	this.cursosAnotados = ids.collect { Curso.get(it) }
 	//}
+
 }

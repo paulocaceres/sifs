@@ -1,3 +1,4 @@
+<%@ page import="ar.org.scouts.sifs.PersonaController"%>
 <%@ page import="ar.org.scouts.sifs.Persona"%>
 <%@ page import="ar.org.scouts.sifs.Provincia"%>
 <%@ page import="ar.org.scouts.sifs.security.Rol"%>
@@ -13,47 +14,55 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'documentoNumero', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'documentoNumero', 'error')} required">
 	<label for="documentoNumero">
 		<g:message code="persona.documentoNumero.label" default="Documento Numero" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="documentoNumero" value="${personaInstance?.documentoNumero}" />
+	<g:textField name="documentoNumero" required="" value="${personaInstance?.documentoNumero}"/>
 </div>
+
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'nombre', 'error')} ">
 	<label for="nombre">
 		<g:message code="persona.nombre.label" default="Nombre" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="nombre" value="${personaInstance?.nombre}" />
+	<g:textField name="nombre" value="${personaInstance?.nombre}"/>
 </div>
+
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'apellido', 'error')} ">
 	<label for="apellido">
 		<g:message code="persona.apellido.label" default="Apellido" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="apellido" value="${personaInstance?.apellido}" />
+	<g:textField name="apellido" value="${personaInstance?.apellido}"/>
 </div>
+
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'roles', 'error')} ">
 	<label for="roles">
 		<g:message code="persona.roles.label" default="Roles" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:each var="rol" in="${Rol.list()}" >
-<%--		<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance?.authorities.contains(rol)}"/>${rol.authority}--%>
-		<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="false"/>${rol.authority}
-	</g:each> 
 </div>
+
+<g:each var="rol" in="${Rol.list()}" >
+	<div class="fieldcontain ">
+		<label for="rolRaw[${rol.id}]"></label>
+		<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="false"/>${rol.authority}
+	</div>
+</g:each>
+
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'mail', 'error')} ">
 	<label for="mail">
 		<g:message code="persona.mail.label" default="Mail" />
 	</label>
-	<g:textField name="mail" value="${personaInstance?.mail}" />
+	<g:textField name="mail" value="${personaInstance?.mail}"/>
 </div>
+
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
 	<label for="direccion">
 		<g:message code="persona.direccion.label" default="Direccion" />
+		<span class="required-indicator">*</span>
 	</label>
+<%--	<g:select id="direccion" name="direccion.id" from="${ar.org.scouts.sifs.Direccion.list()}" optionKey="id" required="" value="${personaInstance?.direccion?.id}" class="many-to-one"/>--%>
 </div>
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
 	<label for="direccion">
@@ -91,48 +100,70 @@
 	</label>
 	<g:select optionKey="id" from="${Provincia.list()}" name="direccion.provincia.id" value="${personaInstance?.direccion?.provincia?.id}" />
 </div>
-<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'zona', 'error')} required">
+
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'zona', 'error')} ">
 	<label for="zona">
 		<g:message code="persona.zona.label" default="Zona" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:select optionKey="id" from="${Zona.list()}" noSelection="${['null':'Select One...']}" name="zona.id" value="${personaInstance?.zona?.id}" onchange="${remoteFunction(controller:'zona', action:'ajaxGetDistritos', params:'\'id=\' + escape(this.value)', onSuccess:'updateDistrito(data)')}" />
+	<g:select id="zona" optionKey="id" from="${Zona.list()}" noSelection="${['null':'Select One...']}" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" onchange="${remoteFunction(controller:'zona', action:'ajaxGetDistritos', params:'\'id=\' + escape(this.value)', onSuccess:'updateDistrito(data)')}" />
 </div>
-<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'distrito', 'error')} required">
+
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'distrito', 'error')} ">
 	<label for="distrito">
-		<g:message code="persona.zona.distrito.label" default="Distrito" />
-		<span class="required-indicator">*</span>
+		<g:message code="persona.distrito.label" default="Distrito" />
 	</label>
-	<g:select optionKey="id" from="${Distrito.list()}" noSelection="${['null':'Select One...']}" name="distrito.id" value="${personaInstance?.distrito?.id}" onchange="${remoteFunction(controller:'distrito', action:'ajaxGetGrupos', params:'\'id=\' + escape(this.value)', onSuccess:'updateGrupo(data)')}" />
+	<g:select id="distrito" optionKey="id" from="${Distrito.list()}" noSelection="${['null':'Select One...']}" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" onchange="${remoteFunction(controller:'distrito', action:'ajaxGetGrupos', params:'\'id=\' + escape(this.value)', onSuccess:'updateGrupo(data)')}" />
 </div>
-<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'grupo', 'error')} required">
+
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'grupo', 'error')} ">
 	<label for="grupo">
-		<g:message code="persona.zona.grupo.label" default="Grupo" />
-		<span class="required-indicator">*</span>
+		<g:message code="persona.grupo.label" default="Grupo" />
 	</label>
-	<g:select optionKey="id" from="${Grupo.list()}" noSelection="${['null':'Select One...']}" name="grupo.id" value="${personaInstance?.grupo?.id}" />
+	<g:select id="grupo" optionKey="id" from="${Grupo.list()}" noSelection="${['null':'Select One...']}" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one"/>
 </div>
-<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'superior', 'error')} required">
+
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'superior', 'error')} ">
 	<label for="superior">
 		<g:message code="persona.superior.label" default="Superior" />
 	</label>
-	<g:textField name="superior" value="${personaInstance?.superior}" />
+	<g:select id="superior" name="superior.id" from="${PersonaController.superiores()}" optionKey="id" value="${personaInstance?.superior?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
-<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'bloqueado', 'error')} ">
-	<label for="bloqueado">
-		<g:message code="persona.bloqueado.label" default="Bloqueado" />
-	</label>
-	<g:checkBox name="bloqueado" value="${personaInstance?.accountLocked}" />
-</div>
-<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'password', 'error')} ">
+
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'password', 'error')} required">
 	<label for="password">
 		<g:message code="persona.password.label" default="Password" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="password" value="${personaInstance?.password}" />
+	<g:textField name="password" required="" value="${personaInstance?.password}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'enabled', 'error')} ">
+	<label for="enabled">
+		<g:message code="persona.enabled.label" default="Enabled" />
+	</label>
+	<g:checkBox name="enabled" value="${personaInstance?.enabled}" />
+</div>
 
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'accountLocked', 'error')} ">
+	<label for="accountLocked">
+		<g:message code="persona.accountLocked.label" default="Account Locked" />
+	</label>
+	<g:checkBox name="accountLocked" value="${personaInstance?.accountLocked}" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'accountExpired', 'error')} ">
+	<label for="accountExpired">
+		<g:message code="persona.accountExpired.label" default="Account Expired" />
+	</label>
+	<g:checkBox name="accountExpired" value="${personaInstance?.accountExpired}" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'passwordExpired', 'error')} ">
+	<label for="passwordExpired">
+		<g:message code="persona.passwordExpired.label" default="Password Expired" />
+	</label>
+	<g:checkBox name="passwordExpired" value="${personaInstance?.passwordExpired}" />
+</div>
 
 <script>
 

@@ -43,9 +43,9 @@
 						<th>
 							<g:message code="persona.direccion.label" default="Direccion" />
 						</th>
-						<th>
-							<g:message code="persona.zona.label" default="Zona" />
-						</th>
+<%--						<th>--%>
+<%--							<g:message code="persona.zona.label" default="Zona" />--%>
+<%--						</th>--%>
 					</tr>
 				</thead>
 				<tbody>
@@ -66,9 +66,9 @@
 							<td>
 								${fieldValue(bean: personaInstance, field: "direccion")}
 							</td>
-							<td>
-								${fieldValue(bean: personaInstance, field: "zona")}
-							</td>
+<%--							<td>--%>
+<%--								${fieldValue(bean: personaInstance, field: "zona")}--%>
+<%--							</td>--%>
 						</tr>
 					</g:each>
 				</tbody>
