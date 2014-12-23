@@ -46,7 +46,7 @@
 <g:each var="rol" in="${Rol.list()}" >
 	<div class="fieldcontain ">
 		<label for="rolRaw[${rol.id}]"></label>
-		<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="false"/>${rol.authority}
+		<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}"/>${rol.authority}
 	</div>
 </g:each>
 

@@ -52,7 +52,11 @@ class Persona {
 	}
 
 	boolean hasRol(Rol rol) {
-	   PersonaRol.countByPersonaAndRol(this, rol) > 0
+		if (this.id != null) {
+			PersonaRol.countByPersonaAndRol(this, rol)
+		} else {
+			false
+		}
 	}
 	
 	def beforeInsert() {
