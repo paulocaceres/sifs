@@ -105,6 +105,7 @@ class PersonaController {
             return
         }
 
+		PersonaRol.removeAll(personaInstance)
         personaInstance.delete flush:true
 
         request.withFormat {
