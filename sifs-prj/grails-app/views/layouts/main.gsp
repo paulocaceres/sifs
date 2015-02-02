@@ -41,7 +41,7 @@
 			<sec:ifAllGranted roles="ROLE_CURSANTE">
 				<li><a href="#" class="parent"><span>Cursante</span></a>
 					<div><ul>
-						<li><a href="#"><span>Mi Perfil</span></a></li>
+						<li><a href="${createLink(controller: 'persona')}"><span>Mi Perfil</span></a></li>
 						<li><a href="${createLink(controller: 'inscripcionCurso')}"><span>Inscripcion a Cursos</span></a></li>
 						<li><a href="#"><span>Habilitaciones</span></a></li>
 						<li><a href="#"><span>Cursos Aprobados</span></a></li>
@@ -91,7 +91,7 @@
 					<div><ul>
 						<li><a href="#" class="parent"><span>Cursante</span></a>
 					    	<div><ul>
-								<li><a href="#"><span>Mi Perfil</span></a></li>
+								<li><a href="${createLink(controller: 'persona')}"><span>Mi Perfil</span></a></li>
 								<li><a href="${createLink(controller: 'inscripcionCurso')}"><span>Inscripcion a Cursos</span></a></li>
 								<li><a href="#"><span>Habilitaciones</span></a></li>
 								<li><a href="#"><span>Cursos Aprobados</span></a></li>

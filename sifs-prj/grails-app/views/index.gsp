@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<sec:ifNotLoggedIn>
+	${response.sendRedirect('/sifs-prj/login')}
+</sec:ifNotLoggedIn>
 <html>
 	<head>
 		<meta name="layout" content="main"/>
