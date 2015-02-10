@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list grupo">
 			
+		<g:if test="${grupoInstance?.numero}">
+				<li class="fieldcontain">
+					<span id="nombre-label" class="property-label"><g:message code="grupo.numero.label" default="Número" /></span>
+					
+						<span class="property-value" aria-labelledby="numero-label"><g:fieldValue bean="${grupoInstance}" field="numero"/></span>
+					
+				</li>
+				</g:if>
+				
 				<g:if test="${grupoInstance?.nombre}">
 				<li class="fieldcontain">
 					<span id="nombre-label" class="property-label"><g:message code="grupo.nombre.label" default="Nombre" /></span>
