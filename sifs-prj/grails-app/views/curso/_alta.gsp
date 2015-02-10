@@ -1,7 +1,7 @@
 <%@ page import="ar.org.scouts.sifs.Curso" %>
 
 
-<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'nombre', 'error')} required"">
+<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'nombre', 'error')} required">
 	<label for="nombre">
 		<g:message code="curso.nombre.label" default="Nombre" />
 	</label>
