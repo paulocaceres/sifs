@@ -22,7 +22,14 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list zona">
-			
+				<g:if test="${zonaInstance?.numero}">
+				<li class="fieldcontain">
+					<span id="numero-label" class="property-label"><g:message code="zona.numero.label" default="Número" /></span>
+					
+						<span class="property-value" aria-labelledby="numero-label"><g:fieldValue bean="${zonaInstance}" field="numero"/></span>
+					
+				</li>
+				</g:if>
 				<g:if test="${zonaInstance?.nombre}">
 				<li class="fieldcontain">
 					<span id="nombre-label" class="property-label"><g:message code="zona.nombre.label" default="Nombre" /></span>

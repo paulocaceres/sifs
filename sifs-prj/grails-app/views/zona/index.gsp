@@ -23,6 +23,7 @@
 			<table>
 			<thead>
 					<tr>
+						<g:sortableColumn property="numero" title="${message(code: 'zona.numero.label', default: 'Número')}" />
 					
 						<g:sortableColumn property="nombre" title="${message(code: 'zona.nombre.label', default: 'Nombre')}" />
 					
@@ -31,6 +32,8 @@
 				<tbody>
 				<g:each in="${zonaInstanceList}" status="i" var="zonaInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+					
+				    	<td>${fieldValue(bean: zonaInstance, field: "numero")}</td>
 					
 						<td><g:link action="show" id="${zonaInstance.id}">${fieldValue(bean: zonaInstance, field: "nombre")}</g:link></td>
 					

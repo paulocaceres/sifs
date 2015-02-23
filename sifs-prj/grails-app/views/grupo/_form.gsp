@@ -1,7 +1,7 @@
 <%@ page import="ar.org.scouts.sifs.Grupo" %>
 
 <div class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'numero', 'error')} ">
-	<label for="nombre">
+	<label for="numero">
 		<g:message code="grupo.numero.label" default="Número" />
 		
 	</label>

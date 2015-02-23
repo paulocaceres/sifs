@@ -145,13 +145,13 @@ class BootStrap {
 		new Provincia(descripcion: 'Tucumán').save()
 		
 //		Zona zona
-//		zona = new Zona(nombre: 'Zona01')
+//		zona = new Zona(nombre: 'Zona01', numero:1)
 //		zona.addToDistritos(new Distrito(nombre: 'Distrito01a'))
 //		zona.addToDistritos(new Distrito(nombre: 'Distrito01b'))
 //		zona.addToDistritos(new Distrito(nombre: 'Distrito01c'))
 //		zona.save()
 //		
-//		zona = new Zona(nombre: 'Zona02')
+//		zona = new Zona(nombre: 'Zona02', numero:2)
 //		zona.addToDistritos(new Distrito(nombre: 'Distrito02a'))
 //		zona.addToDistritos(new Distrito(nombre: 'Distrito02b'))
 //		zona.addToDistritos(new Distrito(nombre: 'Distrito02c'))
@@ -275,19 +275,19 @@ class BootStrap {
 		distrito09.save()
 		
 
-		Zona zona01 = new Zona(nombre: 'Zona01')
+		Zona zona01 = new Zona(nombre: 'Zona01', numero:1)
 		zona01.addToDistritos(distrito01)
 		zona01.addToDistritos(distrito02)
 		zona01.addToDistritos(distrito03)
 		zona01.save()
 		
-		Zona zona02 = new Zona(nombre: 'Zona02')
+		Zona zona02 = new Zona(nombre: 'Zona02', numero:2)
 		zona02.addToDistritos(distrito04)
 		zona02.addToDistritos(distrito05)
 		zona02.addToDistritos(distrito06)
 		zona02.save()
 		
-		Zona zona03 = new Zona(nombre: 'Zona03')
+		Zona zona03 = new Zona(nombre: 'Zona03', numero:3)
 		zona03.addToDistritos(distrito07)
 		zona03.addToDistritos(distrito08)
 		zona03.addToDistritos(distrito09)
