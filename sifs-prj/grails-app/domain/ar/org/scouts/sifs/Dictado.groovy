@@ -7,6 +7,10 @@ class Dictado {
 	Date fecha
 	Integer cupo
 
+	static belongTo = [
+		curso: Curso
+	]
+
 	static hasMany = [
 		recursos: Recurso,
 		inscriptos: Persona
