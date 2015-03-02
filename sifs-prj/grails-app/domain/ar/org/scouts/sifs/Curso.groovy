@@ -3,27 +3,18 @@ package ar.org.scouts.sifs
 
 class Curso {
 	
-	//Plan plan
-	Zona zona
-	Nivel nivel
+//	Plan plan
+	Nivel nivel // Nacional e Internacional
 	String nombre
 	String descripcion
-	Date fecha
-	Integer cupo
+
 	static hasMany = [correlativas: Curso,
-		              contenidos: Contenido,
-					  recursos: Recurso
-					  //inscriptos: Persona
-					  ]
+		contenidos: Contenido
+	]
 	
     static constraints = {
-		contenidos nullable:true
-		cupo nullable:true
-		fecha nullable:true
-		//inscriptos nullable:true
-		//plan(nullable:true)
-		recursos nullable:true
-		zona(nullable:true)
+//		contenidos nullable:true
+//		plan(nullable:true)
 		nivel(nullable:true)
 	}
 	
