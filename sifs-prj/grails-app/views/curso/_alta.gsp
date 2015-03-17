@@ -26,17 +26,17 @@
 
 </div>
 
-		<div id="tabs">
-		  <ul>
-		    <li><a href="#tabs-1">
-				  <g:message code="curso.correlativas.label" default="Correlativas" />
-				</a>
-			</li>
-		  </ul>
-		  <div id="tabs-1">
-		  	 <div style="font-size:11px;">
-				<g:checkBoxList name="cursosIds" from="${Curso.list()}" value="${cursoInstance?.correlativas?.collect{it.id}}" optionKey="id"/>
-			 </div>
-		  </div>
-		</div>
+<%--		<div id="tabs">--%>
+<%--		  <ul>--%>
+<%--		    <li><a href="#tabs-1">--%>
+<%--				  <g:message code="curso.correlativas.label" default="Correlativas" />--%>
+<%--				</a>--%>
+<%--			</li>--%>
+<%--		  </ul>--%>
+<%--		  <div id="tabs-1">--%>
+<%--		  	 <div style="font-size:11px;">--%>
+<%--				<g:checkBoxList name="cursosIds" from="${Curso.list()}" value="${cursoInstance?.correlativas?.collect{it.id}}" optionKey="id"/>--%>
+<%--			 </div>--%>
+<%--		  </div>--%>
+<%--		</div>--%>
 

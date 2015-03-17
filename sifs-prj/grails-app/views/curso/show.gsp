@@ -50,19 +50,19 @@
 				</li>
 				</g:if>
 				
-				<g:if test="${cursoInstance?.correlativas}">
-				<li class="fieldcontain">
-					<span id="correlativas-label" class="property-label">
-						<g:message code="curso.correlativas.label" default="Correlativas" />
-					</span>
-					
-					<g:each var="c" in="${cursoInstance?.correlativas?.sort { it.nombre } }">
-							<span class="property-value" aria-labelledby="correlativas-label">
-								<g:link action="show" id="${c.id}">${c.nombre}</g:link>
-							</span>
-					</g:each>					
-				</li>
-				</g:if>
+<%--				<g:if test="${cursoInstance?.correlativas}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="correlativas-label" class="property-label">--%>
+<%--						<g:message code="curso.correlativas.label" default="Correlativas" />--%>
+<%--					</span>--%>
+<%--					--%>
+<%--					<g:each var="c" in="${cursoInstance?.correlativas?.sort { it.nombre } }">--%>
+<%--							<span class="property-value" aria-labelledby="correlativas-label">--%>
+<%--								<g:link action="show" id="${c.id}">${c.nombre}</g:link>--%>
+<%--							</span>--%>
+<%--					</g:each>					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
 	
 			</ol>
 			<g:form url="[resource:cursoInstance, action:'delete']" method="DELETE">

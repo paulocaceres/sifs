@@ -11,14 +11,14 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'correlativas', 'error')} required">
-	<label for="correlativas">
-		<g:message code="curso.correlativas.label" default="Correlativas" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="correlativas" type="number" value="${cursoInstance.correlativas}" required=""/>
-
-</div>
+<%--<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'correlativas', 'error')} required">--%>
+<%--	<label for="correlativas">--%>
+<%--		<g:message code="curso.correlativas.label" default="Correlativas" />--%>
+<%--		<span class="required-indicator">*</span>--%>
+<%--	</label>--%>
+<%--	<g:field name="correlativas" type="number" value="${cursoInstance.correlativas}" required=""/>--%>
+<%----%>
+<%--</div>--%>
 
 <div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'cupo', 'error')} required">
 	<label for="cupo">
