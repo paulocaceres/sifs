@@ -29,8 +29,8 @@ class InscripcionCursoController {
 				def criteria = Curso.createCriteria()
 				inscripcionCursoInstanceList = criteria.list {
 					sizeEq("correlativas", 0)
-					ne("cupo", 0)
-					ge("fecha", new Date().clearTime()+1)
+					//ne("cupo", 0)
+					//ge("fecha", new Date().clearTime()+1)
 				}
 				
 			} else {
@@ -39,8 +39,8 @@ class InscripcionCursoController {
 				def c = Curso.createCriteria();
 				def listaCursos = c.list {
 						not {'in'("id",cursosAprobadosIds)}	
-						ne("cupo", 0)
-						ge("fecha", new Date().clearTime()+1)
+						//ne("cupo", 0)
+						//ge("fecha", new Date().clearTime()+1)
 				}
 				listaCursos?.each() {
 					if(it.correlativas?.size() == 0 || it.correlativas.containsAll(persona.cursosAprobados)) {

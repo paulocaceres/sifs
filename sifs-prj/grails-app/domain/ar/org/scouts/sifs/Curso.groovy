@@ -6,11 +6,11 @@ class Curso {
 	String nombre
 	String descripcion
 	Nivel nivel // [Nacional|Internacional]
-
+/*
 	static belongsTo = [
 		plan: Plan
 	]
-	
+*/	
 	static hasMany = [
 		correlativas: Curso,
 		contenidos: Contenido,
