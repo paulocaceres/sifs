@@ -170,7 +170,7 @@
 
 	function updateDistrito(distritos) {
 		// The response comes back as a bunch-o-JSON
-		alert('updateDistrito'); 
+<%--		alert('updateDistrito'); --%>
 		
 		if (distritos) {
 			var rselect = document.getElementById('distrito.id')
@@ -200,7 +200,7 @@
 	
 	function updateGrupo(grupos) {
 		// The response comes back as a bunch-o-JSON
-		alert('updateGrupo');
+<%--		alert('updateGrupo');--%>
 		
 		if (grupos) {
 			var rselect = document.getElementById('grupo.id')
