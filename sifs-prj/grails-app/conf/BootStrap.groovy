@@ -4,6 +4,8 @@ import ar.org.scouts.sifs.Distrito
 import ar.org.scouts.sifs.Grupo
 import ar.org.scouts.sifs.Nivel
 import ar.org.scouts.sifs.Persona
+import ar.org.scouts.sifs.Plan
+import ar.org.scouts.sifs.PlanCurso
 import ar.org.scouts.sifs.Provincia
 import ar.org.scouts.sifs.Zona
 import ar.org.scouts.sifs.security.PersonaRol
@@ -314,7 +316,17 @@ class BootStrap {
 		Curso curso7 = new Curso(nombre:'Modulo 6 G', descripcion:'Modulo 6 G', nivel: nivel2).save(flush: true, insert: true)
 		
 		Curso curso8 = new Curso(nombre:'Modulo 6 E', descripcion:'Modulo 6 E', nivel: nivel2).save(flush: true, insert: true)
-	
+		
+		
+		Plan plan1 = new Plan(nombre: 'plan1', descripcion: 'plan1', validez: new Date());
+		plan1.save(flush: true, insert: true);
+		Plan plan2 = new Plan(nombre: 'plan2', descripcion: 'plan2', validez: new Date());
+		plan2.save(flush: true, insert: true);
+
+		PlanCurso planCurso = new PlanCurso(plan: plan1, curso: curso1); 
+		planCurso.save(flush: true, insert: true);
+		
+		planCurso.addToCorrelativas(curso2);
 		
 	}
 
