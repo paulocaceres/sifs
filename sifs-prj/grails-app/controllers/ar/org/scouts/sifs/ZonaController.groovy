@@ -42,7 +42,7 @@ class ZonaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'zonaInstance.label', default: 'Zona'), zonaInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'zonaInstance.label', default: 'Zona'), zonaInstance.numero])
                 redirect zonaInstance
             }
             '*' { respond zonaInstance, [status: CREATED] }
@@ -69,7 +69,7 @@ class ZonaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Zona.label', default: 'Zona'), zonaInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Zona.label', default: 'Zona'), zonaInstance.numero])
                 redirect zonaInstance
             }
             '*'{ respond zonaInstance, [status: OK] }
@@ -88,7 +88,7 @@ class ZonaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Zona.label', default: 'Zona'), zonaInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Zona.label', default: 'Zona'), zonaInstance.numero])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -98,7 +98,7 @@ class ZonaController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'zonaInstance.label', default: 'Zona'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'zonaInstance.label', default: 'Zona'), params.numero])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }
