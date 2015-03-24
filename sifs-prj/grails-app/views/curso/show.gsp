@@ -41,14 +41,14 @@
 				</li>
 				</g:if>
 				
-				<g:if test="${cursoInstance?.descripcion}">
-				<li class="fieldcontain">
-					<span id="descripcion-label" class="property-label"><g:message code="curso.descripcion.label" default="Descripcion" /></span>
-						<span class="property-value" aria-labelledby="descripcion-label">
-							<g:fieldValue bean="${cursoInstance}" field="descripcion"/>
-						</span>
-				</li>
-				</g:if>
+<%--				<g:if test="${cursoInstance?.descripcion}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="descripcion-label" class="property-label"><g:message code="curso.descripcion.label" default="Descripcion" /></span>--%>
+<%--						<span class="property-value" aria-labelledby="descripcion-label">--%>
+<%--							<g:fieldValue bean="${cursoInstance}" field="descripcion"/>--%>
+<%--						</span>--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
 				
 <%--				<g:if test="${cursoInstance?.correlativas}">--%>
 <%--				<li class="fieldcontain">--%>

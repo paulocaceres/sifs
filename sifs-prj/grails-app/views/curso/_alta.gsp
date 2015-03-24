@@ -18,13 +18,13 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'descripcion', 'error')} ">
-	<label for="descripcion">
-		<g:message code="curso.descripcion.label" default="Descripcion" />
-	</label>
-	<g:textField name="descripcion" value="${cursoInstance?.descripcion}"/>
-
-</div>
+<%--<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'descripcion', 'error')} ">--%>
+<%--	<label for="descripcion">--%>
+<%--		<g:message code="curso.descripcion.label" default="Descripcion" />--%>
+<%--	</label>--%>
+<%--	<g:textField name="descripcion" value="${cursoInstance?.descripcion}"/>--%>
+<%----%>
+<%--</div>--%>
 
 <%--		<div id="tabs">--%>
 <%--		  <ul>--%>
