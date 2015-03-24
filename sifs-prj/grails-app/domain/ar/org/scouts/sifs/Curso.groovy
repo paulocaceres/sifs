@@ -3,7 +3,7 @@ package ar.org.scouts.sifs
 
 class Curso {
 	String nombre;
-	String descripcion;
+//	String descripcion;
 	Nivel nivel; // [Nacional|Internacional]
 //	Plan plan;
 
