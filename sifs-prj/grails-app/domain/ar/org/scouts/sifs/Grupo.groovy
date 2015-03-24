@@ -9,9 +9,10 @@ class Grupo {
 	static belongTo = [distrito: Distrito]
 	
     static constraints = {
-		numero(nullable: true, matches:"[0-9]+", unique: true )
+		nombre(blank: false) 
+		numero(nullable: false, matches:"[0-9]+", unique: true )
 		
-    }
+	}
 
 	String toString() {
 		"$nombre"

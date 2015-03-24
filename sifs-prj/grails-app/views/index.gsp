@@ -81,30 +81,71 @@
 					margin-top: 0;
 				}
 			}
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: bold;
+	background-color: #FFF;
+	color: #000;
+}
+#destacado #H1 {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 36px;
+	font-weight: 800;
+	font-variant: normal;
+	font-style: oblique;
+	color: #00C;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	position: relative;
+}
+#contenido #BP {
+	clip: rect(auto,auto,auto,auto);
+}
+
+
+
+#primero {
+	width: 960px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+}
+#primero #cabecera {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	with:41%;
+	font-size: 48px;
+	font-weight: bolder;
+	text-decoration: overline;
+	text-transform: capitalize;
+	border-top-style: double;
+	border-right-style: double;
+	border-bottom-style: double;
+	border-left-style: double;
 		</style>
 	</head>
 	<body>
-		<div id="page-body" role="main">
-			<h1>Bienvenido al Sistema Integral de Formacion Scout - SIFS</h1>
-			<p>Con esta herramineta ud. podra centralizar y mejorar el actual proceso de administración e inscripción de 
-			   los cursos de capacitación que son exigidos en la formación de líderes. Optimizar la seguridad, los tiempos y 
-			   la asignación de recursos de la organización involucrados en los planes de capacitación.
-			   Disponer y adecuar los planes de formación requeridos para las funciones actuales y futuras.
-			 </p>
-			
-			
-			<div id="controller-list" role="navigation">
-				<h2>Operaciones disponibles:</h2>
-				<ul>
-					<li><a href="${createLink(controller: 'curso')}"><span>Cursos</span></a></li>
-					<li><a href="${createLink(controller: 'distrito')}"><span>Distritos</span></a></li>
-					<li><a href="${createLink(controller: 'zona')}"><span>Zonas</span></a></li>
-					<li><a href="${createLink(controller: 'grupo')}"><span>Grupos</span></a></li>
-					<li><a href="${createLink(controller: 'contenido')}"><span>Contenidos</span></a></li>
-					<li><a href="${createLink(controller: 'recurso')}"><span>Recursos</span></a></li>
-					<li><a href="${createLink(controller: 'persona')}"><span>Personas</span></a></li>
-				</ul>
-			</div>
-		</div>
-	</body>
+<div id="primero">
+  <div id="cabecera">
+    <p align="center"><img src="images/scout3.png" alt="" name="scout" width="26%" height="21%" id="scout" /></p>
+  </div>
+  <div id="destacado">
+    <p id="H1">Sistema Integrado de Formación Scout</p>
+  </div>
+  <div id="contenido">
+    <p>&quot;Ningún hombre puede ser llamado educado, si no tiene una buena voluntad, un deseo y una capacidad entrenada para hacer su parte en el trabajo del mundo&quot;</p>
+  <p id="BP" align="right">B.P.</p>
+ 
+  </div>
+  <div id="pie">
+    <p>S.I.F.S.</p>
+    <p>Todos los Derechos Reservados 2015</p>
+  </div>
+</div>
+</body>
 </html>

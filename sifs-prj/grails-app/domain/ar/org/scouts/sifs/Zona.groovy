@@ -10,7 +10,8 @@ class Zona {
 
 	
 	static constraints = {
-		numero(nullable: true, matches:"[0-9]+", unique: true )
+		nombre(nullable: false) 
+		numero(nullable: false, matches:"[0-9]+", unique: true )
     }
 
 	String toString() {

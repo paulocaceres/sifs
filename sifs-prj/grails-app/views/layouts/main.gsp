@@ -156,8 +156,7 @@
 		<tr bgcolor="#ABBF78">
 			<td>
 				<div>
-					<img src="${resource(dir: 'images', file: 'Scout-logo.PNG')}" alt="SIFS"/>
-					<img src="${resource(dir: 'images', file: 'Sifs-logo.PNG')}" alt="SIFS"/>
+					<img src="${resource(dir: 'images', file: 'SIFS-AZUL2.PNG')}" alt="SIFS"/>
 				</div>
 			</td>
 	</tr>

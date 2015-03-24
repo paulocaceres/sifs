@@ -64,7 +64,7 @@
 /* menu::level 1 */
 #menu a {
     text-decoration:none;
-    color:#fff;
+    color:#ffffff;
     position:relative;
     z-index:77;
 }
@@ -90,8 +90,8 @@
     position:static;
 }
 #menu li li a:hover { background:#57ac3c; }
-#menu li li a span { color:#fff; }
-#menu li li a:hover span { color:#ffffff; }
+#menu li li a span { color:#ff0000; }/*DAMIAN*/
+#menu li li a:hover span { color:#ff0000; }/*DAMIAN*/
 #menu li li a.parent span { background:url(../images/pointer.gif) no-repeat right 9px; _background-position:right 10px; }
 *+html #menu li li a.parent span { background-position:right 10px; }
 #menu li li span {
