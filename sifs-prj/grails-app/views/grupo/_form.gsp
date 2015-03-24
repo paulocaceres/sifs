@@ -5,7 +5,7 @@
 		<g:message code="grupo.numero.label" default="Número" />
 		
 	</label>
-	<g:textField name="numero" value="${grupoInstance?.numero}"/>
+	<input type="text" name="numero" value="${grupoInstance?.numero}" id="numero" maxlength="4" size="4" />
 
 </div>
 
@@ -14,7 +14,7 @@
 		<g:message code="grupo.nombre.label" default="Nombre" />
 		
 	</label>
-	<g:textField name="nombre" value="${grupoInstance?.nombre}"/>
+	<input type="text" name="nombre" value="${grupoInstance?.nombre}" id="nombre" maxlength="100" size="60" />
 
 </div>
 

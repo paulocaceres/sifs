@@ -5,7 +5,7 @@
 		<g:message code="zona.numero.label" default="Número" />
 		
 	</label>
-	<g:textField name="numero" value="${zonaInstance?.numero}"/>
+<input type="text" name="numero" value="${zonaInstance?.numero}" id="numero" maxlength="2" size="2" />
 
 </div>
 
@@ -14,6 +14,6 @@
 		<g:message code="zona.nombre.label" default="Nombre" />
 		
 	</label>
-	<g:textField name="nombre" value="${zonaInstance?.nombre}"/>
+<input type="text" name="nombre" value="${zonaInstance?.nombre}" id="nombre" maxlength="100" size="60" />
 
 </div>
