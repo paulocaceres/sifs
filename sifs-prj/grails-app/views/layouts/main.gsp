@@ -61,7 +61,7 @@
 			<sec:ifAllGranted roles="ROLE_FORMADOR">
 				<li><a href="#" class="parent"><span>Formador</span></a>
 					<div><ul>
-						<li><a href="#"><span>Recursos</span></a></li>
+						<li><a href="${createLink(controller: 'recurso')}"><span>Recursos</span></a></li>
 						<li><a href="#"><span>Asignacion de Formador</span></a></li>
 						<li><a href="#"><span>Validar Inscripciones</span></a></li>
 						<li><a href="#"><span>Asignar Cupos</span></a></li>
@@ -109,7 +109,7 @@
 						
 						<li><a href="#" class="parent"><span>Formador</span></a>
 							<div><ul>
-								<li><a href="#"><span>Recursos</span></a></li>
+								<li><a href="${createLink(controller: 'recurso')}"><span>Recursos</span></a></li>
 								<li><a href="#"><span>Asignacion de Formador</span></a></li>
 								<li><a href="#"><span>Validar Inscripciones</span></a></li>
 								<li><a href="#"><span>Asignar Cupos</span></a></li>
@@ -135,7 +135,6 @@
 						<li><a href="${createLink(controller: 'distrito')}"><span>Distritos</span></a></li>
 						<li><a href="${createLink(controller: 'zona')}"><span>Zonas</span></a></li>
 						<li><a href="${createLink(controller: 'grupo')}"><span>Grupos</span></a></li>
-						<li><a href="${createLink(controller: 'provincia')}"><span>Provincias</span></a></li>
 						<li><a href="${createLink(controller: 'nivel')}"><span>Niveles</span></a></li>
 					</ul></div>
 				</li>
@@ -154,9 +153,11 @@
 	
 	<table>
 		<tr bgcolor="#ABBF78">
-			<td>
+			<td height=50px>
 				<div>
-					<img src="${resource(dir: 'images', file: 'SIFS-AZUL2.PNG')}" alt="SIFS"/>
+				<sec:ifNotLoggedIn>
+				<img src="${resource(dir: 'images', file: 'SIFS-AZUL2.PNG')}" alt="SIFS"/>	
+				</sec:ifNotLoggedIn>
 				</div>
 			</td>
 	</tr>
