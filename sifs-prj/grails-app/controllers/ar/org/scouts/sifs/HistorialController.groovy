@@ -1,7 +1,5 @@
 package ar.org.scouts.sifs
 
-
-
 import static org.springframework.http.HttpStatus.*
 import ar.org.scouts.sifs.Historial;
 import grails.transaction.Transactional
@@ -13,18 +11,23 @@ class HistorialController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Historial.list(params), model:[historialInstanceCount: Historial.count()]
+    def index() {
+		params.listaPersonas = Persona.list();
+		params.listaCursos = Curso.list();
+		respond new Historial(params)
     }
 
     def show(Historial historialInstance) {
         respond historialInstance
     }
 
-    def create() {
-        respond new Historial(params)
-    }
+	def list() {
+		respond Historial.list(), model:[historialInstanceCount: Historial.count()]
+	}
+	
+//    def create() {
+//        respond new Historial(params)
+//    }
 
     @Transactional
     def save(Historial historialInstance) {

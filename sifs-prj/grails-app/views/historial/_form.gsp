@@ -1,14 +1,18 @@
 <%@ page import="ar.org.scouts.sifs.Historial" %>
+<%@ page import="ar.org.scouts.sifs.Persona" %>
+<%@ page import="ar.org.scouts.sifs.Curso" %>
 
 
-
-<div class="fieldcontain ${hasErrors(bean: historialInstance, field: 'calificacion', 'error')} required">
-	<label for="calificacion">
-		<g:message code="historial.calificacion.label" default="Calificacion" />
+<div class="fieldcontain ${hasErrors(bean: historialInstance, field: 'persona', 'error')} required">
+	<label for="persona">
+		<g:message code="historial.persona.label" default="Persona" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="calificacion" type="number" value="${historialInstance.calificacion}" required=""/>
-
+	<g:select id="persona" name="persona.id" required=""
+		noSelection="${['null':'Select One...']}"
+		from="${Persona.list()}"
+		optionKey="id" optionValue="${{it.nombre + ' ' + it.apellido}}"
+		value="${historialInstance?.persona?.id}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: historialInstance, field: 'curso', 'error')} required">
@@ -16,8 +20,10 @@
 		<g:message code="historial.curso.label" default="Curso" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="curso" name="curso.id" from="${ar.org.scouts.sifs.Curso.list()}" optionKey="id" required="" value="${historialInstance?.curso?.id}" class="many-to-one"/>
-
+	<g:select id="curso" name="curso.id" optionKey="id" required=""
+		noSelection="${['null':'Select One...']}"
+		from="${Curso.list()}"
+		value="${historialInstance?.curso?.id}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: historialInstance, field: 'fechaAprobacion', 'error')} required">
@@ -25,16 +31,6 @@
 		<g:message code="historial.fechaAprobacion.label" default="Fecha Aprobacion" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="fechaAprobacion" precision="day"  value="${historialInstance?.fechaAprobacion}"  />
+	<g:datePicker name="fechaAprobacion" precision="day"  value="" />
 
 </div>
-
-<div class="fieldcontain ${hasErrors(bean: historialInstance, field: 'persona', 'error')} required">
-	<label for="persona">
-		<g:message code="historial.persona.label" default="Persona" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="persona" name="persona.id" from="${ar.org.scouts.sifs.Persona.list()}" optionKey="id" required="" value="${historialInstance?.persona?.id}" class="many-to-one"/>
-
-</div>
-

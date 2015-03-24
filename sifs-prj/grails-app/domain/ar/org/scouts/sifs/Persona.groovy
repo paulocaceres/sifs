@@ -40,7 +40,7 @@ class Persona {
 	}
 
 	String toString() {
-		"$documentoNumero, $nombre, $apellido, $mail"
+		"$nombre $apellido"
 	}
 
 	static mapping = {

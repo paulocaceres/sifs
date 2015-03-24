@@ -1,4 +1,3 @@
-
 <%@ page import="ar.org.scouts.sifs.Historial" %>
 <!DOCTYPE html>
 <html>
@@ -12,8 +11,8 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="create" action="index"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="show-historial" class="content scaffold-show" role="main">
@@ -23,14 +22,15 @@
 			</g:if>
 			<ol class="property-list historial">
 			
-				<g:if test="${historialInstance?.calificacion}">
+				<g:if test="${historialInstance?.persona}">
 				<li class="fieldcontain">
-					<span id="calificacion-label" class="property-label"><g:message code="historial.calificacion.label" default="Calificacion" /></span>
+					<span id="persona-label" class="property-label"><g:message code="historial.persona.label" default="Persona" /></span>
 					
-						<span class="property-value" aria-labelledby="calificacion-label"><g:fieldValue bean="${historialInstance}" field="calificacion"/></span>
+						<span class="property-value" aria-labelledby="persona-label"><g:link controller="persona" action="show" id="${historialInstance?.persona?.id}">${historialInstance?.persona?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
+			
 			
 				<g:if test="${historialInstance?.curso}">
 				<li class="fieldcontain">
@@ -46,15 +46,6 @@
 					<span id="fechaAprobacion-label" class="property-label"><g:message code="historial.fechaAprobacion.label" default="Fecha Aprobacion" /></span>
 					
 						<span class="property-value" aria-labelledby="fechaAprobacion-label"><g:formatDate date="${historialInstance?.fechaAprobacion}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${historialInstance?.persona}">
-				<li class="fieldcontain">
-					<span id="persona-label" class="property-label"><g:message code="historial.persona.label" default="Persona" /></span>
-					
-						<span class="property-value" aria-labelledby="persona-label"><g:link controller="persona" action="show" id="${historialInstance?.persona?.id}">${historialInstance?.persona?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
