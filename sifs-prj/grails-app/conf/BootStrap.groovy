@@ -10,6 +10,7 @@ import ar.org.scouts.sifs.Provincia
 import ar.org.scouts.sifs.Zona
 import ar.org.scouts.sifs.security.PersonaRol
 import ar.org.scouts.sifs.security.Rol
+import ar.org.scouts.sifs.Recurso
 
 class BootStrap {
 
@@ -325,9 +326,15 @@ class BootStrap {
 
 		PlanCurso planCurso = new PlanCurso(plan: plan1, curso: curso1); 
 		planCurso.save(flush: true, insert: true);
-		
 		planCurso.addToCorrelativas(curso2);
 		
+		PlanCurso planCurso2 = new PlanCurso(plan: plan2, curso: curso3);
+		planCurso.save(flush: true, insert: true);
+		
+		new Recurso(nombre: "Proyector", cantidad:1).save(flush:true, insert:true);
+		new Recurso(nombre: "Aula 100", cantidad:1).save(flush:true, insert:true);
+		new Recurso(nombre: "Aula 200", cantidad:1).save(flush:true, insert:true);
+		new Recurso(nombre: "Aula 300", cantidad:1).save(flush:true, insert:true);
 	}
 
 

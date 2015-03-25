@@ -1,5 +1,12 @@
 <%@ page import="ar.org.scouts.sifs.Dictado" %>
 
+<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'curso', 'error')} ">
+	<label for="curso">
+		<g:message code="dictado.curso.label" default="Curso" />
+		
+	</label>
+	<g:select id="curso" name="curso.id" from="${ar.org.scouts.sifs.Curso.list()}" optionKey="id" value="${dictadoInstance?.curso?.id}" class="many-to-one" noSelection="['null': '']"/>
+</div>
 
 
 <div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'zona', 'error')} ">
@@ -29,19 +36,9 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'inscriptos', 'error')} ">
-	<label for="inscriptos">
-		<g:message code="dictado.inscriptos.label" default="Inscriptos" />
-		
-	</label>
-	<g:select name="inscriptos" from="${ar.org.scouts.sifs.Persona.list()}" multiple="multiple" optionKey="id" size="5" value="${dictadoInstance?.inscriptos*.id}" class="many-to-many"/>
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'recursos', 'error')} ">
 	<label for="recursos">
-		<g:message code="dictado.recursos.label" default="Recursos" />
-		
+		<g:message code="dictado.recursos.label" default="Recursos" />		
 	</label>
 	<g:select name="recursos" from="${ar.org.scouts.sifs.Recurso.list()}" multiple="multiple" optionKey="id" size="5" value="${dictadoInstance?.recursos*.id}" class="many-to-many"/>
 

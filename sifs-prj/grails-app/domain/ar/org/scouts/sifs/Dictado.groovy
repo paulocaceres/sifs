@@ -2,7 +2,8 @@ package ar.org.scouts.sifs
 
 
 class Dictado {
-
+    
+	Curso curso
 	Zona zona
 	Date fecha
 	Integer cupo
@@ -13,13 +14,14 @@ class Dictado {
 
 	static hasMany = [
 		recursos: Recurso,
-		inscriptos: Persona
+		//inscriptos: Persona
 	]
 
 	static constraints = {
 		zona(nullable:true)
 		fecha(nullable:true)
 		cupo(nullable:true)
+		//inscriptos(nullable:true)
     }
 
 }

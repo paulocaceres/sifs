@@ -24,7 +24,9 @@
 			<thead>
 					<tr>
 					
-						<th><g:message code="dictado.zona.label" default="Zona" /></th>
+						<g:sortableColumn property="curso" title="${message(code: 'dictado.curso.label', default: 'Curso')}" />
+						
+						<g:sortableColumn property="zona" title="${message(code: 'dictado.zona.label', default: 'Zona')}" />
 					
 						<g:sortableColumn property="fecha" title="${message(code: 'dictado.fecha.label', default: 'Fecha')}" />
 					
@@ -36,9 +38,11 @@
 				<g:each in="${dictadoInstanceList}" status="i" var="dictadoInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
+						<td><g:link action="show" id="${dictadoInstance.id}">${fieldValue(bean: dictadoInstance, field: "curso")}</g:link></td>
+					
 						<td><g:link action="show" id="${dictadoInstance.id}">${fieldValue(bean: dictadoInstance, field: "zona")}</g:link></td>
 					
-						<td><g:formatDate date="${dictadoInstance.fecha}" /></td>
+						<td><g:formatDate date="${dictadoInstance.fecha}" format="dd-MM-yyyy"/></td>
 					
 						<td>${fieldValue(bean: dictadoInstance, field: "cupo")}</td>
 					

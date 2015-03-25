@@ -9,9 +9,7 @@
 		  </ul>
 		  <div id="tabs-2">
 		  	 <div style="font-size:11px;">
-				<g:checkBoxList name="cursosAnotadosIds" 
-							    from="${inscripcionInstanceList}" 
-							    optionKey="id"/>
+		
 			 </div>
 		  </div>
 		</div>

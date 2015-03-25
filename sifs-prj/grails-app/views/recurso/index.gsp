@@ -25,9 +25,9 @@
 					<tr>
 					
 						<g:sortableColumn property="cantidad" title="${message(code: 'recurso.cantidad.label', default: 'Cantidad')}" />
-					
+					<!-- 
 						<th><g:message code="recurso.direccion.label" default="Direccion" /></th>
-					
+					-->
 						<g:sortableColumn property="nombre" title="${message(code: 'recurso.nombre.label', default: 'Nombre')}" />
 					
 					</tr>
@@ -37,9 +37,9 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${recursoInstance.id}">${fieldValue(bean: recursoInstance, field: "cantidad")}</g:link></td>
-					
-						<td>${fieldValue(bean: recursoInstance, field: "direccion")}</td>
-					
+					<!-- 
+						<td></td>
+					-->					
 						<td>${fieldValue(bean: recursoInstance, field: "nombre")}</td>
 					
 					</tr>

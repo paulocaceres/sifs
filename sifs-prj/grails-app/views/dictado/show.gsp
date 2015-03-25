@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list dictado">
 			
+				<g:if test="${dictadoInstance?.curso}">
+				<li class="fieldcontain">
+					<span id="curso-label" class="property-label"><g:message code="dictado.curso.label" default="Curso" /></span>
+					
+						<span class="property-value" aria-labelledby="curso-label"><g:link controller="curso" action="show" id="${dictadoInstance?.curso?.id}">${dictadoInstance?.curso?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+							
 				<g:if test="${dictadoInstance?.zona}">
 				<li class="fieldcontain">
 					<span id="zona-label" class="property-label"><g:message code="dictado.zona.label" default="Zona" /></span>
@@ -36,7 +45,7 @@
 				<li class="fieldcontain">
 					<span id="fecha-label" class="property-label"><g:message code="dictado.fecha.label" default="Fecha" /></span>
 					
-						<span class="property-value" aria-labelledby="fecha-label"><g:formatDate date="${dictadoInstance?.fecha}" /></span>
+						<span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="dd-MM-yyyy" date="${dictadoInstance?.fecha}" /></span>
 					
 				</li>
 				</g:if>
@@ -50,23 +59,13 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${dictadoInstance?.inscriptos}">
-				<li class="fieldcontain">
-					<span id="inscriptos-label" class="property-label"><g:message code="dictado.inscriptos.label" default="Inscriptos" /></span>
-					
-						<g:each in="${dictadoInstance.inscriptos}" var="i">
-						<span class="property-value" aria-labelledby="inscriptos-label"><g:link controller="persona" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
+				
 				<g:if test="${dictadoInstance?.recursos}">
 				<li class="fieldcontain">
 					<span id="recursos-label" class="property-label"><g:message code="dictado.recursos.label" default="Recursos" /></span>
 					
 						<g:each in="${dictadoInstance.recursos}" var="r">
-						<span class="property-value" aria-labelledby="recursos-label"><g:link controller="recurso" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="recursos-label"><g:link controller="recurso" action="show" id="${r.id}">${r?.nombre}</g:link></span>
 						</g:each>
 					
 				</li>

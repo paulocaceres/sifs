@@ -7,10 +7,11 @@ class Recurso {
 	Direccion direccion
 
     static constraints = {
+		direccion nullable:true 
     }
 
 	String toString() {
-		"$nombre, $cantidad, $direccion"
+		"$nombre"
 	}
 	
 }

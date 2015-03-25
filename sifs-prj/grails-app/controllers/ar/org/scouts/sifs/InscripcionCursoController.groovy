@@ -23,29 +23,47 @@ class InscripcionCursoController {
 		
 		def persona = Persona.get(springSecurityService.currentUser.id);
 		def inscripcionCursoInstanceList = null
+		def inscripcionPlanCursoResultList = null
+		def resultList = []
 		
 		if(persona != null){
-			if(persona.cursosAprobados?.size() == 0 && persona.cursosAnotados?.size() == 0) {
-				def criteria = Curso.createCriteria()
-				inscripcionCursoInstanceList = criteria.list {
+			if(persona.dictadosAprobados?.size() == 0 && persona.dictadosAnotados?.size() == 0) {
+				def criteria = PlanCurso.createCriteria()
+				inscripcionPlanCursoResultList = criteria.list {
 					sizeEq("correlativas", 0)
 					//ne("cupo", 0)
 					//ge("fecha", new Date().clearTime()+1)
 				}
-				
+				inscripcionPlanCursoResultList.each {
+					resultList.add(it.curso)
+				}
+				inscripcionCursoInstanceList = resultList
 			} else {
 			 	def ofertaCursos = []
-				def cursosAprobadosIds = getCursosAprobadosAnotadosIds(persona) 
-				def c = Curso.createCriteria();
-				def listaCursos = c.list {
-						not {'in'("id",cursosAprobadosIds)}	
-						//ne("cupo", 0)
-						//ge("fecha", new Date().clearTime()+1)
+				def idsCursosTentativos = []
+				def dictadosAprobadosIds = getDictadosAprobadosAnotadosIds(persona) 
+				def c = Dictado.createCriteria();
+				def listaDictados = c.list {
+						not {'in'("id",dictadosAprobadosIds)}	
+						ne("cupo", 0)
+						ge("fecha", new Date().clearTime()+1)
 				}
-				listaCursos?.each() {
-					if(it.correlativas?.size() == 0 || it.correlativas.containsAll(persona.cursosAprobados)) {
-						ofertaCursos.add(it)
-					}	
+				listaDictados?.each() {
+					idsCursosTentativos.add(it.curso.id)
+					//if(it.correlativas?.size() == 0 || it.correlativas.containsAll(persona.cursosAprobados)) {
+						//ofertaCursos.add(it)
+					//}	
+				}
+				def criteria = PlanCurso.createCriteria()
+				def temporalPlanCursoResultList = criteria.list {
+					'in' ("curso.id", idsCursosTentativos)
+					//ne("cupo", 0)
+					//ge("fecha", new Date().clearTime()+1)
+				}
+				//TODO: Verificar la correlatividad en forma fuerte
+				
+				temporalPlanCursoResultList.each {
+					ofertaCursos.add(it.curso)
 				}
 				inscripcionCursoInstanceList = ofertaCursos
 			}
@@ -79,12 +97,12 @@ class InscripcionCursoController {
 		return [cursosInstanceList : cursosSeleccionadosInstance, customMessage: successInscripcionMessage, status: CREATED]
 	}
 	
-	def getCursosAprobadosAnotadosIds(Persona p) {
+	def getDictadosAprobadosAnotadosIds(Persona p) {
 		def ids = []
-		p.cursosAprobados.each() {
+		p.dictadosAprobados.each() {
 			ids.add(it.id)
 		}
-		p.cursosAnotados.each() {
+		p.dictadosAnotados.each() {
 			ids.add(it.id)
 		}
 		return ids

@@ -24,8 +24,8 @@ class Persona {
 
 	static belongsTo = [ superior: Persona ]
 
-	static hasMany = [cursosAprobados : Curso,
-					  cursosAnotados : Curso]
+	static hasMany = [dictadosAprobados : Dictado,
+					  dictadosAnotados : Dictado]
 
 	static constraints = {
 		documentoNumero blank: false, unique: true
@@ -35,8 +35,8 @@ class Persona {
 		grupo(nullable: true)
 		superior(nullable: true)
 		password blank: false
-		cursosAprobados(nullable: true)
-		cursosAnotados(nullable : true)
+		dictadosAprobados(nullable: true)
+		dictadosAnotados(nullable : true)
 	}
 
 	String toString() {
@@ -75,8 +75,8 @@ class Persona {
 
 	//  this additional setter is used in the multiselect list to convert
 	//    the ids selected in the checkbox list to the corresponding domain objects
-	//public void setCursosAnotadosIds(List ids) {
-	//	this.cursosAnotados = ids.collect { Curso.get(it) }
-	//}
+	public void setDictadosAnotadosIds(List ids) {
+		this.dictadosAnotados = ids.collect { Dictado.get(it) }
+	}
 
 }
