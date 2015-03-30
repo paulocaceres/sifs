@@ -4,23 +4,6 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'plan.label', default: 'Plan')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
-		<style type="text/css">
-			.CheckBoxList {
-			    height: 160px; overflow: auto; overflow-x: hidden; width: 460px; border: 0px solid #000;
-			    list-style-type: none; margin: 0; padding:0px
-			}
-			.CheckBoxList li  {
-			    padding:2px
-			}
-			
-		</style>
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
-		<script src="/sifs-prj/static/js/jquery-ui.js" type="text/javascript" ></script>
-	    <script>
-	  		$(function() {
-	    		$( "#tabs" ).tabs();
-	  		});
-	  	</script>
 	</head>
 	<body>
 		<a href="#create-plan" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -44,7 +27,7 @@
 			</g:hasErrors>
 			<g:form url="[resource:planInstance, action:'save']" >
 				<fieldset class="form">
-					<g:render template="alta"/>
+					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

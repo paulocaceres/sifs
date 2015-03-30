@@ -1,6 +1,5 @@
 
 <%@ page import="ar.org.scouts.sifs.Plan" %>
-<%@ page import="ar.org.scouts.sifs.Curso" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,6 +14,7 @@
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="create" controller="planCurso" action="index" params="${[planID: planInstance.id]}"><g:message code="default.show.label" args="['Cursos']" /></g:link></li>
 			</ul>
 		</div>
 		<div id="show-plan" class="content scaffold-show" role="main">
@@ -24,7 +24,7 @@
 			</g:if>
 			<ol class="property-list plan">
 			
-			   <g:if test="${planInstance?.nombre}">
+				<g:if test="${planInstance?.nombre}">
 				<li class="fieldcontain">
 					<span id="nombre-label" class="property-label"><g:message code="plan.nombre.label" default="Nombre" /></span>
 					
@@ -41,28 +41,13 @@
 					
 				</li>
 				</g:if>
-						
+			
 				<g:if test="${planInstance?.validez}">
 				<li class="fieldcontain">
-					<span id="validez-label" class="property-label"><g:message code="plan.validez.label" default="Validez" /></span>			
+					<span id="validez-label" class="property-label"><g:message code="plan.validez.label" default="Validez" /></span>
 						<span class="property-value" aria-labelledby="validez-label">
-							<g:formatDate date="${planInstance?.validez}"  format="dd-MM-yyyy" />
+							<g:formatDate date="${planInstance?.validez}"  format="dd/MM/yyyy" />
 						</span>
-					
-				</li>
-				</g:if>
-				
-				<g:if test="${planInstance?.cursos}">
-				<li class="fieldcontain">
-					<span id="cursos-label" class="property-label">
-						<g:message code="curso.correlativas.label" default="Cursos" />
-					</span>
-					
-					<g:each var="c" in="${planInstance?.cursos?.sort { it.nombre } }">
-							<span class="property-value" aria-labelledby="cursos-label">
-								<g:link controller="curso" action="show" id="${c.id}">${c.nombre}</g:link>
-							</span>
-					</g:each>					
 				</li>
 				</g:if>
 			

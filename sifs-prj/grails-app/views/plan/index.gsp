@@ -25,7 +25,7 @@
 					<tr>
 					
 						<g:sortableColumn property="nombre" title="${message(code: 'plan.nombre.label', default: 'Nombre')}" />
-						
+					
 						<g:sortableColumn property="descripcion" title="${message(code: 'plan.descripcion.label', default: 'Descripcion')}" />
 					
 						<g:sortableColumn property="validez" title="${message(code: 'plan.validez.label', default: 'Validez')}" />
@@ -40,7 +40,7 @@
 					
 						<td>${fieldValue(bean: planInstance, field: "descripcion")}</td>
 					
-						<td><g:formatDate date="${planInstance.validez}" format="dd-MM-yyyy" /></td>
+						<td><g:formatDate date="${planInstance.validez}" format="dd-MM-yyyy"/></td>
 					
 					</tr>
 				</g:each>

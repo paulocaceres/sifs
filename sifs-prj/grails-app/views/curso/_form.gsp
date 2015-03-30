@@ -2,57 +2,12 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'contenido', 'error')} required">
-	<label for="contenido">
-		<g:message code="curso.contenido.label" default="Contenido" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="contenido" name="contenido.id" from="${ar.org.scouts.sifs.Contenido.list()}" optionKey="id" required="" value="${cursoInstance?.contenido?.id}" class="many-to-one"/>
-
-</div>
-
-<%--<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'correlativas', 'error')} required">--%>
-<%--	<label for="correlativas">--%>
-<%--		<g:message code="curso.correlativas.label" default="Correlativas" />--%>
-<%--		<span class="required-indicator">*</span>--%>
-<%--	</label>--%>
-<%--	<g:field name="correlativas" type="number" value="${cursoInstance.correlativas}" required=""/>--%>
-<%----%>
-<%--</div>--%>
-
-<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'cupo', 'error')} required">
-	<label for="cupo">
-		<g:message code="curso.cupo.label" default="Cupo" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="cupo" type="number" value="${cursoInstance.cupo}" required=""/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'fecha', 'error')} required">
-	<label for="fecha">
-		<g:message code="curso.fecha.label" default="Fecha" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="fecha" precision="day"  value="${cursoInstance?.fecha}"  />
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'inscripto', 'error')} ">
-	<label for="inscripto">
-		<g:message code="curso.inscripto.label" default="Inscripto" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="inscripto" name="inscripto.id" from="${ar.org.scouts.sifs.Persona.list()}" optionKey="id" value="${cursoInstance?.inscripto?.id}" class="many-to-one"/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'nivel', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'nivel', 'error')} ">
 	<label for="nivel">
 		<g:message code="curso.nivel.label" default="Nivel" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:select id="nivel" name="nivel.id" from="${ar.org.scouts.sifs.Nivel.list()}" optionKey="id" required="" value="${cursoInstance?.nivel?.id}" class="many-to-one"/>
+	<g:select id="nivel" name="nivel.id" from="${ar.org.scouts.sifs.Nivel.list()}" optionKey="id" value="${cursoInstance?.nivel?.id}" class="many-to-one" noSelection="['null': '']"/>
 
 </div>
 
@@ -65,29 +20,30 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'plan', 'error')} required">
-	<label for="plan">
-		<g:message code="curso.plan.label" default="Plan" />
-		<span class="required-indicator">*</span>
+<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'contenidos', 'error')} ">
+	<label for="contenidos">
+		<g:message code="curso.contenidos.label" default="Contenidos" />
+		
 	</label>
-	<g:select id="plan" name="plan.id" from="${ar.org.scouts.sifs.Plan.list()}" optionKey="id" required="" value="${cursoInstance?.plan?.id}" class="many-to-one"/>
+	<g:select name="contenidos" from="${ar.org.scouts.sifs.Contenido.list()}" multiple="multiple" optionKey="id" size="5" value="${cursoInstance?.contenidos*.id}" class="many-to-many"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'recurso', 'error')} required">
-	<label for="recurso">
-		<g:message code="curso.recurso.label" default="Recurso" />
-		<span class="required-indicator">*</span>
+<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'dictados', 'error')} ">
+	<label for="dictados">
+		<g:message code="curso.dictados.label" default="Dictados" />
+		
 	</label>
-	<g:select id="recurso" name="recurso.id" from="${ar.org.scouts.sifs.Recurso.list()}" optionKey="id" required="" value="${cursoInstance?.recurso?.id}" class="many-to-one"/>
-</div>
+	
+<ul class="one-to-many">
+<g:each in="${cursoInstance?.dictados?}" var="d">
+    <li><g:link controller="dictado" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="dictado" action="create" params="['curso.id': cursoInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'dictado.label', default: 'Dictado')])}</g:link>
+</li>
+</ul>
 
-<div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'zona', 'error')} required">
-	<label for="zona">
-		<g:message code="curso.zona.label" default="Zona" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.list()}" optionKey="id" required="" value="${cursoInstance?.zona?.id}" class="many-to-one"/>
 
 </div>
 

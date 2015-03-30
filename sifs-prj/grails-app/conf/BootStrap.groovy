@@ -324,12 +324,12 @@ class BootStrap {
 		Plan plan2 = new Plan(nombre: 'plan2', descripcion: 'plan2', validez: new Date());
 		plan2.save(flush: true, insert: true);
 
-		PlanCurso planCurso = new PlanCurso(plan: plan1, curso: curso1); 
-		planCurso.save(flush: true, insert: true);
-		planCurso.addToCorrelativas(curso2);
+		PlanCurso planCurso1 = new PlanCurso(plan: plan1, curso: curso1); 
+		planCurso1.save(flush: true, insert: true);
+		planCurso1.addToCorrelativas(curso2);
 		
-		PlanCurso planCurso2 = new PlanCurso(plan: plan2, curso: curso3);
-		planCurso.save(flush: true, insert: true);
+		PlanCurso planCurso2 = new PlanCurso(plan: plan2, curso: curso2);
+		planCurso2.save(flush: true, insert: true);
 		
 		new Recurso(nombre: "Proyector", cantidad:1).save(flush:true, insert:true);
 		new Recurso(nombre: "Aula 100", cantidad:1).save(flush:true, insert:true);
