@@ -20,6 +20,12 @@
 	  		$(function() {
 	    		$( "#tabs" ).tabs();
 	  		});
+	  
+		  	$(function() {
+		  	    $( "#accordion" ).accordion({
+		  	      collapsible: true
+		  	    });
+		  	});
 	  	</script>
 	</head>
 	<body>

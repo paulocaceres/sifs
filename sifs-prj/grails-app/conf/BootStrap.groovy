@@ -331,6 +331,21 @@ class BootStrap {
 		PlanCurso planCurso2 = new PlanCurso(plan: plan2, curso: curso2);
 		planCurso2.save(flush: true, insert: true);
 		
+		PlanCurso planCurso3 = new PlanCurso(plan: plan2, curso: curso3);
+		planCurso3.save(flush: true, insert: true);
+		
+		PlanCurso planCurso4 = new PlanCurso(plan: plan2, curso: curso4);
+		planCurso4.save(flush: true, insert: true);
+		
+		PlanCurso planCurso5 = new PlanCurso(plan: plan2, curso: curso5);
+		planCurso5.save(flush: true, insert: true);
+		
+		PlanCurso planCurso6 = new PlanCurso(plan: plan2, curso: curso6);
+		planCurso6.save(flush: true, insert: true);
+		
+		PlanCurso planCurso7 = new PlanCurso(plan: plan2, curso: curso7);
+		planCurso7.save(flush: true, insert: true);
+		
 		new Recurso(nombre: "Proyector", cantidad:1).save(flush:true, insert:true);
 		new Recurso(nombre: "Aula 100", cantidad:1).save(flush:true, insert:true);
 		new Recurso(nombre: "Aula 200", cantidad:1).save(flush:true, insert:true);

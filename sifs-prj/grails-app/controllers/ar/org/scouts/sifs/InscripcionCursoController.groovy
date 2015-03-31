@@ -10,6 +10,7 @@ import grails.transaction.Transactional
 import grails.plugins.springsecurity.Secured
 import ar.org.scouts.sifs.Curso;
 import ar.org.scouts.sifs.Persona;
+import ar.org.scouts.sifs.PlanCurso;
 
 @Transactional(readOnly = true)
 @Secured(['IS_AUTHENTICATED_FULLY'])
