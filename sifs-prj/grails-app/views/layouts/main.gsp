@@ -62,10 +62,8 @@
 				<li><a href="#" class="parent"><span>Formador</span></a>
 					<div><ul>
 <%--						<li><a href="${createLink(controller: 'recurso')}"><span>Recursos</span></a></li>--%>
-						<li><a href="#"><span>Asignacion de Formador</span></a></li>
 						<li><a href="#"><span>Validar Inscripciones</span></a></li>
-						<li><a href="#"><span>Asignar Cupos</span></a></li>
-						<li><a href="#"><span>Asignacion de Directores</span></a></li>
+						<li><a href="${createLink(controller: 'dictado')}"><span>Dictados</span></a></li>
 					</ul></div>
 				</li>
 			</sec:ifAllGranted>
@@ -73,7 +71,6 @@
 				<li><a href="#" class="parent"><span>Director Nac. Formacion</span></a>
 					<div><ul>
 						<li><a href="${createLink(controller: 'curso')}"><span>Cursos</span></a></li>
-						<li><a href="${createLink(controller: 'dictado')}"><span>Dictados</span></a></li>
 						<li><a href="${createLink(controller: 'plan')}"><span>Planes</span></a></li>
 						<li><a href="${createLink(controller: 'titulo')}"><span>Titulos</span></a></li>
 <%--						<li><a href="#"><span>Contenidos</span></a></li>--%>
