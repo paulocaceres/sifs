@@ -123,7 +123,7 @@ class ContactFormController {
                     // Reject captcha value
                     contactFormInstance.errors.rejectValue('captcha',
                         'uk.co.anthonycampbell.grails.contactform.ContactForm.captcha.doesnotmatch',
-                        'The provided text does not match the image below')
+                        'El texto ingresado no coincide con la imagen')
                     validCaptcha = false
                 }
             } catch (Exception ex) {
@@ -132,13 +132,13 @@ class ContactFormController {
                 // Reject captcha value
                 contactFormInstance.errors.rejectValue('captcha',
                     'uk.co.anthonycampbell.grails.contactform.ContactForm.captcha.doesnotmatch',
-                    'The provided text does not match the image below')
+                    'El texto ingresado no coincide con la imagen')
                 validCaptcha = false
             }
 
             // Send message
             if (validMessage && validCaptcha) {
-                log.debug("Attempting to send message through mail server")
+                log.debug("Intentando enviar el mensaje a travez del servidor de correo")
 
                 try {
                     mailService.sendMail {
@@ -149,7 +149,7 @@ class ContactFormController {
                         body contactFormInstance.message
                     }
 
-                    log.debug("Contact form message successfully sent")
+                    log.debug("Se ha enviado el mensaje satisfactoriamente")
 
                     // Reset form
                     contactFormInstance = new ContactForm()

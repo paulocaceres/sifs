@@ -1,6 +1,13 @@
 <%@ page import="ar.org.scouts.sifs.Distrito" %>
 
+<div class="fieldcontain ${hasErrors(bean: distritoInstance, field: 'nombre', 'error')} ">
+	<label for="nombre">
+		<g:message code="distrito.nombre.label" default="Nombre" />
+		
+	</label>
+	<g:textField name="nombre" value="${distritoInstance?.nombre}"/>
 
+</div>
 
 <div class="fieldcontain ${hasErrors(bean: distritoInstance, field: 'grupos', 'error')} ">
 	<label for="grupos">
@@ -11,12 +18,5 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: distritoInstance, field: 'nombre', 'error')} ">
-	<label for="nombre">
-		<g:message code="distrito.nombre.label" default="Nombre" />
-		
-	</label>
-	<g:textField name="nombre" value="${distritoInstance?.nombre}"/>
 
-</div>
 

@@ -19,7 +19,7 @@
                         onLoaded="displayResponse('createContactForm')">
                             <fieldset>
                                 
-                                <p><label for="yourFullName"><g:message code="uk.co.anthonycampbell.grails.contactform.ContactForm.yourFullName.label" default="Nombre completo" />:</label><br/>
+                                <p><label for="yourFullName"><g:message code="uk.co.anthonycampbell.grails.contactform.ContactForm.yourFullName.label" default="Nombre" />:</label><br/>
                                 <g:remoteText id="yourFullName" name="yourFullName" paramName="yourFullName" action="validate" update="yourFullNameFlash" maxlength="250" value="${contactFormInstance?.yourFullName}" /> 
                                 <span id="yourFullNameFlash">
                                 	<g:displayFieldError bean="${contactFormInstance}" field="yourFullName">${it}</g:displayFieldError>
@@ -31,7 +31,7 @@
                                     <g:displayFieldError bean="${contactFormInstance}" field="yourEmailAddress">${it}</g:displayFieldError>
                                 </span></p>
     
-                                <p><label for="subject"><g:message code="uk.co.anthonycampbell.grails.contactform.ContactForm.subject.label" default="Subject" />:</label><br/>
+                                <p><label for="subject"><g:message code="uk.co.anthonycampbell.grails.contactform.ContactForm.subject.label" default="Asunto" />:</label><br/>
                                 <g:remoteText id="subject" name="subject" paramName="subject" action="validate" update="subjectFlash" maxlength="250" value="${contactFormInstance?.subject}" /> 
                                 <span id="subjectFlash">
                                 	<g:displayFieldError bean="${contactFormInstance}" field="subject">${it}</g:displayFieldError>

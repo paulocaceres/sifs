@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list distrito">
 			
+				<g:if test="${distritoInstance?.nombre}">
+				<li class="fieldcontain">
+					<span id="nombre-label" class="property-label"><g:message code="distrito.nombre.label" default="Nombre" /></span>
+					
+						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${distritoInstance}" field="nombre"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${distritoInstance?.grupos}">
 				<li class="fieldcontain">
 					<span id="grupos-label" class="property-label"><g:message code="distrito.grupos.label" default="Grupos" /></span>
@@ -34,14 +43,7 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${distritoInstance?.nombre}">
-				<li class="fieldcontain">
-					<span id="nombre-label" class="property-label"><g:message code="distrito.nombre.label" default="Nombre" /></span>
-					
-						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${distritoInstance}" field="nombre"/></span>
-					
-				</li>
-				</g:if>
+
 			
 			</ol>
 			<g:form url="[resource:distritoInstance, action:'delete']" method="DELETE">
