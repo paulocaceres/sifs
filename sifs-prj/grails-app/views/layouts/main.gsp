@@ -61,7 +61,7 @@
 			<sec:ifAllGranted roles="ROLE_FORMADOR">
 				<li><a href="#" class="parent"><span>Formador</span></a>
 					<div><ul>
-						<li><a href="${createLink(controller: 'recurso')}"><span>Recursos</span></a></li>
+<%--						<li><a href="${createLink(controller: 'recurso')}"><span>Recursos</span></a></li>--%>
 						<li><a href="#"><span>Asignacion de Formador</span></a></li>
 						<li><a href="#"><span>Validar Inscripciones</span></a></li>
 						<li><a href="#"><span>Asignar Cupos</span></a></li>
@@ -75,12 +75,13 @@
 						<li><a href="${createLink(controller: 'curso')}"><span>Cursos</span></a></li>
 						<li><a href="${createLink(controller: 'dictado')}"><span>Dictados</span></a></li>
 						<li><a href="${createLink(controller: 'plan')}"><span>Planes</span></a></li>
-						<li><a href="#"><span>Contenidos</span></a></li>
+						<li><a href="${createLink(controller: 'titulo')}"><span>Titulos</span></a></li>
+<%--						<li><a href="#"><span>Contenidos</span></a></li>--%>
 					</ul></div>
 				</li>
 			</sec:ifAllGranted>
 			<sec:ifAllGranted roles="ROLE_DNRA">
-				<li><a href="#" class="parent"><span>Director Nac. Recursos</span></a>
+				<li><a href="#" class="parent"><span>Seguridad</span></a>
 					<div><ul>
 						<li><a href="#"><span>Esquema Bloqueo de Usuarios</span></a></li>
 						<li><a href="#"><span>Autorizaciones</span></a></li>
@@ -110,38 +111,39 @@
 						
 						<li><a href="#" class="parent"><span>Formador</span></a>
 							<div><ul>
-								<li><a href="${createLink(controller: 'recurso')}"><span>Recursos</span></a></li>
+<%--								<li><a href="${createLink(controller: 'recurso')}"><span>Recursos</span></a></li>--%>
 								<li><a href="#"><span>Asignacion de Formador</span></a></li>
 								<li><a href="#"><span>Validar Inscripciones</span></a></li>
 								<li><a href="#"><span>Asignar Cupos</span></a></li>
 								<li><a href="#"><span>Asignacion de Directores</span></a></li>
 							</ul></div>
 						</li>
-						
-						<li><a href="#" class="parent"><span>Director Nac. Formacion</span></a>
+										
+						<li><a href="#" class="parent"><span>Seguridad</span></a>
 							<div><ul>
-								<li><a href="${createLink(controller: 'curso')}"><span>Cursos</span></a></li>
-								<li><a href="${createLink(controller: 'dictado')}"><span>Dictados</span></a></li>
-								<li><a href="${createLink(controller: 'plan')}"><span>Planes</span></a></li>
-								<li><a href="#"><span>Contenidos</span></a></li>
-							</ul></div>
-						</li>
-						
-						<li><a href="#" class="parent"><span>Director Nac. Recursos</span></a>
-							<div><ul>
-								<li><a href="#"><span>Esquema Bloqueo de Usuarios</span></a></li>
+								<li><a href="#"><span>Bloqueo de Usuarios</span></a></li>
 								<li><a href="#"><span>Autorizaciones</span></a></li>
 							</ul></div>
 						</li>
 			        
-						<li><a href="${createLink(controller: 'distrito')}"><span>Distritos</span></a></li>
-						<li><a href="${createLink(controller: 'zona')}"><span>Zonas</span></a></li>
-						<li><a href="${createLink(controller: 'grupo')}"><span>Grupos</span></a></li>
-						<li><a href="${createLink(controller: 'nivel')}"><span>Niveles</span></a></li>
+						<li><a href="#" class="parent"><span>ABM</span></a>
+							<div><ul>
+									<li><a href="${createLink(controller: 'titulo')}"><span>Titulos</span></a></li>
+                     			    <li><a href="${createLink(controller: 'curso')}"><span>Cursos</span></a></li>
+									<li><a href="${createLink(controller: 'dictado')}"><span>Dictados</span></a></li>
+									<li><a href="${createLink(controller: 'plan')}"><span>Planes</span></a></li>
+<%--								<li><a href="#"><span>Contenidos</span></a></li>--%>
+									<li><a href="${createLink(controller: 'zona')}"><span>Zonas</span></a></li>
+									<li><a href="${createLink(controller: 'distrito')}"><span>Distritos</span></a></li>
+									<li><a href="${createLink(controller: 'grupo')}"><span>Grupos</span></a></li>
+									<li><a href="${createLink(controller: 'nivel')}"><span>Niveles</span></a></li>		
+							</ul></div>
+						</li>
 					</ul></div>
 				</li>
 			</sec:ifAllGranted>
 			<sec:ifLoggedIn>
+			
 			<li><a href="#" class="parent"><span>Ayuda</span></a></li>
 			<li><a href="${createLink(controller: 'contactForm')}"><span>Contacto</span></a></li>
 		    <li class="last"><a href="${createLink(controller: 'logout')}"><span>Logout</span></a></li>
