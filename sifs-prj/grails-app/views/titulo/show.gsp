@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list titulo">
 			
+				<g:if test="${tituloInstance?.plan}">
+				<li class="fieldcontain">
+					<span id="zona-label" class="property-label"><g:message code="titulo.plan.label" default="Plan" /></span>
+					
+						<span class="property-value" aria-labelledby="plan-label"><g:link controller="plan" action="show" id="${tituloInstance?.plan?.id}">${tituloInstance?.plan?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${tituloInstance?.nombre}">
 				<li class="fieldcontain">
 					<span id="nombre-label" class="property-label"><g:message code="titulo.nombre.label" default="Nombre" /></span>

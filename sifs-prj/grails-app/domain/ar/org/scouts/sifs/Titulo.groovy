@@ -2,12 +2,19 @@ package ar.org.scouts.sifs
 
 class Titulo {
 	
+	Plan plan
 	String nombre
 	static hasMany = [cursos: Curso]
 	
     static constraints = {
-		nombre(blank: false,unique: true, maxSize:70 ) 
+		plan(blank: false) 
+		nombre(blank: false, maxSize:70 ) 
     }
+	
+	static mapping = {
+		titulo unique: 'plan'
+//		table 'plan_cursos'
+	}
 
 	String toString() {
 		"$nombre"

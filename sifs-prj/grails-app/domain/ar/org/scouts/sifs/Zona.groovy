@@ -1,9 +1,8 @@
 package ar.org.scouts.sifs
 
 class Zona {
-	
-	String nombre
 	String numero
+	String nombre
 	
 	static hasMany = [distritos: Distrito]
 

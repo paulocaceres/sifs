@@ -39,7 +39,7 @@ class TituloController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'tituloInstance.label', default: 'Titulo'), tituloInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'tituloInstance.label', default: 'Titulo'), tituloInstance.nombre])
                 redirect tituloInstance
             }
             '*' { respond tituloInstance, [status: CREATED] }
