@@ -1,4 +1,5 @@
 import ar.org.scouts.sifs.Curso
+import ar.org.scouts.sifs.Dictado
 import ar.org.scouts.sifs.Direccion
 import ar.org.scouts.sifs.Distrito
 import ar.org.scouts.sifs.Grupo
@@ -70,10 +71,10 @@ class BootStrap {
 				passwordExpired: 	false)
 			.save(flush: true, insert: true)
 
-			def formador = new Persona(	documentoNumero: 	'33333333',
+			Persona formador1 = new Persona(	documentoNumero: 	'33333333',
 				password: 			password,
-				nombre: 			'Formador',
-				apellido: 			'Apellido',
+				nombre: 			'Carlos',
+				apellido: 			'Tevez',
 				mail: 				'XXX@gmail.com',
 				direccion: 			unaDireccion,
 				enabled: 			true,
@@ -117,7 +118,7 @@ class BootStrap {
 			PersonaRol.create(user, rol, true)
 			PersonaRol.create(cursante, rol1, true)
 			PersonaRol.create(supervisor, rol2, true)
-			PersonaRol.create(formador, rol3, true)
+			PersonaRol.create(formador1, rol3, true)
 			PersonaRol.create(dnf, rol4, true)
 			PersonaRol.create(dnra, rol5, true)
 			
@@ -346,10 +347,28 @@ class BootStrap {
 		PlanCurso planCurso7 = new PlanCurso(plan: plan2, curso: curso7);
 		planCurso7.save(flush: true, insert: true);
 		
-		new Recurso(nombre: "Proyector", cantidad:1).save(flush:true, insert:true);
-		new Recurso(nombre: "Aula 100", cantidad:1).save(flush:true, insert:true);
-		new Recurso(nombre: "Aula 200", cantidad:1).save(flush:true, insert:true);
-		new Recurso(nombre: "Aula 300", cantidad:1).save(flush:true, insert:true);
+		Recurso r1 = new Recurso(nombre: "Proyector", cantidad:1).save(flush:true, insert:true);
+		Recurso r2 = new Recurso(nombre: "Aula 100", cantidad:1).save(flush:true, insert:true);
+		Recurso r3 = new Recurso(nombre: "Aula 200", cantidad:1).save(flush:true, insert:true);
+		Recurso r4 = new Recurso(nombre: "Aula 300", cantidad:1).save(flush:true, insert:true);
+		
+		Persona forma = Persona.findByNombre('Carlos');
+		Dictado dictado1 = new Dictado(nombre: "Jueves 9hs", formador: forma, zona: zona01, curso: curso2, fecha: new Date(), cupo: 10);
+		dictado1.addToRecursos(r1)
+		dictado1.save(flush: true, insert: true);
+		
+//		Dictado dictado2 = new Dictado(nombre: "Miercoles 15hs", formador: formador1, zona: zona02, curso: curso2, fecha: new Date(), cupo: 20);
+//		dictado2.addToRecursos(r2)
+//		dictado2.save(flush: true, insert: true);
+//		
+//		Dictado dictado3 = new Dictado(nombre: "Sabados 10hs", formador: formador1, zona: zona01, curso: curso3, fecha: new Date(), cupo: 5);
+//		dictado3.addToRecursos(r3)
+//		dictado3.save(flush: true, insert: true);
+//		
+//		Dictado dictado4 = new Dictado(nombre: "Viernes 19hs", formador: formador1, zona: zona03, curso: curso3, fecha: new Date(), cupo: 7);
+//		dictado4.addToRecursos(r4)
+//		dictado4.save(flush: true, insert: true);
+		
 	}
 
 

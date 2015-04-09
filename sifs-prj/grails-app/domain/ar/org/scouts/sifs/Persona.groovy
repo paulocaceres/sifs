@@ -78,5 +78,18 @@ class Persona {
 	public void setDictadosAnotadosIds(List ids) {
 		this.dictadosAnotados = ids.collect { Dictado.get(it) }
 	}
+	
+	static List<Persona> listarPorRol(String rolDesc) {
+		def resultList = []
+		def rol = Rol.findByAuthority(rolDesc)
+		def personaList = Persona.list()
+		personaList.each {
+				if(it.hasRol(rol)) {
+						resultList.add(it)
+				}
+		}
+		return resultList
+	}
+
 
 }

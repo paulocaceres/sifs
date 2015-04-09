@@ -8,6 +8,13 @@
 	<g:select id="curso" name="curso.id" from="${ar.org.scouts.sifs.Curso.list()}" optionKey="id" value="${dictadoInstance?.curso?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'formador', 'error')} ">
+        <label for="formador">
+                <g:message code="dictado.formador.label" default="Formador" />
+
+        </label>
+        <g:select id="formador" name="formador.id" from="${ar.org.scouts.sifs.Persona.listarPorRol('ROLE_FORMADOR')}" optionKey="id" value="${dictadoInstance?.formador?.id}" class="many-to-one" noSelection="['null': '']"/>
+</div>
 
 <div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'zona', 'error')} ">
 	<label for="zona">
@@ -33,6 +40,15 @@
 		
 	</label>
 	<g:field name="cupo" type="number" value="${dictadoInstance.cupo}"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'nombre', 'error')} ">
+	<label for="nombre">
+		<g:message code="dictado.nombre.label" default="Nombre" />
+		
+	</label>
+	<g:field name="nombre" type="text" value="${dictadoInstance.nombre}"/>
 
 </div>
 

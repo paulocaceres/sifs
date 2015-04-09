@@ -36,7 +36,9 @@ class InscripcionCursoController {
 					//ge("fecha", new Date().clearTime()+1)
 				}
 				inscripcionPlanCursoResultList.each {
-					resultList.add(it.curso)
+					if(it.curso != null && !it.curso.dictados.isEmpty()) {
+						resultList.add(it.curso)
+					}	
 				}
 				inscripcionCursoInstanceList = resultList
 			} else {

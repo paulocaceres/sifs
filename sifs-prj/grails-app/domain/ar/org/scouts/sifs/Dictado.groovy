@@ -7,6 +7,8 @@ class Dictado {
 	Zona zona
 	Date fecha
 	Integer cupo
+	Persona formador
+	String nombre
 
 	static belongTo = [
 		curso: Curso
@@ -23,5 +25,9 @@ class Dictado {
 		cupo(nullable:true)
 		//inscriptos(nullable:true)
     }
+	
+	String toString() {
+		"$nombre"
+	}
 
 }
