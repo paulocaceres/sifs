@@ -32,8 +32,6 @@ class InscripcionCursoController {
 				def criteria = PlanCurso.createCriteria()
 				inscripcionPlanCursoResultList = criteria.list {
 					sizeEq("correlativas", 0)
-					//ne("cupo", 0)
-					//ge("fecha", new Date().clearTime()+1)
 				}
 				inscripcionPlanCursoResultList.each {
 					if(it.curso != null && !it.curso.dictados.isEmpty()) {
@@ -60,8 +58,6 @@ class InscripcionCursoController {
 				def criteria = PlanCurso.createCriteria()
 				def temporalPlanCursoResultList = criteria.list {
 					'in' ("curso.id", idsCursosTentativos)
-					//ne("cupo", 0)
-					//ge("fecha", new Date().clearTime()+1)
 				}
 				//TODO: Verificar la correlatividad en forma fuerte
 				
@@ -81,16 +77,24 @@ class InscripcionCursoController {
 		def persona = Persona.get(springSecurityService.currentUser.id);
 		def cursosSeleccionadosInstance = null
 		def successInscripcionMessage = null
-		
+	
 		if (persona != null) {
-			def cursoIds = params.list('cursosAnotadosIds')
-			if(cursoIds.size() > 0) {
-				cursosSeleccionadosInstance = cursoIds.collect { Curso.get(it) }
-				cursosSeleccionadosInstance.each() {
-					persona.addToCursosAnotados(it)
+			def cursoIds = params.list("cursosDisponiblesIds")
+			def dictadoIds = []
+			if(cursoIds?.size() > 0) {
+				cursoIds.each {
+					if(params.get('dictadoGroup' + it) != null) {
+						dictadoIds.add(params.get('dictadoGroup' + it))
+					}					
 				}
-				persona.save flush:true
-				successInscripcionMessage = message(code: 'default.inscripcionCursoSuccess.message')
+				if(dictadoIds?.size() > 0) {
+					cursosSeleccionadosInstance = dictadoIds.collect { Dictado.get(it) }
+					cursosSeleccionadosInstance.each() {
+						persona.addToDictadosAnotados(it)
+					}
+					persona.save flush:true
+					successInscripcionMessage = message(code: 'default.inscripcionCursoSuccess.message')
+				}
 			} else {
 				notSelected()
 				return

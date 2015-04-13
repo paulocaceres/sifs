@@ -25,12 +25,12 @@
 				<g:if test="${cursosInstanceList}">
 				<li class="fieldcontain">
 					<span id="correlativas-label" class="property-label">
-						<g:message code="curso.correlativas.label" default="Cursos Seleccionados" />
+						<g:message code="curso.correlativas.label" default="Dictados Seleccionados" />
 					</span>
 					
 					<g:each var="c" in="${cursosInstanceList.sort { it.nombre } }">
 							<span class="property-value" aria-labelledby="correlativas-label">
-							    <g:fieldValue bean="${c}" field="nombre"/>
+							    <g:fieldValue bean="${c}" field="nombre"/>, <g:fieldValue bean="${c}" field="zona.nombre"/> -  <g:fieldValue bean="${c}" field="formador"/>
 							</span>
 					</g:each>					
 				</li>
