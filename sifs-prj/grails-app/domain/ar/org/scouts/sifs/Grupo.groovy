@@ -10,7 +10,7 @@ class Grupo {
 	
     static constraints = {
 		nombre(blank: false) 
-		numero(nullable: false, matches:"[0-9]+", unique: true, maxSize:4 )
+		numero(nullable: false, matches:"^[1-9]\\d*", unique: true, maxSize:4 )
 		
 	}
 
