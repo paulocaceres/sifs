@@ -44,7 +44,7 @@
 						<li><a href="${createLink(controller: 'persona')}"><span>Mi Perfil</span></a></li>
 						<li><a href="${createLink(controller: 'inscripcionCurso')}"><span>Inscripcion a Cursos</span></a></li>
 						<li><a href="#"><span>Habilitaciones</span></a></li>
-						<li><a href="#"><span>Cursos Aprobados</span></a></li>
+						<li><a href="${createLink(controller: 'cursosAprobados')}"><span>Cursos Aprobados</span></a></li>
 					</ul></div>
 				</li>
 			</sec:ifAllGranted>
@@ -54,7 +54,7 @@
 						<li><a href="#"><span>Aprobacion Perfiles</span></a></li>
 						<li><a href="#"><span>Aprobacion Cursos</span></a></li>
 						<li><a href="#"><span>Bloquear Usuarios</span></a></li>
-						<li><a href="#"><span>Mis Cursos Aprobados</span></a></li>
+						<li><a href="${createLink(controller: 'cursosAprobados')}"><span>Mis Cursos Aprobados</span></a></li>
 					</ul></div>
 				</li>
 			</sec:ifAllGranted>
@@ -93,7 +93,7 @@
 								<li><a href="${createLink(controller: 'persona')}"><span>Mi Perfil</span></a></li>
 								<li><a href="${createLink(controller: 'inscripcionCurso')}"><span>Inscripcion a Cursos</span></a></li>
 								<li><a href="#"><span>Habilitaciones</span></a></li>
-								<li><a href="#"><span>Cursos Aprobados</span></a></li>
+								<li><a href="${createLink(controller: 'cursosAprobados')}"><span>Cursos Aprobados</span></a></li>
 					    	</ul></div>
 				        </li>
 				        
@@ -102,7 +102,7 @@
 								<li><a href="#"><span>Aprobacion Perfiles</span></a></li>
 								<li><a href="#"><span>Aprobacion Cursos</span></a></li>
 								<li><a href="#"><span>Bloquear Usuarios</span></a></li>
-								<li><a href="#"><span>Mis Cursos Aprobados</span></a></li>
+								<li><a href="${createLink(controller: 'cursosAprobados')}"><span>Mis Cursos Aprobados</span></a></li>
 							</ul></div>
 						</li>
 						

@@ -4,8 +4,10 @@ package ar.org.scouts.sifs
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.plugins.springsecurity.Secured
 
 @Transactional(readOnly = true)
+@Secured(['IS_AUTHENTICATED_FULLY'])
 class DictadoController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

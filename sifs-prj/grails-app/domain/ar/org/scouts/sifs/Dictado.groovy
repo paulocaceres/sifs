@@ -9,21 +9,21 @@ class Dictado {
 	Integer cupo
 	Persona formador
 	String nombre
-
+	
 	static belongTo = [
 		curso: Curso
 	]
 
 	static hasMany = [
 		recursos: Recurso,
-		//inscriptos: Persona
+		inscriptos: Long
 	]
 
 	static constraints = {
 		zona(nullable:true)
 		fecha(nullable:true)
 		cupo(nullable:true)
-		//inscriptos(nullable:true)
+		inscriptos(nullable:true)
     }
 	
 	String toString() {

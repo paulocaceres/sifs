@@ -5,7 +5,7 @@ import static org.springframework.http.HttpStatus.*
 
 import javax.transaction.UserTransaction;
 
-import ar.org.scouts.sifs.Provincia;
+import ar.org.scouts.sifs.Dictado;
 import grails.transaction.Transactional
 import grails.plugins.springsecurity.Secured
 import ar.org.scouts.sifs.Curso;
@@ -90,7 +90,9 @@ class InscripcionCursoController {
 				if(dictadoIds?.size() > 0) {
 					cursosSeleccionadosInstance = dictadoIds.collect { Dictado.get(it) }
 					cursosSeleccionadosInstance.each() {
-						persona.addToDictadosAnotados(it)
+						persona.addToDictadosAnotados(it.id)
+						it.addToInscriptos(persona.id)
+						it.save flush:true
 					}
 					persona.save flush:true
 					successInscripcionMessage = message(code: 'default.inscripcionCursoSuccess.message')
@@ -107,10 +109,10 @@ class InscripcionCursoController {
 	def getDictadosAprobadosAnotadosIds(Persona p) {
 		def ids = []
 		p.dictadosAprobados.each() {
-			ids.add(it.id)
+			ids.add(it)
 		}
 		p.dictadosAnotados.each() {
-			ids.add(it.id)
+			ids.add(it)
 		}
 		return ids
 	}

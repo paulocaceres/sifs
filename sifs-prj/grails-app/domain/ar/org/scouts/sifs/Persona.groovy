@@ -24,8 +24,12 @@ class Persona {
 
 	static belongsTo = [ superior: Persona ]
 
-	static hasMany = [dictadosAprobados : Dictado,
-					  dictadosAnotados : Dictado]
+	static hasMany = [dictadosAprobados : Long,
+					  dictadosAnotados : Long]
+	
+	static mapping = {
+		password column: '`password`'
+	}
 
 	static constraints = {
 		documentoNumero blank: false, unique: true
@@ -43,9 +47,7 @@ class Persona {
 		"$nombre $apellido"
 	}
 
-	static mapping = {
-		password column: '`password`'
-	}
+	
 
 	Set<Rol> getAuthorities() {
 		PersonaRol.findAllByPersona(this).collect { it.rol } as Set
