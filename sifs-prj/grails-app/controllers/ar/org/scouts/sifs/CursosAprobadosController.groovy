@@ -13,9 +13,12 @@ class CursosAprobadosController {
 
     def index() { 
 		def persona = Persona.get(springSecurityService.currentUser.id);
-		
+		def dictadoList = []
 		if(persona != null && persona.dictadosAprobados?.size() > 0){
-			return [dictadoInstanceList : persona.dictadosAprobados]
+			persona.dictadosAprobados.each() {
+				dictadoList.add(Dictado.get(it))
+			}
+			return [dictadoInstanceList : dictadoList]
 		} else {
 			render view:'notfound', model:[message: message(code: 'default.cursosAprobados.not.found.message')]
 		}
