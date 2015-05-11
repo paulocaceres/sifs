@@ -30,7 +30,7 @@
 			<g:form url="[resource:dictadoInstance, action:'update']" method="PUT" >
 				<g:hiddenField name="version" value="${dictadoInstance?.version}" />
 				<fieldset class="form">
-					<g:render template="form"/>
+					<g:render template="edicion"/>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />

@@ -60,3 +60,10 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'status', 'error')} ">
+        <label for="status">
+                <g:message code="dictado.status.label" default="Status" />
+
+        </label>
+        <g:select id="status" name="status.id" from="${ar.org.scouts.sifs.DictadoStatus.findByNombre('ABIERTO')}" optionKey="id" value="${dictadoInstance?.status?.id}" class="many-to-one" noSelection="['null': '']"/>
+</div>

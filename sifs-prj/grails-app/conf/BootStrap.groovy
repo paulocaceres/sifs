@@ -12,6 +12,7 @@ import ar.org.scouts.sifs.Zona
 import ar.org.scouts.sifs.security.PersonaRol
 import ar.org.scouts.sifs.security.Rol
 import ar.org.scouts.sifs.Recurso
+import ar.org.scouts.sifs.DictadoStatus
 
 class BootStrap {
 
@@ -352,20 +353,25 @@ class BootStrap {
 		Recurso r3 = new Recurso(nombre: "Aula 200", cantidad:1).save(flush:true, insert:true);
 		Recurso r4 = new Recurso(nombre: "Aula 300", cantidad:1).save(flush:true, insert:true);
 		
+		DictadoStatus abierto = new DictadoStatus(nombre:"ABIERTO");
+		abierto.save(flush: true, insert: true);
+		DictadoStatus cerrado = new DictadoStatus(nombre:"CERRADO");
+		cerrado.save(flush: true, insert: true);
+		
 		Persona forma = Persona.findByNombre('Carlos');
-		Dictado dictado1 = new Dictado(nombre: "Jueves 9hs", formador: forma, zona: zona01, curso: curso2, fecha: new Date()+10, cupo: 10);
+		Dictado dictado1 = new Dictado(nombre: "Jueves 9hs", formador: forma, zona: zona01, curso: curso2, fecha: new Date()+10, cupo: 10, status: abierto);
 		dictado1.addToRecursos(r1)
 		dictado1.save(flush: true, insert: true);
 		
-		Dictado dictado2 = new Dictado(nombre: "Miercoles 15hs", formador: forma, zona: zona02, curso: curso2, fecha: new Date()+5, cupo: 0);
+		Dictado dictado2 = new Dictado(nombre: "Miercoles 15hs", formador: forma, zona: zona02, curso: curso2, fecha: new Date()+5, cupo: 0, status: abierto);
 		dictado2.addToRecursos(r2)
 		dictado2.save(flush: true, insert: true);
 		
-		Dictado dictado3 = new Dictado(nombre: "Sabados 10hs", formador: forma, zona: zona01, curso: curso3, fecha: new Date(), cupo: 5);
+		Dictado dictado3 = new Dictado(nombre: "Sabados 10hs", formador: forma, zona: zona01, curso: curso3, fecha: new Date(), cupo: 5, status: abierto);
 		dictado3.addToRecursos(r3)
 		dictado3.save(flush: true, insert: true);
 		
-		Dictado dictado4 = new Dictado(nombre: "Viernes 19hs", formador: forma, zona: zona03, curso: curso3, fecha: new Date()+10, cupo: 7);
+		Dictado dictado4 = new Dictado(nombre: "Viernes 19hs", formador: forma, zona: zona03, curso: curso3, fecha: new Date()+10, cupo: 7, status: abierto);
 		dictado4.addToRecursos(r4)
 		dictado4.save(flush: true, insert: true);
 		

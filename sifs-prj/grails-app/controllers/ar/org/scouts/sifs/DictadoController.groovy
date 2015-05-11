@@ -22,7 +22,7 @@ class DictadoController {
     }
 
     def create() {
-        respond new Dictado(params)
+		respond new Dictado(params)
     }
 
     @Transactional
@@ -36,7 +36,8 @@ class DictadoController {
             respond dictadoInstance.errors, view:'create'
             return
         }
-
+		
+		
         dictadoInstance.save flush:true
 
         request.withFormat {

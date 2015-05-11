@@ -8,6 +8,7 @@ class Dictado {
 	Date fecha
 	Integer cupo
 	Persona formador
+	DictadoStatus status
 	String nombre
 	
 	static belongTo = [
