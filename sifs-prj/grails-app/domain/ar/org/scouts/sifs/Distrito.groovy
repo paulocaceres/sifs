@@ -3,15 +3,23 @@ package ar.org.scouts.sifs
 class Distrito {
 	
 	String nombre
-	static hasMany = [grupos: Grupo]
 	
-	static belongTo = [zona: Zona]
+	static belongTo = [
+		zona: Zona
+	]
+
+	static hasMany = [
+		grupos: Grupo
+	]
 	
-    static constraints = {
+    
+	static constraints = {
     }
 
+	
 	String toString() {
 		"$nombre"
 	}
+	
 	
 }

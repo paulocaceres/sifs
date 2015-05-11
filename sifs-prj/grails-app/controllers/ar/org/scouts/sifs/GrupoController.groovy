@@ -66,7 +66,7 @@ class GrupoController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Grupo.label', default: 'Grupo'), grupoInstance.numero])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'grupo.label', default: 'Grupo'), grupoInstance.numero])
                 redirect grupoInstance
             }
             '*'{ respond grupoInstance, [status: OK] }
@@ -85,7 +85,7 @@ class GrupoController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Grupo.label', default: 'Grupo'), grupoInstance.numero])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'grupo.label', default: 'Grupo'), grupoInstance.numero])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }

@@ -3,12 +3,9 @@ package ar.org.scouts.sifs
 
 
 import static org.springframework.http.HttpStatus.*
-import grails.converters.*
 import grails.transaction.Transactional
-import grails.plugins.springsecurity.Secured
 
 @Transactional(readOnly = true)
-@Secured(['IS_AUTHENTICATED_FULLY'])
 class ZonaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -69,7 +66,7 @@ class ZonaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Zona.label', default: 'Zona'), zonaInstance.numero])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'zona.label', default: 'Zona'), zonaInstance.numero])
                 redirect zonaInstance
             }
             '*'{ respond zonaInstance, [status: OK] }
@@ -88,7 +85,7 @@ class ZonaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Zona.label', default: 'Zona'), zonaInstance.numero])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'zona.label', default: 'Zona'), zonaInstance.numero])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -104,10 +101,4 @@ class ZonaController {
             '*'{ render status: NOT_FOUND }
         }
     }
-
-	def ajaxGetDistritos() {
-		def zona = Zona.get(params.id)
-		render zona?.distritos as JSON
-	}
-
 }

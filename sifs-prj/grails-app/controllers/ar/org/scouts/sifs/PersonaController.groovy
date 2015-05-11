@@ -3,10 +3,13 @@ package ar.org.scouts.sifs
 
 
 import static org.springframework.http.HttpStatus.*
+import grails.converters.JSON
 import grails.plugins.springsecurity.Secured
 import grails.transaction.Transactional
 import ar.org.scouts.sifs.security.PersonaRol
 import ar.org.scouts.sifs.security.Rol
+
+
 
 @Transactional(readOnly = true)
 @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -42,9 +45,7 @@ class PersonaController {
             return
         }
 
-
         personaInstance.save flush:true
-
 
 		personaInstance.authorities.clear()
 		params.each {
@@ -127,11 +128,26 @@ class PersonaController {
         }
     }
 
-
 	static ArrayList<Persona> superiores() {
 		def superiores = Persona.list()
         return superiores
     }
 
+
+	def ajaxZonaSelected() {
+		def zn = Zona.findById(params.id);
+
+		def grps = new HashSet();
+		def sprvsrs = new HashSet();
+		for (dstrt in zn.distritos) {
+			grps.addAll(dstrt.grupos);
+			for (grp in dstrt.grupos) {
+				sprvsrs.addAll(grp.supervisores);
+			}
+		}
+		def emi01 = [distritos: zn.distritos.sort{it.nombre}, grupos: grps.sort{it.nombre}, supervisores: sprvsrs.sort{it.apellido}];
+		render emi01 as JSON;
+
+	}
 	
 }

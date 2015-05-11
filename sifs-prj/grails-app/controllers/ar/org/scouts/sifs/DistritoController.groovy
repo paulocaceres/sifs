@@ -66,7 +66,7 @@ class DistritoController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Distrito.label', default: 'Distrito'), distritoInstance.nombre])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'distrito.label', default: 'Distrito'), distritoInstance.nombre])
                 redirect distritoInstance
             }
             '*'{ respond distritoInstance, [status: OK] }
@@ -85,7 +85,7 @@ class DistritoController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Distrito.label', default: 'Distrito'), distritoInstance.nombre])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'distrito.label', default: 'Distrito'), distritoInstance.nombre])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }

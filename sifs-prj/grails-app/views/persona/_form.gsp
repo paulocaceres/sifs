@@ -1,16 +1,5 @@
-<%@ page import="ar.org.scouts.sifs.PersonaController"%>
-<%@ page import="ar.org.scouts.sifs.Persona"%>
-<%@ page import="ar.org.scouts.sifs.Provincia"%>
-<%@ page import="ar.org.scouts.sifs.security.Rol"%>
-<%@ page import="ar.org.scouts.sifs.Zona"%>
-<%@ page import="ar.org.scouts.sifs.Distrito"%>
-<%@ page import="ar.org.scouts.sifs.Grupo"%>
 
-
-
-<g:javascript library='jquery'/>
-
-<g:javascript src="application.js" />
+<%@ page import="ar.org.scouts.sifs.Persona" %>
 
 
 
@@ -19,21 +8,21 @@
 		<g:message code="persona.documentoNumero.label" default="Documento Numero" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="documentoNumero" required="" value="${personaInstance?.documentoNumero}"/>
+	<g:textField name="documentoNumero" required="" value="${personaInstance?.documentoNumero}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'nombre', 'error')} ">
 	<label for="nombre">
 		<g:message code="persona.nombre.label" default="Nombre" />
 	</label>
-	<g:textField name="nombre" value="${personaInstance?.nombre}"/>
+	<g:textField name="nombre" value="${personaInstance?.nombre}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'apellido', 'error')} ">
 	<label for="apellido">
 		<g:message code="persona.apellido.label" default="Apellido" />
 	</label>
-	<g:textField name="apellido" value="${personaInstance?.apellido}"/>
+	<g:textField name="apellido" value="${personaInstance?.apellido}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'roles', 'error')} ">
@@ -42,8 +31,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 </div>
-
-<g:each var="rol" in="${Rol.list()}" >
+<g:each var="rol" in="${ar.org.scouts.sifs.security.Rol.list()}" >
 	<div class="fieldcontain ">
 		<label for="rolRaw[${rol.id}]"></label>
 		<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}"/>${rol.authority}
@@ -53,8 +41,16 @@
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'mail', 'error')} ">
 	<label for="mail">
 		<g:message code="persona.mail.label" default="Mail" />
+
 	</label>
-	<g:textField name="mail" value="${personaInstance?.mail}"/>
+	<g:field type="email" name="mail" value="${personaInstance?.mail}" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'telefono', 'error')} ">
+	<label for="telefono">
+		<g:message code="persona.telefono.label" default="Telefono" />
+	</label>
+	<g:textField name="telefono" value="${personaInstance?.telefono}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
@@ -98,35 +94,35 @@
 	<label for="direccion">
 		<g:message code="persona.direccion.provincia.label" default="Provincia" />
 	</label>
-	<g:select optionKey="id" from="${Provincia.list()}" name="direccion.provincia.id" value="${personaInstance?.direccion?.provincia?.id}" />
+	<g:select optionKey="id" from="${ar.org.scouts.sifs.Provincia.list()}" name="direccion.provincia.id" value="${personaInstance?.direccion?.provincia?.id}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'zona', 'error')} ">
 	<label for="zona">
 		<g:message code="persona.zona.label" default="Zona" />
 	</label>
-	<g:select id="zona" optionKey="id" from="${Zona.list()}" noSelection="${['null':'Select One...']}" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" onchange="${remoteFunction(controller:'zona', action:'ajaxGetDistritos', params:'\'id=\' + escape(this.value)', onSuccess:'updateDistrito(data)')}" />
+	<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list()}" noSelection="['null': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'distrito', 'error')} ">
 	<label for="distrito">
 		<g:message code="persona.distrito.label" default="Distrito" />
 	</label>
-	<g:select id="distrito" optionKey="id" from="${Distrito.list()}" noSelection="${['null':'Select One...']}" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" onchange="${remoteFunction(controller:'distrito', action:'ajaxGetGrupos', params:'\'id=\' + escape(this.value)', onSuccess:'updateGrupo(data)')}" />
+	<g:select id="distrito" optionKey="id" from="${ar.org.scouts.sifs.Distrito.list()}" noSelection="['null': '']" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'grupo', 'error')} ">
 	<label for="grupo">
 		<g:message code="persona.grupo.label" default="Grupo" />
 	</label>
-	<g:select id="grupo" optionKey="id" from="${Grupo.list()}" noSelection="${['null':'Select One...']}" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one"/>
+	<g:select id="grupo" optionKey="id" from="${ar.org.scouts.sifs.Grupo.list()}" noSelection="['null': '']" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'superior', 'error')} ">
-	<label for="superior">
-		<g:message code="persona.superior.label" default="Superior" />
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'supervisor', 'error')} ">
+	<label for="supervisor">
+		<g:message code="persona.supervisor.label" default="Supervisor" />
 	</label>
-	<g:select id="superior" name="superior.id" from="${PersonaController.superiores()}" optionKey="id" value="${personaInstance?.superior?.id}" class="many-to-one" noSelection="['null': '']"/>
+	<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.Persona.list()}" noSelection="['null': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'password', 'error')} required">
@@ -134,7 +130,8 @@
 		<g:message code="persona.password.label" default="Password" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="password" required="" value="${personaInstance?.password}"/>
+	<g:textField name="password" required="" value="${personaInstance?.password}" />
+
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'enabled', 'error')} ">
@@ -158,6 +155,18 @@
 	<g:checkBox name="accountExpired" value="${personaInstance?.accountExpired}" />
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'dictadosAprobados', 'error')} ">
+	<label for="dictadosAprobados">
+		<g:message code="persona.dictadosAprobados.label" default="Dictados Aprobados" />
+	</label>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'dictadosAnotados', 'error')} ">
+	<label for="dictadosAnotados">
+		<g:message code="persona.dictadosAnotados.label" default="Dictados Anotados" />
+	</label>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'passwordExpired', 'error')} ">
 	<label for="passwordExpired">
 		<g:message code="persona.passwordExpired.label" default="Password Expired" />
@@ -168,79 +177,39 @@
 <script>
 
 
-	function updateDistrito(distritos) {
-		// The response comes back as a bunch-o-JSON
-<%--		alert('updateDistrito'); --%>
-		
-		if (distritos) {
-			var rselect = document.getElementById('distrito.id')
-		
-			// Clear all previous options
-			var l = rselect.length
-			while (l > 0) {
-				l--
-				rselect.remove(l)
-			}
-		
-			// Rebuild the select
-			for (var i=0; i < distritos.length; i++) {
-				var distrito = distritos[i]
-				var opt = document.createElement('option');
-				opt.text = distrito.nombre
-				opt.value = distrito.id
-				try {
-					rselect.add(opt, null) // standards compliant; doesn't work in IE
-				} catch(ex) {
-					rselect.add(opt) // IE only
+	$(document).ready(function() {
+		$("#zona").change(function() {
+			$.ajax({
+				url: "ajaxZonaSelected",
+				data: "id=" + this.value,
+				cache: false,
+				success: function(html) {
+					var options = null;
+
+					options = ' ';
+					options += '<option value="null"> </option>';
+					for (var i = 0; i < html.distritos.length; i++) {
+						options += '<option value="' + html.distritos[i].id + '">' + html.distritos[i].nombre + '</option>';
+					}                    
+					$('#distrito').html(options);
+					
+					options = ' ';
+					options += '<option value="null"> </option>';
+					for (var i = 0; i < html.grupos.length; i++) {
+						options += '<option value="' + html.grupos[i].id + '">' + html.grupos[i].nombre + '</option>';
+					}                    
+					$('#grupo').html(options);
+					
+					options = ' ';
+					options += '<option value="null"> </option>';
+					for (var i = 0; i < html.supervisores.length; i++) {
+						options += '<option value="' + html.supervisores[i].id + '">' + html.supervisores[i].apellido + ', ' + html.supervisores[i].nombre + '</option>';
+					}                    
+					$('#supervisor').html(options);
 				}
-			}
-		}
-	}
+			});
+		});
+	});
 	
-	
-	function updateGrupo(grupos) {
-		// The response comes back as a bunch-o-JSON
-<%--		alert('updateGrupo');--%>
-		
-		if (grupos) {
-			var rselect = document.getElementById('grupo.id')
-		
-			// Clear all previous options
-			var l = rselect.length
-			while (l > 0) {
-				l--
-				rselect.remove(l)
-			}
-		
-			// Rebuild the select
-			for (var i=0; i < grupos.length; i++) {
-				var grupo = grupos[i]
-				var opt = document.createElement('option');
-				opt.text = grupo.nombre
-				opt.value = grupo.id
-				try {
-					rselect.add(opt, null) // standards compliant; doesn't work in IE
-				} catch(ex) {
-					rselect.add(opt) // IE only
-				}
-			}
-		}
-	}
-	
-	
-	// This is called when the page loads to initialize distrito
-<%--	var zselect = document.getElementById('zona.id');--%>
-<%--	var zopt = zselect.options[zselect.selectedIndex];--%>
-<%--	<g:remoteFunction controller="zona" action="ajaxGetDistritos" params="'id='+zopt.value" onSuccess="updateDistrito(data)" />--%>
-
-	// This is called when the page loads to initialize grupo
-<%--	zselect = document.getElementById('distrito.id');--%>
-<%--	zopt = zselect.options[zselect.selectedIndex];--%>
-<%--	<g:remoteFunction controller="distrito" action="ajaxGetGrupos" params="'id='+zopt.value" onSuccess="updateGrupo(data)" />--%>
-
-<%--	document.getElementById('zona.id').selectedIndex = -1;--%>
-<%--	document.getElementById('distrito.id').selectedIndex = -1;--%>
-<%--	document.getElementById('grupo.id').selectedIndex = -1;--%>
-
 
 </script>
