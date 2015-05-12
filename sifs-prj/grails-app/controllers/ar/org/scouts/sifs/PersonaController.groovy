@@ -135,19 +135,47 @@ class PersonaController {
 
 
 	def ajaxZonaSelected() {
-		def zn = Zona.findById(params.id);
-
+		def zn = Zona.get(params.id);
+		def dstrts = null;
+		if (zn != null) {
+			dstrts = zn.distritos;
+		} else {
+			dstrts = Distrito.list();
+		}	
 		def grps = new HashSet();
 		def sprvsrs = new HashSet();
-		for (dstrt in zn.distritos) {
+		for (dstrt in dstrts) {
 			grps.addAll(dstrt.grupos);
 			for (grp in dstrt.grupos) {
 				sprvsrs.addAll(grp.supervisores);
 			}
 		}
-		def emi01 = [distritos: zn.distritos.sort{it.nombre}, grupos: grps.sort{it.nombre}, supervisores: sprvsrs.sort{it.apellido}];
+		def emi01 = [distritos: dstrts.sort{it.nombre}, grupos: grps.sort{it.nombre}, supervisores: sprvsrs.sort{it.apellido}];
 		render emi01 as JSON;
 
 	}
+	
+	
+	def ajaxDistritoSelected() {
+		def zn = Zona.get(params.id);
+		def dstrts = null;
+		if (zn != null) {
+			dstrts = zn.distritos;
+		} else {
+			dstrts = Distrito.list();
+		}	
+		def grps = new HashSet();
+		def sprvsrs = new HashSet();
+		for (dstrt in dstrts) {
+			grps.addAll(dstrt.grupos);
+			for (grp in dstrt.grupos) {
+				sprvsrs.addAll(grp.supervisores);
+			}
+		}
+		def emi01 = [distritos: dstrts.sort{it.nombre}, grupos: grps.sort{it.nombre}, supervisores: sprvsrs.sort{it.apellido}];
+		render emi01 as JSON;
+
+	}
+	
 	
 }

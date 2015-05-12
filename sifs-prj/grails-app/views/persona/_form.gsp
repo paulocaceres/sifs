@@ -101,7 +101,7 @@
 	<label for="zona">
 		<g:message code="persona.zona.label" default="Zona" />
 	</label>
-	<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list()}" noSelection="['null': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" />
+	<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list()}" noSelection="['-1': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'distrito', 'error')} ">
@@ -178,6 +178,8 @@
 
 
 	$(document).ready(function() {
+
+
 		$("#zona").change(function() {
 			$.ajax({
 				url: "ajaxZonaSelected",
@@ -209,6 +211,41 @@
 				}
 			});
 		});
+
+
+		$("#distrito").change(function() {
+			$.ajax({
+				url: "ajaxDistritoSelected",
+				data: "id=" + this.value,
+				cache: false,
+				success: function(html) {
+					var options = null;
+
+					options = ' ';
+					options += '<option value="null"> </option>';
+					for (var i = 0; i < html.distritos.length; i++) {
+						options += '<option value="' + html.distritos[i].id + '">' + html.distritos[i].nombre + '</option>';
+					}                    
+					$('#distrito').html(options);
+					
+					options = ' ';
+					options += '<option value="null"> </option>';
+					for (var i = 0; i < html.grupos.length; i++) {
+						options += '<option value="' + html.grupos[i].id + '">' + html.grupos[i].nombre + '</option>';
+					}                    
+					$('#grupo').html(options);
+					
+					options = ' ';
+					options += '<option value="null"> </option>';
+					for (var i = 0; i < html.supervisores.length; i++) {
+						options += '<option value="' + html.supervisores[i].id + '">' + html.supervisores[i].apellido + ', ' + html.supervisores[i].nombre + '</option>';
+					}                    
+					$('#supervisor').html(options);
+				}
+			});
+		});
+
+
 	});
 	
 
