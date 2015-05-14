@@ -1,4 +1,3 @@
-
 <%@ page import="ar.org.scouts.sifs.Persona" %>
 
 
@@ -94,35 +93,35 @@
 	<label for="direccion">
 		<g:message code="persona.direccion.provincia.label" default="Provincia" />
 	</label>
-	<g:select optionKey="id" from="${ar.org.scouts.sifs.Provincia.list()}" name="direccion.provincia.id" value="${personaInstance?.direccion?.provincia?.id}" />
+	<g:select optionKey="id" from="${ar.org.scouts.sifs.Provincia.list()}" name="direccion.provincia.id" value="${personaInstance?.direccion?.provincia?.id}" style="width: 208px" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'zona', 'error')} ">
 	<label for="zona">
 		<g:message code="persona.zona.label" default="Zona" />
 	</label>
-	<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list()}" noSelection="['-1': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" />
+	<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list()}" noSelection="['-1': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" style="width: 208px" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'distrito', 'error')} ">
 	<label for="distrito">
 		<g:message code="persona.distrito.label" default="Distrito" />
 	</label>
-	<g:select id="distrito" optionKey="id" from="${ar.org.scouts.sifs.Distrito.list()}" noSelection="['null': '']" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" />
+	<g:select id="distrito" optionKey="id" from="${ar.org.scouts.sifs.Distrito.list()}" noSelection="['null': '']" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" style="width: 208px" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'grupo', 'error')} ">
 	<label for="grupo">
 		<g:message code="persona.grupo.label" default="Grupo" />
 	</label>
-	<g:select id="grupo" optionKey="id" from="${ar.org.scouts.sifs.Grupo.list()}" noSelection="['null': '']" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one" />
+	<g:select id="grupo" optionKey="id" from="${ar.org.scouts.sifs.Grupo.list()}" noSelection="['null': '']" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one" style="width: 208px" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'supervisor', 'error')} ">
 	<label for="supervisor">
 		<g:message code="persona.supervisor.label" default="Supervisor" />
 	</label>
-	<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.Persona.list()}" noSelection="['null': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" />
+	<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.Persona.list()}" noSelection="['null': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'password', 'error')} required">
@@ -189,21 +188,21 @@
 					var options = null;
 
 					options = ' ';
-					options += '<option value="null"> </option>';
+					options += '<option value="-1"> </option>';
 					for (var i = 0; i < html.distritos.length; i++) {
 						options += '<option value="' + html.distritos[i].id + '">' + html.distritos[i].nombre + '</option>';
 					}                    
 					$('#distrito').html(options);
 					
 					options = ' ';
-					options += '<option value="null"> </option>';
+					options += '<option value="-1"> </option>';
 					for (var i = 0; i < html.grupos.length; i++) {
 						options += '<option value="' + html.grupos[i].id + '">' + html.grupos[i].nombre + '</option>';
 					}                    
 					$('#grupo').html(options);
 					
 					options = ' ';
-					options += '<option value="null"> </option>';
+					options += '<option value="-1"> </option>';
 					for (var i = 0; i < html.supervisores.length; i++) {
 						options += '<option value="' + html.supervisores[i].id + '">' + html.supervisores[i].apellido + ', ' + html.supervisores[i].nombre + '</option>';
 					}                    
@@ -221,22 +220,17 @@
 				success: function(html) {
 					var options = null;
 
-					options = ' ';
-					options += '<option value="null"> </option>';
-					for (var i = 0; i < html.distritos.length; i++) {
-						options += '<option value="' + html.distritos[i].id + '">' + html.distritos[i].nombre + '</option>';
-					}                    
-					$('#distrito').html(options);
+					$('#zona').val(html.zona);
 					
 					options = ' ';
-					options += '<option value="null"> </option>';
+					options += '<option value="-1"> </option>';
 					for (var i = 0; i < html.grupos.length; i++) {
 						options += '<option value="' + html.grupos[i].id + '">' + html.grupos[i].nombre + '</option>';
 					}                    
 					$('#grupo').html(options);
 					
 					options = ' ';
-					options += '<option value="null"> </option>';
+					options += '<option value="-1"> </option>';
 					for (var i = 0; i < html.supervisores.length; i++) {
 						options += '<option value="' + html.supervisores[i].id + '">' + html.supervisores[i].apellido + ', ' + html.supervisores[i].nombre + '</option>';
 					}                    

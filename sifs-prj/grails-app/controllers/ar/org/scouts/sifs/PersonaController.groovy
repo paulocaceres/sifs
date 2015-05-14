@@ -157,22 +157,12 @@ class PersonaController {
 	
 	
 	def ajaxDistritoSelected() {
-		def zn = Zona.get(params.id);
-		def dstrts = null;
-		if (zn != null) {
-			dstrts = zn.distritos;
-		} else {
-			dstrts = Distrito.list();
-		}	
-		def grps = new HashSet();
+		Distrito dstrt = Distrito.get(params.id);
 		def sprvsrs = new HashSet();
-		for (dstrt in dstrts) {
-			grps.addAll(dstrt.grupos);
-			for (grp in dstrt.grupos) {
-				sprvsrs.addAll(grp.supervisores);
-			}
+		for (grp in dstrt.grupos) {
+			sprvsrs.addAll(grp.supervisores);
 		}
-		def emi01 = [distritos: dstrts.sort{it.nombre}, grupos: grps.sort{it.nombre}, supervisores: sprvsrs.sort{it.apellido}];
+		def emi01 = [zona: dstrt.zona.id, grupos: dstrt.grupos.sort{it.nombre}, supervisores: sprvsrs.sort{it.apellido}];
 		render emi01 as JSON;
 
 	}
