@@ -1,5 +1,6 @@
 
 <%@ page import="ar.org.scouts.sifs.Dictado" %>
+<%@ page import="ar.org.scouts.sifs.Inscripto" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,34 +16,40 @@
 			</ul>
 		</div>
 		<div id="list-dictado" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+			<h1>${fieldValue(bean: dictadoInstance, field: "nombre")} - ${fieldValue(bean: dictadoInstance, field: "curso.nombre")}</h1>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<table>
 			<thead>
 					<tr>
+						<g:sortableColumn property="documento" title="${message(code: 'dictado.nombre.label', default: 'Documento')}" />
+						
+						<th>${message(code: 'dictado.curso.label', default: 'Nombre')}</th>
 					
-						<g:sortableColumn property="nombre" title="${message(code: 'dictado.nombre.label', default: 'Nombre Dictado')}" />
+						<th>${message(code: 'dictado.fecha.label', default: 'Apellido')}</th>
 					
-						<g:sortableColumn property="curso" title="${message(code: 'dictado.curso.label', default: 'Curso')}" />
-					
-						<g:sortableColumn property="fecha" title="${message(code: 'dictado.fecha.label', default: 'Fecha')}" />
-					
-						<g:sortableColumn property="formador" title="${message(code: 'dictado.zona.label', default: 'Zona')}" />
+						<g:sortableColumn property="nota" title="${message(code: 'dictado.formador.label', default: 'Nota')}" />
 					
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${dictadoInstanceList?}" status="i" var="dictadoInstance">
+				<g:each in="${inscriptosInstanceList?}" status="i" var="inscriptoInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-						<td><g:link action="show" id="${dictadoInstance.id}">${fieldValue(bean: dictadoInstance, field: "nombre")}</g:link></td>
 					
-						<td>${fieldValue(bean: dictadoInstance, field: "curso")}</td>
+						<td>${inscriptoInstance.documento}</td>
+				
+						<td>${inscriptoInstance.nombre}</td>
 					
-						<td><g:formatDate date="${dictadoInstance.fecha}" format="dd-MM-yyyy"/></td>
+						<td>${inscriptoInstance.apellido}</td>
 					
-						<td>${fieldValue(bean: dictadoInstance, field: "zona.nombre")}</td>
+						<td>
+							<g:select id="nota" name="nota.id" from="${ar.org.scouts.sifs.Calificacion.list()}" 
+									  optionKey="id" required="" 
+									  noSelection="${['null':'Sin calificar...']}"
+									  value="${inscriptoInstance?.nota?.id}" 
+									  class="many-to-one"/>
+						</td>
 					
 					</tr>
 				</g:each>
@@ -54,3 +61,4 @@
 		</div>
 	</body>
 </html>
+

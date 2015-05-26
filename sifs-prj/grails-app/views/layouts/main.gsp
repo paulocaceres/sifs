@@ -52,7 +52,6 @@
 				<li><a href="#" class="parent"><span>Supervisor</span></a>
 					<div><ul>
 						<li><a href="#"><span>Aprobacion Perfiles</span></a></li>
-						<li><a href="#"><span>Aprobacion Cursos</span></a></li>
 						<li><a href="#"><span>Bloquear Usuarios</span></a></li>
 						<li><a href="${createLink(controller: 'cursosAprobados')}"><span>Mis Cursos Aprobados</span></a></li>
 					</ul></div>
@@ -64,6 +63,7 @@
 <%--						<li><a href="${createLink(controller: 'recurso')}"><span>Recursos</span></a></li>--%>
 						<li><a href="#"><span>Validar Inscripciones</span></a></li>
 						<li><a href="${createLink(controller: 'dictado')}"><span>Dictados</span></a></li>
+						<li><a href="${createLink(controller: 'aprobacionCurso')}"><span>Aprobacion Cursos</span></a></li>
 					</ul></div>
 				</li>
 			</sec:ifAllGranted>
@@ -100,7 +100,6 @@
 				        <li><a href="#" class="parent"><span>Supervisor</span></a>
 							<div><ul>
 								<li><a href="#"><span>Aprobacion Perfiles</span></a></li>
-								<li><a href="#"><span>Aprobacion Cursos</span></a></li>
 								<li><a href="#"><span>Bloquear Usuarios</span></a></li>
 								<li><a href="${createLink(controller: 'cursosAprobados')}"><span>Mis Cursos Aprobados</span></a></li>
 							</ul></div>
@@ -109,6 +108,7 @@
 						<li><a href="#" class="parent"><span>Formador</span></a>
 							<div><ul>
 <%--								<li><a href="${createLink(controller: 'recurso')}"><span>Recursos</span></a></li>--%>
+								<li><a href="${createLink(controller: 'aprobacionCurso')}"><span>Aprobacion Cursos</span></a></li>
 								<li><a href="#"><span>Asignacion de Formador</span></a></li>
 								<li><a href="#"><span>Validar Inscripciones</span></a></li>
 								<li><a href="#"><span>Asignar Cupos</span></a></li>

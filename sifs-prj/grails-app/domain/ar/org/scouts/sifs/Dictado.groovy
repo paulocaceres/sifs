@@ -17,7 +17,7 @@ class Dictado {
 
 	static hasMany = [
 		recursos: Recurso,
-		inscriptos: Long
+		inscriptos: Inscripto
 	]
 
 	static constraints = {

@@ -91,7 +91,15 @@ class InscripcionCursoController {
 					cursosSeleccionadosInstance = dictadoIds.collect { Dictado.get(it) }
 					cursosSeleccionadosInstance.each() {
 						persona.addToDictadosAnotados(it.id)
-						it.addToInscriptos(persona.id)
+						Inscripto alumno = new Inscripto()
+						alumno.personaId = persona.id
+						alumno.nombre = persona.nombre
+						alumno.apellido = persona.apellido
+						alumno.documento = persona.documentoNumero
+						alumno.nota = null
+						alumno.dictado = it
+						alumno.save flush:true	
+						it.addToInscriptos(alumno)
 						it.save flush:true
 					}
 					persona.save flush:true

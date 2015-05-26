@@ -13,6 +13,7 @@ import ar.org.scouts.sifs.security.PersonaRol
 import ar.org.scouts.sifs.security.Rol
 import ar.org.scouts.sifs.Recurso
 import ar.org.scouts.sifs.DictadoStatus
+import ar.org.scouts.sifs.Calificacion
 
 class BootStrap {
 
@@ -615,6 +616,12 @@ class BootStrap {
 		Dictado dictado4 = new Dictado(nombre: "Viernes 19hs", formador: forma, zona: zona03, curso: curso3, fecha: new Date()+10, cupo: 7, status: abierto);
 		dictado4.addToRecursos(r4)
 		dictado4.save(flush: true, insert: true);
+		
+		Calificacion aprobado = new Calificacion(nombre: 'APROBADO')
+		aprobado.save(flush: true, insert: true)
+		
+		Calificacion desaprobado = new Calificacion(nombre: 'DESAPROBADO')
+		desaprobado.save(flush: true, insert: true)
 		
 	}
 

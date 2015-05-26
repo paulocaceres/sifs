@@ -1,16 +1,20 @@
 package ar.org.scouts.sifs
 
-class Inscripto {
+class Inscripto  {
 	
-	Curso curso
-	Date fecha
-
-    static constraints = {
-    }
+	Long personaId
+	String documento
+	String nombre
+	String apellido
+	Calificacion nota
+	Dictado dictado
 	
-	String toString() {
-		"$curso, ${fecha.format('dd/MM/yyyy')}"
+	static belongTo = [
+		dictado: Dictado
+	]
+	
+	static constraints = {
+		nota(nullable:true)
 	}
-
-
+	
 }
