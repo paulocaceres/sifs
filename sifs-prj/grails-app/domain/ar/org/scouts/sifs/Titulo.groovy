@@ -8,7 +8,7 @@ class Titulo {
 	
     static constraints = {
 		plan(blank: false) 
-		nombre(blank: false, maxSize:70 ) 
+		nombre(blank: false, maxSize:70,unique: 'plan' ) 
     }
 	
 	static mapping = {
