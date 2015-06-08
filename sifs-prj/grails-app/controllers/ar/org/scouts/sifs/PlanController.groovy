@@ -41,7 +41,7 @@ class PlanController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'planInstance.label', default: 'Plan'), planInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'planInstance.label', default: 'Plan'), planInstance.nombre])
                 redirect planInstance
             }
             '*' { respond planInstance, [status: CREATED] }
@@ -68,7 +68,7 @@ class PlanController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Plan.label', default: 'Plan'), planInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Plan.label', default: 'Plan'), planInstance.nombre])
                 redirect planInstance
             }
             '*'{ respond planInstance, [status: OK] }
@@ -87,7 +87,7 @@ class PlanController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Plan.label', default: 'Plan'), planInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Plan.label', default: 'Plan'), planInstance.nombre])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }

@@ -42,14 +42,14 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${planInstance?.validez}">
-				<li class="fieldcontain">
-					<span id="validez-label" class="property-label"><g:message code="plan.validez.label" default="Validez" /></span>
-						<span class="property-value" aria-labelledby="validez-label">
-							<g:formatDate date="${planInstance?.validez}"  format="dd/MM/yyyy" />
-						</span>
-				</li>
-				</g:if>
+<%--				<g:if test="${planInstance?.validez}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="validez-label" class="property-label"><g:message code="plan.validez.label" default="Validez" /></span>--%>
+<%--						<span class="property-value" aria-labelledby="validez-label">--%>
+<%--							<g:formatDate date="${planInstance?.validez}"  format="dd/MM/yyyy" />--%>
+<%--						</span>--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
 			
 			</ol>
 			<g:form url="[resource:planInstance, action:'delete']" method="DELETE">

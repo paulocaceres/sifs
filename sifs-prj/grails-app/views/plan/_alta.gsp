@@ -20,14 +20,14 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: planInstance, field: 'validez', 'error')} required">
-	<label for="validez">
-		<g:message code="plan.validez.label" default="Validez" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="validez" precision="day"  value="${planInstance?.validez}"  />
-
-</div>
+<%--<div class="fieldcontain ${hasErrors(bean: planInstance, field: 'validez', 'error')} required">--%>
+<%--	<label for="validez">--%>
+<%--		<g:message code="plan.validez.label" default="Validez" />--%>
+<%--		<span class="required-indicator">*</span>--%>
+<%--	</label>--%>
+<%--	<g:datePicker name="validez" precision="day"  value="${planInstance?.validez}"  />--%>
+<%----%>
+<%--</div>--%>
 
 <div id="tabs">
   <ul>
