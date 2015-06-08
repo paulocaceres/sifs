@@ -22,6 +22,9 @@ class BootStrap {
 	def init = { servletContext ->
 
 		def password = 'password'
+		def rol1 = null // ROL CURSANTE
+		def formador1 = null;
+		
 		if (!Persona.count()) {
 			
 			def unaProvincia = new Provincia(descripcion: 'persona.direccion.provincia.descripcion')
@@ -73,7 +76,7 @@ class BootStrap {
 				passwordExpired: 	false)
 			.save(flush: true, insert: true)
 
-			Persona formador1 = new Persona(	documentoNumero: 	'33333333',
+			formador1 = new Persona(	documentoNumero: 	'33333333',
 				password: 			password,
 				nombre: 			'Carlos',
 				apellido: 			'Tevez',
@@ -110,7 +113,7 @@ class BootStrap {
 			.save(flush: true, insert: true)
 			
 			def rol  = new Rol(authority: 'ROLE_ADMIN').save(flush: true, insert: true)
-			def rol1 = new Rol(authority: 'ROLE_CURSANTE').save(flush: true, insert: true)
+			rol1 = new Rol(authority: 'ROLE_CURSANTE').save(flush: true, insert: true)
 			def rol2 = new Rol(authority: 'ROLE_SUPERVISOR').save(flush: true, insert: true)
 			def rol3 = new Rol(authority: 'ROLE_FORMADOR').save(flush: true, insert: true)
 			def rol4 = new Rol(authority: 'ROLE_DNF').save(flush: true, insert: true)
@@ -327,7 +330,8 @@ class BootStrap {
 		persona80.save();
 		def persona81 = new Persona(documentoNumero: '00000081', nombre: 'nombre81', apellido: 'apellido81', mail: 'mail@mail.com', password: password);
 		persona81.save();
-
+		
+		PersonaRol.create(persona81, rol1, true)
 		
 		Grupo grupo01 = new Grupo(nombre: 'Grupo01', numero:1)
 		grupo01.addToSupervisores(persona01);
@@ -539,6 +543,9 @@ class BootStrap {
 		zona03.addToDistritos(distrito08)
 		zona03.addToDistritos(distrito09)
 		zona03.save()
+		
+		formador1.zona = zona01;
+		formador1.save();
 		
 		Nivel nivel1 = new Nivel(nombre: 'Zonal')
 		nivel1.save(flush: true, insert: true)

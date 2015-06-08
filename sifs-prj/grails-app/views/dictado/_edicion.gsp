@@ -1,5 +1,7 @@
 <%@ page import="ar.org.scouts.sifs.Dictado" %>
 
+<g:set var="userId" value="${sec.loggedInUserInfo(field: 'id')}" />
+
 <div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'curso', 'error')} ">
 	<label for="curso">
 		<g:message code="dictado.curso.label" default="Curso" />
@@ -21,7 +23,7 @@
 		<g:message code="dictado.zona.label" default="Zona" />
 		
 	</label>
-	<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.list()}" optionKey="id" value="${dictadoInstance?.zona?.id}" class="many-to-one" noSelection="['null': '']"/>
+	<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.listarPorPersona(userId)}}" optionKey="id" value="${dictadoInstance?.zona?.id}" class="many-to-one" noSelection="['null': '']"/>
 
 </div>
 
@@ -39,7 +41,7 @@
 		<g:message code="dictado.cupo.label" default="Cupo" />
 		
 	</label>
-	<g:field name="cupo" type="number" value="${dictadoInstance.cupo}"/>
+	<g:field name="cupo" type="number" value="${dictadoInstance.cupo}" min="0"/>
 
 </div>
 

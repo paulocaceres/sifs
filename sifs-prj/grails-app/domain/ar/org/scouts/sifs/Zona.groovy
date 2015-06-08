@@ -1,5 +1,7 @@
 package ar.org.scouts.sifs
 
+import java.util.List;
+
 class Zona {
 
 	String numero
@@ -21,7 +23,12 @@ class Zona {
 		"$nombre"
 	}
 
-	
+	static List<Zona> listarPorPersona(personaId) {
+		def resultList = []
+		def persona = Persona.get(personaId);
+		resultList.add(persona.getZona());
+		return resultList
+	}
 }
 
 
