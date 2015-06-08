@@ -1,11 +1,11 @@
 package ar.org.scouts.sifs
-
+import java.util.Date
 
 class Dictado {
     
 	Curso curso
 	Zona zona
-	Date fecha
+	Date fecha = new Date()
 	Integer cupo
 	Persona formador
 	DictadoStatus status
