@@ -122,7 +122,9 @@ class BootStrap {
 			/*create the first user role map*/
 			PersonaRol.create(user, rol, true)
 			PersonaRol.create(cursante, rol1, true)
+			PersonaRol.create(supervisor, rol1, true)
 			PersonaRol.create(supervisor, rol2, true)
+			PersonaRol.create(formador1, rol1, true)
 			PersonaRol.create(formador1, rol3, true)
 			PersonaRol.create(dnf, rol4, true)
 			PersonaRol.create(dnra, rol5, true)
