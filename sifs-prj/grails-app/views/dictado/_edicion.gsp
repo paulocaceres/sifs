@@ -23,7 +23,7 @@
 		<g:message code="dictado.zona.label" default="Zona" />
 		
 	</label>
-	<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.listarPorPersona(userId)}}" optionKey="id" value="${dictadoInstance?.zona?.id}" class="many-to-one" noSelection="['null': '']"/>
+	<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.listarPorPersona(userId)}" optionKey="id" value="${dictadoInstance?.zona?.id}" class="many-to-one" noSelection="['null': '']"/>
 
 </div>
 
