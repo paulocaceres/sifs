@@ -20,6 +20,9 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
+			
+			<g:form url="[controller:'dictado', action:'aprobar', resource:dictadoInstance]" >
+				<fieldset class="form">
 			<table>
 			<thead>
 					<tr>
@@ -34,7 +37,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${inscriptosInstanceList?}" status="i" var="inscriptoInstance">
+				<g:each in="${dictadoInstance.inscriptos?}" status="i" var="inscriptoInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td>${inscriptoInstance.documento}</td>
@@ -44,7 +47,7 @@
 						<td>${inscriptoInstance.apellido}</td>
 					
 						<td>
-							<g:select id="nota" name="nota.id" from="${ar.org.scouts.sifs.Calificacion.list()}" 
+							<g:select id="nota.id" name="nota_${inscriptoInstance.personaId}" from="${ar.org.scouts.sifs.Calificacion.list()}" 
 									  optionKey="id" required="" 
 									  noSelection="${['null':'Sin calificar...']}"
 									  value="${inscriptoInstance?.nota?.id}" 
@@ -55,6 +58,12 @@
 				</g:each>
 				</tbody>
 			</table>
+			</fieldset>
+			<fieldset class="buttons">
+					<g:submitButton name="create" class="save" value="${message(code: 'default.button.aprobacionCurso.label', default: 'Guardar')}" />
+					<g:link controller="aprobacionCurso" action="index" class="save">Cancelar</g:link>
+			</fieldset>
+			</g:form>
 			<div class="pagination">
 				<g:paginate total="${dictadoInstanceCount ?: 0}" />
 			</div>

@@ -39,7 +39,7 @@ class DictadoControllerSpec extends Specification {
             request.contentType = FORM_CONTENT_TYPE
             def dictado = new Dictado()
             dictado.validate()
-            controller.save(dictado)
+            controller.aprobar(dictado)
 
         then:"The create view is rendered again with the correct model"
             model.dictadoInstance!= null
@@ -50,7 +50,7 @@ class DictadoControllerSpec extends Specification {
             populateValidParams(params)
             dictado = new Dictado(params)
 
-            controller.save(dictado)
+            controller.aprobar(dictado)
 
         then:"A redirect is issued to the show action"
             response.redirectedUrl == '/dictado/show/1'

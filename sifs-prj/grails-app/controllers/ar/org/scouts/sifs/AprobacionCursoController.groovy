@@ -1,6 +1,7 @@
 package ar.org.scouts.sifs
 
 import grails.plugins.springsecurity.Secured
+import grails.transaction.Transactional;
 import static org.springframework.http.HttpStatus.*
 import ar.org.scouts.sifs.Persona;
 
@@ -36,8 +37,7 @@ class AprobacionCursoController {
 	
 	def show(Dictado dictadoInstance) {
 		if(dictadoInstance.inscriptos.size() > 0) {
-			def personaList = dictadoInstance.inscriptos
-			return [dictadoInstance : dictadoInstance, inscriptosInstanceList: personaList]
+			return [dictadoInstance : dictadoInstance]
 		} else {
 			render view:'notfound', model:[message: message(code: 'default.aprobacionCursos.not.found.message')]
 		}

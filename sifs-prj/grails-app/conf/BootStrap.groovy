@@ -56,7 +56,7 @@ class BootStrap {
 					password: 			password,
 					nombre: 			'Pablo',
 					apellido: 			'Lopez',
-					mail: 				'XXX@gmail.com',
+					mail: 				'paulo.caceres@gmail.com',
 					//direccion: 			unaDireccion,
 					enabled: 			true,
 					accountExpired: 	false,
