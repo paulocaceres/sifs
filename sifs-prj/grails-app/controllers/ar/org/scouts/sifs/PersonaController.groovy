@@ -134,38 +134,87 @@ class PersonaController {
     }
 
 
-	def ajaxZonaSelected() {
-		def zn = Zona.get(params.id);
-		def dstrts = null;
-		if (zn != null) {
-			dstrts = zn.distritos;
+	def jsonZonaDistritoGrupoSupervisor() {
+		
+		Zona zona = null;
+		Distrito distrito = null;
+		Grupo grupo = null;
+		Persona supervisor = null;
+		
+		if (params.int('prsnParam') > 0) {
+			supervisor = Persona.get(params.prsnParam);
+			grupo = supervisor.getGrupo();
+		}
+		
+		if (grupo != null) {
+			distrito = grupo.getDistrito();
+		} else if (params.int('grpParam') > 0) {
+			grupo = Grupo.get(params.grpParam);
+			distrito = grupo.getDistrito();
+		}
+		
+		if (distrito != null) {
+			zona = distrito.getZona();
+		} else if (params.int('dstrtParam') > 0) {
+			distrito = Distrito.get(params.dstrtParam);
+			zona = distrito.getZona();
+		}
+		
+		if ((zona == null) && (params.int('znParam') > 0)) {
+			zona = Zona.get(params.znParam);
+		}
+		
+
+		Long znSlctd = -1;
+		Set dstrts = new HashSet();
+		if (zona != null) {
+			znSlctd = zona.getId();
+			dstrts = zona.getDistritos();
 		} else {
 			dstrts = Distrito.list();
-		}	
-		def grps = new HashSet();
-		def sprvsrs = new HashSet();
-		for (dstrt in dstrts) {
-			grps.addAll(dstrt.grupos);
-			for (grp in dstrt.grupos) {
-				sprvsrs.addAll(grp.supervisores);
+		}
+	
+		Long dstrtSlctd = -1;
+		Set grps = new HashSet();
+		if (distrito != null) {
+			dstrtSlctd = distrito.getId();
+			grps = distrito.getGrupos();
+		} else {
+			for (dstrt in dstrts) {
+				grps.addAll(dstrt.getGrupos());
 			}
 		}
-		def emi01 = [distritos: dstrts.sort{it.nombre}, grupos: grps.sort{it.nombre}, supervisores: sprvsrs.sort{it.apellido}];
-		render emi01 as JSON;
 
-	}
-	
-	
-	def ajaxDistritoSelected() {
-		Distrito dstrt = Distrito.get(params.id);
-		def sprvsrs = new HashSet();
-		for (grp in dstrt.grupos) {
-			sprvsrs.addAll(grp.supervisores);
+		Long grpSlctd = -1;
+		Set sprvsrs = new HashSet();
+		if (grupo != null) {
+			grpSlctd = grupo.getId();
+			sprvsrs = grupo.getSupervisores();
+		} else {
+			for (grp in grps) {
+				sprvsrs.addAll(grp.getSupervisores());
+			}
 		}
-		def emi01 = [zona: dstrt.zona.id, grupos: dstrt.grupos.sort{it.nombre}, supervisores: sprvsrs.sort{it.apellido}];
-		render emi01 as JSON;
+		
+		Long sprvsrSlctd = -1;
+		if (supervisor != null) {
+			sprvsrSlctd = supervisor.getId();
+			if (grpSlctd == null) {
+				grpSlctd = supervisor.getGrupo().getDistrito().getId();
+			}
+			if (dstrtSlctd == null) {
+				dstrtSlctd = supervisor.getGrupo().getDistrito().getId();
+			}
+			if (znSlctd == null) {
+				znSlctd = supervisor.getGrupo().getDistrito().getZona().getId();
+			}
+		}
 
+
+		
+		def respuesta = [zonaSelected: znSlctd, distritos: dstrts.sort{it.nombre}, distritoSelected: dstrtSlctd, grupos: grps.sort{it.nombre}, grupoSelected: grpSlctd, supervisores: sprvsrs.sort{it.apellido}, supervisorSelected: sprvsrSlctd];
+		render respuesta as JSON;
 	}
-	
+		
 	
 }

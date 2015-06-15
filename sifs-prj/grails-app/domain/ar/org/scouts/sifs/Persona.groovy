@@ -11,6 +11,8 @@ class Persona {
 
 	transient springSecurityService
 
+	Persona supervisor
+	
 	String documentoNumero
 	
 	String nombre
@@ -26,8 +28,6 @@ class Persona {
 	Distrito distrito
 	
 	Grupo grupo
-	
-	Persona supervisor
 	
 	String password
 	

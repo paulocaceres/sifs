@@ -24,7 +24,7 @@ class BootStrap {
 		def password = 'password'
 		def rol1 = null // ROL CURSANTE
 		def formador1 = null;
-		
+				
 		if (!Persona.count()) {
 			
 			def unaProvincia = new Provincia(descripcion: 'persona.direccion.provincia.descripcion')
@@ -136,24 +136,24 @@ class BootStrap {
 		new Provincia(descripcion: 'Chaco').save()
 		new Provincia(descripcion: 'Chubut').save()
 		new Provincia(descripcion: 'Corrientes').save()
-		new Provincia(descripcion: 'C�rdoba').save()
-		new Provincia(descripcion: 'Entre R�os').save()
+		new Provincia(descripcion: 'Córdoba').save()
+		new Provincia(descripcion: 'Entre Ríos').save()
 		new Provincia(descripcion: 'Formosa').save()
 		new Provincia(descripcion: 'Jujuy').save()
 		new Provincia(descripcion: 'La Pampa').save()
 		new Provincia(descripcion: 'La Rioja').save()
 		new Provincia(descripcion: 'Mendoza').save()
 		new Provincia(descripcion: 'Misiones').save()
-		new Provincia(descripcion: 'Neuqu�n').save()
-		new Provincia(descripcion: 'R�o Negro').save()
+		new Provincia(descripcion: 'Neuquén').save()
+		new Provincia(descripcion: 'Río Negro').save()
 		new Provincia(descripcion: 'Salta').save()
 		new Provincia(descripcion: 'San Juan').save()
 		new Provincia(descripcion: 'San Luis').save()
 		new Provincia(descripcion: 'Santa Cruz').save()
 		new Provincia(descripcion: 'Santa Fe').save()
 		new Provincia(descripcion: 'Santiago del Estero').save()
-		new Provincia(descripcion: 'Tierra del Fuego, Ant�rtida e Islas del Atl�ntico Sur').save()
-		new Provincia(descripcion: 'Tucum�n').save()
+		new Provincia(descripcion: 'Tierra del Fuego, Antártida e Islas del Atlántico Sur').save()
+		new Provincia(descripcion: 'Tucumán').save()
 		
 //		Zona zona
 //		zona = new Zona(nombre: 'Zona01', numero:1)
@@ -332,7 +332,8 @@ class BootStrap {
 		persona80.save();
 		def persona81 = new Persona(documentoNumero: '00000081', nombre: 'nombre81', apellido: 'apellido81', mail: 'mail@mail.com', password: password);
 		persona81.save();
-		
+
+
 		PersonaRol.create(persona81, rol1, true)
 		
 		Grupo grupo01 = new Grupo(nombre: 'Grupo01', numero:1)
@@ -472,80 +473,81 @@ class BootStrap {
 		grupo27.save()
 
 		
-		Distrito distrito01 = new Distrito(nombre: 'Distrito01')
-		distrito01.addToGrupos(grupo01)
-		distrito01.addToGrupos(grupo02)
-		distrito01.addToGrupos(grupo03)
-		distrito01.save()
+		Distrito distrito01 = new Distrito(nombre: 'Distrito01');
+		distrito01.addToGrupos(grupo01);
+		distrito01.addToGrupos(grupo02);
+		distrito01.addToGrupos(grupo03);
+		distrito01.save();
 		
 		
-		Distrito distrito02 = new Distrito(nombre: 'Distrito02')
-		distrito02.addToGrupos(grupo04)
-		distrito02.addToGrupos(grupo05)
-		distrito02.addToGrupos(grupo06)
-		distrito02.save()
+		Distrito distrito02 = new Distrito(nombre: 'Distrito02');
+		distrito02.addToGrupos(grupo04);
+		distrito02.addToGrupos(grupo05);
+		distrito02.addToGrupos(grupo06);
+		distrito02.save();
 		
-		Distrito distrito03 = new Distrito(nombre: 'Distrito03')
-		distrito03.addToGrupos(grupo07)
-		distrito03.addToGrupos(grupo08)
-		distrito03.addToGrupos(grupo09)
-		distrito03.save()
+		Distrito distrito03 = new Distrito(nombre: 'Distrito03');
+		distrito03.addToGrupos(grupo07);
+		distrito03.addToGrupos(grupo08);
+		distrito03.addToGrupos(grupo09);
+		distrito03.save();
 		
-		Distrito distrito04 = new Distrito(nombre: 'Distrito04')
-		distrito04.addToGrupos(grupo10)
-		distrito04.addToGrupos(grupo11)
-		distrito04.addToGrupos(grupo12)
-		distrito04.save()
+		Distrito distrito04 = new Distrito(nombre: 'Distrito04');
+		distrito04.addToGrupos(grupo10);
+		distrito04.addToGrupos(grupo11);
+		distrito04.addToGrupos(grupo12);
+		distrito04.save();
 		
-		Distrito distrito05 = new Distrito(nombre: 'Distrito05')
-		distrito05.addToGrupos(grupo13)
-		distrito05.addToGrupos(grupo14)
-		distrito05.addToGrupos(grupo15)
-		distrito05.save()
+		Distrito distrito05 = new Distrito(nombre: 'Distrito05');
+		distrito05.addToGrupos(grupo13);
+		distrito05.addToGrupos(grupo14);
+		distrito05.addToGrupos(grupo15);
+		distrito05.save();
 		
-		Distrito distrito06 = new Distrito(nombre: 'Distrito06')
-		distrito06.addToGrupos(grupo16)
-		distrito06.addToGrupos(grupo17)
-		distrito06.addToGrupos(grupo18)
-		distrito06.save()
+		Distrito distrito06 = new Distrito(nombre: 'Distrito06');
+		distrito06.addToGrupos(grupo16);
+		distrito06.addToGrupos(grupo17);
+		distrito06.addToGrupos(grupo18);
+		distrito06.save();
 		
-		Distrito distrito07 = new Distrito(nombre: 'Distrito07')
-		distrito07.addToGrupos(grupo19)
-		distrito07.addToGrupos(grupo20)
-		distrito07.addToGrupos(grupo21)
-		distrito07.save()
+		Distrito distrito07 = new Distrito(nombre: 'Distrito07');
+		distrito07.addToGrupos(grupo19);
+		distrito07.addToGrupos(grupo20);
+		distrito07.addToGrupos(grupo21);
+		distrito07.save();
 		
-		Distrito distrito08 = new Distrito(nombre: 'Distrito08')
-		distrito08.addToGrupos(grupo22)
-		distrito08.addToGrupos(grupo23)
-		distrito08.addToGrupos(grupo24)
-		distrito08.save()
+		Distrito distrito08 = new Distrito(nombre: 'Distrito08');
+		distrito08.addToGrupos(grupo22);
+		distrito08.addToGrupos(grupo23);
+		distrito08.addToGrupos(grupo24);
+		distrito08.save();
 		
-		Distrito distrito09 = new Distrito(nombre: 'Distrito09')
-		distrito09.addToGrupos(grupo25)
-		distrito09.addToGrupos(grupo26)
-		distrito09.addToGrupos(grupo27)
-		distrito09.save()
+		Distrito distrito09 = new Distrito(nombre: 'Distrito09');
+		distrito09.addToGrupos(grupo25);
+		distrito09.addToGrupos(grupo26);
+		distrito09.addToGrupos(grupo27);
+		distrito09.save();
 		
 
-		Zona zona01 = new Zona(nombre: 'Zona01', numero:1)
-		zona01.addToDistritos(distrito01)
-		zona01.addToDistritos(distrito02)
-		zona01.addToDistritos(distrito03)
-		zona01.save()
+		Zona zona01 = new Zona(nombre: 'Zona01', numero:1);
+		zona01.addToDistritos(distrito01);
+		zona01.addToDistritos(distrito02);
+		zona01.addToDistritos(distrito03);
+		zona01.save();
 		
-		Zona zona02 = new Zona(nombre: 'Zona02', numero:2)
-		zona02.addToDistritos(distrito04)
-		zona02.addToDistritos(distrito05)
-		zona02.addToDistritos(distrito06)
-		zona02.save()
+		Zona zona02 = new Zona(nombre: 'Zona02', numero:2);
+		zona02.addToDistritos(distrito04);
+		zona02.addToDistritos(distrito05);
+		zona02.addToDistritos(distrito06);
+		zona02.save();
 		
-		Zona zona03 = new Zona(nombre: 'Zona03', numero:3)
-		zona03.addToDistritos(distrito07)
-		zona03.addToDistritos(distrito08)
-		zona03.addToDistritos(distrito09)
-		zona03.save()
+		Zona zona03 = new Zona(nombre: 'Zona03', numero:3);
+		zona03.addToDistritos(distrito07);
+		zona03.addToDistritos(distrito08);
+		zona03.addToDistritos(distrito09);
+		zona03.save();
 		
+
 		formador1.zona = zona01;
 		formador1.save();
 		

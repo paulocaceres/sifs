@@ -100,28 +100,28 @@
 	<label for="zona">
 		<g:message code="persona.zona.label" default="Zona" />
 	</label>
-	<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list()}" noSelection="['-1': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" style="width: 208px" />
+	<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list(sort:'nombre')}" noSelection="['-1': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" style="width: 208px" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'distrito', 'error')} ">
 	<label for="distrito">
 		<g:message code="persona.distrito.label" default="Distrito" />
 	</label>
-	<g:select id="distrito" optionKey="id" from="${ar.org.scouts.sifs.Distrito.list()}" noSelection="['null': '']" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" style="width: 208px" />
+	<g:select id="distrito" optionKey="id" from="${ar.org.scouts.sifs.Distrito.list(sort:'nombre')}" noSelection="['-1': '']" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" style="width: 208px" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'grupo', 'error')} ">
 	<label for="grupo">
 		<g:message code="persona.grupo.label" default="Grupo" />
 	</label>
-	<g:select id="grupo" optionKey="id" from="${ar.org.scouts.sifs.Grupo.list()}" noSelection="['null': '']" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one" style="width: 208px" />
+	<g:select id="grupo" optionKey="id" from="${ar.org.scouts.sifs.Grupo.list(sort:'nombre')}" noSelection="['-1': '']" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one" style="width: 208px" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'supervisor', 'error')} ">
 	<label for="supervisor">
 		<g:message code="persona.supervisor.label" default="Supervisor" />
 	</label>
-	<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.Persona.list()}" noSelection="['null': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" />
+	<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.Persona.list(sort:'nombre')}" noSelection="['-1': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'password', 'error')} required">
@@ -176,37 +176,47 @@
 <script>
 
 
+	function jsonZonaDistritoGrupoSupervisorSuccess(html) {
+		var options = null;
+
+		$('#zona').val(html.zonaSelected);
+		
+		options = ' ';
+		options += '<option value="-1"> </option>';
+		for (var i = 0; i < html.distritos.length; i++) {
+			options += '<option value="' + html.distritos[i].id + '">' + html.distritos[i].nombre + '</option>';
+		}                    
+		$('#distrito').html(options);
+		$('#distrito').val(html.distritoSelected);
+		
+		options = ' ';
+		options += '<option value="-1"> </option>';
+		for (var i = 0; i < html.grupos.length; i++) {
+			options += '<option value="' + html.grupos[i].id + '">' + html.grupos[i].nombre + '</option>';
+		}                    
+		$('#grupo').html(options);
+		$('#grupo').val(html.grupoSelected);
+		
+		options = ' ';
+		options += '<option value="-1"> </option>';
+		for (var i = 0; i < html.supervisores.length; i++) {
+			options += '<option value="' + html.supervisores[i].id + '">' + html.supervisores[i].apellido + ', ' + html.supervisores[i].nombre + '</option>';
+		}                    
+		$('#supervisor').html(options);
+		$('#supervisor').val(html.supervisorSelected);
+	}
+	
+
 	$(document).ready(function() {
 
 
 		$("#zona").change(function() {
 			$.ajax({
-				url: "ajaxZonaSelected",
-				data: "id=" + this.value,
+				url: "jsonZonaDistritoGrupoSupervisor",
+				data: { znParam: this.value },
 				cache: false,
 				success: function(html) {
-					var options = null;
-
-					options = ' ';
-					options += '<option value="-1"> </option>';
-					for (var i = 0; i < html.distritos.length; i++) {
-						options += '<option value="' + html.distritos[i].id + '">' + html.distritos[i].nombre + '</option>';
-					}                    
-					$('#distrito').html(options);
-					
-					options = ' ';
-					options += '<option value="-1"> </option>';
-					for (var i = 0; i < html.grupos.length; i++) {
-						options += '<option value="' + html.grupos[i].id + '">' + html.grupos[i].nombre + '</option>';
-					}                    
-					$('#grupo').html(options);
-					
-					options = ' ';
-					options += '<option value="-1"> </option>';
-					for (var i = 0; i < html.supervisores.length; i++) {
-						options += '<option value="' + html.supervisores[i].id + '">' + html.supervisores[i].apellido + ', ' + html.supervisores[i].nombre + '</option>';
-					}                    
-					$('#supervisor').html(options);
+					jsonZonaDistritoGrupoSupervisorSuccess(html);
 				}
 			});
 		});
@@ -214,27 +224,35 @@
 
 		$("#distrito").change(function() {
 			$.ajax({
-				url: "ajaxDistritoSelected",
-				data: "id=" + this.value,
+				url: "jsonZonaDistritoGrupoSupervisor",
+				data: { znParam: $('#zona').val(), dstrtParam: this.value },
 				cache: false,
 				success: function(html) {
-					var options = null;
+					jsonZonaDistritoGrupoSupervisorSuccess(html);
+				}
+			});
+		});
 
-					$('#zona').val(html.zona);
-					
-					options = ' ';
-					options += '<option value="-1"> </option>';
-					for (var i = 0; i < html.grupos.length; i++) {
-						options += '<option value="' + html.grupos[i].id + '">' + html.grupos[i].nombre + '</option>';
-					}                    
-					$('#grupo').html(options);
-					
-					options = ' ';
-					options += '<option value="-1"> </option>';
-					for (var i = 0; i < html.supervisores.length; i++) {
-						options += '<option value="' + html.supervisores[i].id + '">' + html.supervisores[i].apellido + ', ' + html.supervisores[i].nombre + '</option>';
-					}                    
-					$('#supervisor').html(options);
+
+		$("#grupo").change(function() {
+			$.ajax({
+				url: "jsonZonaDistritoGrupoSupervisor",
+				data: { znParam: $('#zona').val(), dstrtParam: $('#distrito').val(), grpParam: this.value },
+				cache: false,
+				success: function(html) {
+					jsonZonaDistritoGrupoSupervisorSuccess(html);
+				}
+			});
+		});
+
+
+		$("#supervisor").change(function() {
+			$.ajax({
+				url: "jsonZonaDistritoGrupoSupervisor",
+				data: { znParam: $('#zona').val(), dstrtParam: $('#distrito').val(), grpParam: $('#grupo').val(), prsnParam: this.value },
+				cache: false,
+				success: function(html) {
+					jsonZonaDistritoGrupoSupervisorSuccess(html);
 				}
 			});
 		});
