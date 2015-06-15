@@ -55,13 +55,25 @@ class BootStrap {
 			def cursante = new Persona(	documentoNumero: 	'11111111',
 					password: 			password,
 					nombre: 			'Pablo',
-					apellido: 			'Lopez',
-					mail: 				'paulo.caceres@gmail.com',
+					apellido: 			'Perez',
+					mail: 				'dal2409@gmail.com',
 					//direccion: 			unaDireccion,
 					enabled: 			true,
 					accountExpired: 	false,
 					accountLocked: 		false,
 					passwordExpired: 	false)
+			.save(flush: true, insert: true)
+			
+			def cursante2 = new Persona(	documentoNumero: 	'11111112',
+				password: 			password,
+				nombre: 			'Damian',
+				apellido: 			'Yahoo',
+				mail: 				'damian2409@yahoo.com.ar',
+				//direccion: 			unaDireccion,
+				enabled: 			true,
+				accountExpired: 	false,
+				accountLocked: 		false,
+				passwordExpired: 	false)
 			.save(flush: true, insert: true)
 
 			def supervisor = new Persona(	documentoNumero: 	'22222222',
@@ -122,6 +134,7 @@ class BootStrap {
 			/*create the first user role map*/
 			PersonaRol.create(user, rol, true)
 			PersonaRol.create(cursante, rol1, true)
+			PersonaRol.create(cursante2, rol1, true)
 			PersonaRol.create(supervisor, rol1, true)
 			PersonaRol.create(supervisor, rol2, true)
 			PersonaRol.create(formador1, rol1, true)
