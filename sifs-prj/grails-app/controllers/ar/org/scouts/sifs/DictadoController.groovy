@@ -31,30 +31,30 @@ class DictadoController {
     def create() {
 		respond new Dictado(params)
     }
+	
+	@Transactional
+	def save(Dictado dictadoInstance) {
+		if (dictadoInstance == null) {
+			notFound()
+			return
+		}
 
-//    @Transactional
-//    def aprobar(Dictado dictadoInstance) {
-//        if (dictadoInstance == null) {
-//            notFound()
-//            return
-//        }
-//
-//        if (dictadoInstance.hasErrors()) {
-//            respond dictadoInstance.errors, view:'create'
-//            return
-//        }
-//		
-//		
-//        dictadoInstance.save flush:true
-//
-//        request.withFormat {
-//            form multipartForm {
-//                flash.message = message(code: 'default.created.message', args: [message(code: 'dictadoInstance.label', default: 'Dictado'), dictadoInstance.id])
-//                redirect dictadoInstance
-//            }
-//            '*' { respond dictadoInstance, [status: CREATED] }
-//        }
-//    }
+		if (dictadoInstance.hasErrors()) {
+			respond dictadoInstance.errors, view:'create'
+			return
+		}
+		
+		
+		dictadoInstance.save flush:true
+
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.created.message', args: [message(code: 'dictadoInstance.label', default: 'Dictado'), dictadoInstance.id])
+				redirect dictadoInstance
+			}
+			'*' { respond dictadoInstance, [status: CREATED] }
+		}
+	}
 
     def edit(Dictado dictadoInstance) {
         respond dictadoInstance
@@ -165,4 +165,13 @@ class DictadoController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	@Transactional
+	def cerrar(Dictado dictadoInstance) {
+		dictadoInstance.status = DictadoStatus.findByNombre("CERRADO")
+		dictadoInstance.save flush:true
+		
+		flash.message = message(code: 'default.dictado.success.closed', args: [dictadoInstance.nombre])
+		redirect action: "index", controller: "aprobacionCurso"
+	}
 }

@@ -33,9 +33,14 @@ class InscripcionCursoController {
 				inscripcionPlanCursoResultList = criteria.list {
 					sizeEq("correlativas", 0)
 				}
-				inscripcionPlanCursoResultList.each {
-					if(it.curso != null && !it.curso.dictados.isEmpty()) {
-						resultList.add(it.curso)
+				inscripcionPlanCursoResultList.each { planCurso ->
+					if(planCurso.curso != null && !planCurso.curso.dictados.isEmpty()) {
+						//TODO: Ver este each() anidado
+						planCurso.curso.dictados.each {
+							if(persona.id != it.formador.id && !resultList?.contains(planCurso.curso)) {
+								resultList.add(planCurso.curso)
+							}
+						}
 					}	
 				}
 				inscripcionCursoInstanceList = resultList
@@ -50,7 +55,9 @@ class InscripcionCursoController {
 						ge("fecha", new Date().clearTime()+1)
 				}
 				listaDictados?.each() {
-					idsCursosTentativos.add(it.curso.id)
+					if(persona.id != it.formador.id && !idsCursosTentativos?.contains(it.curso.id)) {
+						idsCursosTentativos.add(it.curso.id)
+					}
 					//if(it.correlativas?.size() == 0 || it.correlativas.containsAll(persona.cursosAprobados)) {
 						//ofertaCursos.add(it)
 					//}	
