@@ -39,7 +39,8 @@
 			</ol>
 			<g:form url="[resource:cursoInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
-					<g:link class="edit" action="index"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<g:link class="edit" controller="cursosAprobados" action="anotados"><g:message code="default.button.cursos.anotados.label" default="Cursos Anotados" /></g:link>
+					<g:link class="edit" action="index"><g:message code="default.button.continuar.inscripcion.label" default="Continuar Inscripcion" /></g:link>
 				</fieldset>
 			</g:form>
 		</div>

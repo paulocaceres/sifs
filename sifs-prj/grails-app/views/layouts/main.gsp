@@ -44,6 +44,7 @@
 						<li><a href="${createLink(controller: 'persona')}"><span>Mi Perfil</span></a></li>
 						<li><a href="${createLink(controller: 'inscripcionCurso')}"><span>Inscripcion a Cursos</span></a></li>
 						<li><a href="#"><span>Habilitaciones</span></a></li>
+						<li><a href="${createLink(controller: 'cursosAprobados', action: 'anotados')}"><span>Cursos Anotados</span></a></li>
 						<li><a href="${createLink(controller: 'cursosAprobados')}"><span>Cursos Aprobados</span></a></li>
 					</ul></div>
 				</li>
@@ -93,6 +94,7 @@
 								<li><a href="${createLink(controller: 'persona')}"><span>Mi Perfil</span></a></li>
 								<li><a href="${createLink(controller: 'inscripcionCurso')}"><span>Inscripcion a Cursos</span></a></li>
 								<li><a href="#"><span>Habilitaciones</span></a></li>
+								<li><a href="${createLink(controller: 'cursosAprobados', action: 'anotados')}"><span>Cursos Anotados</span></a></li>
 								<li><a href="${createLink(controller: 'cursosAprobados')}"><span>Cursos Aprobados</span></a></li>
 					    	</ul></div>
 				        </li>

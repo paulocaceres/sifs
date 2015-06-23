@@ -24,4 +24,17 @@ class CursosAprobadosController {
 		}
 	}
 	
+	def anotados() {
+		def persona = Persona.get(springSecurityService.currentUser.id);
+		def dictadoList = []
+		if(persona != null && persona.dictadosAnotados?.size() > 0){
+			persona.dictadosAnotados.each() {
+				dictadoList.add(Dictado.get(it))
+			}
+			return [dictadoInstanceList : dictadoList]
+		} else {
+			render view:'notfound', model:[message: message(code: 'default.cursosAnotados.not.found.message')]
+		}
+	}
+	
 }
