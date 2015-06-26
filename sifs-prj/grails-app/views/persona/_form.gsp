@@ -213,7 +213,7 @@
 		$("#zona").change(function() {
 			$.ajax({
 				url: "jsonZonaDistritoGrupoSupervisor",
-				data: { znParam: this.value },
+				data: { znParam: this.value, dstrtParam: -1, grpParam: -1, prsnParam: -1 },
 				cache: false,
 				success: function(html) {
 					jsonZonaDistritoGrupoSupervisorSuccess(html);
@@ -225,7 +225,7 @@
 		$("#distrito").change(function() {
 			$.ajax({
 				url: "jsonZonaDistritoGrupoSupervisor",
-				data: { znParam: $('#zona').val(), dstrtParam: this.value },
+				data: { znParam: $('#zona').val(), dstrtParam: this.value, grpParam: -1, prsnParam: -1 },
 				cache: false,
 				success: function(html) {
 					jsonZonaDistritoGrupoSupervisorSuccess(html);
@@ -237,7 +237,7 @@
 		$("#grupo").change(function() {
 			$.ajax({
 				url: "jsonZonaDistritoGrupoSupervisor",
-				data: { znParam: $('#zona').val(), dstrtParam: $('#distrito').val(), grpParam: this.value },
+				data: { znParam: $('#zona').val(), dstrtParam: $('#distrito').val(), grpParam: this.value, prsnParam: -1 },
 				cache: false,
 				success: function(html) {
 					jsonZonaDistritoGrupoSupervisorSuccess(html);
