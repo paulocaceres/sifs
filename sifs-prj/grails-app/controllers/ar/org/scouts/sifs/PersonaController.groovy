@@ -169,7 +169,7 @@ class PersonaController {
 		Set dstrts = new HashSet();
 		if (zona != null) {
 			znSlctd = zona.getId();
-			dstrts = zona.getDistritos();
+			dstrts = Distrito.findAllByZona(zona);
 		} else {
 			dstrts = Distrito.list();
 		}
@@ -178,10 +178,10 @@ class PersonaController {
 		Set grps = new HashSet();
 		if (distrito != null) {
 			dstrtSlctd = distrito.getId();
-			grps = distrito.getGrupos();
+			grps = Grupo.findAllByDistrito(distrito);
 		} else {
 			for (dstrt in dstrts) {
-				grps.addAll(dstrt.getGrupos());
+				grps.addAll(Grupo.findAllByDistrito(dstrt));
 			}
 		}
 
@@ -189,10 +189,10 @@ class PersonaController {
 		Set sprvsrs = new HashSet();
 		if (grupo != null) {
 			grpSlctd = grupo.getId();
-			sprvsrs = grupo.getSupervisores();
+			sprvsrs = Persona.findAllByGrupo(grupo);
 		} else {
 			for (grp in grps) {
-				sprvsrs.addAll(grp.getSupervisores());
+				sprvsrs.addAll(Persona.findAllByGrupo(grp));
 			}
 		}
 		

@@ -6,12 +6,12 @@ class Zona {
 	
 	String nombre;
 	
-	Set distritos;
+//	Set distritos;
 	
 
-	static hasMany = [
-		distritos: Distrito
-	]
+//	static hasMany = [
+//		distritos: Distrito
+//	]
 
 
 	static constraints = {

@@ -8,16 +8,16 @@ class Grupo {
 	
 	String numero;
 	
-	Set supervisores;
+//	Set supervisores;
 	
 	
 	static belongTo = [
 		distrito: Distrito
 	]
 			
-	static hasMany = [
-		supervisores: Persona
-	]
+//	static hasMany = [
+//		supervisores: Persona
+//	]
 	
 		
     static constraints = {

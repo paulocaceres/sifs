@@ -6,7 +6,7 @@ class Distrito {
 
 	String nombre;
 	
-	Set grupos;
+//	Set grupos;
 	
 	
 	static belongTo = [
@@ -14,9 +14,9 @@ class Distrito {
 	]
 
 
-	static hasMany = [
-		grupos: Grupo
-	]
+//	static hasMany = [
+//		grupos: Grupo
+//	]
 	
     
 	static constraints = {
