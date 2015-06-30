@@ -37,4 +37,26 @@ class CursosAprobadosController {
 		}
 	}
 	
+	def desinscribir() {
+		def dictadoIds = params.list("dictadoCheckBox")
+		if(dictadoIds?.size() > 0) {
+			def persona = Persona.get(springSecurityService.currentUser.id);
+			dictadoIds.each {
+				persona.removeFromDictadosAnotados(it)
+			}
+			persona.save flush:true
+			
+			def inscripto = Inscripto.findByPersonaId(persona.id)
+			def dictadoList = dictadoIds.collect { Dictado.get(it) }
+			dictadoList.each {
+				it.removeFromInscriptos(inscripto)
+				it.cupo = it.cupo + 1
+				it.save flush:true
+			}
+			return [successMessage : message(code: 'default.cursosAnotados.not.found.message')]
+		} else {
+			return [notSelectedMessage : message(code: 'default.cursosAnotados.not.found.message')]
+		}	
+	}
+	
 }

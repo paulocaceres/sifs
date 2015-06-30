@@ -107,6 +107,7 @@ class InscripcionCursoController {
 						alumno.dictado = it
 						alumno.save flush:true	
 						it.addToInscriptos(alumno)
+						it.cupo = it.cupo - 1 
 						it.save flush:true
 					}
 					persona.save flush:true
