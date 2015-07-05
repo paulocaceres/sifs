@@ -17,23 +17,30 @@ class PersonaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+
+	@Secured(['ROL_SUPERVISOR','ROL_ADMIN'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
     }
 
+	
+	@Secured(['ROL_CURSANTE','ROL_SUPERVISOR','ROL_ADMIN'])
     def show(Persona personaInstance) {
         respond personaInstance
     }
 
-    def create() {
+	
+	@Secured(['ROLE_SUPERVISOR','ROLE_ADMIN'])
+	def create() {
 		params.zona = new Zona()
 		params.direccion = new Direccion()
 		params.direccion.provincia = new Provincia()
         respond new Persona(params)
     }
 
-    @Transactional
+    
+	@Transactional
     def save(Persona personaInstance) {
         if (personaInstance == null) {
             notFound()
@@ -71,11 +78,14 @@ class PersonaController {
         }
     }
 
+	
+	@Secured(['ROL_CURSANTE','ROL_SUPERVISOR','ROL_ADMIN'])
     def edit(Persona personaInstance) {
         respond personaInstance
     }
 
-    @Transactional
+    
+	@Transactional
     def update(Persona personaInstance) {
         if (personaInstance == null) {
             notFound()
@@ -98,7 +108,8 @@ class PersonaController {
         }
     }
 
-    @Transactional
+    
+	@Transactional
     def delete(Persona personaInstance) {
 
         if (personaInstance == null) {
@@ -118,7 +129,8 @@ class PersonaController {
         }
     }
 
-    protected void notFound() {
+    
+	protected void notFound() {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'personaInstance.label', default: 'Persona'), params.id])
@@ -128,12 +140,7 @@ class PersonaController {
         }
     }
 
-	static ArrayList<Persona> superiores() {
-		def superiores = Persona.list()
-        return superiores
-    }
-
-
+	
 	def jsonZonaDistritoGrupoSupervisor() {
 		
 		Zona zona = null;
@@ -210,8 +217,6 @@ class PersonaController {
 			}
 		}
 
-
-		
 		def respuesta = [zonaSelected: znSlctd, distritos: dstrts.sort{it.nombre}, distritoSelected: dstrtSlctd, grupos: grps.sort{it.nombre}, grupoSelected: grpSlctd, supervisores: sprvsrs.sort{it.apellido}, supervisorSelected: sprvsrSlctd];
 		render respuesta as JSON;
 	}
