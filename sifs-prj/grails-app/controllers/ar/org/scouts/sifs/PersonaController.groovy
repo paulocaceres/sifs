@@ -18,14 +18,14 @@ class PersonaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
 
-	@Secured(['ROL_SUPERVISOR','ROL_ADMIN'])
+	@Secured(['ROLE_SUPERVISOR','ROLE_ADMIN'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
     }
 
 	
-	@Secured(['ROL_CURSANTE','ROL_SUPERVISOR','ROL_ADMIN'])
+	@Secured(['ROLE_CURSANTE','ROLE_SUPERVISOR','ROLE_ADMIN'])
     def show(Persona personaInstance) {
         respond personaInstance
     }
@@ -79,7 +79,7 @@ class PersonaController {
     }
 
 	
-	@Secured(['ROL_CURSANTE','ROL_SUPERVISOR','ROL_ADMIN'])
+	@Secured(['ROLE_CURSANTE','ROLE_SUPERVISOR','ROLE_ADMIN'])
     def edit(Persona personaInstance) {
         respond personaInstance
     }
