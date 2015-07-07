@@ -36,7 +36,7 @@
 		<ul class="menu">
 		</sec:ifLoggedIn>
 		    <sec:ifLoggedIn>
-			<li><a href="/sifs-prj/home" class="parent"><span>Home</span></a></li>
+			<li><a href="/sifs-prj/home" class="parent"><span>Inicio</span></a></li>
 			</sec:ifLoggedIn>
 			<sec:ifAllGranted roles="ROLE_CURSANTE">
 				<li><a href="#" class="parent"><span>Cursante</span></a>
@@ -145,7 +145,7 @@
 			
 			<li><a href="#" class="parent"><span>Ayuda</span></a></li>
 			<li><a href="${createLink(controller: 'contactForm')}"><span>Contacto</span></a></li>
-		    <li class="last"><a href="${createLink(controller: 'logout')}"><span>Logout</span></a></li>
+		    <li class="last"><a href="${createLink(controller: 'logout')}"><span>Salir</span></a></li>
 			</sec:ifLoggedIn>
 		<sec:ifLoggedIn>	
 		</ul>
