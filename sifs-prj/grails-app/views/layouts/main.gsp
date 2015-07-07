@@ -143,7 +143,7 @@
 			</sec:ifAllGranted>
 			<sec:ifLoggedIn>
 			
-			<li><a href="#" class="parent"><span>Ayuda</span></a></li>
+<%--			<li><a href="#" class="parent"><span>Ayuda</span></a></li>--%>
 			<li><a href="${createLink(controller: 'contactForm')}"><span>Contacto</span></a></li>
 		    <li class="last"><a href="${createLink(controller: 'logout')}"><span>Salir</span></a></li>
 			</sec:ifLoggedIn>
