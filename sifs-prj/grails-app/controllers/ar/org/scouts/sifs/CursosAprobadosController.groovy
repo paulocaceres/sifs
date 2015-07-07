@@ -1,6 +1,7 @@
 package ar.org.scouts.sifs
 
 import grails.plugins.springsecurity.Secured
+import grails.transaction.Transactional;
 import static org.springframework.http.HttpStatus.*
 import ar.org.scouts.sifs.Persona;
 
@@ -37,25 +38,23 @@ class CursosAprobadosController {
 		}
 	}
 	
+	@Transactional
 	def desinscribir() {
 		def dictadoIds = params.list("dictadoCheckBox")
 		if(dictadoIds?.size() > 0) {
 			def persona = Persona.get(springSecurityService.currentUser.id);
-			dictadoIds.each {
-				persona.removeFromDictadosAnotados(it)
-			}
-			persona.save flush:true
-			
 			def inscripto = Inscripto.findByPersonaId(persona.id)
 			def dictadoList = dictadoIds.collect { Dictado.get(it) }
-			dictadoList.each {
+			dictadoList.each() {
 				it.removeFromInscriptos(inscripto)
 				it.cupo = it.cupo + 1
 				it.save flush:true
+				persona.removeFromDictadosAnotados(it.id)
 			}
-			return [successMessage : message(code: 'default.cursosAnotados.not.found.message')]
+			persona.save flush:true
+			return [dictadoInstanceList : dictadoList,  successMessage : message(code: 'default.cursosAnotados.desanotar.success.message')]
 		} else {
-			return [notSelectedMessage : message(code: 'default.cursosAnotados.not.found.message')]
+		    render view:'anotados', model:[messageNotSelected: message(code: 'default.cursosAnotados.desanotar.notselected.message')]
 		}	
 	}
 	
