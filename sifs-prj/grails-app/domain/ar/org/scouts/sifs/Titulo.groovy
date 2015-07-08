@@ -20,4 +20,33 @@ class Titulo {
 		"$nombre"
 	}
 	
+	static List<Titulo> listarPorPlan(Plan plan)
+	{
+		def planList = [];
+		def tituloList = Titulo.list();
+		
+		tituloList.each {
+			if (it.plan.equals(plan))
+				planList.add(it);
+		}
+		return planList;
+	}
+	
+	public boolean isCompleted(List<Curso> cursosAprobados)
+	{
+		def result = true;
+		
+		for (Curso cursoTit : this.cursos) {
+			
+			for (Curso cursoAp : cursosAprobados) {
+				if (cursoTit.equals(cursoAp))
+					break;
+				
+				result = false;
+			}
+			
+		}
+		
+		return result;
+	}
 }
