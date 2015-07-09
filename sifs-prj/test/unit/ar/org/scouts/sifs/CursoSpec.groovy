@@ -59,39 +59,40 @@ class CursoSpec {
 
 
 
-		assertEquals 	'curso.plan.nombre, ' +
-						'curso.plan.descripcion, ' +
-						'31/12/2014, ' +
-						'curso.zona.nombre, ' +
-						'curso.recurso.nombre, ' +
-						'1, ' +
-						'curso.recurso.direccion.calle, ' +
-						'curso.recurso.direccion.numero, ' +
-						'curso.recurso.direccion.adicional, ' +
-						'curso.recurso.direccion.codigoPostal, ' +
-						'curso.recurso.direccion.ciudad, ' +
-						'curso.recurso.direccion.provincia.descripcion, ' +
-						'curso.contenido.nombre, ' +
-						'curso.contenido.descripcion, ' +
-						'1, ' +
-						'curso.inscripto.zona.nombre, ' +
-						'null, ' +
-						'curso.inscripto.documentoNumero, ' +
-						'curso.inscripto.nombre, ' +
-						'curso.inscripto.apellido, ' +
-						'curso.inscripto.mail, ' +
-						'curso.inscripto.direccion.calle, ' +
-						'curso.inscripto.direccion.numero, ' +
-						'curso.inscripto.direccion.adicional, ' +
-						'curso.inscripto.direccion.codigoPostal, ' +
-						'curso.inscripto.direccion.ciudad, ' +
-						'curso.inscripto.direccion.provincia.descripcion, ' +
-						'false, ' +
-						'curso.nivel.nombre, ' +
-						'curso.nivel.nivelCol, ' +
-						'curso.nombre, ' +
-						'31/12/2014, ' +
-						'10', unCurso.toString()
+//		assertEquals 	'curso.plan.nombre, ' +
+//						'curso.plan.descripcion, ' +
+//						'31/12/2014, ' +
+//						'curso.zona.nombre, ' +
+//						'curso.recurso.nombre, ' +
+//						'1, ' +
+//						'curso.recurso.direccion.calle, ' +
+//						'curso.recurso.direccion.numero, ' +
+//						'curso.recurso.direccion.adicional, ' +
+//						'curso.recurso.direccion.codigoPostal, ' +
+//						'curso.recurso.direccion.ciudad, ' +
+//						'curso.recurso.direccion.provincia.descripcion, ' +
+//						'curso.contenido.nombre, ' +
+//						'curso.contenido.descripcion, ' +
+//						'1, ' +
+//						'curso.inscripto.zona.nombre, ' +
+//						'null, ' +
+//						'curso.inscripto.documentoNumero, ' +
+//						'curso.inscripto.nombre, ' +
+//						'curso.inscripto.apellido, ' +
+//						'curso.inscripto.mail, ' +
+//						'curso.inscripto.direccion.calle, ' +
+//						'curso.inscripto.direccion.numero, ' +
+//						'curso.inscripto.direccion.adicional, ' +
+//						'curso.inscripto.direccion.codigoPostal, ' +
+//						'curso.inscripto.direccion.ciudad, ' +
+//						'curso.inscripto.direccion.provincia.descripcion, ' +
+//						'false, ' +
+//						'curso.nivel.nombre, ' +
+//						'curso.nivel.nivelCol, ' +
+//						'curso.nombre, ' +
+//						'31/12/2014, ' +
+//						'10', unCurso.toString()
+		assertEquals("curso.nombre", unCurso.toString());
 	}
 
 

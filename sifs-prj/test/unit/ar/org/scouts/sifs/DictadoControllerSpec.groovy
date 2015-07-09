@@ -42,7 +42,7 @@ class DictadoControllerSpec extends Specification {
             controller.aprobar(dictado)
 
         then:"The create view is rendered again with the correct model"
-            model.dictadoInstance!= null
+            model.dictadoInstance != null
             view == 'create'
 
         when:"The save action is executed with a valid instance"

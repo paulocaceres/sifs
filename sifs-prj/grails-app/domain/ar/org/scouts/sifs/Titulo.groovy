@@ -20,16 +20,18 @@ class Titulo {
 		"$nombre"
 	}
 	
+	// Funcion estatica para obtener los titulos que pertenecen a este plan
+	// In: el Plan del cual se quieren obtener los titulos
+	// Out: lista de titulos con los que pertenecen al plan (0, 1 ó más)
 	static List<Titulo> listarPorPlan(Plan plan)
 	{
-		def planList = [];
-		def tituloList = Titulo.list();
+		def tituloList = [];
 		
-		tituloList.each {
+		Titulo.list().each {
 			if (it.plan.equals(plan))
-				planList.add(it);
+				tituloList.add(it);
 		}
-		return planList;
+		return tituloList;
 	}
 	
 	public boolean isCompleted(List<Curso> cursosAprobados)
