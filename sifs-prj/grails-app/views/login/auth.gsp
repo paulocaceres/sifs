@@ -106,7 +106,10 @@
 
 			<p id="remember_me_holder">
 				<input type='checkbox' class='chk' name='${rememberMeParameter}' id='remember_me' <g:if test='${hasCookie}'>checked='checked'</g:if>/>
-				<label for='remember_me'><g:message code="springSecurity.login.remember.me.label"/></label>
+				<label for='remember_me'><g:message code="springSecurity.login.remember.me.label"/></label> |
+				<span class="forgot-link">
+					<g:link controller='registro' action='forgotPassword'><g:message code='spring.security.ui.login.forgotPassword'/></g:link>
+				</span>
 			</p>
 
 			<p>
