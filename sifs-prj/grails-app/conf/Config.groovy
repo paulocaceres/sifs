@@ -181,7 +181,7 @@ grails.plugins.springsecurity.authority.className = 'ar.org.scouts.sifs.security
 grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/home'
 
 grails.plugins.springsecurity.ui.encodePassword = false 
-grails.plugins.springsecurity.ui.forgotPassword.emailBody = ''' Hi $user.nombre,<br/> <br/> You (or someone pretending to be you) requested that your password be reset.<br/><br/> If you didn't make this request then ignore the email; no changes have been made.<br/><br/> If you did make the request, then click <a href="$url">here</a> to reset your password. '''
+grails.plugins.springsecurity.ui.forgotPassword.emailBody = ''' Hola $user.nombre,<br/> <br/> Tu (o alguien pretendiendo ser tu) ha solicitado cambiar la contraseña.<br/><br/> Si tu no has hecho esta solicitud, por favor ignora este email; no se han hecho cambios.<br/><br/> Si tu hiciste esta solicitud, entonces presiona <a href="$url">aqui</a> para restablecer tu contraseña. '''
 grails.plugins.springsecurity.ui.forgotPassword.emailFrom = 'do.not.reply@localhost'
-grails.plugins.springsecurity.ui.forgotPassword.emailSubject = 'Password Reset'	
+grails.plugins.springsecurity.ui.forgotPassword.emailSubject = 'Restablecer Contraseña'	
 grails.plugins.springsecurity.ui.forgotPassword.postResetUrl = null // use defaultTargetUrl if not set
