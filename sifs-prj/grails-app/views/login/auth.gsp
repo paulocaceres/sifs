@@ -82,6 +82,22 @@
 		height: 12px;
 	}
 	</style>
+	
+<script language="javascript" type="text/javascript">
+    
+    function Solo_Numerico(variable){
+        Numer=parseInt(variable);
+        if (isNaN(Numer)){
+            return "";
+        }
+        return Numer;
+    }
+    function ValNumero(Control){
+        Control.value=Solo_Numerico(Control.value);
+    }
+</script>
+ 
+
 </head>
 
 <body>
@@ -96,7 +112,7 @@
 		<form action='${postUrl}' method='POST' id='loginForm' class='cssform' autocomplete='off'>
 			<p>
 				<label for='username'><g:message code="springSecurity.login.username.label"/>:</label>
-				<input type='text' class='text_' name='j_username' id='username'/>
+				<input type='text' class='text_' name='j_username' id='username' maxlength='8' onkeyUp="return ValNumero(this);"/>
 			</p>
 
 			<p>
