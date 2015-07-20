@@ -51,7 +51,7 @@
 			<li><a href="#" class="parent"><span>Cursante</span></a>
 				<div>
 					<ul>
-						<li><a href="${createLink(controller: 'persona')}"><span>Mi
+						<li><a href="${createLink(controller: 'persona', action: 'show')}"><span>Mi
 									Perfil</span></a></li>
 						<li><a href="${createLink(controller: 'inscripcionCurso')}"><span>Inscripcion
 									a Cursos</span></a></li>

@@ -15,6 +15,8 @@ import ar.org.scouts.sifs.security.Rol
 @Secured(['IS_AUTHENTICATED_FULLY'])
 class PersonaController {
 
+	def springSecurityService
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
 
@@ -27,6 +29,9 @@ class PersonaController {
 	
 	@Secured(['ROLE_CURSANTE','ROLE_SUPERVISOR','ROLE_ADMIN'])
     def show(Persona personaInstance) {
+		if ((personaInstance == null) || (personaInstance.id == null)) {
+			personaInstance = springSecurityService.currentUser;
+		}
         respond personaInstance
     }
 
