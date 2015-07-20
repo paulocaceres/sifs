@@ -39,7 +39,7 @@ class DistritoController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'distritoInstance.label', default: 'Distrito'), distritoInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'distritoInstance.label', default: 'Distrito'), distritoInstance.nombre])
                 redirect distritoInstance
             }
             '*' { respond distritoInstance, [status: CREATED] }

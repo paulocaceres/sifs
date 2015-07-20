@@ -49,7 +49,7 @@ class DictadoController {
 
 		request.withFormat {
 			form multipartForm {
-				flash.message = message(code: 'default.created.message', args: [message(code: 'dictadoInstance.label', default: 'Dictado'), dictadoInstance.id])
+				flash.message = message(code: 'default.created.message', args: [message(code: 'dictadoInstance.label', default: 'Dictado'), dictadoInstance.nombre])
 				redirect dictadoInstance
 			}
 			'*' { respond dictadoInstance, [status: CREATED] }
@@ -76,7 +76,7 @@ class DictadoController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Dictado.label', default: 'Dictado'), dictadoInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Dictado.label', default: 'Dictado'), dictadoInstance.nombre])
                 redirect dictadoInstance
             }
             '*'{ respond dictadoInstance, [status: OK] }

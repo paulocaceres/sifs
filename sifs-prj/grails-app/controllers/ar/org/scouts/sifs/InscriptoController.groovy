@@ -42,7 +42,7 @@ class InscriptoController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'inscriptoInstance.label', default: 'Inscripto'), inscriptoInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'inscriptoInstance.label', default: 'Inscripto'), inscriptoInstance.personaId])
                 redirect inscriptoInstance
             }
             '*' { respond inscriptoInstance, [status: CREATED] }
