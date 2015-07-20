@@ -41,27 +41,27 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${cursoInstance?.contenidos}">
-				<li class="fieldcontain">
-					<span id="contenidos-label" class="property-label"><g:message code="curso.contenidos.label" default="Contenidos" /></span>
-					
-						<g:each in="${cursoInstance.contenidos}" var="c">
-						<span class="property-value" aria-labelledby="contenidos-label"><g:link controller="contenido" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${cursoInstance?.dictados}">
-				<li class="fieldcontain">
-					<span id="dictados-label" class="property-label"><g:message code="curso.dictados.label" default="Dictados" /></span>
-					
-						<g:each in="${cursoInstance.dictados}" var="d">
-						<span class="property-value" aria-labelledby="dictados-label"><g:link controller="dictado" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
+<%--				<g:if test="${cursoInstance?.contenidos}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="contenidos-label" class="property-label"><g:message code="curso.contenidos.label" default="Contenidos" /></span>--%>
+<%--					--%>
+<%--						<g:each in="${cursoInstance.contenidos}" var="c">--%>
+<%--						<span class="property-value" aria-labelledby="contenidos-label"><g:link controller="contenido" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>--%>
+<%--						</g:each>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
+<%--			--%>
+<%--				<g:if test="${cursoInstance?.dictados}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="dictados-label" class="property-label"><g:message code="curso.dictados.label" default="Dictados" /></span>--%>
+<%--					--%>
+<%--						<g:each in="${cursoInstance.dictados}" var="d">--%>
+<%--						<span class="property-value" aria-labelledby="dictados-label"><g:link controller="dictado" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></span>--%>
+<%--						</g:each>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
 			
 			</ol>
 			<g:form url="[resource:cursoInstance, action:'delete']" method="DELETE">
