@@ -38,19 +38,19 @@
 						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${grupoInstance}" field="nombre" /></span>
 					</li>
 				</g:if>
-
-				<g:if test="${grupoInstance?.supervisores}">
-					<li class="fieldcontain">
-						<span id="supervisores-label" class="property-label">
-							<g:message code="grupo.supervisores.label" default="Supervisores" />
-						</span>
-						<g:each in="${grupoInstance.supervisores}" var="s">
-							<span class="property-value" aria-labelledby="supervisores-label">
-								<g:link controller="persona" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link>
-							</span>
-						</g:each>
-					</li>
-				</g:if>
+<%----%>
+<%--				<g:if test="${grupoInstance?.supervisores}">--%>
+<%--					<li class="fieldcontain">--%>
+<%--						<span id="supervisores-label" class="property-label">--%>
+<%--							<g:message code="grupo.supervisores.label" default="Supervisores" />--%>
+<%--						</span>--%>
+<%--						<g:each in="${grupoInstance.supervisores}" var="s">--%>
+<%--							<span class="property-value" aria-labelledby="supervisores-label">--%>
+<%--								<g:link controller="persona" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link>--%>
+<%--							</span>--%>
+<%--						</g:each>--%>
+<%--					</li>--%>
+<%--				</g:if>--%>
 
 			</ol>
 			<g:form url="[resource:grupoInstance, action:'delete']" method="DELETE">
