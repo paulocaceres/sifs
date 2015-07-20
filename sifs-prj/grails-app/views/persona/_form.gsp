@@ -7,7 +7,12 @@
 		<g:message code="persona.documentoNumero.label" default="Documento Numero" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="documentoNumero" required="" value="${personaInstance?.documentoNumero}" />
+	<sec:ifNotGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
+		<g:textField name="documentoNumero" required="" value="${personaInstance?.documentoNumero}" disabled="true" />
+	</sec:ifNotGranted>
+	<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
+		<g:textField name="documentoNumero" required="" value="${personaInstance?.documentoNumero}" />
+	</sec:ifAnyGranted>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'nombre', 'error')} ">
