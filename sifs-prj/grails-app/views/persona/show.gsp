@@ -1,13 +1,14 @@
 <%@ page import="ar.org.scouts.sifs.Persona" %>
 
-
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
 			<g:set var="entityName" value="${message(code: 'persona.label', default: 'Persona')}" />
-			<title><g:message code="default.show.label" args="[entityName]" /></title>
+			<title>
+<%--				<g:message code="default.show.label" args="[entityName]" />--%>
+				Mi Perfil
+			</title>
 	</head>
 	<body>
 		<a href="#show-persona" class="skip" tabindex="-1">
@@ -20,14 +21,12 @@
 						<g:message code="default.home.label" />
 					</a>
 				</li>
-				<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
+				<sec:ifAnyGranted roles="ROLE_ADMIN">
 					<li>
 						<g:link class="list" action="index">
 							<g:message code="default.list.label" args="[entityName]" />
 						</g:link>
 					</li>
-				</sec:ifAnyGranted>
-				<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
 				<li>
 					<g:link class="create" action="create">
 						<g:message code="default.new.label" args="[entityName]" />
@@ -38,7 +37,8 @@
 		</div>
 		<div id="show-persona" class="content scaffold-show" role="main">
 			<h1>
-				<g:message code="default.show.label" args="[entityName]" />
+<%--				<g:message code="default.show.label" args="[entityName]" />--%>
+					Mi Perfil
 			</h1>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
@@ -95,7 +95,11 @@
 							<g:message code="persona.direccion.label" default="Direccion" />
 						</span>
 						<span class="property-value" aria-labelledby="direccion-label">
-							<g:link controller="direccion" action="show" id="${personaInstance?.direccion?.id}">${personaInstance?.direccion?.encodeAsHTML()}</g:link>
+							${personaInstance?.direccion?.calle} ${personaInstance?.direccion?.numero} ${personaInstance?.direccion?.adicional} 
+							<br/>
+							${personaInstance?.direccion?.codigoPostal} ${personaInstance?.direccion?.ciudad} 
+							<br/>
+							${personaInstance?.direccion?.provincia}
 						</span>
 					</li>
 				</g:if>
@@ -110,13 +114,15 @@
 					</li>
 				</g:if>
 
+<sec:ifAnyGranted roles="ROLE_ADMIN">
+
 				<g:if test="${personaInstance?.zona}">
 					<li class="fieldcontain">
 						<span id="zona-label" class="property-label">
 							<g:message code="persona.zona.label" default="Zona" />
 						</span>
 						<span class="property-value" aria-labelledby="zona-label">
-							<g:link controller="zona" action="show" id="${personaInstance?.zona?.id}">${personaInstance?.zona?.encodeAsHTML()}</g:link>
+							${personaInstance?.zona?.encodeAsHTML()}
 						</span>
 					</li>
 				</g:if>
@@ -127,7 +133,7 @@
 							<g:message code="persona.distrito.label" default="Distrito" />
 						</span>
 						<span class="property-value" aria-labelledby="distrito-label">
-							<g:link controller="distrito" action="show" id="${personaInstance?.distrito?.id}">${personaInstance?.distrito?.encodeAsHTML()}</g:link>
+							${personaInstance?.distrito?.encodeAsHTML()}
 						</span>
 					</li>
 				</g:if>
@@ -138,7 +144,7 @@
 							<g:message code="persona.grupo.label" default="Grupo" />
 						</span>
 						<span class="property-value" aria-labelledby="grupo-label">
-							<g:link controller="grupo" action="show" id="${personaInstance?.grupo?.id}">${personaInstance?.grupo?.encodeAsHTML()}</g:link>
+							${personaInstance?.grupo?.encodeAsHTML()}
 						</span>
 					</li>
 				</g:if>
@@ -149,52 +155,29 @@
 							<g:message code="persona.supervisor.label" default="Supervisor" />
 						</span>
 						<span class="property-value" aria-labelledby="supervisor-label">
-							<g:link controller="persona" action="show" id="${personaInstance?.supervisor?.id}">${personaInstance?.supervisor?.encodeAsHTML()}</g:link>
+							${personaInstance?.supervisor?.encodeAsHTML()}
 						</span>
 					</li>
 				</g:if>
 
-				<g:if test="${personaInstance?.password}">
-					<li class="fieldcontain">
-						<span id="password-label" class="property-label">
-							<g:message code="persona.password.label" default="Password" />
-						</span>
-						<span class="property-value" aria-labelledby="password-label">
-							<g:fieldValue bean="${personaInstance}" field="password" />
-						</span>
-					</li>
-				</g:if>
-
-				<g:if test="${personaInstance?.dictadosAprobados}">
-					<li class="fieldcontain">
-						<span id="dictadosAprobados-label" class="property-label">
-							<g:message code="persona.dictadosAprobados.label" default="Dictados Aprobados" />
-						</span>
-
-						<span class="property-value" aria-labelledby="dictadosAprobados-label">
-							<g:fieldValue bean="${personaInstance}" field="dictadosAprobados" />
-						</span>
-
-					</li>
-				</g:if>
-
-				<g:if test="${personaInstance?.dictadosAnotados}">
-					<li class="fieldcontain">
-						<span id="dictadosAnotados-label" class="property-label">
-							<g:message code="persona.dictadosAnotados.label" default="Dictados Anotados" />
-						</span>
-
-						<span class="property-value" aria-labelledby="dictadosAnotados-label">
-							<g:fieldValue bean="${personaInstance}" field="dictadosAnotados" />
-						</span>
-
-					</li>
-				</g:if>
+<%----%>
+<%--				<g:if test="${personaInstance?.password}">--%>
+<%--					<li class="fieldcontain">--%>
+<%--						<span id="password-label" class="property-label">--%>
+<%--							<g:message code="persona.password.label" default="Password" />--%>
+<%--						</span>--%>
+<%--						<span class="property-value" aria-labelledby="password-label">--%>
+<%--							<g:fieldValue bean="${personaInstance}" field="password" />--%>
+<%--						</span>--%>
+<%--					</li>--%>
+<%--				</g:if>--%>
+<%----%>
+<%----%>
 
 				<g:if test="${personaInstance?.accountExpired}">
 					<li class="fieldcontain">
 						<span id="accountExpired-label" class="property-label">
-							<g:message code="persona.accountExpired.label" default="Account Expired" />
+							<g:message code="persona.accountExpired.label" default="Expirado" />
 						</span>
 
 						<span class="property-value" aria-labelledby="accountExpired-label">
@@ -207,11 +190,11 @@
 				<g:if test="${personaInstance?.accountLocked}">
 					<li class="fieldcontain">
 						<span id="accountLocked-label" class="property-label">
-							<g:message code="persona.accountLocked.label" default="Account Locked" />
+							<g:message code="persona.accountLocked.label" default="Bloqueado" />
 						</span>
 
 						<span class="property-value" aria-labelledby="accountLocked-label">
-							<g:formatBoolean boolean="${personaInstance?.accountLocked}" />
+							<g:formatBoolean boolean="${personaInstance?.accountLocked}"/>
 						</span>
 
 					</li>
@@ -220,7 +203,7 @@
 				<g:if test="${personaInstance?.enabled}">
 					<li class="fieldcontain">
 						<span id="enabled-label" class="property-label">
-							<g:message code="persona.enabled.label" default="Enabled" />
+							<g:message code="persona.enabled.label" default="Activo" />
 						</span>
 
 						<span class="property-value" aria-labelledby="enabled-label">
@@ -233,7 +216,7 @@
 				<g:if test="${personaInstance?.passwordExpired}">
 					<li class="fieldcontain">
 						<span id="passwordExpired-label" class="property-label">
-							<g:message code="persona.passwordExpired.label" default="Password Expired" />
+							<g:message code="persona.passwordExpired.label" default="Password expirado" />
 						</span>
 
 						<span class="property-value" aria-labelledby="passwordExpired-label">
@@ -242,14 +225,15 @@
 
 					</li>
 				</g:if>
+</sec:ifAnyGranted>				
 
 			</ol>
 			<g:form url="[resource:personaInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
 					<g:link class="edit" action="edit" resource="${personaInstance}">
-						<g:message code="default.button.edit.label" default="Edit" />
+						<g:message code="default.button.edit.label" default="Editar" />
 					</g:link>
-					<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
+					<sec:ifAnyGranted roles="ROLE_ADMIN">
 						<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 					</sec:ifAnyGranted>
 				</fieldset>

@@ -27,7 +27,7 @@ class BootStrap {
 				
 		if (!Persona.count()) {
 			
-			def unaProvincia = new Provincia(descripcion: 'persona.direccion.provincia.descripcion')
+			def unaProvincia = new Provincia(descripcion: 'Uruguay')
 			unaProvincia.save(flush: true, insert: true)
 			
 			def unaDireccion = new Direccion(	calle: 'persona.direccion.calle', 
