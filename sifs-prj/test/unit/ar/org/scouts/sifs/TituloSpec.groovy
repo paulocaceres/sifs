@@ -10,11 +10,12 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
 @TestFor(Titulo)
-@Mock([Plan,Titulo])
+@Mock([Plan,Titulo,Curso])
 class TituloSpec extends Specification
 {
 	Plan plan = null;
 	Titulo titulo = null;
+	Curso curso = null;
 	
 	def setup()
 	{
@@ -30,18 +31,29 @@ class TituloSpec extends Specification
 		titulo = new Titulo(nombre: "Titulo1", plan: plan); titulo.save(flush: true, insert: true);
 		titulo = new Titulo(nombre: "Titulo2", plan: plan); titulo.save(flush: true, insert: true);
 		
-		//Otro Plan con 1 titulo
+		//Otro Plan con 1 titulo y 4 cursos
 		plan = new Plan(nombre: "OtroPlan1", descripcion: 'Otro Plan con 1 titulo'); plan.save(flush: true, insert: true);
 		titulo = new Titulo(nombre: "Titulo3", plan: plan); titulo.save(flush: true, insert: true);
+		
+		curso = new Curso(nombre: "Curso1"); curso.save(flush:true, insert:true); titulo.addToCursos(curso);
+		curso = new Curso(nombre: "Curso2"); curso.save(flush:true, insert:true); titulo.addToCursos(curso);
+		curso = new Curso(nombre: "Curso3"); curso.save(flush:true, insert:true); titulo.addToCursos(curso);
+		curso = new Curso(nombre: "Curso4"); curso.save(flush:true, insert:true); titulo.addToCursos(curso);
+		curso = new Curso(nombre: "Curso8"); curso.save(flush:true, insert:true);
 		
 		// inicializo variables
 		plan = null;
 		titulo = null;
+		curso = null;
 		
 		assert Plan.count().equals(4);
 		assert Titulo.count().equals(4);
+		assert Curso.count().equals(5);
 	}
+	
 		
+	// Pruebas de listarPorPlan
+	
 	def "probar que si paso un plan que no existe, devuelva una lista vacia" ()
 	{
 		given: 'un plan inexistente'
@@ -99,5 +111,85 @@ class TituloSpec extends Specification
 		lista.size() == 1;
 		lista.get(0).equals(Titulo.findByNombre("Titulo3"));		
 	}
+	
+	// Pruebas de isCompleted
+	
+	def "probar que si paso una lista null, informe que no esta completo"()
+	{
+		given: 'un titulo y una lista de cursos aprobados = null'
+		titulo = Titulo.findByNombre("Titulo3");
+		List<Curso> lista = null;
+		
+		expect: 'informa que esta no completado'
+		titulo.isCompleted(lista) == false;
+	}
+	
+	def "probar que si paso una lista vacia, informe que no esta completo"()
+	{
+		given: 'un titulo  una lista de cursos aprobados vacia'
+		titulo = Titulo.findByNombre("Titulo3");
+		List<Curso> lista = new ArrayList<Curso>();
+		
+		expect: 'informa que esta no completado'
+		titulo.isCompleted(lista) == false;
+	}
+	
+	def "probar que si paso una lista con < cantidad de cursos, informe que no esta completo"()
+	{
+		given: 'un titulo y una lista con menor cantidad de cursos que el titulo'
+		titulo = Titulo.findByNombre("Titulo3");
+		List<Curso> lista = new ArrayList();
+		lista.add(Curso.findByNombre("Curso1"));
+		lista.add(Curso.findByNombre("Curso2"));
+		lista.add(Curso.findByNombre("Curso3"));
+		
+		expect: 'informa que esta no completo'
+		titulo.isCompleted(lista) == false;
+	}
+	
+	def "probar que si paso una lista con >= cantidad de cursos con algunos de este titulo, informe que no esta completo" ()
+	{
+		given: 'un titulo y una lista con mayor/igual cantidad de cursos que el titulo pero otros cursos'
+		titulo = Titulo.findByNombre("Titulo3");
+		List<Curso> lista = new ArrayList();
+		lista.add(Curso.findByNombre("Curso1"));
+		lista.add(Curso.findByNombre("Curso2"));
+		lista.add(Curso.findByNombre("Curso3"));
+		lista.add(Curso.findByNombre("Curso8"));
+		
+		expect: 'informa que esta no completo'
+		titulo.isCompleted(lista) == false;
+	}
+	def "probar que si paso una lista con >= cantidad de cursos con todos de este titulo, informe que esta completo" ()
+	{
+		given: 'un titulo y una lista con mayor/igual cantidad de cursos que el titulo'
+		titulo = Titulo.findByNombre("Titulo3");
+		List<Curso> lista = new ArrayList();
+		lista.add(Curso.findByNombre("Curso1"));
+		lista.add(Curso.findByNombre("Curso2"));
+		lista.add(Curso.findByNombre("Curso3"));
+		lista.add(Curso.findByNombre("Curso4"));
+		
+		expect: 'informa que esta completo'
+		titulo.isCompleted(lista) == true;
+
+	}
+
+	def "probar que si paso una lista con >= cantidad de cursos con todos de este titulo y otros, informe que esta completo" ()
+	{
+		given: 'un titulo y una lista con mayor/igual cantidad de cursos que el titulo'
+		titulo = Titulo.findByNombre("Titulo3");
+		List<Curso> lista = new ArrayList();
+		lista.add(Curso.findByNombre("Curso8"));
+		lista.add(Curso.findByNombre("Curso1"));
+		lista.add(Curso.findByNombre("Curso2"));
+		lista.add(Curso.findByNombre("Curso3"));
+		lista.add(Curso.findByNombre("Curso4"));
+		
+		expect: 'informa que esta completo'
+		titulo.isCompleted(lista) == true;
+
+	}
+
 }
 
