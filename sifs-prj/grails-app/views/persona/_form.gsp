@@ -33,7 +33,6 @@
 <div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'mail', 'error')} ">
 	<label for="mail">
 		<g:message code="persona.mail.label" default="Mail" />
-
 	</label>
 	<g:field type="email" name="mail" value="${personaInstance?.mail}" />
 </div>
@@ -116,7 +115,7 @@
 		<label for="supervisor">
 			<g:message code="persona.supervisor.label" default="Supervisor" />
 		</label>
-		<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.Persona.list(sort:'nombre')}" noSelection="['-1': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" />
+		<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.security.PersonaRol.findAllByRol(ar.org.scouts.sifs.security.Rol.findByAuthority('ROLE_SUPERVISOR')).persona}" noSelection="['-1': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" />
 	</div>
 
 </sec:ifAnyGranted>
@@ -215,7 +214,7 @@
 
 		$("#zona").change(function() {
 			$.ajax({
-				url: "jsonZonaDistritoGrupoSupervisor",
+				url: "${g.createLink(controller:'persona',action:'jsonZonaDistritoGrupoSupervisor')}",
 				data: { znParam: this.value, dstrtParam: -1, grpParam: -1, prsnParam: -1 },
 				cache: false,
 				success: function(html) {
@@ -227,7 +226,7 @@
 
 		$("#distrito").change(function() {
 			$.ajax({
-				url: "jsonZonaDistritoGrupoSupervisor",
+				url: "${g.createLink(controller:'persona',action:'jsonZonaDistritoGrupoSupervisor')}",
 				data: { znParam: $('#zona').val(), dstrtParam: this.value, grpParam: -1, prsnParam: -1 },
 				cache: false,
 				success: function(html) {
@@ -239,7 +238,7 @@
 
 		$("#grupo").change(function() {
 			$.ajax({
-				url: "jsonZonaDistritoGrupoSupervisor",
+				url: "${g.createLink(controller:'persona',action:'jsonZonaDistritoGrupoSupervisor')}",
 				data: { znParam: $('#zona').val(), dstrtParam: $('#distrito').val(), grpParam: this.value, prsnParam: -1 },
 				cache: false,
 				success: function(html) {
@@ -251,7 +250,7 @@
 
 		$("#supervisor").change(function() {
 			$.ajax({
-				url: "jsonZonaDistritoGrupoSupervisor",
+				url: "${g.createLink(controller:'persona',action:'jsonZonaDistritoGrupoSupervisor')}",
 				data: { znParam: $('#zona').val(), dstrtParam: $('#distrito').val(), grpParam: $('#grupo').val(), prsnParam: this.value },
 				cache: false,
 				success: function(html) {
