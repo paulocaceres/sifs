@@ -25,6 +25,15 @@ class BootStrap {
 		def rolCursante = null // ROL CURSANTE
 		def cursante_formador = null;
 		def cursante_formador2 = null;
+		
+		Zona zona01 = new Zona(nombre: 'Zona01', numero:1);
+		zona01.save();
+		
+		Zona zona02 = new Zona(nombre: 'Zona02', numero:2);
+		zona02.save();
+		
+		Zona zona03 = new Zona(nombre: 'Zona03', numero:3);
+		zona03.save();
 				
 		if (!Persona.count()) {
 			
@@ -67,6 +76,7 @@ class BootStrap {
 											nombre: 			'Pablo',
 											apellido: 			'Perez',
 											mail: 				'dal2409@gmail.com',
+											zona: 				zona01,
 											//direccion: 			unaDireccion,
 											enabled: 			true,
 											accountExpired: 	false,
@@ -79,6 +89,7 @@ class BootStrap {
 				nombre: 			'Damian',
 				apellido: 			'Yahoo',
 				mail: 				'damian2409@yahoo.com.ar',
+				zona: 				zona02,
 				//direccion: 			unaDireccion,
 				enabled: 			true,
 				accountExpired: 	false,
@@ -124,37 +135,13 @@ class BootStrap {
 				accountLocked: 		false,
 				passwordExpired: 	false)
 			.save(flush: true, insert: true)
-//			
-//			def dnf = new Persona(	documentoNumero: 	'44444444',
-//				password: 			password,
-//				nombre: 			'Jose',
-//				apellido: 			'Maria',
-//				mail: 				'XXX@gmail.com',
-//				direccion: 			unaDireccion,
-//				enabled: 			true,
-//				accountExpired: 	false,
-//				accountLocked: 		false,
-//				passwordExpired: 	false)
-//			.save(flush: true, insert: true)
-//			
-//			def dnra = new Persona(	documentoNumero: 	'55555555',
-//				password: 			password,
-//				nombre: 			'Pedro',
-//				apellido: 			'Ortiz',
-//				mail: 				'XXX@gmail.com',
-//				direccion: 			unaDireccion,
-//				enabled: 			true,
-//				accountExpired: 	false,
-//				accountLocked: 		false,
-//				passwordExpired: 	false)
-//			.save(flush: true, insert: true)
+
 			
 			def rolAdmin  = new Rol(authority: 'ROLE_ADMIN').save(flush: true, insert: true)
 			rolCursante = new Rol(authority: 'ROLE_CURSANTE').save(flush: true, insert: true)
 			def rolSupervisor = new Rol(authority: 'ROLE_SUPERVISOR').save(flush: true, insert: true)
 			def rolFormador = new Rol(authority: 'ROLE_FORMADOR').save(flush: true, insert: true)
-//			def rolDNF = new Rol(authority: 'ROLE_DNF').save(flush: true, insert: true)
-//			def rolDNRA = new Rol(authority: 'ROLE_DNRA').save(flush: true, insert: true)
+
 				
 			/*create the first user role map*/
 			PersonaRol.create(admin, rolAdmin, true)
@@ -166,9 +153,6 @@ class BootStrap {
 			PersonaRol.create(cursante_formador, rolFormador, true)
 			PersonaRol.create(cursante_formador2, rolCursante, true)
 			PersonaRol.create(cursante_formador2, rolFormador, true)
-//			PersonaRol.create(dnf, rolDNF, true)
-//			PersonaRol.create(dnra, rolDNRA, true)
-			
 
 		}
 		
@@ -178,12 +162,7 @@ class BootStrap {
 		cursante_formador2.zona = zona03;
 		cursante_formador2.save();
 		
-		cursante1.zona = zona03;
-		cursante1.save();
-		
-		cursant2.zona = zona01;
-		cursante2.save();
-		
+
 		new Provincia(descripcion: 'Buenos Aires').save()
 		new Provincia(descripcion: 'Catamarca').save()
 		new Provincia(descripcion: 'Chaco').save()
@@ -210,14 +189,7 @@ class BootStrap {
 		
 
 		
-		Zona zona01 = new Zona(nombre: 'Zona01', numero:1);
-		zona01.save();
-		
-		Zona zona02 = new Zona(nombre: 'Zona02', numero:2);
-		zona02.save();
-		
-		Zona zona03 = new Zona(nombre: 'Zona03', numero:3);
-		zona03.save();
+	
 		
 
 		Distrito distrito01 = new Distrito(nombre: 'Distrito01', zona: zona01);
