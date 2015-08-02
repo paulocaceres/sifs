@@ -74,7 +74,7 @@ class Persona {
 
 
 	String toString() {
-		"$nombre $apellido"
+		"$apellido, $nombre"
 	}
 
 
