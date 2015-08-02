@@ -69,9 +69,9 @@
 				<div>
 					<ul>
 						<%--						<li><a href="#"><span>Aprobacion Perfiles</span></a></li>--%>
-						<%--						<li><a href="#"><span>Bloquear Usuarios</span></a></li>--%>
-						<li><a href="${createLink(controller: 'cursosAprobados')}"><span>Mis
-									Cursos Aprobados</span></a></li>
+												<li><a href="#"><span>Mis Supervisados</span></a></li>
+<%--						<li><a href="${createLink(controller: 'cursosAprobados')}"><span>Mis--%>
+<%--									Cursos Aprobados</span></a></li>--%>
 					</ul>
 				</div></li>
 		</sec:ifAllGranted>
@@ -112,8 +112,7 @@
 						<li><a href="#" class="parent"><span>Cursante</span></a>
 							<div>
 								<ul>
-									<li><a href="${createLink(controller: 'persona')}"><span>Mi
-												Perfil</span></a></li>
+									
 									<li><a
 										href="${createLink(controller: 'inscripcionCurso')}"><span>Inscripcion
 												a Cursos</span></a></li>
@@ -156,6 +155,7 @@
 						<li><a href="#" class="parent"><span>ABM</span></a>
 							<div>
 								<ul>
+								    <li><a href="${createLink(controller: 'persona')}"><span>Perfil de Usuarios</span></a></li>
 									<li><a href="${createLink(controller: 'titulo')}"><span>Titulos</span></a></li>
 									<li><a href="${createLink(controller: 'curso')}"><span>Cursos</span></a></li>
 <%--									<li><a href="${createLink(controller: 'dictado')}"><span>Dictados</span></a></li>--%>
