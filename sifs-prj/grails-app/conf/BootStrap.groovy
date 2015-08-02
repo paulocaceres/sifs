@@ -38,6 +38,15 @@ class BootStrap {
 												provincia: unaProvincia)
 			unaDireccion.save(flush: true, insert: true)
 						
+			Zona unaZona = new Zona(nombre: 'unaZona', numero:'99');
+			unaZona.save();
+	
+			Distrito unDistrito = new Distrito(nombre: 'unDistrito', zona: unaZona);
+			unDistrito.save();
+			
+			Grupo unGrupo = new Grupo(nombre: 'unGrupo', numero:'99', distrito: unDistrito)
+			unGrupo.save();
+		
 			def admin = new Persona(	documentoNumero: 	'25227067',
 										password: 			password,
 										nombre: 			'Esteban',
@@ -82,6 +91,9 @@ class BootStrap {
 				apellido: 			'Vera',
 				mail: 				'XXX@gmail.com',
 				direccion: 			unaDireccion,
+				zona:				unaZona,
+				distrito:			unDistrito,
+				grupo:				unGrupo,
 				enabled: 			true,
 				accountExpired: 	false,
 				accountLocked: 		false,
