@@ -85,7 +85,7 @@
 	<label for="direccion">
 		<g:message code="persona.direccion.provincia.label" default="Provincia" />
 	</label>
-	<g:select optionKey="id" from="${ar.org.scouts.sifs.Provincia.list()}" name="direccion.provincia.id" value="${personaInstance?.direccion?.provincia?.id}" style="width: 208px" />
+	<g:select optionKey="id" from="${ar.org.scouts.sifs.Provincia.list()}" noSelection="['null': '']" name="direccion.provincia.id" value="${personaInstance?.direccion?.provincia?.id}" style="width: 208px" />
 </div>
 
 <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
