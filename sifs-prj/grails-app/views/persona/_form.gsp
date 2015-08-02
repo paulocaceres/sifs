@@ -94,33 +94,33 @@
 		<label for="zona">
 			<g:message code="persona.zona.label" default="Zona" />
 		</label>
-		<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list(sort:'nombre')}" noSelection="['-1': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" style="width: 208px" />
+		<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list(sort:'nombre')}" noSelection="['null': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" style="width: 208px" />
 	</div>
 	
 	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'distrito', 'error')} ">
 		<label for="distrito">
 			<g:message code="persona.distrito.label" default="Distrito" />
 		</label>
-		<g:select id="distrito" optionKey="id" from="${ar.org.scouts.sifs.Distrito.list(sort:'nombre')}" noSelection="['-1': '']" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" style="width: 208px" />
+		<g:select id="distrito" optionKey="id" from="${ar.org.scouts.sifs.Distrito.list(sort:'nombre')}" noSelection="['null': '']" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" style="width: 208px" />
 	</div>
 	
 	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'grupo', 'error')} ">
 		<label for="grupo">
 			<g:message code="persona.grupo.label" default="Grupo" />
 		</label>
-		<g:select id="grupo" optionKey="id" from="${ar.org.scouts.sifs.Grupo.list(sort:'nombre')}" noSelection="['-1': '']" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one" style="width: 208px" />
+		<g:select id="grupo" optionKey="id" from="${ar.org.scouts.sifs.Grupo.list(sort:'nombre')}" noSelection="['null': '']" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one" style="width: 208px" />
 	</div>
 	
 	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'supervisor', 'error')} ">
 		<label for="supervisor">
 			<g:message code="persona.supervisor.label" default="Supervisor" />
 		</label>
-		<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.security.PersonaRol.findAllByRol(ar.org.scouts.sifs.security.Rol.findByAuthority('ROLE_SUPERVISOR')).persona}" noSelection="['-1': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" />
+		<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.security.PersonaRol.findAllByRol(ar.org.scouts.sifs.security.Rol.findByAuthority('ROLE_SUPERVISOR')).persona}" noSelection="['null': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" />
 	</div>
 
 </sec:ifAnyGranted>
 
-<sec:ifAnyGranted roles="ROLE_ADMIN">
+<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
 
 	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'password', 'error')} required">
 		<label for="password">
@@ -168,8 +168,17 @@
 	<g:each var="rol" in="${ar.org.scouts.sifs.security.Rol.list()}" >
 		<div class="fieldcontain ">
 			<label for="rolRaw[${rol.id}]"></label>
-			<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}"/>
-			${rol.authority}
+			<sec:ifAnyGranted roles="ROLE_SUPERVISOR">
+				<g:if test="${(rol.authority == 'ROLE_CURSANTE') || (rol.authority == 'ROLE_FORMADOR') || (rol.authority == 'ROLE_SUPERVISOR')}">
+					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}" />${rol.authority}
+				</g:if>
+				<g:else>
+					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}" disabled="true"  />${rol.authority}
+				</g:else>
+			</sec:ifAnyGranted>
+			<sec:ifAnyGranted roles="ROLE_ADMIN">
+				<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}"  disabled="true"  />${rol.authority}
+			</sec:ifAnyGranted>
 		</div>
 	</g:each>
 	
@@ -184,7 +193,7 @@
 		$('#zona').val(html.zonaSelected);
 		
 		options = ' ';
-		options += '<option value="-1"> </option>';
+		options += '<option value="null"> </option>';
 		for (var i = 0; i < html.distritos.length; i++) {
 			options += '<option value="' + html.distritos[i].id + '">' + html.distritos[i].nombre + '</option>';
 		}                    
@@ -192,7 +201,7 @@
 		$('#distrito').val(html.distritoSelected);
 		
 		options = ' ';
-		options += '<option value="-1"> </option>';
+		options += '<option value="null"> </option>';
 		for (var i = 0; i < html.grupos.length; i++) {
 			options += '<option value="' + html.grupos[i].id + '">' + html.grupos[i].nombre + '</option>';
 		}                    
@@ -200,7 +209,7 @@
 		$('#grupo').val(html.grupoSelected);
 		
 		options = ' ';
-		options += '<option value="-1"> </option>';
+		options += '<option value="null"> </option>';
 		for (var i = 0; i < html.supervisores.length; i++) {
 			options += '<option value="' + html.supervisores[i].id + '">' + html.supervisores[i].apellido + ', ' + html.supervisores[i].nombre + '</option>';
 		}                    
@@ -215,7 +224,7 @@
 		$("#zona").change(function() {
 			$.ajax({
 				url: "${g.createLink(controller:'persona',action:'jsonZonaDistritoGrupoSupervisor')}",
-				data: { znParam: this.value, dstrtParam: -1, grpParam: -1, prsnParam: -1 },
+				data: { znParam: this.value, dstrtParam: null, grpParam: null, prsnParam: null },
 				cache: false,
 				success: function(html) {
 					jsonZonaDistritoGrupoSupervisorSuccess(html);
@@ -227,7 +236,7 @@
 		$("#distrito").change(function() {
 			$.ajax({
 				url: "${g.createLink(controller:'persona',action:'jsonZonaDistritoGrupoSupervisor')}",
-				data: { znParam: $('#zona').val(), dstrtParam: this.value, grpParam: -1, prsnParam: -1 },
+				data: { znParam: $('#zona').val(), dstrtParam: this.value, grpParam: null, prsnParam: null },
 				cache: false,
 				success: function(html) {
 					jsonZonaDistritoGrupoSupervisorSuccess(html);
@@ -239,7 +248,7 @@
 		$("#grupo").change(function() {
 			$.ajax({
 				url: "${g.createLink(controller:'persona',action:'jsonZonaDistritoGrupoSupervisor')}",
-				data: { znParam: $('#zona').val(), dstrtParam: $('#distrito').val(), grpParam: this.value, prsnParam: -1 },
+				data: { znParam: $('#zona').val(), dstrtParam: $('#distrito').val(), grpParam: this.value, prsnParam: null },
 				cache: false,
 				success: function(html) {
 					jsonZonaDistritoGrupoSupervisorSuccess(html);
