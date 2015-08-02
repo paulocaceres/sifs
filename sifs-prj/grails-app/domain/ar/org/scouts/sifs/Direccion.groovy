@@ -13,6 +13,12 @@ class Direccion {
 
 
 	static constraints = {
+		calle(nullable: true);
+		numero(nullable: true);
+		adicional(nullable: true);
+		codigoPostal(nullable: true);
+		ciudad(nullable: true);
+		provincia(nullable: true);
 	}
 
 
