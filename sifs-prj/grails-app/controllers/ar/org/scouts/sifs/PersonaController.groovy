@@ -86,6 +86,9 @@ class PersonaController {
 	
 	@Secured(['ROLE_CURSANTE','ROLE_SUPERVISOR','ROLE_ADMIN'])
     def edit(Persona personaInstance) {
+		if ((personaInstance == null) || (personaInstance.id == null)) {
+			personaInstance = springSecurityService.currentUser;
+		}
         respond personaInstance
     }
 
