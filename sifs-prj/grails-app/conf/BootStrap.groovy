@@ -103,7 +103,7 @@ class BootStrap {
 				apellido: 			'Vera',
 				mail: 				'XXX@gmail.com',
 				direccion: 			unaDireccion,
-				zona:				unaZona,
+				zona:				zona03,
 				distrito:			unDistrito,
 				grupo:				unGrupo,
 				enabled: 			true,
