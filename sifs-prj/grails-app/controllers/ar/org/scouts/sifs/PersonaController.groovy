@@ -16,14 +16,19 @@ import ar.org.scouts.sifs.security.Rol
 class PersonaController {
 
 	def springSecurityService
-
+	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
 
 	@Secured(['ROLE_SUPERVISOR','ROLE_ADMIN'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
+		if (springSecurityService.currentUser.hasRol(Rol.findByAuthority('ROLE_SUPERVISOR'))) {
+			def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
+			respond lista, model:[personaInstanceCount: lista.size]
+		} else {
+			respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
+		}
     }
 
 	
@@ -180,7 +185,7 @@ class PersonaController {
 		}
 		
 
-		Long znSlctd = -1;
+		Long znSlctd = null;
 		Set dstrts = new HashSet();
 		if (zona != null) {
 			znSlctd = zona.getId();
@@ -189,7 +194,7 @@ class PersonaController {
 			dstrts = Distrito.list();
 		}
 	
-		Long dstrtSlctd = -1;
+		Long dstrtSlctd = null;
 		Set grps = new HashSet();
 		if (distrito != null) {
 			dstrtSlctd = distrito.getId();
@@ -200,7 +205,7 @@ class PersonaController {
 			}
 		}
 
-		Long grpSlctd = -1;
+		Long grpSlctd = null;
 		Set sprvsrs = new HashSet();
 		if (grupo != null) {
 			grpSlctd = grupo.getId();
@@ -211,7 +216,7 @@ class PersonaController {
 			}
 		}
 		
-		Long sprvsrSlctd = -1;
+		Long sprvsrSlctd = null;
 		if (supervisor != null) {
 			sprvsrSlctd = supervisor.getId();
 			if (grpSlctd == null) {
