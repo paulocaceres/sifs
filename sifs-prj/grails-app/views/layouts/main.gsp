@@ -155,7 +155,7 @@
 						<li><a href="#" class="parent"><span>ABM</span></a>
 							<div>
 								<ul>
-								    <li><a href="${createLink(controller: 'persona')}"><span>Perfil de Usuarios</span></a></li>
+								    <li><a href="${createLink(controller: 'persona')}"><span>Perfiles de Usuarios</span></a></li>
 									<li><a href="${createLink(controller: 'titulo')}"><span>Titulos</span></a></li>
 									<li><a href="${createLink(controller: 'curso')}"><span>Cursos</span></a></li>
 <%--									<li><a href="${createLink(controller: 'dictado')}"><span>Dictados</span></a></li>--%>
