@@ -158,7 +158,7 @@
 								<ul>
 									<li><a href="${createLink(controller: 'titulo')}"><span>Titulos</span></a></li>
 									<li><a href="${createLink(controller: 'curso')}"><span>Cursos</span></a></li>
-									<li><a href="${createLink(controller: 'dictado')}"><span>Dictados</span></a></li>
+<%--									<li><a href="${createLink(controller: 'dictado')}"><span>Dictados</span></a></li>--%>
 									<li><a href="${createLink(controller: 'plan')}"><span>Planes</span></a></li>
 <%--								<li><a href="#"><span>Contenidos</span></a></li>--%>
 									<li><a href="${createLink(controller: 'zona')}"><span>Zonas</span></a></li>
