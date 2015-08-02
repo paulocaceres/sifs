@@ -159,7 +159,7 @@
 
 	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'password', 'error')} required">
 		<label for="password">
-			<g:message code="persona.password.label" default="Password" />
+			<g:message code="persona.password.label" default="Contraseña" />
 			<span class="required-indicator">*</span>
 		</label>
 		<g:textField name="password" required="" value="${personaInstance?.password}" />
@@ -167,31 +167,31 @@
 	
 	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'enabled', 'error')} ">
 		<label for="enabled">
-			<g:message code="persona.enabled.label" default="Enabled" />
+			<g:message code="persona.enabled.label" default="Cuenta Activa" />
 		</label>
-		<g:checkBox name="enabled" value="${personaInstance?.enabled}" />
+		<g:checkBox name="enabled" value="${personaInstance?.enabled}" checked="TRUE" disabled="true" />
 	</div>
 	
 	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'accountLocked', 'error')} ">
 		<label for="accountLocked">
-			<g:message code="persona.accountLocked.label" default="Account Locked" />
+			<g:message code="persona.accountLocked.label" default="Cuenta Bloqueada" />
 		</label>
 		<g:checkBox name="accountLocked" value="${personaInstance?.accountLocked}" />
 	</div>
 	
-	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'accountExpired', 'error')} ">
-		<label for="accountExpired">
-			<g:message code="persona.accountExpired.label" default="Account Expired" />
-		</label>
-		<g:checkBox name="accountExpired" value="${personaInstance?.accountExpired}" />
-	</div>
+<%--	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'accountExpired', 'error')} ">--%>
+<%--		<label for="accountExpired">--%>
+<%--			<g:message code="persona.accountExpired.label" default="Cuenta " />--%>
+<%--		</label>--%>
+<%--		<g:checkBox name="accountExpired" value="${personaInstance?.accountExpired}" />--%>
+<%--	</div>--%>
 	
-	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'passwordExpired', 'error')} ">
-		<label for="passwordExpired">
-			<g:message code="persona.passwordExpired.label" default="Password Expired" />
-		</label>
-		<g:checkBox name="passwordExpired" value="${personaInstance?.passwordExpired}" />
-	</div>
+<%--	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'passwordExpired', 'error')} ">--%>
+<%--		<label for="passwordExpired">--%>
+<%--			<g:message code="persona.passwordExpired.label" default="Password E" />--%>
+<%--		</label>--%>
+<%--		<g:checkBox name="passwordExpired" value="${personaInstance?.passwordExpired}" />--%>
+<%--	</div>--%>
 	
 	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'roles', 'error')} ">
 		<label for="roles">
@@ -199,25 +199,36 @@
 			<span class="required-indicator">*</span>
 		</label>
 	</div>
-	
+
 	<g:each var="rol" in="${ar.org.scouts.sifs.security.Rol.list()}" >
 		<div class="fieldcontain ">
 			<label for="rolRaw[${rol.id}]"></label>
 			<sec:ifAnyGranted roles="ROLE_SUPERVISOR">
-				<g:if test="${(rol.authority == 'ROLE_CURSANTE') || (rol.authority == 'ROLE_FORMADOR') || (rol.authority == 'ROLE_SUPERVISOR')}">
-					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}" />${rol.authority}
+<%--				<g:if test="${(rol.authority == 'ROLE_CURSANTE') || (rol.authority == 'ROLE_FORMADOR') || (rol.authority == 'ROLE_SUPERVISOR')}">--%>
+				<g:if test="${(rol.authority == 'ROLE_FORMADOR') || (rol.authority == 'ROLE_SUPERVISOR')}">
+					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}" />${rol.name}
+				</g:if>
+				<g:if test="${(rol.authority == 'ROLE_CURSANTE')}">
+					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="TRUE" disabled="true"/>${rol.name}
 				</g:if>
 				<g:else>
-					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}" disabled="true"  />${rol.authority}
+					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}" disabled="true"  />${rol.name}
 				</g:else>
 			</sec:ifAnyGranted>
 			<sec:ifAnyGranted roles="ROLE_ADMIN">
-				<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}"  disabled="true"  />${rol.authority}
+			<g:if test="${(rol.authority == 'ROLE_ADMIN') || (rol.authority == 'ROLE_FORMADOR') || (rol.authority == 'ROLE_SUPERVISOR')}">
+				<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}"  disabled="false"  />${rol.name}
+			</g:if>
+			<g:if test="${(rol.authority == 'ROLE_CURSANTE')}">
+					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="TRUE" disabled="TRUE"/>${rol.name}
+			</g:if>
 			</sec:ifAnyGranted>
+
 		</div>
 	</g:each>
 	
 </sec:ifAnyGranted>
+	
 
 <script>
 
