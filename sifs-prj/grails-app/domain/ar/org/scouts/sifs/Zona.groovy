@@ -1,5 +1,7 @@
 package ar.org.scouts.sifs
 
+import ar.org.scouts.sifs.security.Rol
+
 class Zona {
 
 	String numero;
@@ -28,7 +30,12 @@ class Zona {
 	static List<Zona> listarPorPersona(personaId) {
 		def resultList = []
 		def persona = Persona.get(personaId);
-		resultList.add(persona.getZona());
+		def rol = Rol.findByAuthority("ROLE_ADMIN");
+		if(persona.getZona() != null) {
+			resultList.add(persona.getZona());
+		} else if(persona.hasRol(rol)) {
+			resultList.addAll(Zona.list());
+		}
 		return resultList
 	}
 
