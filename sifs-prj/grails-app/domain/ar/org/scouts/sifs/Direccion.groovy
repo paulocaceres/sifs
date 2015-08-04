@@ -14,9 +14,9 @@ class Direccion {
 
 	static constraints = {
 		calle(nullable: true);
-		numero(nullable: true);
+		numero(nullable: true,matches:"^[0-9]\\d*", maxSize:4);
 		adicional(nullable: true);
-		codigoPostal(nullable: true);
+		codigoPostal(nullable: true,matches:"^[0-9]\\d*", maxSize:4);
 		ciudad(nullable: true);
 		provincia(nullable: true);
 	}

@@ -59,7 +59,7 @@ class Persona {
 
 	
 	static constraints = {
-		documentoNumero(blank: false, unique: true);
+		documentoNumero(blank: false,matches:"^[0-9]\\d*",unique: true);
 		mail(email: true)
 		telefono(nullable: true);
 		direccion(nullable: true);

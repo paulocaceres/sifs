@@ -8,10 +8,10 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<sec:ifNotGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
-		<g:textField name="documentoNumero" required="" value="${personaInstance?.documentoNumero}" disabled="true" />
+		<g:textField name="documentoNumero" maxlength="8" required="" value="${personaInstance?.documentoNumero}" disabled="true" />
 	</sec:ifNotGranted>
 	<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
-		<g:textField name="documentoNumero" required="" value="${personaInstance?.documentoNumero}" />
+		<g:textField name="documentoNumero" maxlength="8" required="" value="${personaInstance?.documentoNumero}" />
 	</sec:ifAnyGranted>
 </div>
 
