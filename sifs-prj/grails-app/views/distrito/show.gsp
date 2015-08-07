@@ -32,16 +32,16 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${distritoInstance?.grupos}">
-				<li class="fieldcontain">
-					<span id="grupos-label" class="property-label"><g:message code="distrito.grupos.label" default="Grupos" /></span>
-					
-						<g:each in="${distritoInstance.grupos}" var="g">
-						<span class="property-value" aria-labelledby="grupos-label"><g:link controller="grupo" action="show" id="${g.id}">${g?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
+<%--				<g:if test="${distritoInstance?.grupos}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="grupos-label" class="property-label"><g:message code="distrito.grupos.label" default="Grupos" /></span>--%>
+<%--					--%>
+<%--						<g:each in="${distritoInstance.grupos}" var="g">--%>
+<%--						<span class="property-value" aria-labelledby="grupos-label"><g:link controller="grupo" action="show" id="${g.id}">${g?.encodeAsHTML()}</g:link></span>--%>
+<%--						</g:each>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
 			
 
 			

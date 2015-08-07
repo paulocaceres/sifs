@@ -9,14 +9,15 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: distritoInstance, field: 'grupos', 'error')} ">
-	<label for="grupos">
-		<g:message code="distrito.grupos.label" default="Grupos" />
-		
-	</label>
-	<g:select name="grupos" from="${ar.org.scouts.sifs.Grupo.list()}" multiple="multiple" optionKey="id" size="5" value="${distritoInstance?.grupos*.id}" class="many-to-many"/>
 
-</div>
+<%--<div class="fieldcontain ${hasErrors(bean: distritoInstance, field: 'grupos', 'error')} ">--%>
+<%--	<label for="grupos">--%>
+<%--		<g:message code="distrito.grupos.label" default="Grupos" />--%>
+<%--		--%>
+<%--	</label>--%>
+<%--	<g:select name="grupos" from="${ar.org.scouts.sifs.Grupo.list()}" multiple="multiple" optionKey="id" size="5" value="${distritoInstance?.grupos*.id}" class="many-to-many"/>--%>
+<%----%>
+<%--</div>--%>
 
 
 
