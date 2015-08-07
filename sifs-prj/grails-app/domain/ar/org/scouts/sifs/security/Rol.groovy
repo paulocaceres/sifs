@@ -11,5 +11,6 @@ class Rol {
 
 	static constraints = {
 		authority blank: false, unique: true
+		name nullable:true
 	}
 }

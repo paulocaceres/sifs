@@ -40,11 +40,11 @@ class BootStrap {
 			def unaProvincia = new Provincia(descripcion: 'Uruguay')
 			unaProvincia.save(flush: true, insert: true)
 			
-			def unaDireccion = new Direccion(	calle: 'persona.direccion.calle', 
-												numero: 'persona.direccion.numero', 
+			def unaDireccion = new Direccion(	calle: 'San Martin', 
+												numero: 6666, 
 												adicional: 'persona.direccion.adicional', 
-												codigoPostal: 'persona.direccion.codigoPostal', 
-												ciudad: 'persona.direccion.ciudad', 
+												codigoPostal: 9999, 
+												ciudad: 'C.A.B.A', 
 												provincia: unaProvincia)
 			unaDireccion.save(flush: true, insert: true)
 						
