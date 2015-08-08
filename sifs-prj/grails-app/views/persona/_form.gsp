@@ -169,7 +169,7 @@
 		<label for="enabled">
 			<g:message code="persona.enabled.label" default="Cuenta Activa" />
 		</label>
-		<g:checkBox name="enabled" value="${personaInstance?.enabled}" checked="TRUE" disabled="true" />
+		<g:checkBox name="enabled" value="${personaInstance?.enabled}" checked="true" readonly="true" />
 	</div>
 	
 	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'accountLocked', 'error')} ">
@@ -209,18 +209,18 @@
 					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}" />${rol.name}
 				</g:if>
 				<g:if test="${(rol.authority == 'ROLE_CURSANTE')}">
-					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="TRUE" disabled="true"/>${rol.name}
+					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="true" readonly="true"/>${rol.name}
 				</g:if>
 				<g:else>
-					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}" disabled="true"  />${rol.name}
+					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}" readonly="true"  />${rol.name}
 				</g:else>
 			</sec:ifAnyGranted>
 			<sec:ifAnyGranted roles="ROLE_ADMIN">
 			<g:if test="${(rol.authority == 'ROLE_ADMIN') || (rol.authority == 'ROLE_FORMADOR') || (rol.authority == 'ROLE_SUPERVISOR')}">
-				<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}"  disabled="false"  />${rol.name}
+				<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}"  readonly="false"  />${rol.name}
 			</g:if>
 			<g:if test="${(rol.authority == 'ROLE_CURSANTE')}">
-					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="TRUE" disabled="TRUE"/>${rol.name}
+					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="true" readonly="true"/>${rol.name}
 			</g:if>
 			</sec:ifAnyGranted>
 
