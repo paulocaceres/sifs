@@ -20,6 +20,7 @@ class Distrito {
 	
     
 	static constraints = {
+		nombre(blank: false);
     }
 
 	
