@@ -185,3 +185,7 @@ grails.plugins.springsecurity.ui.forgotPassword.emailBody = ''' Hola $user.nombr
 grails.plugins.springsecurity.ui.forgotPassword.emailFrom = 'do.not.reply@localhost'
 grails.plugins.springsecurity.ui.forgotPassword.emailSubject = 'Restablecer Contraseña'	
 grails.plugins.springsecurity.ui.forgotPassword.postResetUrl = null // use defaultTargetUrl if not set
+grails.plugins.springsecurity.ui.personaCreada.emailBody = ''' Hola $user.nombre,<br/> <br/> Tu cuenta de acceso a SIFS(Sistema Integral de Fomacion Scout) se ha creado con exito!<br/><br/> Tu contraseña para ingresar al sistema es $scoutpwd, recomendamos la cambies desde Olvide mi contraseña<br/><br/> Presiona <a href="$url">aqui</a> para ingresar al sistema.'''
+grails.plugins.springsecurity.ui.personaCreada.emailFrom = 'do.not.reply@localhost'
+grails.plugins.springsecurity.ui.personaCreada.emailSubject = 'Cuenta de acceso-SIFS'	
+

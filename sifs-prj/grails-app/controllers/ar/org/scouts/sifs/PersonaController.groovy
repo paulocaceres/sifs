@@ -6,8 +6,10 @@ import static org.springframework.http.HttpStatus.*
 import grails.converters.JSON
 import grails.plugins.springsecurity.Secured
 import grails.transaction.Transactional
+import groovy.text.SimpleTemplateEngine
 import ar.org.scouts.sifs.security.PersonaRol
 import ar.org.scouts.sifs.security.Rol
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 
 
@@ -16,6 +18,8 @@ import ar.org.scouts.sifs.security.Rol
 class PersonaController {
 
 	def springSecurityService
+	def mailService
+	def messageSource
 	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -82,7 +86,6 @@ class PersonaController {
 			}
 		}
 		
-		//personaInstance.enabled = true;
 		personaInstance.save flush:true
 		
 		//Si no tiene roles, le asigno el rol cursante por default
@@ -90,6 +93,20 @@ class PersonaController {
 		if(!personaInstance.hasRol(cursante)) {
 			PersonaRol.create(personaInstance, cursante, true)
 			personaInstance.save flush:true
+		}
+		
+		String password = params.password	
+		String urlSifs = generateLink()
+		def conf = SpringSecurityUtils.securityConfig
+		def body = conf.ui.personaCreada.emailBody
+		if (body.contains('$')) {
+			body = evaluate(body, [user: personaInstance, scoutpwd: password ,url: urlSifs])
+		}
+		mailService.sendMail {
+			to personaInstance.mail
+			from conf.ui.personaCreada.emailFrom
+			subject conf.ui.personaCreada.emailSubject
+			html body.toString()
 		}
 		
         request.withFormat {
@@ -247,5 +264,14 @@ class PersonaController {
 		render respuesta as JSON;
 	}
 		
+	
+	protected String generateLink() {
+		createLink(base: "$request.scheme://$request.serverName:$request.serverPort$request.contextPath",
+				controller: 'login')
+	}
+	
+	protected String evaluate(s, binding) {
+		new SimpleTemplateEngine().createTemplate(s).make(binding)
+	}
 	
 }
