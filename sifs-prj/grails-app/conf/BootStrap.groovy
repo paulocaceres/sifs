@@ -137,10 +137,10 @@ class BootStrap {
 			.save(flush: true, insert: true)
 
 			
-			def rolAdmin  = new Rol(authority: 'ROLE_ADMIN').save(flush: true, insert: true)
-			rolCursante = new Rol(authority: 'ROLE_CURSANTE').save(flush: true, insert: true)
-			def rolSupervisor = new Rol(authority: 'ROLE_SUPERVISOR').save(flush: true, insert: true)
-			def rolFormador = new Rol(authority: 'ROLE_FORMADOR').save(flush: true, insert: true)
+			def rolAdmin  = new Rol(authority: 'ROLE_ADMIN', name: 'Admin').save(flush: true, insert: true)
+			rolCursante = new Rol(authority: 'ROLE_CURSANTE', name: 'Cursante').save(flush: true, insert: true)
+			def rolSupervisor = new Rol(authority: 'ROLE_SUPERVISOR', name: 'Supervisor').save(flush: true, insert: true)
+			def rolFormador = new Rol(authority: 'ROLE_FORMADOR', name: 'Formador').save(flush: true, insert: true)
 
 				
 			/*create the first user role map*/

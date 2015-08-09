@@ -156,15 +156,16 @@
 </sec:ifAnyGranted>
 
 <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
-
-	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'password', 'error')} required">
-		<label for="password">
-			<g:message code="persona.password.label" default="Contraseña" />
-			<span class="required-indicator">*</span>
-		</label>
-		<g:textField name="password" required="" value="${personaInstance?.password}" />
-	</div>
 	
+	<g:if test="${(isEditing != 'true')}">
+		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'password', 'error')} required">
+			<label for="password">
+				<g:message code="persona.password.label" default="Contraseña" />
+				<span class="required-indicator">*</span>
+			</label>
+			<g:textField name="password" required="" value="${personaInstance?.password}" />
+		</div>
+	</g:if>
 	<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'enabled', 'error')} ">
 		<label for="enabled">
 			<g:message code="persona.enabled.label" default="Cuenta Activa" />
@@ -201,30 +202,21 @@
 	</div>
 
 	<g:each var="rol" in="${ar.org.scouts.sifs.security.Rol.list()}" >
-		<div class="fieldcontain ">
-			<label for="rolRaw[${rol.id}]"></label>
-			<sec:ifAnyGranted roles="ROLE_SUPERVISOR">
-<%--				<g:if test="${(rol.authority == 'ROLE_CURSANTE') || (rol.authority == 'ROLE_FORMADOR') || (rol.authority == 'ROLE_SUPERVISOR')}">--%>
-				<g:if test="${(rol.authority == 'ROLE_FORMADOR') || (rol.authority == 'ROLE_SUPERVISOR')}">
-					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}" />${rol.name}
+		<g:if test="${(rol.authority != 'ROLE_CURSANTE')}">
+			<div class="fieldcontain ">
+				<label for="rolRaw[${rol.id}]"></label>
+				<sec:ifAnyGranted roles="ROLE_SUPERVISOR">
+					<g:if test="${(rol.authority == 'ROLE_FORMADOR') || (rol.authority == 'ROLE_SUPERVISOR')}">
+						<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}" />${rol.name}
+					</g:if>
+				</sec:ifAnyGranted>
+				<sec:ifAnyGranted roles="ROLE_ADMIN">
+				<g:if test="${(rol.authority == 'ROLE_ADMIN') || (rol.authority == 'ROLE_FORMADOR') || (rol.authority == 'ROLE_SUPERVISOR')}">
+					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}"  readonly="false"  />${rol.name}
 				</g:if>
-				<g:if test="${(rol.authority == 'ROLE_CURSANTE')}">
-					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="true" readonly="true"/>${rol.name}
-				</g:if>
-				<g:else>
-					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}" readonly="true"  />${rol.name}
-				</g:else>
-			</sec:ifAnyGranted>
-			<sec:ifAnyGranted roles="ROLE_ADMIN">
-			<g:if test="${(rol.authority == 'ROLE_ADMIN') || (rol.authority == 'ROLE_FORMADOR') || (rol.authority == 'ROLE_SUPERVISOR')}">
-				<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}"  readonly="false"  />${rol.name}
-			</g:if>
-			<g:if test="${(rol.authority == 'ROLE_CURSANTE')}">
-					<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="true" readonly="true"/>${rol.name}
-			</g:if>
-			</sec:ifAnyGranted>
-
-		</div>
+				</sec:ifAnyGranted>
+			</div>
+		</g:if>
 	</g:each>
 	
 </sec:ifAnyGranted>

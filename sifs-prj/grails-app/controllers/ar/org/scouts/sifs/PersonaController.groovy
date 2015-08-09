@@ -67,7 +67,7 @@ class PersonaController {
             respond personaInstance.errors, view:'create'
             return
         }
-
+		
         personaInstance.save flush:true
 
 		personaInstance.authorities.clear()
@@ -80,10 +80,17 @@ class PersonaController {
 				def rol = Rol.get(rolId as long)
 				PersonaRol.create(personaInstance, rol, true)
 			}
-	
 		}
-
+		
+		//personaInstance.enabled = true;
 		personaInstance.save flush:true
+		
+		//Si no tiene roles, le asigno el rol cursante por default
+		def cursante = Rol.findByAuthority('ROLE_CURSANTE')
+		if(!personaInstance.hasRol(cursante)) {
+			PersonaRol.create(personaInstance, cursante, true)
+			personaInstance.save flush:true
+		}
 		
         request.withFormat {
             form multipartForm {
