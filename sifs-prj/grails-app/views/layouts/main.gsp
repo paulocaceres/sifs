@@ -69,7 +69,7 @@
 				<div>
 					<ul>
 						<%--						<li><a href="#"><span>Aprobacion Perfiles</span></a></li>--%>
-												<li><a href="#"><span>Mis Supervisados</span></a></li>
+												<li><a href="${createLink(controller: 'persona', action: 'indexSupervised')}"><span>Mis Supervisados</span></a></li>
 <%--						<li><a href="${createLink(controller: 'cursosAprobados')}"><span>Mis--%>
 <%--									Cursos Aprobados</span></a></li>--%>
 					</ul>
