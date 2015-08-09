@@ -68,7 +68,7 @@ class ZonaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'zona.label', default: 'Zona'), zonaInstance.numero])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'zonaInstance.label', default: 'Zona'), zonaInstance.numero])
                 redirect zonaInstance
             }
             '*'{ respond zonaInstance, [status: OK] }
@@ -87,7 +87,7 @@ class ZonaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'zona.label', default: 'Zona'), zonaInstance.numero])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'zonaInstance.label', default: 'Zona'), zonaInstance.numero])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
