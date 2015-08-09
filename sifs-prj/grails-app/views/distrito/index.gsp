@@ -26,6 +26,8 @@
 					
 						<g:sortableColumn property="nombre" title="${message(code: 'distrito.nombre.label', default: 'Nombre')}" />
 					
+						<th><g:message code="distrito.zona.label" default="Zona" /></th>
+					
 					</tr>
 				</thead>
 				<tbody>
@@ -33,6 +35,8 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${distritoInstance.id}">${fieldValue(bean: distritoInstance, field: "nombre")}</g:link></td>
+					
+						<td>${fieldValue(bean: distritoInstance, field: "zona")}</td>
 					
 					</tr>
 				</g:each>
