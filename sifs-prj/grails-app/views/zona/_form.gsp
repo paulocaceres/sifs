@@ -16,9 +16,3 @@
 	<g:textField name="nombre" value="${zonaInstance?.nombre}" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: zonaInstance, field: 'distritos', 'error')} ">
-	<label for="distritos">
-		<g:message code="zona.distritos.label" default="Distritos" />
-	</label>
-	<g:select name="distritos" from="${ar.org.scouts.sifs.Distrito.list()}" multiple="multiple" optionKey="id" size="5" value="${zonaInstance?.distritos*.id}" class="many-to-many" />
-</div>

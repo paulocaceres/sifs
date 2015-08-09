@@ -1,6 +1,5 @@
+
 <%@ page import="ar.org.scouts.sifs.Zona" %>
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -27,27 +26,18 @@
 				<g:if test="${zonaInstance?.numero}">
 					<li class="fieldcontain">
 						<span id="numero-label" class="property-label"><g:message code="zona.numero.label" default="Numero" /></span>
+
 						<span class="property-value" aria-labelledby="numero-label"><g:fieldValue bean="${zonaInstance}" field="numero" /></span>
+
 					</li>
 				</g:if>
 
 				<g:if test="${zonaInstance?.nombre}">
 					<li class="fieldcontain">
 						<span id="nombre-label" class="property-label"><g:message code="zona.nombre.label" default="Nombre" /></span>
-						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${zonaInstance}" field="nombre" /></span>
-					</li>
-				</g:if>
 
-				<g:if test="${zonaInstance?.distritos}">
-					<li class="fieldcontain">
-						<span id="distritos-label" class="property-label">
-							<g:message code="zona.distritos.label" default="Distritos" />
-						</span>
-						<g:each in="${zonaInstance.distritos}" var="d">
-							<span class="property-value" aria-labelledby="distritos-label">
-								<g:link controller="distrito" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link>
-							</span>
-						</g:each>
+						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${zonaInstance}" field="nombre" /></span>
+
 					</li>
 				</g:if>
 
