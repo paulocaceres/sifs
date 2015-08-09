@@ -4,14 +4,14 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'grupo.label', default: 'Grupo')}" />
-		<title><g:message code="default.list.label" args="[entityName]" /></title>
+			<g:set var="entityName" value="${message(code: 'grupo.label', default: 'Grupo')}" />
+			<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-grupo" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+		<a href="#list-grupo" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;" /></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label" /></a></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -21,26 +21,29 @@
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<table>
-			<thead>
+				<thead>
 					<tr>
-					
+
 						<g:sortableColumn property="numero" title="${message(code: 'grupo.numero.label', default: 'Número')}" />
-					
-					
+
 						<g:sortableColumn property="nombre" title="${message(code: 'grupo.nombre.label', default: 'Nombre')}" />
-					
+
+						<th><g:message code="grupo.distrito.label" default="Distrito" /></th>
+
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${grupoInstanceList}" status="i" var="grupoInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-						
-						<td>${fieldValue(bean: grupoInstance, field: "numero")}</td>
-					
-						<td><g:link action="show" id="${grupoInstance.id}">${fieldValue(bean: grupoInstance, field: "nombre")}</g:link></td>
-					
-					</tr>
-				</g:each>
+					<g:each in="${grupoInstanceList}" status="i" var="grupoInstance">
+						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+
+							<td>${fieldValue(bean: grupoInstance, field: "numero")}</td>
+
+							<td><g:link action="show" id="${grupoInstance.id}">${fieldValue(bean: grupoInstance, field: "nombre")}</g:link></td>
+
+							<td>${fieldValue(bean: grupoInstance, field: "distrito")}</td>
+
+						</tr>
+					</g:each>
 				</tbody>
 			</table>
 			<div class="pagination">

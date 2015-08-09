@@ -1,7 +1,5 @@
+
 <%@ page import="ar.org.scouts.sifs.Grupo" %>
-
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -25,6 +23,20 @@
 			</g:if>
 			<ol class="property-list grupo">
 
+				<g:if test="${grupoInstance?.distrito?.zona}">
+					<li class="fieldcontain">
+						<span id="zona-label" class="property-label"><g:message code="distrito.zona.label" default="Zona" /></span>
+						<span class="property-value" aria-labelledby="zona-label"><g:link controller="zona" action="show" id="${grupoInstance?.distrito?.zona?.id}">${grupoInstance?.distrito?.zona?.encodeAsHTML()}</g:link></span>
+					</li>
+				</g:if>
+
+				<g:if test="${grupoInstance?.distrito}">
+					<li class="fieldcontain">
+						<span id="distrito-label" class="property-label"><g:message code="grupo.distrito.label" default="Distrito" /></span>
+						<span class="property-value" aria-labelledby="distrito-label"><g:link controller="distrito" action="show" id="${grupoInstance?.distrito?.id}">${grupoInstance?.distrito?.encodeAsHTML()}</g:link></span>
+					</li>
+				</g:if>
+
 				<g:if test="${grupoInstance?.numero}">
 					<li class="fieldcontain">
 						<span id="numero-label" class="property-label"><g:message code="grupo.numero.label" default="Número" /></span>
@@ -38,19 +50,6 @@
 						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${grupoInstance}" field="nombre" /></span>
 					</li>
 				</g:if>
-<%----%>
-<%--				<g:if test="${grupoInstance?.supervisores}">--%>
-<%--					<li class="fieldcontain">--%>
-<%--						<span id="supervisores-label" class="property-label">--%>
-<%--							<g:message code="grupo.supervisores.label" default="Supervisores" />--%>
-<%--						</span>--%>
-<%--						<g:each in="${grupoInstance.supervisores}" var="s">--%>
-<%--							<span class="property-value" aria-labelledby="supervisores-label">--%>
-<%--								<g:link controller="persona" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link>--%>
-<%--							</span>--%>
-<%--						</g:each>--%>
-<%--					</li>--%>
-<%--				</g:if>--%>
 
 			</ol>
 			<g:form url="[resource:grupoInstance, action:'delete']" method="DELETE">
