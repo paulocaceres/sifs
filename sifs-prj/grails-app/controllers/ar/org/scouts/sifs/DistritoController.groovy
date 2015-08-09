@@ -3,102 +3,106 @@ package ar.org.scouts.sifs
 
 
 import static org.springframework.http.HttpStatus.*
+import grails.plugins.springsecurity.Secured
 import grails.transaction.Transactional
 
+
+
 @Transactional(readOnly = true)
+@Secured(['IS_AUTHENTICATED_FULLY'])
 class DistritoController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Distrito.list(params), model:[distritoInstanceCount: Distrito.count()]
-    }
+	def index(Integer max) {
+		params.max = Math.min(max ?: 10, 100)
+		respond Distrito.list(params), model:[distritoInstanceCount: Distrito.count()]
+	}
 
-    def show(Distrito distritoInstance) {
-        respond distritoInstance
-    }
+	def show(Distrito distritoInstance) {
+		respond distritoInstance
+	}
 
-    def create() {
-        respond new Distrito(params)
-    }
+	def create() {
+		respond new Distrito(params)
+	}
 
-    @Transactional
-    def save(Distrito distritoInstance) {
-        if (distritoInstance == null) {
-            notFound()
-            return
-        }
+	@Transactional
+	def save(Distrito distritoInstance) {
+		if (distritoInstance == null) {
+			notFound()
+			return
+		}
 
-        if (distritoInstance.hasErrors()) {
-            respond distritoInstance.errors, view:'create'
-            return
-        }
+		if (distritoInstance.hasErrors()) {
+			respond distritoInstance.errors, view:'create'
+			return
+		}
 
-        distritoInstance.save flush:true
+		distritoInstance.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'distritoInstance.label', default: 'Distrito'), distritoInstance.nombre])
-                redirect distritoInstance
-            }
-            '*' { respond distritoInstance, [status: CREATED] }
-        }
-    }
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.created.message', args: [message(code: 'distritoInstance.label', default: 'Distrito'), distritoInstance.nombre])
+				redirect distritoInstance
+			}
+			'*' { respond distritoInstance, [status: CREATED] }
+		}
+	}
 
-    def edit(Distrito distritoInstance) {
-        respond distritoInstance
-    }
+	def edit(Distrito distritoInstance) {
+		respond distritoInstance
+	}
 
-    @Transactional
-    def update(Distrito distritoInstance) {
-        if (distritoInstance == null) {
-            notFound()
-            return
-        }
+	@Transactional
+	def update(Distrito distritoInstance) {
+		if (distritoInstance == null) {
+			notFound()
+			return
+		}
 
-        if (distritoInstance.hasErrors()) {
-            respond distritoInstance.errors, view:'edit'
-            return
-        }
+		if (distritoInstance.hasErrors()) {
+			respond distritoInstance.errors, view:'edit'
+			return
+		}
 
-        distritoInstance.save flush:true
+		distritoInstance.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'distrito.label', default: 'Distrito'), distritoInstance.nombre])
-                redirect distritoInstance
-            }
-            '*'{ respond distritoInstance, [status: OK] }
-        }
-    }
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.updated.message', args: [message(code: 'distritoInstance.label', default: 'Distrito'), distritoInstance.nombre])
+				redirect distritoInstance
+			}
+			'*'{ respond distritoInstance, [status: OK] }
+		}
+	}
 
-    @Transactional
-    def delete(Distrito distritoInstance) {
+	@Transactional
+	def delete(Distrito distritoInstance) {
 
-        if (distritoInstance == null) {
-            notFound()
-            return
-        }
+		if (distritoInstance == null) {
+			notFound()
+			return
+		}
 
-        distritoInstance.delete flush:true
+		distritoInstance.delete flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'distrito.label', default: 'Distrito'), distritoInstance.nombre])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
-    }
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.deleted.message', args: [message(code: 'distritoInstance.label', default: 'Distrito'), distritoInstance.nombre])
+				redirect action:"index", method:"GET"
+			}
+			'*'{ render status: NO_CONTENT }
+		}
+	}
 
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'distritoInstance.label', default: 'Distrito'), params.nombre])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
-        }
-    }
+	protected void notFound() {
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.not.found.message', args: [message(code: 'distritoInstance.label', default: 'Distrito'), params.nombre])
+				redirect action: "index", method: "GET"
+			}
+			'*'{ render status: NOT_FOUND }
+		}
+	}
 }
