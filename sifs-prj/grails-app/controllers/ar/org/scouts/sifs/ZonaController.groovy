@@ -83,7 +83,18 @@ class ZonaController {
             return
         }
 
-        zonaInstance.delete flush:true
+		if (Persona.findByZona(zonaInstance) != null) {
+			flash.message = message(code: 'default.not.deleted.message.referential.integrity.persona', args: [message(code: 'zonaInstance.label', default: 'Zona'), zonaInstance.nombre])
+			redirect action:"show", id:zonaInstance.id, method:"GET"
+			return
+		}
+		if (Distrito.findByZona(zonaInstance) != null) {
+			flash.message = message(code: 'default.not.deleted.message.referential.integrity.distrito', args: [message(code: 'zonaInstance.label', default: 'Zona'), zonaInstance.nombre])
+			redirect action:"show", id:zonaInstance.id, method:"GET"
+			return
+		}
+
+		zonaInstance.delete flush:true
 
         request.withFormat {
             form multipartForm {

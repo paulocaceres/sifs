@@ -85,6 +85,17 @@ class DistritoController {
 			return
 		}
 
+		if (Persona.findByDistrito(distritoInstance) != null) {
+			flash.message = message(code: 'default.not.deleted.message.referential.integrity.persona', args: [message(code: 'distritoInstance.label', default: 'Distrito'), distritoInstance.nombre])
+			redirect action:"show", id:distritoInstance.id, method:"GET"
+			return
+		}
+		if (Grupo.findByDistrito(distritoInstance) != null) {
+			flash.message = message(code: 'default.not.deleted.message.referential.integrity.grupo', args: [message(code: 'distritoInstance.label', default: 'Distrito'), distritoInstance.nombre])
+			redirect action:"show", id:distritoInstance.id, method:"GET"
+			return
+		}
+
 		distritoInstance.delete flush:true
 
 		request.withFormat {

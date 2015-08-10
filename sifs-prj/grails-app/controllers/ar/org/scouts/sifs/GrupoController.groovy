@@ -86,6 +86,12 @@ class GrupoController {
 			return
 		}
 
+		if (Persona.findByGrupo(grupoInstance) != null) {
+			flash.message = message(code: 'default.not.deleted.message.referential.integrity.persona', args: [message(code: 'grupoInstance.label', default: 'Grupo'), grupoInstance.nombre])
+			redirect action:"show", id:grupoInstance.id, method:"GET"
+			return
+		}
+
 		grupoInstance.delete flush:true
 
 		request.withFormat {
