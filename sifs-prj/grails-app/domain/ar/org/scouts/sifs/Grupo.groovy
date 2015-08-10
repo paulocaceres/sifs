@@ -2,7 +2,7 @@ package ar.org.scouts.sifs
 
 class Grupo {
 	
-	Distrito distrito;
+//	Distrito distrito;
 
 	String nombre;
 	
@@ -11,10 +11,10 @@ class Grupo {
 //	Set supervisores;
 	
 	
-	static belongTo = [
+	static belongsTo = [
 		distrito: Distrito
 	]
-			
+	
 //	static hasMany = [
 //		supervisores: Persona
 //	]

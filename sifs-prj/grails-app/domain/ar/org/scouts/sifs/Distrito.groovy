@@ -2,14 +2,14 @@ package ar.org.scouts.sifs
 
 class Distrito {
 	
-	Zona zona;
+//	Zona zona;
 
 	String nombre;
 	
 //	Set grupos;
 	
 	
-	static belongTo = [
+	static belongsTo = [
 		zona: Zona
 	]
 
