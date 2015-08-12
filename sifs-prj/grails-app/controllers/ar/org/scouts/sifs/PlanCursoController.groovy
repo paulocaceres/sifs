@@ -33,7 +33,11 @@ class PlanCursoController {
             return
         }
 
-        if (planCursoInstance.hasErrors()) {
+		if (PlanCurso.findByPlanAndCurso(planCursoInstance.plan, planCursoInstance.curso) != null) {
+			planCursoInstance.errors.rejectValue("curso", "default.no2t.unique.message", [message(code: 'curso.label', default: 'Curso'), message(code: 'plan.label', default: 'Plan'), planCursoInstance.curso] as Object[], "PlanCurso existente")
+		}
+
+		if (planCursoInstance.hasErrors()) {
             respond planCursoInstance.errors, view:'create'
             return
         }
