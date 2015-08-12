@@ -63,10 +63,10 @@ class Persona {
 		mail(email: true)
 		telefono(nullable: true);
 		direccion(nullable: true);
-//		zona(nullable: true);
-//		distrito(nullable: true);
-//		grupo(nullable: true);
-//		supervisor(nullable: true);
+		zona(nullable: true);
+		distrito(nullable: true);
+		grupo(nullable: true);
+		supervisor(nullable: true);
 		password(blank: false);
 		dictadosAprobados(nullable: true);
 		dictadosAnotados(nullable: true);
