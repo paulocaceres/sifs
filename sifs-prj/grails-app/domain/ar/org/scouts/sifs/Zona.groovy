@@ -23,7 +23,7 @@ class Zona {
 
 	
 	String toString() {
-		return "$nombre";
+		return "$numero - $nombre";
 	}
 
 	
