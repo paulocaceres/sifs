@@ -7,7 +7,7 @@
 		<g:message code="distrito.zona.label" default="Zona" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.list(sort:'nombre')}" optionKey="id" noSelection="['null': '']" required="" value="${distritoInstance?.zona?.id}" class="many-to-one" />
+	<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.list(sort:'numero')}" optionKey="id" noSelection="['null': '']" required="" value="${distritoInstance?.zona?.id}" class="many-to-one" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'distrito', 'error')} required">
