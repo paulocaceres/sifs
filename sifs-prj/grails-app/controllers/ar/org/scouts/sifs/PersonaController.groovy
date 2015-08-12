@@ -97,16 +97,23 @@ class PersonaController {
 		
 		String password = params.password	
 		String urlSifs = generateLink()
+		def emailMessage = null
 		def conf = SpringSecurityUtils.securityConfig
 		def body = conf.ui.personaCreada.emailBody
 		if (body.contains('$')) {
 			body = evaluate(body, [user: personaInstance, scoutpwd: password ,url: urlSifs])
 		}
-		mailService.sendMail {
-			to personaInstance.mail
-			from conf.ui.personaCreada.emailFrom
-			subject conf.ui.personaCreada.emailSubject
-			html body.toString()
+		
+		try {
+			mailService.sendMail {
+				to personaInstance.mail
+				from conf.ui.personaCreada.emailFrom
+				subject conf.ui.personaCreada.emailSubject
+				html body.toString()
+			}
+		} catch(Exception e) {
+			log.error("Error durante el envio de email de notificacion de creacion de persona", e)
+			emailMessage = "Hubo un error al intentar enviar el email de notificacion."
 		}
 		
         request.withFormat {
@@ -114,7 +121,7 @@ class PersonaController {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'personaInstance.label', default: 'Persona'), personaInstance.documentoNumero])
                 redirect personaInstance
             }
-            '*' { respond personaInstance, [status: CREATED] }
+            '*' { respond personaInstance, [status: CREATED, emailMessage: emailMessage] }
         }
     }
 
@@ -243,6 +250,14 @@ class PersonaController {
 		} else {
 			for (grp in grps) {
 				sprvsrs.addAll(Persona.findAllByGrupo(grp));
+			}
+		}
+		
+		// Saco los que no tiene rol Supervisor de la lista
+		def rolSupervisor = Rol.findByAuthority('ROLE_SUPERVISOR')
+		sprvsrs.each {
+			if(!it.hasRol(rolSupervisor)) {
+				sprvsrs.remove(it)
 			}
 		}
 		

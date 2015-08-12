@@ -18,6 +18,10 @@
            titleCode='spring.security.ui.forgotPassword.header' center='true'>
 
 	<g:form action='forgotPassword' name="forgotPasswordForm" autocomplete='off'>
+	
+	<g:if test="${flash.message}">
+				<div class="message" role="status">${flash.message}</div>
+	</g:if>
 
 	<g:if test='${emailSent}'>
 	<br/>

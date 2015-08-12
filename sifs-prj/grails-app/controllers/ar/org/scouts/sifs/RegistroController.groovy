@@ -44,14 +44,22 @@ class RegistroController {
 				if (body.contains('$')) {
 					body = evaluate(body, [user: user, url: url])
 				}
-				mailService.sendMail {
-					to user.mail
-					from conf.ui.forgotPassword.emailFrom
-					subject conf.ui.forgotPassword.emailSubject
-					html body.toString()
-				}
-		
-				[emailSent: true]
+				
+				try {
+					mailService.sendMail {
+						to user.mail
+						from conf.ui.forgotPassword.emailFrom
+						subject conf.ui.forgotPassword.emailSubject
+						html body.toString()
+					}
+					
+					[emailSent: true]
+					
+				} catch (Exception e) {
+					log.error("Error durante el envio de email de notificacion de cambio de contrasena", e)
+					flash.message = "Hubo un error al intentar enviar el email para el cambio de clave"
+				}		
+				
 			}
 	
 	def resetPassword(ResetPasswordCommand command) {
