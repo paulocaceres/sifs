@@ -13,12 +13,12 @@ class Direccion {
 
 
 	static constraints = {
-		calle(nullable: true);
-		numero(nullable: true,matches:"^[0-9]\\d*");
+		calle(nullable: false);
+		numero(nullable: false,matches:"^[0-9]\\d*");
 		adicional(nullable: true);
-		codigoPostal(nullable: true,matches:"^[0-9]\\d*", maxSize:4);
-		ciudad(nullable: true);
-		provincia(nullable: true);
+		codigoPostal(nullable: false,matches:"^[0-9]\\d*", maxSize:4);
+		ciudad(nullable: false);
+		provincia(nullable: false);
 	}
 
 
@@ -26,5 +26,7 @@ class Direccion {
 		"$calle, $numero, $adicional, $codigoPostal, $ciudad, $provincia"
 	}
 
-
+static mapping = {
+	calle defaultvalue: "'rio'"
+}
 }
