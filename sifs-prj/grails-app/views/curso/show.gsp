@@ -23,15 +23,6 @@
 			</g:if>
 			<ol class="property-list curso">
 			
-				<g:if test="${cursoInstance?.nivel}">
-				<li class="fieldcontain">
-					<span id="nivel-label" class="property-label"><g:message code="curso.nivel.label" default="Nivel" /></span>
-					
-						<span class="property-value" aria-labelledby="nivel-label"><g:link controller="nivel" action="show" id="${cursoInstance?.nivel?.id}">${cursoInstance?.nivel?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${cursoInstance?.nombre}">
 				<li class="fieldcontain">
 					<span id="nombre-label" class="property-label"><g:message code="curso.nombre.label" default="Nombre" /></span>
@@ -40,6 +31,17 @@
 					
 				</li>
 				</g:if>
+			
+				<g:if test="${cursoInstance?.nivel}">
+				<li class="fieldcontain">
+					<span id="nivel-label" class="property-label"><g:message code="curso.nivel.label" default="Nivel" /></span>
+					
+						<span class="property-value" aria-labelledby="nivel-label"><g:fieldValue bean="${cursoInstance}" field="nivel"/></span>
+					
+				</li>
+				</g:if>
+			
+				
 			
 <%--				<g:if test="${cursoInstance?.contenidos}">--%>
 <%--				<li class="fieldcontain">--%>

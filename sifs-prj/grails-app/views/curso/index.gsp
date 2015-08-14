@@ -34,9 +34,9 @@
 				<g:each in="${cursoInstanceList}" status="i" var="cursoInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${cursoInstance.id}">${fieldValue(bean: cursoInstance, field: "nivel")}</g:link></td>
+						<td><g:link action="show" id="${cursoInstance.id}">${fieldValue(bean: cursoInstance, field: "nombre")}</g:link></td>
 					
-						<td>${fieldValue(bean: cursoInstance, field: "nombre")}</td>
+						<td>${fieldValue(bean: cursoInstance, field: "nivel")}</td>
 					
 					</tr>
 				</g:each>
