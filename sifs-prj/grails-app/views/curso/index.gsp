@@ -24,9 +24,9 @@
 			<thead>
 					<tr>
 					
-						<th><g:message code="curso.nivel.label" default="Nivel" /></th>
+						<th><g:message code="curso.nivel.label" default="Curso" /></th>
 					
-						<g:sortableColumn property="nombre" title="${message(code: 'curso.nombre.label', default: 'Nombre')}" />
+						<g:sortableColumn property="nombre" title="${message(code: 'curso.nombre.label', default: 'Nivel')}" />
 					
 					</tr>
 				</thead>
