@@ -95,7 +95,8 @@
 							<g:message code="persona.direccion.label" default="Direccion" />
 						</span>
 						<span class="property-value" aria-labelledby="direccion-label">
-							${personaInstance?.direccion?.calle} ${personaInstance?.direccion?.numero} ${personaInstance?.direccion?.adicional} 
+							${personaInstance?.direccion?.calle} ${personaInstance?.direccion?.numero}
+							<g:if test="${personaInstance?.direccion?.adicional != null}">${personaInstance?.direccion?.adicional}</g:if> 
 							<br/>
 							${personaInstance?.direccion?.codigoPostal} ${personaInstance?.direccion?.ciudad} 
 							<br/>
