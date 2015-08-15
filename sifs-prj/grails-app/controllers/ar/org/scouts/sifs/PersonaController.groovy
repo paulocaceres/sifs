@@ -67,6 +67,37 @@ class PersonaController {
             return
         }
 
+		//Grupo, Zona y Distrito son obligatorios
+		def rolesList = []
+		def adminRol = Rol.findByAuthority('ROLE_ADMIN')
+		params.each {
+			name, value ->
+			def rolId = name.find(/^rolRaw\[(\d+)\]$/) {
+				match, pid -> return pid
+			}
+			if (rolId) {
+				def rol = Rol.get(rolId as long)
+				rolesList.add(rol)		
+			}
+		}
+		if(!rolesList?.contains(adminRol)) {
+			def zona = params.get('zona.id')
+			def distrito = params.get('distrito.id')
+			def grupo = params.get('grupo.id')
+			if(zona=='null') { // || distrito == null || grupo == null) {
+				personaInstance.errors.rejectValue('zona.id', 'ar.org.scouts.sifs.Persona.zona.nullable',
+				'El campo Zona es obligatorio')
+			}
+			if(distrito=='null') {
+				personaInstance.errors.rejectValue('distrito.id', 'ar.org.scouts.sifs.Persona.distrito.nullable',
+				'El campo Distrito es obligatorio')
+			}
+			if(grupo=='null') {
+				personaInstance.errors.rejectValue('grupo.id', 'ar.org.scouts.sifs.Persona.grupo.nullable',
+				'El campo Distrito es obligatorio')
+			}
+		}
+		
         if (personaInstance.hasErrors()) {
             respond personaInstance.errors, view:'create'
             return
@@ -75,16 +106,19 @@ class PersonaController {
         personaInstance.save flush:true
 
 		personaInstance.authorities.clear()
-		params.each {
-			name, value ->
-			def rolId = name.find(/^rolRaw\[(\d+)\]$/) {
-				match, pid -> return pid
-			}
-			if (rolId) {
-				def rol = Rol.get(rolId as long)
-				PersonaRol.create(personaInstance, rol, true)
-			}
+		rolesList.each {
+			PersonaRol.create(personaInstance, it, true)
 		}
+//		params.each {
+//			name, value ->
+//			def rolId = name.find(/^rolRaw\[(\d+)\]$/) {
+//				match, pid -> return pid
+//			}
+//			if (rolId) {
+//				def rol = Rol.get(rolId as long)
+//				PersonaRol.create(personaInstance, rol, true)
+//			}
+//		}
 		
 		personaInstance.save flush:true
 		

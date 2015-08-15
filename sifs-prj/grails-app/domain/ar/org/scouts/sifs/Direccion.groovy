@@ -23,7 +23,12 @@ class Direccion {
 
 
 	String toString() {
-		"$calle, $numero, $adicional, $codigoPostal, $ciudad, $provincia"
+		if(adicional != null) {
+			"$calle, $numero, $adicional, $codigoPostal, $ciudad, $provincia"
+		} else {
+			"$calle, $numero, $codigoPostal, $ciudad, $provincia"
+		}
+		//"$calle, $numero, $adicional, $codigoPostal, $ciudad, $provincia"
 	}
 
 static mapping = {
