@@ -70,6 +70,7 @@ class PersonaController {
 		//Grupo, Zona y Distrito son obligatorios
 		def rolesList = []
 		def adminRol = Rol.findByAuthority('ROLE_ADMIN')
+		def supervRol = Rol.findByAuthority('ROLE_SUPERVISOR')
 		params.each {
 			name, value ->
 			def rolId = name.find(/^rolRaw\[(\d+)\]$/) {
@@ -84,7 +85,8 @@ class PersonaController {
 			def zona = params.get('zona.id')
 			def distrito = params.get('distrito.id')
 			def grupo = params.get('grupo.id')
-			if(zona=='null') { // || distrito == null || grupo == null) {
+			def supervisor = params.get('supervisor.id')
+			if(zona=='null') {
 				personaInstance.errors.rejectValue('zona.id', 'ar.org.scouts.sifs.Persona.zona.nullable',
 				'El campo Zona es obligatorio')
 			}
@@ -95,6 +97,10 @@ class PersonaController {
 			if(grupo=='null') {
 				personaInstance.errors.rejectValue('grupo.id', 'ar.org.scouts.sifs.Persona.grupo.nullable',
 				'El campo Distrito es obligatorio')
+			}
+			if(!rolesList?.contains(supervRol) && supervisor=='null') {
+				personaInstance.errors.rejectValue('supervisor.id', 'ar.org.scouts.sifs.Persona.supervisor.nullable',
+					'El campo Supervisor es obligatorio')
 			}
 		}
 		
