@@ -13,10 +13,10 @@ class PlanCurso /*implements Serializable*/ {
 //		curso unique: 'plan';
 	}
 	
-	static mapping = {
-		curso unique: 'plan'
+//	static mapping = {
+//		curso unique: 'plan'
 //		table 'plan_cursos'
-	}
+//	}
 
 	static hasMany = [
 		correlativas: Curso
