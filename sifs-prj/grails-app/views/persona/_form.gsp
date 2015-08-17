@@ -90,14 +90,22 @@
 
 <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
 	
-	<g:if test="${(sec.loggedInUserInfo(field:'id').toString() == (personaInstance.id.toString()))}">
-	
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'zona', 'error')} ">
 			<label for="zona">
 				<g:message code="persona.zona.label" default="Zona" />
 				<span class="required-indicator">*</span>
 			</label>
-			<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list(sort:'nombre')}" noSelection="['null': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" style="width: 208px" disabled="disabled" />
+			<g:if test="${(sec.loggedInUserInfo(field:'id').toString() == (personaInstance.id.toString()))}">
+				<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list(sort:'nombre')}" noSelection="['null': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" style="width: 208px" disabled="disabled" />
+			</g:if>
+			<g:else>
+				<sec:ifNotGranted roles="ROLE_ADMIN">
+					<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list(sort:'nombre')}" noSelection="['null': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" style="width: 208px" disabled="disabled" />
+				</sec:ifNotGranted>
+				<sec:ifAnyGranted roles="ROLE_ADMIN">
+					<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list(sort:'nombre')}" noSelection="['null': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" style="width: 208px" />
+				</sec:ifAnyGranted>
+			</g:else>
 		</div>
 		
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'distrito', 'error')} ">
@@ -105,7 +113,17 @@
 				<g:message code="persona.distrito.label" default="Distrito" />
 				<span class="required-indicator">*</span>
 			</label>
-			<g:select id="distrito" optionKey="id" from="${ar.org.scouts.sifs.Distrito.list(sort:'nombre')}" noSelection="['null': '']" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" style="width: 208px" disabled="disabled" />
+			<g:if test="${(sec.loggedInUserInfo(field:'id').toString() == (personaInstance.id.toString()))}">
+				<g:select id="distrito" optionKey="id" from="${ar.org.scouts.sifs.Distrito.list(sort:'nombre')}" noSelection="['null': '']" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" style="width: 208px" disabled="disabled" />
+			</g:if>
+			<g:else>
+				<sec:ifNotGranted roles="ROLE_ADMIN">				
+					<g:select id="distrito" optionKey="id" from="${ar.org.scouts.sifs.Distrito.list(sort:'nombre')}" noSelection="['null': '']" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" style="width: 208px" disabled="disabled" />
+				</sec:ifNotGranted>
+				<sec:ifAnyGranted roles="ROLE_ADMIN">				
+					<g:select id="distrito" optionKey="id" from="${ar.org.scouts.sifs.Distrito.list(sort:'nombre')}" noSelection="['null': '']" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" style="width: 208px" />
+				</sec:ifAnyGranted>
+			</g:else>
 		</div>
 		
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'grupo', 'error')} ">
@@ -113,7 +131,17 @@
 				<g:message code="persona.grupo.label" default="Grupo" />
 				<span class="required-indicator">*</span>
 			</label>
-			<g:select id="grupo" optionKey="id" from="${ar.org.scouts.sifs.Grupo.list(sort:'nombre')}" noSelection="['null': '']" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one" style="width: 208px" disabled="disabled" />
+			<g:if test="${(sec.loggedInUserInfo(field:'id').toString() == (personaInstance.id.toString()))}">
+				<g:select id="grupo" optionKey="id" from="${ar.org.scouts.sifs.Grupo.list(sort:'nombre')}" noSelection="['null': '']" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one" style="width: 208px" disabled="disabled" />
+			</g:if>
+			<g:else>
+				<sec:ifNotGranted roles="ROLE_ADMIN">
+					<g:select id="grupo" optionKey="id" from="${ar.org.scouts.sifs.Grupo.list(sort:'nombre')}" noSelection="['null': '']" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one" style="width: 208px" disabled="disabled" />
+				</sec:ifNotGranted>
+				<sec:ifAnyGranted roles="ROLE_ADMIN">
+					<g:select id="grupo" optionKey="id" from="${ar.org.scouts.sifs.Grupo.list(sort:'nombre')}" noSelection="['null': '']" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one" style="width: 208px" />
+				</sec:ifAnyGranted>
+			</g:else>
 		</div>
 		
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'supervisor', 'error')} ">
@@ -121,46 +149,24 @@
 				<g:message code="persona.supervisor.label" default="Supervisor" />
 				<span class="required-indicator">*</span>
 			</label>
-			<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.security.PersonaRol.findAllByRol(ar.org.scouts.sifs.security.Rol.findByAuthority('ROLE_SUPERVISOR')).persona}" noSelection="['null': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" disabled="disabled" />
+			<g:if test="${(sec.loggedInUserInfo(field:'id').toString() == (personaInstance.id.toString()))}">
+				<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.security.PersonaRol.findAllByRol(ar.org.scouts.sifs.security.Rol.findByAuthority('ROLE_SUPERVISOR')).persona}" noSelection="['null': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" disabled="disabled" />
+			</g:if>
+			<g:else>
+				<sec:ifNotGranted roles="ROLE_ADMIN">
+					<g:if test="${(isEditing == 'true')}">
+						<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.security.PersonaRol.findAllByRol(ar.org.scouts.sifs.security.Rol.findByAuthority('ROLE_SUPERVISOR')).persona}" noSelection="['null': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" />
+					</g:if>
+					<g:else>
+						<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.security.PersonaRol.findAllByRol(ar.org.scouts.sifs.security.Rol.findByAuthority('ROLE_SUPERVISOR')).persona}" noSelection="['null': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" disabled="disabled" />
+					</g:else>
+				</sec:ifNotGranted>
+				<sec:ifAnyGranted roles="ROLE_ADMIN">
+					<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.security.PersonaRol.findAllByRol(ar.org.scouts.sifs.security.Rol.findByAuthority('ROLE_SUPERVISOR')).persona}" noSelection="['null': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" />
+				</sec:ifAnyGranted>
+			</g:else>
 		</div>
 
-	</g:if>
-
-	<g:if test="${(sec.loggedInUserInfo(field:'id').toString() != (personaInstance.id.toString()))}">
-	
-		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'zona', 'error')} ">
-			<label for="zona">
-				<g:message code="persona.zona.label" default="Zona" />
-				<span class="required-indicator">*</span>
-			</label>
-			<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list(sort:'numero')}" noSelection="['null': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" style="width: 208px" />
-		</div>
-		
-		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'distrito', 'error')} ">
-			<label for="distrito">
-				<g:message code="persona.distrito.label" default="Distrito" />
-				<span class="required-indicator">*</span>
-			</label>
-			<g:select id="distrito" optionKey="id" from="${ar.org.scouts.sifs.Distrito.list(sort:'nombre')}" noSelection="['null': '']" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" style="width: 208px" />
-		</div>
-		
-		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'grupo', 'error')} ">
-			<label for="grupo">
-				<g:message code="persona.grupo.label" default="Grupo" />
-				<span class="required-indicator">*</span>
-			</label>
-			<g:select id="grupo" optionKey="id" from="${ar.org.scouts.sifs.Grupo.list(sort:'numero')}" noSelection="['null': '']" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one" style="width: 208px" />
-		</div>
-		
-		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'supervisor', 'error')} ">
-			<label for="supervisor">
-				<g:message code="persona.supervisor.label" default="Supervisor" />
-				<span class="required-indicator">*</span>
-			</label>
-			<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.security.PersonaRol.findAllByRol(ar.org.scouts.sifs.security.Rol.findByAuthority('ROLE_SUPERVISOR')).persona}" noSelection="['null': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" />
-		</div>
-
-	</g:if>
 </sec:ifAnyGranted>
 
 <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
@@ -317,6 +323,13 @@
 			});
 		});
 
+
+		<g:if test="${(isEditing != 'true')}">
+			<sec:ifAnyGranted roles="ROLE_SUPERVISOR">
+				$('#supervisor').val(${sec.loggedInUserInfo(field:'id').toString()});
+				$('#supervisor').trigger('change');
+			</sec:ifAnyGranted>
+		</g:if>
 
 	});
 	
