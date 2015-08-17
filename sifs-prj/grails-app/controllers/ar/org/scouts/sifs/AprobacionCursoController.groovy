@@ -28,7 +28,7 @@ class AprobacionCursoController {
 			if(!listaDictados.empty) {
 				return [dictadoInstanceList : listaDictados]
 			} else {
-				render view:'notfound', model:[message: message(code: 'default.aprobacionCursos.not.found.message')]
+				render view:'notfound', model:[message: message(code: 'No posee cursos asignados como responsable')]
 			}
 		} else {
 		    redirect(uri:"500")
@@ -39,7 +39,7 @@ class AprobacionCursoController {
 		if(dictadoInstance.inscriptos.size() > 0) {
 			return [dictadoInstance : dictadoInstance]
 		} else {
-			render view:'notfound', model:[message: message(code: 'default.aprobacionCursos.not.found.message')]
+			render view:'notfound', model:[message: message(code: 'No existen inscriptos al curso')]
 		}
 	}
 
