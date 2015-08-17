@@ -40,7 +40,7 @@
 			</ul>
 		</div>
 		<div id="list-dictado" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+			<h1>Mis Dictados Anotados</h1>
 			<g:if test="${messageNotSelected}">
 				<div class="message" role="status">${messageNotSelected}</div>
 			</g:if>
@@ -71,7 +71,7 @@
 					
 					    <td><g:checkBox name="dictadoCheckBox" value="${dictadoInstance.id}" checked="false"/>
 					    
-						<td><g:link action="show" id="${dictadoInstance.id}">${fieldValue(bean: dictadoInstance, field: "nombre")}</g:link></td>
+						<td>${fieldValue(bean: dictadoInstance, field: "nombre")}</td>
 					
 						<td>${fieldValue(bean: dictadoInstance, field: "curso")}</td>
 					
