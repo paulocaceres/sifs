@@ -28,7 +28,7 @@
 							<g:message code="distrito.zona.label" default="Zona" />
 						</span>
 						<span class="property-value" aria-labelledby="zona-label">
-							<g:link controller="zona" action="show" id="${distritoInstance?.zona?.id}">${distritoInstance?.zona?.encodeAsHTML()}</g:link>
+							${distritoInstance?.zona?.nombre}
 						</span>
 					</li>
 				</g:if>

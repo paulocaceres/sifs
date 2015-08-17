@@ -26,14 +26,14 @@
 				<g:if test="${grupoInstance?.distrito?.zona}">
 					<li class="fieldcontain">
 						<span id="zona-label" class="property-label"><g:message code="distrito.zona.label" default="Zona" /></span>
-						<span class="property-value" aria-labelledby="zona-label"><g:link controller="zona" action="show" id="${grupoInstance?.distrito?.zona?.id}">${grupoInstance?.distrito?.zona?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="zona-label">${grupoInstance?.distrito?.zona?.nombre}</span>
 					</li>
 				</g:if>
 
 				<g:if test="${grupoInstance?.distrito}">
 					<li class="fieldcontain">
 						<span id="distrito-label" class="property-label"><g:message code="grupo.distrito.label" default="Distrito" /></span>
-						<span class="property-value" aria-labelledby="distrito-label"><g:link controller="distrito" action="show" id="${grupoInstance?.distrito?.id}">${grupoInstance?.distrito?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="distrito-label">${grupoInstance?.distrito?.nombre}</span>
 					</li>
 				</g:if>
 
