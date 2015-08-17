@@ -41,7 +41,7 @@
 		<g:message code="dictado.cupo.label" default="Cupo" />
 		
 	</label>
-	<g:field name="cupo" type="number" value="${dictadoInstance.cupo}" min="0"/>
+	<g:field name="cupo" type="number" value="${dictadoInstance.cupo}" min="0" max="30"/>
 
 </div>
 
