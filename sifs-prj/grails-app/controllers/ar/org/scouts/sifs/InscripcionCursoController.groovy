@@ -73,7 +73,7 @@ class InscripcionCursoController {
 				}
 				inscripcionCursoInstanceList = ofertaCursos
 			}
-			return [inscripcionInstanceList : inscripcionCursoInstanceList]
+			return [inscripcionInstanceList : inscripcionCursoInstanceList, usuarioLogueado:persona]
 		} else {
 		    redirect(uri:"500")
 		}

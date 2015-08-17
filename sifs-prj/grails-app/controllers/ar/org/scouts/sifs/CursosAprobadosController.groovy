@@ -21,7 +21,7 @@ class CursosAprobadosController {
 			}
 			return [dictadoInstanceList : dictadoList]
 		} else {
-			render view:'notfound', model:[message: message(code: 'default.cursosAprobados.not.found.message')]
+			render view:'notfound', model:[message: message(code: 'default.cursosAprobados.not.found.message'), entityName: 'Dictados Aprobados']
 		}
 	}
 	
@@ -34,7 +34,7 @@ class CursosAprobadosController {
 			}
 			return [dictadoInstanceList : dictadoList]
 		} else {
-			render view:'notfound', model:[message: message(code: 'default.cursosAnotados.not.found.message')]
+			render view:'notfound', model:[message: message(code: 'default.cursosAnotados.not.found.message'), entityName: 'Dictados Anotados']
 		}
 	}
 	

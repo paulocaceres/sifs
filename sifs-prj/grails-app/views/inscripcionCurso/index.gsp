@@ -34,6 +34,9 @@
 		  	    });
 		  	});
 	  	</script>
+	  	
+	  	<g:set var="usuarioId" value="${usuarioLogueado.id}" />
+	  	
 	</head>
 	<body>
 		<a href="#create-curso" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>

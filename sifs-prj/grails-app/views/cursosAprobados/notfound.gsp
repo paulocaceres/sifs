@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-	    <g:set var="entityName" value="Cursos aprobados" />
+	    <g:set var="entityName" value="${entityName}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
