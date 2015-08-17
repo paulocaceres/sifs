@@ -27,7 +27,7 @@
 				<li class="fieldcontain">
 					<span id="curso-label" class="property-label"><g:message code="dictado.curso.label" default="Curso" /></span>
 					
-						<span class="property-value" aria-labelledby="curso-label"><g:link controller="curso" action="show" id="${dictadoInstance?.curso?.id}">${dictadoInstance?.curso?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="curso-label">${dictadoInstance?.curso?.nombre}</span>
 					
 				</li>
 				</g:if>
@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="zona-label" class="property-label"><g:message code="dictado.zona.label" default="Zona" /></span>
 					
-						<span class="property-value" aria-labelledby="zona-label"><g:link controller="zona" action="show" id="${dictadoInstance?.zona?.id}">${dictadoInstance?.zona?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="zona-label">${dictadoInstance?.zona?.nombre}</span>
 					
 				</li>
 				</g:if>
@@ -65,7 +65,7 @@
 					<span id="recursos-label" class="property-label"><g:message code="dictado.recursos.label" default="Recursos" /></span>
 					
 						<g:each in="${dictadoInstance.recursos}" var="r">
-						<span class="property-value" aria-labelledby="recursos-label"><g:link controller="recurso" action="show" id="${r.id}">${r?.nombre}</g:link></span>
+						<span class="property-value" aria-labelledby="recursos-label">${r?.nombre}</span>
 						</g:each>
 					
 				</li>

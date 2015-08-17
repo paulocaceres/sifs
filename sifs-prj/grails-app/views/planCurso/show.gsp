@@ -27,7 +27,7 @@
 				<li class="fieldcontain">
 					<span id="plan-label" class="property-label"><g:message code="planCurso.plan.label" default="Plan" /></span>
 					
-						<span class="property-value" aria-labelledby="plan-label"><g:link controller="plan" action="show" id="${planCursoInstance?.plan?.id}">${planCursoInstance?.plan?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="plan-label">${planCursoInstance?.plan?.nombre}</span>
 					
 				</li>
 				</g:if>
@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="curso-label" class="property-label"><g:message code="planCurso.curso.label" default="Curso" /></span>
 					
-						<span class="property-value" aria-labelledby="curso-label"><g:link controller="curso" action="show" id="${planCursoInstance?.curso?.id}">${planCursoInstance?.curso?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="curso-label">${planCursoInstance?.curso?.nombre}</span>
 					
 				</li>
 				</g:if>
@@ -46,7 +46,7 @@
 					<span id="correlativas-label" class="property-label"><g:message code="planCurso.correlativas.label" default="Correlativas" /></span>
 					
 						<g:each in="${planCursoInstance.correlativas}" var="c">
-						<span class="property-value" aria-labelledby="correlativas-label"><g:link controller="curso" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="correlativas-label">${c?.nombre}</span>
 						</g:each>
 					
 				</li>

@@ -19,7 +19,7 @@
 				  			<g:radioGroup name="dictadoGroup${cursoInstance.id}" 
 				  				labels="${cursoInstance.dictados}" 
 				  				values="${cursoInstance.dictados.id}">
-				  			<g:if test="${it.label.cupo != 0 && it.label.fecha >= new Date()+1 && usuarioId != it.label.formador.id}">	
+				  			<g:if test="${it.label.cupo != 0 && it.label.fecha >= new Date()+1 && usuarioId != it.label.formador?.id && it.label.status?.nombre != 'CERRADO'}">	
     							${it.radio}
     							<label class="long">
     								<strong>${it.label.nombre}, &nbsp;${it.label.zona?.nombre} - ${it.label.formador?.nombre}&nbsp;${it.label.formador?.apellido}</strong>
