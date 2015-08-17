@@ -19,10 +19,6 @@ class Dictado {
 		recursos: Recurso,
 		inscriptos: Inscripto
 	]
-	
-	static mapping = {
-		inscriptos cascade: 'all-delete-orphan'
-	}
 
 	static constraints = {
 		zona(nullable:true)

@@ -144,7 +144,17 @@ class DictadoController {
             notFound()
             return
         }
-
+		
+		if(dictadoInstance.inscriptos?.size() > 0 || tieneAprobados(dictadoInstance)) {
+			dictadoInstance.errors.reject('ar.org.scouts.sifs.Dictado.delete.inscriptos',
+			'El Dictado no se puede eliminar ya que contiene Inscriptos')
+		}
+		
+		if (dictadoInstance.hasErrors()) {
+			respond dictadoInstance.errors, view:'show'
+			return
+		}
+		
         dictadoInstance.delete flush:true
 
         request.withFormat {
@@ -174,4 +184,18 @@ class DictadoController {
 		flash.message = message(code: 'default.dictado.success.closed', args: [dictadoInstance.nombre])
 		redirect action: "index", controller: "aprobacionCurso"
 	}
+	
+	/**
+	 * Verifica si el dictado tiene inscriptos ya aprobados
+	 * @param d
+	 * @return
+	 */
+	def boolean tieneAprobados(Dictado d) {
+		def c = Persona.executeQuery("SELECT p FROM PERSONA p join PERSONA_DICTADOS_APROBADOS pa WHERE pa.dictados_aprobados_long = :dictadoId", [dictadoId:d.id],[max:1])
+		if(c?.size > 0) {
+			return true
+		}
+		return false
+	}
+	
 }
