@@ -82,10 +82,10 @@ class PersonaController {
 			}
 		}
 		if(!rolesList?.contains(adminRol)) {
-			def zona = params.get('zona.id')
-			def distrito = params.get('distrito.id')
-			def grupo = params.get('grupo.id')
-			def supervisor = params.get('supervisor.id')
+			def zona = params.get('zona.id') != null ? params.get('zona.id') : params.get('zonaHdd')
+			def distrito = params.get('distrito.id') != null ? params.get('distrito.id') : params.get('distritoHdd')
+			def grupo = params.get('grupo.id') != null ? params.get('grupo.id') : params.get('grupoHdd')
+			def supervisor = params.get('supervisor.id') != null ? params.get('supervisor.id') : params.get('supervisorHdd')
 			if(zona=='null' || zona==null) {
 				personaInstance.errors.rejectValue('zona.id', 'ar.org.scouts.sifs.Persona.zona.nullable',
 				'El campo Zona es obligatorio')

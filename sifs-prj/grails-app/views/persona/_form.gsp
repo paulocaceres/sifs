@@ -106,6 +106,7 @@
 					<g:select id="zona" optionKey="id" from="${ar.org.scouts.sifs.Zona.list(sort:'nombre')}" noSelection="['null': '']" name="zona.id" value="${personaInstance?.zona?.id}" class="many-to-one" style="width: 208px" />
 				</sec:ifAnyGranted>
 			</g:else>
+			<g:hiddenField name="zonaHdd" />
 		</div>
 		
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'distrito', 'error')} ">
@@ -124,6 +125,7 @@
 					<g:select id="distrito" optionKey="id" from="${ar.org.scouts.sifs.Distrito.list(sort:'nombre')}" noSelection="['null': '']" name="distrito.id" value="${personaInstance?.distrito?.id}" class="many-to-one" style="width: 208px" />
 				</sec:ifAnyGranted>
 			</g:else>
+			<g:hiddenField name="distritoHdd" />
 		</div>
 		
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'grupo', 'error')} ">
@@ -142,6 +144,7 @@
 					<g:select id="grupo" optionKey="id" from="${ar.org.scouts.sifs.Grupo.list(sort:'nombre')}" noSelection="['null': '']" name="grupo.id" value="${personaInstance?.grupo?.id}" class="many-to-one" style="width: 208px" />
 				</sec:ifAnyGranted>
 			</g:else>
+			<g:hiddenField name="grupoHdd" />
 		</div>
 		
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'supervisor', 'error')} ">
@@ -165,6 +168,7 @@
 					<g:select id="supervisor" optionKey="id" from="${ar.org.scouts.sifs.security.PersonaRol.findAllByRol(ar.org.scouts.sifs.security.Rol.findByAuthority('ROLE_SUPERVISOR')).persona}" noSelection="['null': '']" name="supervisor.id" value="${personaInstance?.supervisor?.id}" class="many-to-one" style="width: 208px" />
 				</sec:ifAnyGranted>
 			</g:else>
+			<g:hiddenField name="supervisorHdd" />
 		</div>
 
 </sec:ifAnyGranted>
@@ -246,6 +250,7 @@
 		var options = null;
 
 		$('#zona').val(html.zonaSelected);
+		$("input[name='zonaHdd']").val(html.zonaSelected);
 		
 		options = ' ';
 		options += '<option value="null"> </option>';
@@ -254,6 +259,7 @@
 		}                    
 		$('#distrito').html(options);
 		$('#distrito').val(html.distritoSelected);
+		$("input[name='distritoHdd']").val(html.distritoSelected);
 		
 		options = ' ';
 		options += '<option value="null"> </option>';
@@ -262,6 +268,7 @@
 		}                    
 		$('#grupo').html(options);
 		$('#grupo').val(html.grupoSelected);
+		$("input[name='grupoHdd']").val(html.grupoSelected);
 		
 		options = ' ';
 		options += '<option value="null"> </option>';
@@ -270,6 +277,7 @@
 		}                    
 		$('#supervisor').html(options);
 		$('#supervisor').val(html.supervisorSelected);
+		$("input[name='supervisorHdd']").val(html.supervisorSelected);
 	}
 	
 
