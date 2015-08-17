@@ -115,16 +115,6 @@ class PersonaController {
 		rolesList.each {
 			PersonaRol.create(personaInstance, it, true)
 		}
-//		params.each {
-//			name, value ->
-//			def rolId = name.find(/^rolRaw\[(\d+)\]$/) {
-//				match, pid -> return pid
-//			}
-//			if (rolId) {
-//				def rol = Rol.get(rolId as long)
-//				PersonaRol.create(personaInstance, rol, true)
-//			}
-//		}
 		
 		personaInstance.save flush:true
 		
@@ -171,11 +161,12 @@ class PersonaController {
 		if ((personaInstance == null) || (personaInstance.id == null)) {
 			personaInstance = springSecurityService.currentUser;
 		}
+		
         respond personaInstance
     }
 
     
-	@Transactional
+	//@Transactional
     def update(Persona personaInstance) {
         if (personaInstance == null) {
             notFound()
@@ -328,5 +319,4 @@ class PersonaController {
 	protected String evaluate(s, binding) {
 		new SimpleTemplateEngine().createTemplate(s).make(binding)
 	}
-	
 }
