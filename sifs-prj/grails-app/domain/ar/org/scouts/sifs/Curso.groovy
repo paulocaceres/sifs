@@ -17,7 +17,7 @@ class Curso {
 	static constraints = {
 //		contenidos(nullable: true);
 //		plan(nullable: true);
-		nivel(nullable: true);
+		nivel(nullable: false);
 		nombre(unique: true);
 	}
 
