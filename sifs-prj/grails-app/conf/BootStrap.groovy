@@ -23,41 +23,22 @@ class BootStrap {
 
 		def password = 'password'
 		def rolCursante = null // ROL CURSANTE
-//		def cursante_formador = null;
-//		def cursante_formador2 = null;
-		
-//		Zona zona01 = new Zona(nombre: 'Zona01', numero:1);
-//		zona01.save();
-//		
-//		Zona zona02 = new Zona(nombre: 'Zona02', numero:2);
-//		zona02.save();
-//		
-//		Zona zona03 = new Zona(nombre: 'Zona03', numero:3);
-//		zona03.save();
+
 				
 		if (!Persona.count()) {
 			
-//			def unaProvincia = new Provincia(descripcion: 'Uruguay')
-//			unaProvincia.save(flush: true, insert: true)
+//
+//						
+//			Zona admin_zona = new Zona(nombre: 'admin_zona', numero:'1');
+//			admin_zona.save();
+//	
+//			Distrito admin_distrito = new Distrito(nombre: 'admin_Distrito', zona: admin_zona);
+//			admin_distrito.save();
 //			
-//			def unaDireccion = new Direccion(	calle: 'San Martin', 
-//												numero: 6666, 
-//												adicional: 'persona.direccion.adicional', 
-//												codigoPostal: 9999, 
-//												ciudad: 'C.A.B.A', 
-//												provincia: unaProvincia)
-//			unaDireccion.save(flush: true, insert: true)
-						
-			Zona admin_zona = new Zona(nombre: 'admin_zona', numero:'1');
-			admin_zona.save();
-	
-			Distrito admin_distrito = new Distrito(nombre: 'admin_Distrito', zona: admin_zona);
-			admin_distrito.save();
-			
-			Grupo admin_Grupo = new Grupo(nombre: 'admin_Grupo', numero:'99', distrito: admin_distrito)
-			admin_Grupo.save();
+//			Grupo admin_Grupo = new Grupo(nombre: 'admin_Grupo', numero:'0', distrito: admin_distrito)
+//			admin_Grupo.save();
 		
-			def admin = new Persona(	documentoNumero: 	'25227067',
+			def admin = new Persona(	documentoNumero: 	'23113867',
 										password: 			password,
 										nombre: 			'Esteban',
 										apellido: 			'Gomez',
@@ -80,8 +61,8 @@ class BootStrap {
 			PersonaRol.create(admin, rolAdmin, true)
 
 		}
-		
-
+//		
+//
 		new Provincia(descripcion: 'Buenos Aires').save()
 		new Provincia(descripcion: 'Catamarca').save()
 		new Provincia(descripcion: 'Chaco').save()
@@ -120,6 +101,10 @@ class BootStrap {
 		Recurso r3 = new Recurso(nombre: "Aula 200", cantidad:1).save(flush:true, insert:true);
 		Recurso r4 = new Recurso(nombre: "Aula 300", cantidad:1).save(flush:true, insert:true);
 		
+		DictadoStatus abierto = new DictadoStatus(nombre:"ABIERTO");
+		abierto.save(flush: true, insert: true);
+		DictadoStatus cerrado = new DictadoStatus(nombre:"CERRADO");
+		cerrado.save(flush: true, insert: true);
 		
 		
 		Calificacion aprobado = new Calificacion(nombre: 'APROBADO')
