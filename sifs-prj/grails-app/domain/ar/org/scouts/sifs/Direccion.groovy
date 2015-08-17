@@ -13,11 +13,11 @@ class Direccion {
 
 
 	static constraints = {
-		calle(nullable: false);
+		calle(nullable: false,matches: "[a-z\\sA-Z\\s,.'-]+");
 		numero(nullable: false,matches:"^[0-9]\\d*");
-		adicional(nullable: true);
+		adicional(nullable: true,matches: "[a-z\\sA-Z\\s,.'-]+");
 		codigoPostal(nullable: false,matches:"^[0-9]\\d*", maxSize:4);
-		ciudad(nullable: false);
+		ciudad(nullable: false,matches: "[a-z\\sA-Z\\s,.'-]+");
 		provincia(nullable: false);
 	}
 

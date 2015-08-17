@@ -14,7 +14,9 @@ class Inscripto  {
 	]
 	
 	static constraints = {
-		nota(nullable:true)
+		nota(nullable:true);
+		nombre(matches: "[a-z\\sA-Z\\s0-9]+");
+		apellido(matches: "[a-z\\sA-Z\\s0-9]+");
 	}
 	
 }

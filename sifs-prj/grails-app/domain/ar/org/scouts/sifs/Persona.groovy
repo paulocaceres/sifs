@@ -59,9 +59,11 @@ class Persona {
 
 	
 	static constraints = {
-		documentoNumero(blank: false,matches:"^[0-9]\\d*",unique: true);
+		nombre(matches: "[a-z\\sA-Z\\s,.'-]+");
+		apellido(matches: "[a-z\\sA-Z\\s,.'-]+");
+		documentoNumero(blank: false,matches: "^[0-9]\\d*",unique: true);
 		mail(email: true)
-		telefono(nullable: true);
+		telefono(nullable: true,matches: "[0-9-]+");
 		direccion(nullable: true);
 		zona(nullable: true);
 		distrito(nullable: true);

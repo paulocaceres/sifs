@@ -8,7 +8,7 @@ class Titulo {
 
 	static constraints = {
 		plan(blank: false)
-		nombre(blank: false, maxSize:70,unique: 'plan' )
+		nombre(blank: false,matches: "[a-z\\sA-Z\\s0-9]+",maxSize:70,unique: 'plan' )
 	}
 
 	static mapping = { titulo unique: 'plan' //		table 'plan_cursos'

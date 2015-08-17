@@ -25,6 +25,7 @@ class Dictado {
 		fecha(nullable:true)
 		cupo(nullable:true)
 		inscriptos(nullable:true)
+		nombre(matches: "[a-z\\sA-Z\\s0-9]+")
     }
 	
 	String toString() {

@@ -17,7 +17,7 @@ class Zona {
 
 
 	static constraints = {
-		nombre(nullable: false);
+		nombre(nullable: false,matches: "[a-z\\sA-Z\\s0-9]+");
 		numero(nullable: false, matches:"^[1-9]\\d*", unique: true );
 	}
 

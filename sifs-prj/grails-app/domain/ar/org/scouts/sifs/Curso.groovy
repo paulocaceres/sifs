@@ -18,7 +18,7 @@ class Curso {
 //		contenidos(nullable: true);
 //		plan(nullable: true);
 		nivel(nullable: false);
-		nombre(unique: true);
+		nombre(unique: true,matches: "[a-z\\sA-Z\\s0-9]+");
 	}
 
 	String toString() {
