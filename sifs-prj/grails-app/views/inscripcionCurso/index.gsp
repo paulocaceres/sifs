@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'curso.label', default: 'XXXX')}" />
+		<g:set var="entityName" value="${message(code: 'curso.label', default: 'Curso')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 		<style type="text/css">
 			.CheckBoxList {
