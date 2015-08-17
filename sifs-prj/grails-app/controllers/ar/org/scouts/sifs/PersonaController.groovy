@@ -286,7 +286,9 @@ class PersonaController {
 		
 		// Saco los que no tiene rol Supervisor de la lista
 		def rolSupervisor = Rol.findByAuthority('ROLE_SUPERVISOR')
-		sprvsrs.each {
+		Set sprvsrsTmp = new HashSet(); 
+		sprvsrsTmp.addAll(sprvsrs);
+		sprvsrsTmp.each {
 			if(!it.hasRol(rolSupervisor)) {
 				sprvsrs.remove(it)
 			}
