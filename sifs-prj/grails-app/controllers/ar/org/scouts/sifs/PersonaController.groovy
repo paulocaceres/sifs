@@ -86,19 +86,19 @@ class PersonaController {
 			def distrito = params.get('distrito.id')
 			def grupo = params.get('grupo.id')
 			def supervisor = params.get('supervisor.id')
-			if(zona=='null') {
+			if(zona=='null' || zona==null) {
 				personaInstance.errors.rejectValue('zona.id', 'ar.org.scouts.sifs.Persona.zona.nullable',
 				'El campo Zona es obligatorio')
 			}
-			if(distrito=='null') {
+			if(distrito=='null' || distrito==null) {
 				personaInstance.errors.rejectValue('distrito.id', 'ar.org.scouts.sifs.Persona.distrito.nullable',
 				'El campo Distrito es obligatorio')
 			}
-			if(grupo=='null') {
+			if(grupo=='null' || grupo==null) {
 				personaInstance.errors.rejectValue('grupo.id', 'ar.org.scouts.sifs.Persona.grupo.nullable',
 				'El campo Distrito es obligatorio')
 			}
-			if(!rolesList?.contains(supervRol) && supervisor=='null') {
+			if(!rolesList?.contains(supervRol) && (supervisor=='null' || supervisor==null)) {
 				personaInstance.errors.rejectValue('supervisor.id', 'ar.org.scouts.sifs.Persona.supervisor.nullable',
 					'El campo Supervisor es obligatorio')
 			}
