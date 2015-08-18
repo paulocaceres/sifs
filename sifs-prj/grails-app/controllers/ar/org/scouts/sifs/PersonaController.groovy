@@ -168,6 +168,31 @@ class PersonaController {
     
 	//@Transactional
     def update(Persona personaInstance) {
+		def rolesList = []
+		params.each {
+			name, value ->
+			def rolId = name.find(/^rolRaw\[(\d+)\]$/) {
+				match, pid -> return pid
+			}
+			if (rolId) {
+				def rol = Rol.get(rolId as long)
+				rolesList.add(rol)
+			}
+		}
+		
+		PersonaRol.removeAll(personaInstance)
+		personaInstance.save flush:true
+		
+		rolesList.each {
+			PersonaRol.create(personaInstance, it, true)
+		}
+		
+		//Si no tiene roles, le asigno el rol cursante por default
+		def cursante = Rol.findByAuthority('ROLE_CURSANTE')
+		if(!personaInstance.hasRol(cursante)) {
+			PersonaRol.create(personaInstance, cursante, true)
+		}
+		
         if (personaInstance == null) {
             notFound()
             return
