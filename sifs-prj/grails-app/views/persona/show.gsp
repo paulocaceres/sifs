@@ -235,9 +235,13 @@
 					<g:link class="edit" action="edit" resource="${personaInstance}">
 						<g:message code="default.button.edit.label" default="Editar" />
 					</g:link>
-<%--					<sec:ifAnyGranted roles="ROLE_ADMIN">--%>
-<%--						<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />--%>
-<%--					</sec:ifAnyGranted>--%>
+
+					<sec:ifAnyGranted roles="ROLE_ADMIN">
+						<g:if test="${personaInstance.dictadosAprobados.size() == 0 && personaInstance.dictadosAnotados.size()==0}">
+							<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+						</g:if>
+					</sec:ifAnyGranted>
+
 				</fieldset>
 			</g:form>
 

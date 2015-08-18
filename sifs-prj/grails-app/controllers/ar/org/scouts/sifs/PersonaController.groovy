@@ -222,7 +222,14 @@ class PersonaController {
             notFound()
             return
         }
-
+		
+		personaInstance.zona = null
+		personaInstance.distrito = null
+		personaInstance.grupo = null
+		personaInstance.supervisor = null
+		personaInstance.save flush:true
+		
+		
 		PersonaRol.removeAll(personaInstance)
         personaInstance.delete flush:true
 

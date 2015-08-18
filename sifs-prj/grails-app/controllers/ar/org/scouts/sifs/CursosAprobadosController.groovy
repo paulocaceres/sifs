@@ -47,9 +47,11 @@ class CursosAprobadosController {
 			def dictadoList = dictadoIds.collect { Dictado.get(it) }
 			dictadoList.each() {
 				it.removeFromInscriptos(inscripto)
+				inscripto.save flush:true
 				it.cupo = it.cupo + 1
 				it.save flush:true
 				persona.removeFromDictadosAnotados(it.id)
+				inscripto.delete flush:true
 			}
 			persona.save flush:true
 			return [dictadoInstanceList : dictadoList,  successMessage : message(code: 'default.cursosAnotados.desanotar.success.message')]
