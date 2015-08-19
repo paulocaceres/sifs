@@ -95,6 +95,8 @@ class DictadoController {
 					i.nota = Calificacion.get(notaId)
 					if(i.nota.nombre == 'APROBADO') {
 						procesarDictadoAprobado(i.personaId,dictadoInstance)
+					} else if(i.nota.nombre == 'DESAPROBADO') {
+						procesarDictadoNoAprobado(i.personaId,dictadoInstance)
 					}
 				}
 				i.save flush:true
@@ -136,7 +138,19 @@ class DictadoController {
 			log.debug("Error al enviar notificacion - direccion de correo invalida del DNI: " + p.documentoNumero)
 		}
 	}
+	
+	private procesarDictadoNoAprobado(Long personaId, Dictado dictado) {
+		Persona p = Persona.get(personaId)
+		if(p.dictadosAprobados?.contains(dictado.id)) {
+			p.removeFromDictadosAprobados(dictado.id)
+		}
+		p.removeFromDictadosAnotados(dictado.id)
+		p.save flush:true
+		Historial h = new Historial(p, dictado.curso, new Date());
+		h.save flush:true	
+	}
 
+	
     @Transactional
     def delete(Dictado dictadoInstance) {
 		
@@ -191,7 +205,7 @@ class DictadoController {
 	 * @return
 	 */
 	def boolean tieneAprobados(Dictado d) {
-		def c = Persona.executeQuery("SELECT p FROM PERSONA p join PERSONA_DICTADOS_APROBADOS pa WHERE pa.dictados_aprobados_long = :dictadoId", [dictadoId:d.id],[max:1])
+		def c = Persona.executeQuery("SELECT p FROM Persona p JOIN p.dictadosAprobados pa WHERE pa.id = :dictadoId", [dictadoId:d.id],[max:1])
 		if(c?.size > 0) {
 			return true
 		}
