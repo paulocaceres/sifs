@@ -21,7 +21,7 @@ class Dictado {
 	]
 
 	static constraints = {
-		zona(nullable:true)
+		zona(nullable:false)
 		fecha(nullable:true)
 		cupo(nullable:true)
 		inscriptos(nullable:true)
