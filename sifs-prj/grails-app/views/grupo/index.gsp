@@ -29,6 +29,8 @@
 						<g:sortableColumn property="nombre" title="${message(code: 'grupo.nombre.label', default: 'Nombre')}" />
 
 						<th><g:message code="grupo.distrito.label" default="Distrito" /></th>
+						
+						<th><g:message code="grupo.distrito.label" default="Zona" /></th>
 
 					</tr>
 				</thead>
@@ -41,6 +43,8 @@
 							<td><g:link action="show" id="${grupoInstance.id}">${fieldValue(bean: grupoInstance, field: "nombre")}</g:link></td>
 
 							<td>${fieldValue(bean: grupoInstance, field: "distrito")}</td>
+							
+							<td>${fieldValue(bean: grupoInstance, field: "distrito.zona")}</td>
 
 						</tr>
 					</g:each>
