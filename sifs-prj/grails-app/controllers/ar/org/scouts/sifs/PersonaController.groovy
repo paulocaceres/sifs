@@ -89,18 +89,34 @@ class PersonaController {
 			if(zona=='null' || zona==null) {
 				personaInstance.errors.rejectValue('zona.id', 'ar.org.scouts.sifs.Persona.zona.nullable',
 				'El campo Zona es obligatorio')
+			} else {
+				if (personaInstance.zona == null) {
+					personaInstance.properties = [zona:[id: zona]];
+				}
 			}
 			if(distrito=='null' || distrito==null) {
 				personaInstance.errors.rejectValue('distrito.id', 'ar.org.scouts.sifs.Persona.distrito.nullable',
 				'El campo Distrito es obligatorio')
+			} else {
+				if (personaInstance.distrito == null) {
+					personaInstance.properties = [distrito:[id: distrito]];
+				}
 			}
 			if(grupo=='null' || grupo==null) {
 				personaInstance.errors.rejectValue('grupo.id', 'ar.org.scouts.sifs.Persona.grupo.nullable',
-				'El campo Distrito es obligatorio')
+				'El campo Grupo es obligatorio')
+			} else {
+				if (personaInstance.grupo == null) {
+					personaInstance.properties = [grupo:[id: grupo]];
+				}
 			}
 			if(!rolesList?.contains(supervRol) && (supervisor=='null' || supervisor==null)) {
 				personaInstance.errors.rejectValue('supervisor.id', 'ar.org.scouts.sifs.Persona.supervisor.nullable',
 					'El campo Supervisor es obligatorio')
+			} else {
+				if (personaInstance.supervisor == null) {
+					personaInstance.properties = [supervisor:[id: supervisor]];
+				}
 			}
 		}
 		
