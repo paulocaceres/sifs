@@ -33,7 +33,20 @@ class DistritoController {
 			notFound()
 			return
 		}
-
+		
+		//Validamos que no se cree un Distrito repetido (nombre en la misma zona)
+		def laZona = distritoInstance.zona
+		def distritos = laZona? Distrito.findAllByZona(laZona) : []
+		if(distritos.size() > 0) {
+			def boolean repetido = false
+			distritos.each{
+				if(it.nombre?.equalsIgnoreCase(distritoInstance.nombre)) {
+					distritoInstance.errors.rejectValue('nombre', 'ar.org.scouts.sifs.Distrito.nombre.repetido',
+						'Nombre de Distrito repetido en la zona elegida')
+				}
+			}
+		}
+		
 		if (distritoInstance.hasErrors()) {
 			respond distritoInstance.errors, view:'create'
 			return
