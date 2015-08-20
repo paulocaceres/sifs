@@ -107,7 +107,7 @@ class Persona {
 
 	
 	protected void encodePassword() {
-		password = springSecurityService.encodePassword(password)
+		password = springSecurityService.encodePassword(password,documentoNumero)
 	}
 
 

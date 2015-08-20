@@ -37,7 +37,7 @@
 	                             labelCodeDefault='Contraseña' value="${command?.password}"/>
 	
 			<s2ui:passwordFieldRow name='password2' labelCode='resetPasswordCommand.password2.label' bean="${command}"
-	                             labelCodeDefault='<'Contraseña (Otra vez)' value="${command?.password2}"/>
+	                             labelCodeDefault='Contraseña (Otra vez)' value="${command?.password2}"/>
 		</table>
 	
 		<s2ui:submitButton elementId='reset' form='resetPasswordForm' messageCode='spring.security.ui.resetPassword.submit'/>

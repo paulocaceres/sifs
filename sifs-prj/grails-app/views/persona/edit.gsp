@@ -6,6 +6,14 @@
 		<g:set var="entityName" value="${message(code: 'persona.label', default: 'Persona')}" />
 		<g:set var="isEditing" value="true" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
+		
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
+		<script src="/sifs-prj/static/js/jquery-ui.js" type="text/javascript" ></script>
+	    <script>
+	  		$(function() {
+	    		$( "#tabs" ).tabs();
+	  		});
+	  	</script>	
 	</head>
 	<body>
 		<a href="#edit-persona" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;" /></a>
