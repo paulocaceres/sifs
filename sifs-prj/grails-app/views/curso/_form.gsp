@@ -13,10 +13,10 @@
 
 <div class="fieldcontain ${hasErrors(bean: cursoInstance, field: 'nombre', 'error')} ">
 	<label for="nombre">
-		<g:message code="curso.nombre.label" default="Nombre" />
+		<g:message code="curso.nombre.label"  default="Nombre" />
 		
 	</label>
-	<g:textField name="nombre" value="${cursoInstance?.nombre}"/>
+	<g:textField name="nombre" size="20" value="${cursoInstance?.nombre}"/>
 
 </div>
 

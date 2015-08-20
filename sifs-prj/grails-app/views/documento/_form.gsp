@@ -7,7 +7,7 @@
 		<g:message code="documento.descripcion.label" default="Descripcion" />
 		
 	</label>
-	<g:textField name="descripcion" value="${documentoInstance?.descripcion}"/>
+	<g:textField name="descripcion" size="20" value="${documentoInstance?.descripcion}"/>
 
 </div>
 
@@ -16,7 +16,7 @@
 		<g:message code="documento.tipo.label" default="Tipo" />
 		
 	</label>
-	<g:textField name="tipo" value="${documentoInstance?.tipo}"/>
+	<g:textField name="tipo" size="5" value="${documentoInstance?.tipo}"/>
 
 </div>
 

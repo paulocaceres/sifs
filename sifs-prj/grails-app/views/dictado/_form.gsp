@@ -50,7 +50,7 @@
 		<g:message code="dictado.nombre.label" default="Nombre" />
 		
 	</label>
-	<g:field name="nombre" type="text" value="${dictadoInstance.nombre}"/>
+	<g:field name="nombre" type="text" size="20" value="${dictadoInstance.nombre}"/>
 
 </div>
 

@@ -5,7 +5,7 @@
 		<g:message code="recurso.nombre.label" default="Nombre" />
 		
 	</label>
-	<g:textField name="nombre" value="${recursoInstance?.nombre}"/>
+	<g:textField name="nombre" size="20" value="${recursoInstance?.nombre}"/>
 
 </div>
 

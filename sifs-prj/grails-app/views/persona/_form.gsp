@@ -15,10 +15,10 @@
 				<span class="required-indicator">*</span>
 			</label>
 			<sec:ifNotGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
-				<g:textField name="documentoNumero" maxlength="8" required="" value="${personaInstance?.documentoNumero}" disabled="true" />
+				<g:textField name="documentoNumero" maxlength="8" size="8" required="" value="${personaInstance?.documentoNumero}" disabled="true" />
 			</sec:ifNotGranted>
 			<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
-				<g:textField name="documentoNumero" maxlength="8" required="" value="${personaInstance?.documentoNumero}" />
+				<g:textField name="documentoNumero" maxlength="8" size="8" required="" value="${personaInstance?.documentoNumero}" />
 			</sec:ifAnyGranted>
 		</div>
 		
@@ -26,14 +26,14 @@
 			<label for="nombre">
 				<g:message code="persona.nombre.label" default="Nombre" />
 			</label>
-			<g:textField name="nombre" value="${personaInstance?.nombre}" />
+			<g:textField name="nombre" size="20" value="${personaInstance?.nombre}" />
 		</div>
 		
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'apellido', 'error')} ">
 			<label for="apellido">
 				<g:message code="persona.apellido.label" default="Apellido" />
 			</label>
-			<g:textField name="apellido" value="${personaInstance?.apellido}" />
+			<g:textField name="apellido" size="20" value="${personaInstance?.apellido}" />
 		</div>
 		
 		
@@ -41,14 +41,14 @@
 			<label for="mail">
 				<g:message code="persona.mail.label" default="Mail" />
 			</label>
-			<g:field type="email" name="mail" value="${personaInstance?.mail}" />
+			<g:field type="email" name="mail" size="40" value="${personaInstance?.mail}" />
 		</div>
 		
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'telefono', 'error')} ">
 			<label for="telefono">
 				<g:message code="persona.telefono.label" default="Telefono" />
 			</label>
-			<g:textField name="telefono" value="${personaInstance?.telefono}" />
+			<g:textField name="telefono" size="15" value="${personaInstance?.telefono}" />
 		</div>
 	</div>
 	
@@ -57,31 +57,31 @@
 			<label for="direccion">
 				<g:message code="persona.direccion.calle.label" default="Calle" />
 			</label>
-			<g:textField name="direccion.calle" value="${personaInstance?.direccion?.calle}" />
+			<g:textField name="direccion.calle" size="60" value="${personaInstance?.direccion?.calle}" />
 		</div>
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
 			<label for="direccion">
 				<g:message code="persona.direccion.numero.label" default="Numero" />
 			</label>
-			<g:textField name="direccion.numero" value="${personaInstance?.direccion?.numero}" />
+			<g:textField name="direccion.numero" size="5" value="${personaInstance?.direccion?.numero}" />
 		</div>
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
 			<label for="direccion">
 				<g:message code="persona.direccion.adicional.label" default="Adicional" />
 			</label>
-			<g:textField name="direccion.adicional" value="${personaInstance?.direccion?.adicional}" />
+			<g:textField name="direccion.adicional" size="30" value="${personaInstance?.direccion?.adicional}" />
 		</div>
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
 			<label for="direccion">
 				<g:message code="persona.direccion.codigoPostal.label" default="Codigo Postal" />
 			</label>
-			<g:textField name="direccion.codigoPostal" value="${personaInstance?.direccion?.codigoPostal}" />
+			<g:textField name="direccion.codigoPostal" size="4" value="${personaInstance?.direccion?.codigoPostal}" />
 		</div>
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
 			<label for="direccion">
 				<g:message code="persona.direccion.ciudad.label" default="Ciudad" />
 			</label>
-			<g:textField name="direccion.ciudad" value="${personaInstance?.direccion?.ciudad}" />
+			<g:textField name="direccion.ciudad"  size="20" value="${personaInstance?.direccion?.ciudad}" />
 		</div>
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
 			<label for="direccion">
@@ -183,7 +183,7 @@
 			<g:if test="${(isEditing != 'true')}">
 				<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'password', 'error')} required">
 					<label for="password">
-						<g:message code="persona.password.label" default="Contraseña" />
+						<g:message code="persona.password.label" size="20" default="Contraseña" />
 						<span class="required-indicator">*</span>
 					</label>
 					<g:textField name="password" required="" value="${personaInstance?.password}" />
@@ -248,7 +248,6 @@
 	</div>
 
 <script>
-
 
 	function jsonZonaDistritoGrupoSupervisorSuccess(html) {
 		var options = null;

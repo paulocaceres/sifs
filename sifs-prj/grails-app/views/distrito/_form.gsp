@@ -15,5 +15,5 @@
 		<g:message code="distrito.nombre.label" default="Nombre" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="nombre" required="" value="${distritoInstance?.nombre}"/>
+	<g:textField name="nombre" size="20" required="" value="${distritoInstance?.nombre}"/>
 </div>

@@ -7,7 +7,7 @@
 		<g:message code="nivel.nivelCol.label" default="Nivel Col" />
 		
 	</label>
-	<g:textField name="nivelCol" value="${nivelInstance?.nivelCol}"/>
+	<g:textField name="nivelCol"  value="${nivelInstance?.nivelCol}"/>
 
 </div>
 
@@ -16,7 +16,7 @@
 		<g:message code="nivel.nombre.label" default="Nombre" />
 		
 	</label>
-	<g:textField name="nombre" value="${nivelInstance?.nombre}"/>
+	<g:textField name="nombre" size="20" value="${nivelInstance?.nombre}"/>
 
 </div>
 

@@ -14,7 +14,7 @@
 		<g:message code="titulo.nombre.label" default="Nombre" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="nombre" maxlength="70" required="" value="${tituloInstance?.nombre}"/>
+	<g:textField name="nombre" size="20" maxlength="20" required="" value="${tituloInstance?.nombre}"/>
 
 </div>
 

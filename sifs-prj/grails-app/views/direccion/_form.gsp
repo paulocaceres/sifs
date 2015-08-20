@@ -7,7 +7,7 @@
 		<g:message code="direccion.adicional.label" default="Adicional" />
 		
 	</label>
-	<g:textField name="adicional" value="${direccionInstance?.adicional}"/>
+	<g:textField name="adicional" size="30" value="${direccionInstance?.adicional}"/>
 
 </div>
 
@@ -16,7 +16,7 @@
 		<g:message code="direccion.calle.label" default="Calle" />
 		
 	</label>
-	<g:textField name="calle" value="${direccionInstance?.calle}"/>
+	<g:textField name="calle" size="20" value="${direccionInstance?.calle}"/>
 
 </div>
 
@@ -25,7 +25,7 @@
 		<g:message code="direccion.ciudad.label" default="Ciudad" />
 		
 	</label>
-	<g:textField name="ciudad" value="${direccionInstance?.ciudad}"/>
+	<g:textField name="ciudad" size="20" value="${direccionInstance?.ciudad}"/>
 
 </div>
 
@@ -34,7 +34,7 @@
 		<g:message code="direccion.codigoPostal.label" default="Codigo Postal" />
 		
 	</label>
-	<g:textField name="codigoPostal" value="${direccionInstance?.codigoPostal}"/>
+	<g:textField name="codigoPostal" size="4" value="${direccionInstance?.codigoPostal}"/>
 
 </div>
 
@@ -43,7 +43,7 @@
 		<g:message code="direccion.numero.label" default="Numero" />
 		
 	</label>
-	<g:textField name="numero" value="${direccionInstance?.numero}"/>
+	<g:textField name="numero" size="5" value="${direccionInstance?.numero}"/>
 
 </div>
 
