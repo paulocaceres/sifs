@@ -1,6 +1,6 @@
 <%@ page import="ar.org.scouts.sifs.Persona" %>
 
-	<div id="tabs">
+	<div id="tabs" style="max-width:900px; left:140px ;position:relative">
   		<ul>
     		<li><a href="#tabs-1">Datos Personales</a></li>
     		<li><a href="#tabs-2">Direccion</a></li>
@@ -8,7 +8,7 @@
     		<li><a href="#tabs-4">Seguridad</a></li>
   		</ul>
   		
-  	<div id="tabs-1" style="font-size:12px;">		
+  	<div id="tabs-1" style="font-size:14px;">		
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'documentoNumero', 'error')} required">
 			<label for="documentoNumero">
 				<g:message code="persona.documentoNumero.label" default="Documento Numero" />
@@ -52,7 +52,7 @@
 		</div>
 	</div>
 	
-	<div id="tabs-2" style="font-size:12px;">		
+	<div id="tabs-2" style="font-size:14px;">		
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
 			<label for="direccion">
 				<g:message code="persona.direccion.calle.label" default="Calle" />
@@ -64,13 +64,14 @@
 				<g:message code="persona.direccion.numero.label" default="Numero" />
 			</label>
 			<g:textField name="direccion.numero" size="5" value="${personaInstance?.direccion?.numero}" />
-		</div>
-		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
-			<label for="direccion">
+			<label for="direccion" style="left: 0px; position: relative; max-width: 100px">
 				<g:message code="persona.direccion.adicional.label" default="Adicional" />
 			</label>
-			<g:textField name="direccion.adicional" size="30" value="${personaInstance?.direccion?.adicional}" />
+			<g:textField  name="direccion.adicional" size="37" value="${personaInstance?.direccion?.adicional}" />
 		</div>
+<%--		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">--%>
+<%--			--%>
+<%--		</div>--%>
 		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
 			<label for="direccion">
 				<g:message code="persona.direccion.codigoPostal.label" default="Codigo Postal" />
@@ -91,7 +92,7 @@
 		</div>
 	</div>	
 	
-	<div id="tabs-3" style="font-size:12px;">	
+	<div id="tabs-3" style="font-size:14px;">	
 		<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
 			
 				<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'zona', 'error')} ">
@@ -177,7 +178,7 @@
 		</sec:ifAnyGranted>
 	</div>
 		
-	<div id="tabs-4" style="font-size:12px;">
+	<div id="tabs-4" style="font-size:14px;">
 		<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
 			
 			<g:if test="${(isEditing != 'true')}">
