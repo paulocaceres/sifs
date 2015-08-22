@@ -27,6 +27,11 @@
 						<g:message code="default.new.label" args="[entityName]" />
 					</g:link>
 				</li>
+				<li> 
+					<g:link class="create" action="upload">
+						Cargar Archivo
+					</g:link>
+				</li>
 			</ul>
 		</div>
 		<div id="list-persona" class="content scaffold-list" role="main">

@@ -10,6 +10,11 @@ import groovy.text.SimpleTemplateEngine
 import ar.org.scouts.sifs.security.PersonaRol
 import ar.org.scouts.sifs.security.Rol
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import jxl.DateCell
+import jxl.LabelCell
+import jxl.NumberCell
+import jxl.Sheet
+import jxl.Workbook
 
 
 
@@ -22,7 +27,23 @@ class PersonaController {
 	def messageSource
 	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
+	
+	private final static int COLUMN_DNI = 0
+	private final static int COLUMN_NOMBRE = 1
+	private final static int COLUMN_APELLIDO = 2
+	private final static int COLUMN_MAIL = 3
+	private final static int COLUMN_TELEFONO = 4
+	private final static int COLUMN_DIR_CALLE = 5
+	private final static int COLUMN_DIR_NUMERO = 6
+	private final static int COLUMN_DIR_ADICIONAL = 7 
+	private final static int COLUMN_DIR_CP = 8
+	private final static int COLUMN_DIR_CIUDAD = 9 
+	private final static int COLUMN_DIR_PCIA = 10
+	private final static int COLUMN_ZONA = 11
+	private final static int COLUMN_DISTRITO = 12
+	private final static int COLUMN_GRUPO = 13
+	private final static int COLUMN_SUPERVISOR = 14
+	private final static int COLUMN_ROL = 15
 
 	@Secured(['ROLE_SUPERVISOR','ROLE_ADMIN'])
     def index(Integer max) {
@@ -258,7 +279,31 @@ class PersonaController {
         }
     }
 
+	
+	def upload() {
+	}
     
+	
+	def doUpload() {
+		def file = request.getFile('file')
+		Workbook workbook = Workbook.getWorkbook(file.getInputStream());
+		Sheet sheet = workbook.getSheet(0);
+
+		// skip first row (row 0) by starting from 1
+		for (int row = 1; row < sheet.getRows(); row++) {
+			LabelCell lastName = sheet.getCell(COLUMN_LAST_NAME, row)
+			LabelCell firstName = sheet.getCell(COLUMN_FIRST_NAME, row)
+			DateCell dateOfBirth = sheet.getCell(COLUMN_DATE_OF_BIRTH, row)
+			NumberCell numberOfChildren = sheet.getCell(COLUMN_NUMBER_OF_CHILDREN, row)
+
+			new Persona(lastName:lastName.string , firstName:firstName.string ,
+					dateOfBirth:dateOfBirth.date, numberOfChildren:numberOfChildren.value).save()
+
+		}
+		redirect (action:'index')
+	}
+	
+	
 	protected void notFound() {
         request.withFormat {
             form multipartForm {
