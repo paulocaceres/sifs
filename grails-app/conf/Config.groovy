@@ -174,14 +174,13 @@ jcaptchas {
 grails.views.javascript.library="jquery"
 
 // Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.password.algorithm = 'bcrypt'
 grails.plugins.springsecurity.password.encodeHashAsBase64 = true
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'ar.org.scouts.sifs.Persona'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'ar.org.scouts.sifs.security.PersonaRol'
 grails.plugins.springsecurity.userLookup.usernamePropertyName='documentoNumero'
 grails.plugins.springsecurity.authority.className = 'ar.org.scouts.sifs.security.Rol'
 grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/home'
-//grails.plugins.springsecurity.dao.reflectionSaltSourceProperty = 'documentoNumero'
+grails.plugins.springsecurity.dao.reflectionSaltSourceProperty = 'username'
 
 grails.plugins.springsecurity.ui.encodePassword = false 
 grails.plugins.springsecurity.ui.forgotPassword.emailBody = ''' Hola $user.nombre,<br/> <br/> Tu (o alguien pretendiendo ser tu) ha solicitado cambiar la contraseña.<br/><br/> Si tu no has hecho esta solicitud, por favor ignora este email; no se han hecho cambios.<br/><br/> Si tu hiciste esta solicitud, entonces presiona <a href="$url">aqui</a> para restablecer tu contraseña. '''
