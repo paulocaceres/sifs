@@ -6,7 +6,7 @@
 	<label for="numero">
 		<g:message code="zona.numero.label" default="Número" />
 	</label>
-	<g:textField name="numero" size="2" pattern="${zonaInstance.constraints.numero.matches}" value="${zonaInstance?.numero}" />
+	<g:textField name="numero" maxlength="2" size="2" pattern="${zonaInstance.constraints.numero.matches}" value="${zonaInstance?.numero}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: zonaInstance, field: 'nombre', 'error')} ">
