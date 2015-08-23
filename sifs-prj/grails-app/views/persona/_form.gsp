@@ -83,13 +83,17 @@
 				<g:message code="persona.direccion.ciudad.label" default="Ciudad" />
 			</label>
 			<g:textField name="direccion.ciudad"  size="20" value="${personaInstance?.direccion?.ciudad}" />
-		</div>
-		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
-			<label for="direccion">
+            <label for="direccion" style="left: 0px; position: relative; max-width: 100px">
 				<g:message code="persona.direccion.provincia.label" default="Provincia" />
 			</label>
 			<g:select optionKey="id" from="${ar.org.scouts.sifs.Provincia.list()}" noSelection="['null': '']" name="direccion.provincia.id" value="${personaInstance?.direccion?.provincia?.id}" style="width: 208px" />
 		</div>
+<%--		<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">--%>
+<%--			<label for="direccion">--%>
+<%--				<g:message code="persona.direccion.provincia.label" default="Provincia" />--%>
+<%--			</label>--%>
+<%--			<g:select optionKey="id" from="${ar.org.scouts.sifs.Provincia.list()}" noSelection="['null': '']" name="direccion.provincia.id" value="${personaInstance?.direccion?.provincia?.id}" style="width: 208px" />--%>
+<%--		</div>--%>
 	</div>	
 	
 	<div id="tabs-3" style="font-size:14px;">	
@@ -223,6 +227,7 @@
 					<g:message code="persona.roles.label" default="Roles" />
 					<span class="required-indicator">*</span>
 				</label>
+								
 			</div>
 		
 			<g:each var="rol" in="${ar.org.scouts.sifs.security.Rol.list()}">
@@ -243,7 +248,7 @@
 					</g:if>
 				</sec:ifAnyGranted>
 			</g:each>
-			
+<%--			--%>
 		</sec:ifAnyGranted>
 	</div>
 	</div>
