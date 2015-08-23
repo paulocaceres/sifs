@@ -4,6 +4,14 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'dictado.label', default: 'Dictado')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+		
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
+		<script src="/sifs-prj/static/js/jquery-ui.js" type="text/javascript" ></script>
+	    <script>
+	  		$(function() {
+	    		$( "#tabs" ).tabs();
+	  		});
+	  	</script>	
 	</head>
 	<body>
 		<a href="#create-dictado" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
