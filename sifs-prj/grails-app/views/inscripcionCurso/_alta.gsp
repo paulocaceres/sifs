@@ -1,13 +1,13 @@
 <%@ page import="ar.org.scouts.sifs.Curso" %>
 
-		<div id="tabs">
+		<div id="tabs" style="max-width:900px; left:140px ;position:relative">
 		  <ul>
 			<li><a href="#tabs-2">
 				  <g:message code="curso.correlativas.label2" default="Cursos Disponibles" />
 				</a>
 			</li>
 		  </ul>
-		  <div id="tabs-2">
+		  <div id="tabs-2" style="font-size:14px;">
 		  	   	 
 		  	 	<div id="accordion">
 		  	 	  <g:each in="${inscripcionInstanceList}" status="i" var="cursoInstance">

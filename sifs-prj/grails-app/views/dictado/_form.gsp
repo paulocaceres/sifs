@@ -1,18 +1,17 @@
 <%@ page import="ar.org.scouts.sifs.Dictado" %>
 
-<g:set var="userId" value="${sec.loggedInUserInfo(field: 'id')}" />
+<div id="tabs" style="max-width:900px; left:140px ;position:relative">
+  		<ul>
+    		<li><a href="#tabs-1">Datos de Formador</a></li>
+    		<li><a href="#tabs-2">Datos de Curso</a></li>
 
-<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'curso', 'error')} ">
-	<label for="curso">
-		<g:message code="dictado.curso.label" default="Curso" />
-		
-	</label>
-	<g:select id="curso" name="curso.id" from="${ar.org.scouts.sifs.Curso.list()}" optionKey="id" value="${dictadoInstance?.curso?.id}" class="many-to-one" noSelection="['null': '']"/>
-</div>
+  		</ul>
+<div id="tabs-1" style="font-size:14px;">	
+<g:set var="userId" value="${sec.loggedInUserInfo(field: 'id')}" />
 
 <div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'formador', 'error')} ">
         <label for="formador">
-                <g:message code="dictado.formador.label" default="Formador" />
+                <g:message code="dictado.formador.label" default="Formador Responsable" />
 
         </label>
         <g:select id="formador" name="formador.id" from="${ar.org.scouts.sifs.Persona.listarPorRol('ROLE_FORMADOR')}" optionKey="id" value="${dictadoInstance?.formador?.id}" class="many-to-one" noSelection="['null': '']"/>
@@ -26,6 +25,17 @@
 	<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.listarPorPersona(userId)}" optionKey="id" value="${dictadoInstance?.zona?.id}" class="many-to-one" noSelection="['null': '']"/>
 
 </div>
+	</div>
+	
+<div id="tabs-2" style="font-size:14px;">	
+
+<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'curso', 'error')} ">
+	<label for="curso">
+		<g:message code="dictado.curso.label" default="Curso" />
+		
+	</label>
+	<g:select id="curso" name="curso.id" from="${ar.org.scouts.sifs.Curso.list()}" optionKey="id" value="${dictadoInstance?.curso?.id}" class="many-to-one" noSelection="['null': '']"/>
+</div>
 
 <div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'fecha', 'error')} ">
 	<label for="fecha">
@@ -33,15 +43,6 @@
 		
 	</label>
 	<g:datePicker name="fecha" precision="day"  value="${dictadoInstance?.fecha}" default="none" noSelection="['': '']" />
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'cupo', 'error')} ">
-	<label for="cupo">
-		<g:message code="dictado.cupo.label" default="Cupo" />
-		
-	</label>
-	<g:field name="cupo" type="number" value="${dictadoInstance.cupo}" min="0" max="30"/>
 
 </div>
 
@@ -54,6 +55,17 @@
 
 </div>
 
+
+<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'cupo', 'error')} ">
+	<label for="cupo">
+		<g:message code="dictado.cupo.label" default="Cupo" />
+		
+	</label>
+	<g:field name="cupo" type="number" value="${dictadoInstance.cupo}" min="0" max="30"/>
+
+</div>
+
+
 <div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'recursos', 'error')} ">
 	<label for="recursos">
 		<g:message code="dictado.recursos.label" default="Recursos" />		
@@ -64,8 +76,10 @@
 
 <div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'status', 'error')} ">
         <label for="status">
-                <g:message code="dictado.status.label" default="Status" />
+                <g:message code="dictado.status.label" default="Estado" />
 
         </label>
         <g:select id="status" name="status.id" from="${ar.org.scouts.sifs.DictadoStatus.findByNombre('ABIERTO')}" optionKey="id" value="${dictadoInstance?.status?.id}" class="many-to-one" noSelection="['null': '']"/>
+</div>
+</div>
 </div>
