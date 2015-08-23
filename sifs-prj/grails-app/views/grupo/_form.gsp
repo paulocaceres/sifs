@@ -22,7 +22,7 @@
 	<label for="numero">
 		<g:message code="grupo.numero.label" default="Numero" />
 	</label>
-	<g:textField name="numero" maxlength="4" pattern="${grupoInstance.constraints.numero.matches}" value="${grupoInstance?.numero}" />
+	<g:textField name="numero" maxlength="4" size="4" pattern="${grupoInstance.constraints.numero.matches}" value="${grupoInstance?.numero}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'nombre', 'error')} required">
