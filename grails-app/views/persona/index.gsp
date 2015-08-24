@@ -22,16 +22,19 @@
 						<g:message code="default.home.label" />
 					</a>
 				</li>
+				
 				<li>
 					<g:link class="create" action="create">
 						<g:message code="default.new.label" args="[entityName]" />
 					</g:link>
 				</li>
+				
 				<li> 
-					<g:link class="create" action="upload">
-						Cargar Archivo
+					<g:link class="plus" controller="persona" action="upload">
+						<g:message code="Cargar Archivo" default="Cargar Archivo" />
 					</g:link>
 				</li>
+				
 			</ul>
 		</div>
 		<div id="list-persona" class="content scaffold-list" role="main">

@@ -21,7 +21,7 @@ class BootStrap {
 
 	def init = { servletContext ->
 
-		def password = 'password'
+		def password = 'Password1$'
 		def rolCursante = null // ROL CURSANTE
 
 				
@@ -29,20 +29,20 @@ class BootStrap {
 			
 //
 //						
-//			Zona admin_zona = new Zona(nombre: 'admin_zona', numero:'1');
-//			admin_zona.save();
-//	
-//			Distrito admin_distrito = new Distrito(nombre: 'admin_Distrito', zona: admin_zona);
-//			admin_distrito.save();
-//			
-//			Grupo admin_Grupo = new Grupo(nombre: 'admin_Grupo', numero:'0', distrito: admin_distrito)
-//			admin_Grupo.save();
+			Zona admin_zona = new Zona(nombre: 'adminZona', numero:'1');
+			admin_zona.save(flush: true, insert: true);
+	
+			Distrito admin_distrito = new Distrito(nombre: 'adminDistrito', zona: admin_zona);
+			admin_distrito.save(flush: true, insert: true);
+			
+			Grupo admin_Grupo = new Grupo(nombre: 'adminGrupo', numero:'1', distrito: admin_distrito)
+			admin_Grupo.save(flush: true, insert: true);
 		
-			def admin = new Persona(	documentoNumero: 	'23113867',
+			def admin = new Persona(	documentoNumero: 	'26888999',
 										password: 			password,
 										nombre: 			'Esteban',
 										apellido: 			'Gomez',
-										mail: 				'persona@mail.com',
+										mail: 				'paulo.caceres@gmail.com',
 										enabled: 			true, 
 										accountExpired: 	false, 
 										accountLocked: 		false, 
