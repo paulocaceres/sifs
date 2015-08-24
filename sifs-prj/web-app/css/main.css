@@ -187,7 +187,7 @@ img {
 	text-decoration: underline;
 }
 
-.nav a.home, .nav a.list, .nav a.create {
+.nav a.home, .nav a.list, .nav a.create, .nav a.plus {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -205,6 +205,9 @@ img {
 	background-image: url(../images/skin/database_add.png);
 }
 
+.nav a.plus {
+	background-image: url(../images/skin/database_edit.png);
+}
 /* CREATE/EDIT FORMS AND SHOW PAGES */
 
 fieldset,

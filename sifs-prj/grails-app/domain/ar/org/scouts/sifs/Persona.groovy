@@ -69,7 +69,7 @@ class Persona {
 		distrito(nullable: true);
 		grupo(nullable: true);
 		supervisor(nullable: true);
-		password(matches: '^.*(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$');
+		password(blank: false);
 		dictadosAprobados(nullable: true);
 		dictadosAnotados(nullable: true);
 	}

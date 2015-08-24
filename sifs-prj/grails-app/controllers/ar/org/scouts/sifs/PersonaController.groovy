@@ -9,7 +9,15 @@ import grails.transaction.Transactional
 import groovy.text.SimpleTemplateEngine
 import ar.org.scouts.sifs.security.PersonaRol
 import ar.org.scouts.sifs.security.Rol
+
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+
+import jxl.DateCell
+import jxl.LabelCell
+import jxl.NumberCell
+import jxl.Sheet
+import jxl.Workbook
+import jxl.Cell
 
 
 
@@ -22,7 +30,23 @@ class PersonaController {
 	def messageSource
 	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
+	
+	private final static int COLUMN_DNI = 0
+	private final static int COLUMN_NOMBRE = 1
+	private final static int COLUMN_APELLIDO = 2
+	private final static int COLUMN_MAIL = 3
+	private final static int COLUMN_TELEFONO = 4
+	private final static int COLUMN_DIR_CALLE = 5
+	private final static int COLUMN_DIR_NUMERO = 6
+	private final static int COLUMN_DIR_ADICIONAL = 7 
+	private final static int COLUMN_DIR_CP = 8
+	private final static int COLUMN_DIR_CIUDAD = 9 
+	private final static int COLUMN_DIR_PCIA = 10
+	private final static int COLUMN_ZONA = 11
+	private final static int COLUMN_DISTRITO = 12
+	private final static int COLUMN_GRUPO = 13
+	private final static int COLUMN_SUPERVISOR = 14
+	private final static int COLUMN_ROL = 15
 
 	@Secured(['ROLE_SUPERVISOR','ROLE_ADMIN'])
     def index(Integer max) {
@@ -118,6 +142,15 @@ class PersonaController {
 					personaInstance.properties = [supervisor:[id: supervisor]];
 				}
 			}
+		}
+		
+		//Password code validator
+		def pass = params.get('password');
+		if (!checkPasswordMinLength(pass) ||
+			!checkPasswordMaxLength(pass) ||
+			!checkPasswordRegex(pass)) {
+			personaInstance.errors.rejectValue('password', 'command.password.error.strength',
+				'El password no cumple con lo requisitos')
 		}
 		
         if (personaInstance.hasErrors()) {
@@ -258,7 +291,78 @@ class PersonaController {
         }
     }
 
+	
+	def upload() {
+	}
     
+	@Transactional
+	def doUpload() {
+		def file = request.getFile('file')
+		Workbook workbook = Workbook.getWorkbook(file.getInputStream());
+		Sheet sheet = workbook.getSheet(0);
+
+		// skip first row (row 0) by starting from 1
+		for (int row = 1; row < sheet.getRows(); row++) {
+			Cell dni = sheet.getCell(COLUMN_DNI, row)
+			Cell firstName = sheet.getCell(COLUMN_NOMBRE, row)
+			Cell lastName = sheet.getCell(COLUMN_APELLIDO, row)
+			Cell email = sheet.getCell(COLUMN_MAIL, row)
+			Cell tel = sheet.getCell(COLUMN_TELEFONO, row)
+			Cell dirCalle = sheet.getCell(COLUMN_DIR_CALLE, row)
+			Cell dirNumero = sheet.getCell(COLUMN_DIR_NUMERO, row)
+			Cell dirAdicional = sheet.getCell(COLUMN_DIR_ADICIONAL, row)
+			Cell dirCP = sheet.getCell(COLUMN_DIR_CP, row)
+			Cell dirCiudad = sheet.getCell(COLUMN_DIR_CIUDAD, row)
+			Cell dirPcia = sheet.getCell(COLUMN_DIR_PCIA, row)
+			Cell numZona = sheet.getCell(COLUMN_ZONA, row)
+			Cell nomDistrito = sheet.getCell(COLUMN_DISTRITO, row)
+			Cell numGrupo = sheet.getCell(COLUMN_GRUPO, row)
+			Cell dniSupervisor = sheet.getCell(COLUMN_SUPERVISOR, row)
+			Cell rolName = sheet.getCell(COLUMN_ROL, row)
+			
+			if(Persona.findByDocumentoNumero(dni.getContents())) {
+				log.error("La persona dni: " + dni.getContents() + " ya existe");
+			} else {
+				try {
+					def xZona = Zona.findByNumero(numZona.getContents())
+					def xDistrito = Distrito.findByNombreIlike(nomDistrito.string)
+					def xGrupo = Grupo.findByNumero(numGrupo.getContents())
+					def xSupervisor = null
+					def xRol = null
+					if(rolName.string) {
+						xRol = Rol.findByAuthority(rolName.string)
+					}
+					def prov = Provincia.findByDescripcionIlike(dirPcia.string)
+					
+					if(dniSupervisor.getContents()) {
+						xSupervisor = Persona.findByDocumentoNumero(dniSupervisor.getContents())
+					}
+					def dir = new Direccion(calle: dirCalle.string, numero: dirNumero.getContents(), adicional: dirAdicional.string,
+						codigoPostal: dirCP.getContents(), ciudad: dirCiudad.string, provincia: prov)
+
+					def persona = new Persona(documentoNumero: dni.getContents(), nombre: firstName.string, apellido: lastName.string,
+						mail:email.string, telefono: tel.getContents(), zona: xZona, distrito: xDistrito,
+						grupo: xGrupo, supervisor: xSupervisor, password: 'password1#', enabled: true, accountExpired: false, accountLocked: false, 
+										passwordExpired: false, direccion: dir).save(flush:true, insert: true)														
+						
+					def cursante = Rol.findByAuthority('ROLE_CURSANTE')
+					PersonaRol.create(persona, cursante, true)
+					persona.save flush:true
+					
+					if(xRol) {
+						PersonaRol.create(persona, xRol, true)
+						persona.save flush:true
+					}
+				} catch(Exception e) {
+					log.error("Error al crear la persona con dni: " + dni.getContents());
+				}
+			} 
+			log.info("DNI: " + dni.getContents() + " cargado con exito.");
+		}
+		redirect (action:'index')
+	}
+	
+	
 	protected void notFound() {
         request.withFormat {
             form multipartForm {
@@ -368,5 +472,20 @@ class PersonaController {
 	
 	protected String evaluate(s, binding) {
 		new SimpleTemplateEngine().createTemplate(s).make(binding)
+	}
+	
+	static boolean checkPasswordMinLength(String password) {
+		int minLength = 8
+		password && password.length() >= minLength
+	}
+
+	static boolean checkPasswordMaxLength(String password) {
+		int maxLength = 64
+		password && password.length() <= maxLength
+	}
+
+	static boolean checkPasswordRegex(String password) {
+		String passValidationRegex = '^.*(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$'
+		password && password.matches(passValidationRegex)
 	}
 }
