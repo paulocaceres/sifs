@@ -110,7 +110,7 @@ class PersonaController {
 			def distrito = params.get('distrito.id') != null ? params.get('distrito.id') : params.get('distritoHdd')
 			def grupo = params.get('grupo.id') != null ? params.get('grupo.id') : params.get('grupoHdd')
 			def supervisor = params.get('supervisor.id') != null ? params.get('supervisor.id') : params.get('supervisorHdd')
-			if(zona=='null' || zona==null) {
+			if(zona=='null' || zona=='' || zona==null) {
 				personaInstance.errors.rejectValue('zona.id', 'ar.org.scouts.sifs.Persona.zona.nullable',
 				'El campo Zona es obligatorio')
 			} else {
@@ -118,7 +118,7 @@ class PersonaController {
 					personaInstance.properties = [zona:[id: zona]];
 				}
 			}
-			if(distrito=='null' || distrito==null) {
+			if(distrito=='null' || distrito=='' || distrito==null) {
 				personaInstance.errors.rejectValue('distrito.id', 'ar.org.scouts.sifs.Persona.distrito.nullable',
 				'El campo Distrito es obligatorio')
 			} else {
@@ -126,7 +126,7 @@ class PersonaController {
 					personaInstance.properties = [distrito:[id: distrito]];
 				}
 			}
-			if(grupo=='null' || grupo==null) {
+			if(grupo=='null' || grupo=='' || grupo==null) {
 				personaInstance.errors.rejectValue('grupo.id', 'ar.org.scouts.sifs.Persona.grupo.nullable',
 				'El campo Grupo es obligatorio')
 			} else {
@@ -134,7 +134,7 @@ class PersonaController {
 					personaInstance.properties = [grupo:[id: grupo]];
 				}
 			}
-			if(!rolesList?.contains(supervRol) && (supervisor=='null' || supervisor==null)) {
+			if(!rolesList?.contains(supervRol) && (supervisor=='null' || supervisor=='' || supervisor==null)) {
 				personaInstance.errors.rejectValue('supervisor.id', 'ar.org.scouts.sifs.Persona.supervisor.nullable',
 					'El campo Supervisor es obligatorio')
 			} else {
