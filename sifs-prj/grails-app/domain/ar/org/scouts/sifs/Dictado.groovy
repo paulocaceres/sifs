@@ -1,10 +1,12 @@
 package ar.org.scouts.sifs
 import java.util.Date
+import org.grails.databinding.BindingFormat
 
 class Dictado {
     
 	Curso curso
 	Zona zona
+	@BindingFormat('dd/MM/yyyy')
 	Date fecha = new Date()
 	Integer cupo
 	Persona formador

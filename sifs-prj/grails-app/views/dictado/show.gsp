@@ -52,7 +52,7 @@
 				<li class="fieldcontain">
 					<span id="fecha-label" class="property-label"><g:message code="dictado.fecha.label" default="Fecha" /></span>
 					
-						<span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="dd-MM-yyyy" date="${dictadoInstance?.fecha}" /></span>
+						<span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="dd/MM/yyyy" date="${dictadoInstance?.fecha}" /></span>
 					
 				</li>
 				</g:if>

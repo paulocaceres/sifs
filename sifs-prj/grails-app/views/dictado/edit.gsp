@@ -8,10 +8,17 @@
 		
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
 		<script src="/sifs-prj/static/js/jquery-ui.js" type="text/javascript" ></script>
+		<script src="/sifs-prj/static/js/datepicker-es.js" type="text/javascript" ></script>
 	    <script>
 	  		$(function() {
 	    		$( "#tabs" ).tabs();
 	  		});
+	  		$(document).ready(function()
+	  		        {
+	  		          $("#datepicker").datepicker({minDate: +1, dateFormat: 'dd/mm/yy'});
+	  		          $("#datepicker").datepicker($.datepicker.regional[ "es" ]);
+	  		          $("div.ui-datepicker").css({fontSize: '13px'});
+	  		        })
 	  	</script>	
 	</head>
 	<body>

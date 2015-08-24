@@ -43,12 +43,13 @@
 		<g:select id="curso" name="curso.id" from="${ar.org.scouts.sifs.Curso.list()}" optionKey="id" value="${dictadoInstance?.curso?.id}" class="many-to-one" noSelection="['null': '']"/>
 	</div>
 
-	<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'fecha', 'error')} ">
+	<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'fecha', 'error')} "> 
 		<label for="fecha">
 			<g:message code="dictado.fecha.label" default="Fecha" />
 			
 		</label>
-		<g:datePicker name="fecha" precision="day"  value="${dictadoInstance?.fecha}" default="none" noSelection="['': '']" />
+<%--		<g:datePicker name="fecha" precision="day"  value="${dictadoInstance?.fecha}" default="none" noSelection="['': '']" />--%>
+			<input type="text" id="datepicker" name="fecha" value="${formatDate(format:'dd/MM/yyyy',date:dictadoInstance?.fecha)}">	
 	
 	</div>
 	
