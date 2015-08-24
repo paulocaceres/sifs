@@ -160,6 +160,11 @@ class PersonaController {
 		
         personaInstance.save flush:true
 
+        if (personaInstance.hasErrors()) {
+            respond personaInstance.errors, view:'create'
+            return
+        }
+		
 		personaInstance.authorities.clear()
 		rolesList.each {
 			PersonaRol.create(personaInstance, it, true)
