@@ -2,7 +2,7 @@
 
 <head>
 <title><g:message code='spring.security.ui.resetPassword.title'/></title>
-<!--  meta name='layout' content='registro'/ -->
+	<meta name="layout" content="mainSinMenu"/>
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'spring-security-ui.css')}" type="text/css">
 	<script src="/sifs-prj/static/js/jquery.js" type="text/javascript" ></script>
@@ -13,10 +13,14 @@
 
 <p/>
 
-<s2ui:form width='475' height='250' elementId='resetPasswordFormContainer'
+<s2ui:form width='475' height='350' elementId='resetPasswordFormContainer'
            titleCode='spring.security.ui.resetPassword.header' center='true'>
 
 	<g:form action='resetPassword' name='resetPasswordForm' autocomplete='off'>
+	
+	<g:if test="${flash.message}">
+				<div class="message" role="status">${flash.message}</div>
+	</g:if>
 	
 	<g:if test='${resetSuccess}'>
 		<br/>

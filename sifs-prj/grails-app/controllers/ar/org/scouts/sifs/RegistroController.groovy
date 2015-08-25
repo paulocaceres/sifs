@@ -21,7 +21,7 @@ class RegistroController {
 		
 				String username = params.username
 				if (!username) {
-					flash.error = message(code: 'spring.security.ui.forgotPassword.username.missing')
+					flash.message = message(code: 'spring.security.ui.forgotPassword.username.missing')
 					redirect action: 'forgotPassword'
 					return
 				}
@@ -29,7 +29,7 @@ class RegistroController {
 				String usernameFieldName = SpringSecurityUtils.securityConfig.userLookup.usernamePropertyName
 				def user = lookupUserClass().findWhere((usernameFieldName): username)
 				if (!user) {
-					flash.error = message(code: 'spring.security.ui.forgotPassword.user.notFound')
+					flash.message = message(code: 'spring.security.ui.forgotPassword.user.notFound')
 					redirect action: 'forgotPassword'
 					return
 				}
@@ -68,7 +68,7 @@ class RegistroController {
 		
 				def registrationCode = token ? CodigoRegistro.findByToken(token) : null
 				if (!registrationCode) {
-					flash.error = message(code: 'spring.security.ui.resetPassword.badCode')
+					flash.message = message(code: 'spring.security.ui.resetPassword.badCode')
 					redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
 					return
 				}

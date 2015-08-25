@@ -2,7 +2,7 @@
 
 <head>
 <title><g:message code='spring.security.ui.forgotPassword.title'/></title>
-<!--  meta name='layout' content='registro'/ -->
+	<meta name="layout" content="mainSinMenu"/>
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'spring-security-ui.css')}" type="text/css">
 	<script src="/sifs-prj/static/js/jquery.js" type="text/javascript" ></script>
@@ -14,7 +14,7 @@
 
 <p/>
 
-<s2ui:form width='400' height='250' elementId='forgotPasswordFormContainer'
+<s2ui:form width='400' height='300' elementId='forgotPasswordFormContainer'
            titleCode='spring.security.ui.forgotPassword.header' center='true'>
 
 	<g:form action='forgotPassword' name="forgotPasswordForm" autocomplete='off'>

@@ -305,7 +305,10 @@ class PersonaController {
 		def file = request.getFile('file')
 		Workbook workbook = Workbook.getWorkbook(file.getInputStream());
 		Sheet sheet = workbook.getSheet(0);
-
+		boolean success = false
+		def persona = null
+		def passGenerica = 'password1#'
+		
 		// skip first row (row 0) by starting from 1
 		for (int row = 1; row < sheet.getRows(); row++) {
 			Cell dni = sheet.getCell(COLUMN_DNI, row)
@@ -334,7 +337,7 @@ class PersonaController {
 					def xGrupo = Grupo.findByNumero(numGrupo.getContents())
 					def xSupervisor = null
 					def xRol = null
-					if(rolName.string) {
+					if(rolName.getContents()) {
 						xRol = Rol.findByAuthority(rolName.string)
 					}
 					def prov = Provincia.findByDescripcionIlike(dirPcia.string)
@@ -345,9 +348,9 @@ class PersonaController {
 					def dir = new Direccion(calle: dirCalle.string, numero: dirNumero.getContents(), adicional: dirAdicional.string,
 						codigoPostal: dirCP.getContents(), ciudad: dirCiudad.string, provincia: prov)
 
-					def persona = new Persona(documentoNumero: dni.getContents(), nombre: firstName.string, apellido: lastName.string,
+					persona = new Persona(documentoNumero: dni.getContents(), nombre: firstName.string, apellido: lastName.string,
 						mail:email.string, telefono: tel.getContents(), zona: xZona, distrito: xDistrito,
-						grupo: xGrupo, supervisor: xSupervisor, password: 'password1#', enabled: true, accountExpired: false, accountLocked: false, 
+						grupo: xGrupo, supervisor: xSupervisor, password: passGenerica, enabled: true, accountExpired: false, accountLocked: false, 
 										passwordExpired: false, direccion: dir).save(flush:true, insert: true)														
 						
 					def cursante = Rol.findByAuthority('ROLE_CURSANTE')
@@ -358,11 +361,33 @@ class PersonaController {
 						PersonaRol.create(persona, xRol, true)
 						persona.save flush:true
 					}
+					success = true
 				} catch(Exception e) {
 					log.error("Error al crear la persona con dni: " + dni.getContents());
+					success = false
 				}
 			} 
-			log.info("DNI: " + dni.getContents() + " cargado con exito.");
+			if(success) {
+				log.info("DNI: " + dni.getContents() + " cargado con exito.");
+				String urlSifs = generateLinkResetPassword()
+				def emailMessage = null
+				def conf = SpringSecurityUtils.securityConfig
+				def body = conf.ui.personaCreada.emailBody
+				if (body.contains('$')) {
+					body = evaluate(body, [user: persona, scoutpwd: passGenerica ,url: urlSifs])
+				}
+				
+				try {
+					mailService.sendMail {
+						to persona.mail
+						from conf.ui.personaCreada.emailFrom
+						subject conf.ui.personaCreada.emailSubject
+						html body.toString()
+					}
+				} catch(Exception e) {
+					log.error("Error durante el envio de email de notificacion de creacion de persona", e)
+				}
+			}
 		}
 		redirect (action:'index')
 	}
@@ -473,6 +498,11 @@ class PersonaController {
 	protected String generateLink() {
 		createLink(base: "$request.scheme://$request.serverName:$request.serverPort$request.contextPath",
 				controller: 'login')
+	}
+	
+	protected String generateLinkResetPassword() {
+		createLink(base: "$request.scheme://$request.serverName:$request.serverPort$request.contextPath",
+				controller: 'registro', action: 'forgotPassword')
 	}
 	
 	protected String evaluate(s, binding) {
