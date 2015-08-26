@@ -30,7 +30,12 @@
 
 <div id="tabs-2" style="font-size:14px;">
 		<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'curso', 'error')} ">
-			<label for="curso">
+<label for="nombre">
+				<g:message code="dictado.nombre.label" default="Nombre" />
+				
+			</label>
+			<g:field name="nombre" type="text" size="20" value="${dictadoInstance.nombre}"/>
+			<label for="curso" style="left: 0px; position: relative; max-width: 100px">
 				<g:message code="dictado.curso.label" default="Curso" />
 				
 			</label>
@@ -50,20 +55,15 @@
 		<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'cupo', 'error')} ">
 			<label for="cupo">
 				<g:message code="dictado.cupo.label" default="Cupo" />
-				
 			</label>
-			<g:field name="cupo" type="number" value="${dictadoInstance.cupo}" min="0"/>
-		
+			<g:field name="cupo" type="number" value="${dictadoInstance.cupo}" min="0" max="30"/>
+             <label for="status"   style="left: 0px; position: relative; max-width: 100px">
+ 		                <g:message code="dictado.status.label" default="Status" />
+		        </label>
+		        <g:select id="status" name="status.id" from="${ar.org.scouts.sifs.DictadoStatus.list()}" optionKey="id" value="${dictadoInstance?.status?.id}" class="many-to-one" noSelection="['null': '']"/>
 		</div>
 		
-		<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'nombre', 'error')} ">
-			<label for="nombre">
-				<g:message code="dictado.nombre.label" default="Nombre" />
-				
-			</label>
-			<g:field name="nombre" type="text" value="${dictadoInstance.nombre}"/>
-		
-		</div>
+
 		
 		<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'recursos', 'error')} ">
 			<label for="recursos">
@@ -73,12 +73,6 @@
 		
 		</div>
 		
-		<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'status', 'error')} ">
-		        <label for="status">
-		                <g:message code="dictado.status.label" default="Status" />
-		
-		        </label>
-		        <g:select id="status" name="status.id" from="${ar.org.scouts.sifs.DictadoStatus.list()}" optionKey="id" value="${dictadoInstance?.status?.id}" class="many-to-one" noSelection="['null': '']"/>
-		</div>
+
 </div>
 </div>

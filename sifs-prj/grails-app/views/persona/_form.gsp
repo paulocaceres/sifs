@@ -2,10 +2,13 @@
 
 	<div id="tabs" style="max-width:900px; left:140px ;position:relative">
   		<ul>
+  		
     		<li><a href="#tabs-1">Datos Personales</a></li>
     		<li><a href="#tabs-2">Direccion</a></li>
-    		<li><a href="#tabs-3">Informacion Scout</a></li>
-    		<li><a href="#tabs-4">Seguridad</a></li>
+    	<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
+    	    <li><a href="#tabs-3">Informacion Scout</a></li>
+     		<li><a href="#tabs-4">Seguridad</a></li>
+    	</sec:ifAnyGranted>
   		</ul>
   		
   	<div id="tabs-1" style="font-size:14px;">		

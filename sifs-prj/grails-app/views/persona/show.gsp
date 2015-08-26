@@ -78,42 +78,42 @@
 					</li>
 				</g:if>
 
-				<g:if test="${personaInstance?.mail}">
-					<li class="fieldcontain">
-						<span id="mail-label" class="property-label">
-							<g:message code="persona.mail.label" default="Mail" />
-						</span>
-						<span class="property-value" aria-labelledby="mail-label">
-							<g:fieldValue bean="${personaInstance}" field="mail" />
-						</span>
-					</li>
-				</g:if>
+<%--				<g:if test="${personaInstance?.mail}">--%>
+<%--					<li class="fieldcontain">--%>
+<%--						<span id="mail-label" class="property-label">--%>
+<%--							<g:message code="persona.mail.label" default="Mail" />--%>
+<%--						</span>--%>
+<%--						<span class="property-value" aria-labelledby="mail-label">--%>
+<%--							<g:fieldValue bean="${personaInstance}" field="mail" />--%>
+<%--						</span>--%>
+<%--					</li>--%>
+<%--				</g:if>--%>
 
-				<g:if test="${personaInstance?.direccion}">
-					<li class="fieldcontain">
-						<span id="direccion-label" class="property-label">
-							<g:message code="persona.direccion.label" default="Direccion" />
-						</span>
-						<span class="property-value" aria-labelledby="direccion-label">
-							${personaInstance?.direccion?.calle} ${personaInstance?.direccion?.numero}
-							<g:if test="${personaInstance?.direccion?.adicional != null}">${personaInstance?.direccion?.adicional}</g:if> 
-							<br/>
-							${personaInstance?.direccion?.codigoPostal} ${personaInstance?.direccion?.ciudad} 
-							<br/>
-							${personaInstance?.direccion?.provincia}
-						</span>
-					</li>
-				</g:if>
-				<g:if test="${personaInstance?.telefono}">
-					<li class="fieldcontain">
-						<span id="telefono-label" class="property-label">
-							<g:message code="persona.telefono.label" default="Telefono" />
-						</span>
-						<span class="property-value" aria-labelledby="telefono-label">
-							<g:fieldValue bean="${personaInstance}" field="telefono" />
-						</span>
-					</li>
-				</g:if>
+<%--				<g:if test="${personaInstance?.direccion}">--%>
+<%--					<li class="fieldcontain">--%>
+<%--						<span id="direccion-label" class="property-label">--%>
+<%--							<g:message code="persona.direccion.label" default="Direccion" />--%>
+<%--						</span>--%>
+<%--						<span class="property-value" aria-labelledby="direccion-label">--%>
+<%--							${personaInstance?.direccion?.calle} ${personaInstance?.direccion?.numero}--%>
+<%--							<g:if test="${personaInstance?.direccion?.adicional != null}">${personaInstance?.direccion?.adicional}</g:if> --%>
+<%--							<br/>--%>
+<%--							${personaInstance?.direccion?.codigoPostal} ${personaInstance?.direccion?.ciudad} --%>
+<%--							<br/>--%>
+<%--							${personaInstance?.direccion?.provincia}--%>
+<%--						</span>--%>
+<%--					</li>--%>
+<%--				</g:if>--%>
+<%--				<g:if test="${personaInstance?.telefono}">--%>
+<%--					<li class="fieldcontain">--%>
+<%--						<span id="telefono-label" class="property-label">--%>
+<%--							<g:message code="persona.telefono.label" default="Telefono" />--%>
+<%--						</span>--%>
+<%--						<span class="property-value" aria-labelledby="telefono-label">--%>
+<%--							<g:fieldValue bean="${personaInstance}" field="telefono" />--%>
+<%--						</span>--%>
+<%--					</li>--%>
+<%--				</g:if>--%>
 
 <sec:ifAnyGranted roles="ROLE_ADMIN">
 

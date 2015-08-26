@@ -51,6 +51,7 @@ class PersonaController {
 	@Secured(['ROLE_SUPERVISOR','ROLE_ADMIN'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
+		params.sort = "documentoNumero"
 		if (!springSecurityService.currentUser.hasRol(Rol.findByAuthority('ROLE_ADMIN'))) {
 			def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
 			respond lista, model:[personaInstanceCount: lista.size]
@@ -60,6 +61,7 @@ class PersonaController {
     }
 
 	def indexSupervised(Integer max) {
+		params.sort = "documentoNumero"
 		params.max = Math.min(max ?: 10, 100)
 		def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
 		redirect(action: 'index', params: [personaInstanceList: lista, personaInstanceCount: lista.size])
@@ -153,6 +155,13 @@ class PersonaController {
 				'El password no cumple con lo requisitos')
 		}
 		
+		def dniParam = params.int('documentoNumero');
+		if (!checkDocumentoNumeroValue(dniParam)) {
+			personaInstance.errors.rejectValue('documentoNumero', 'ar.org.scouts.sifs.Persona.documentoNumero.Min',
+			'El Numero de documento debe ser mayor a 4000000')
+		}
+			
+			
         if (personaInstance.hasErrors()) {
             respond personaInstance.errors, view:'create'
             return
@@ -160,10 +169,10 @@ class PersonaController {
 		
         personaInstance.save flush:true
 
-        if (personaInstance.hasErrors()) {
-            respond personaInstance.errors, view:'create'
-            return
-        }
+//        if (personaInstance.hasErrors()) {
+//            respond personaInstance.errors, view:'create'
+//            return
+//        }
 		
 		personaInstance.authorities.clear()
 		rolesList.each {
@@ -522,5 +531,10 @@ class PersonaController {
 	static boolean checkPasswordRegex(String password) {
 		String passValidationRegex = '^.*(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$'
 		password && password.matches(passValidationRegex)
+	}
+	
+	static boolean checkDocumentoNumeroValue(Integer documentoNumero) {
+		int minvalue = 4000000
+		documentoNumero  >= minvalue
 	}
 }

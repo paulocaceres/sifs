@@ -28,13 +28,13 @@
 						<g:message code="default.new.label" args="[entityName]" />
 					</g:link>
 				</li>
-				
-				<li> 
-					<g:link class="plus" controller="persona" action="upload">
-						<g:message code="Cargar Archivo" default="Cargar Archivo" />
-					</g:link>
-				</li>
-				
+				<sec:ifAllGranted roles="ROLE_ADMIN">
+					<li> 
+						<g:link class="plus" controller="persona" action="upload">
+							<g:message code="Cargar Archivo" default="Cargar Archivo" />
+						</g:link>
+					</li>
+				</sec:ifAllGranted>
 			</ul>
 		</div>
 		<div id="list-persona" class="content scaffold-list" role="main">
