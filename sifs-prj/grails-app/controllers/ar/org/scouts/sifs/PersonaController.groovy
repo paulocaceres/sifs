@@ -51,7 +51,8 @@ class PersonaController {
 	@Secured(['ROLE_SUPERVISOR','ROLE_ADMIN'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-		params.sort = "documentoNumero"
+		params.sort = params.sort ?: "documentoNumero"
+		params.order = params.order ?: "asc"
 		if (!springSecurityService.currentUser.hasRol(Rol.findByAuthority('ROLE_ADMIN'))) {
 			def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
 			respond lista, model:[personaInstanceCount: lista.size]
@@ -61,7 +62,8 @@ class PersonaController {
     }
 
 	def indexSupervised(Integer max) {
-		params.sort = "documentoNumero"
+		params.sort = params.sort ?: "documentoNumero"
+		params.order = params.order ?: "asc"
 		params.max = Math.min(max ?: 10, 100)
 		def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
 		redirect(action: 'index', params: [personaInstanceList: lista, personaInstanceCount: lista.size])
