@@ -48,7 +48,7 @@
 				
 			</label>
 		<%--	<g:datePicker name="fecha" precision="day"  value="${dictadoInstance?.fecha}" default="none" noSelection="['': '']" />--%>
-			<input type="text" id="datepicker" name="fecha" value="${formatDate(format:'dd/MM/yyyy',date:dictadoInstance?.fecha)}">	
+			<input type="text" id="datepicker" readonly="readonly" name="fecha" value="${formatDate(format:'dd/MM/yyyy',date:dictadoInstance?.fecha)}">	
 		
 		</div>
 		

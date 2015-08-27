@@ -194,7 +194,8 @@
 						<g:message code="persona.password.label" size="20" default="Contraseña" />
 						<span class="required-indicator">*</span>
 					</label>
-					<g:textField name="password" required="" value="${personaInstance?.password}" />
+<%--					<g:textField name="password" required="" value="${personaInstance?.password}" />--%>
+						<g:passwordField name="password" value="${personaInstance?.password}" required="true"/>
 				</div>
 			</g:if>
 			<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'enabled', 'error')} ">
