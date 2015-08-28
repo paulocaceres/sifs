@@ -90,15 +90,16 @@ class RegistroController {
 					def user = lookupUserClass().findWhere((usernameFieldName): registrationCode.username)
 					user.password = command.password //springSecurityService.encodePassword(command.password)
 					user.save()
+					springSecurityService.reauthenticate registrationCode.username
 					registrationCode.delete()
 				}
 		
-				springSecurityService.reauthenticate registrationCode.username
+				//springSecurityService.reauthenticate registrationCode.username
 		
 				//flash.message = message(code: 'spring.security.ui.resetPassword.success')
 		
 				def conf = SpringSecurityUtils.securityConfig
-				String postResetUrl = conf.ui.register.postResetUrl ?: conf.successHandler.defaultTargetUrl
+				String postResetUrl = conf.ui.forgotPassword.postResetUrl?:conf.successHandler.defaultTargetUrl
 				[resetSuccess: true, nextUrl: postResetUrl]
 				//redirect uri: postResetUrl
 			}
