@@ -4,6 +4,9 @@
 <head>
     <meta name="layout" content="main">
     <title>Cargar archivo</title>
+     <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
+	<script src="/sifs-prj/static/js/jquery-ui.js" type="text/javascript" ></script>
+	<script src="/sifs-prj/static/js/jprogress.js" type="text/javascript" ></script>
 </head>
 
 <body>
@@ -25,6 +28,8 @@
                 <g:submitButton name="doUpload" value="Cargar" />
             </fieldset>
         </g:uploadForm>
+        <g:jprogressDialog message="Espere unos instantes, procesando archivo de carga masiva..." 
+        					progressId="cargaExcelProgress" trigger="doUpload"/>
     </div>
 </div>
 </body>

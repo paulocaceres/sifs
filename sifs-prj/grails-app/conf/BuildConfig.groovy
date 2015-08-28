@@ -86,6 +86,7 @@ grails.project.dependency.resolution = {
 		
 		//compile ":contact-form:1.0.7"
 		compile ":jquery-ui:1.10.4"
+		compile ":jprogress:0.2"
 		
     }
 }

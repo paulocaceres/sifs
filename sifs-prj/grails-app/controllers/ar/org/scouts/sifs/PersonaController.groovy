@@ -28,6 +28,7 @@ class PersonaController {
 	def springSecurityService
 	def mailService
 	def messageSource
+	def progressService
 	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	
@@ -51,8 +52,8 @@ class PersonaController {
 	@Secured(['ROLE_SUPERVISOR','ROLE_ADMIN'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-		params.sort = params.sort ?: "documentoNumero"
-		params.order = params.order ?: "asc"
+		params.sort = params.sort ?: "id"
+		params.order = params.order ?: "desc"
 		if (!springSecurityService.currentUser.hasRol(Rol.findByAuthority('ROLE_ADMIN'))) {
 			def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
 			respond lista, model:[personaInstanceCount: lista.size]
@@ -62,8 +63,8 @@ class PersonaController {
     }
 
 	def indexSupervised(Integer max) {
-		params.sort = params.sort ?: "documentoNumero"
-		params.order = params.order ?: "asc"
+		params.sort = params.sort ?: "id"
+		params.order = params.order ?: "desc"
 		params.max = Math.min(max ?: 10, 100)
 		def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
 		redirect(action: 'index', params: [personaInstanceList: lista, personaInstanceCount: lista.size])
@@ -315,13 +316,18 @@ class PersonaController {
 	def doUpload() {
 		def file = request.getFile('file')
 		Workbook workbook = Workbook.getWorkbook(file.getInputStream());
+		progressService.setProgressBarValue("cargaExcelProgress", 0)
 		Sheet sheet = workbook.getSheet(0);
 		boolean success = false
 		def persona = null
 		def passGenerica = 'password1#'
+		def porcentaje = 0
 		
 		// skip first row (row 0) by starting from 1
 		for (int row = 1; row < sheet.getRows(); row++) {
+			//this updates the progress bar value for the progress id 123
+			porcentaje = (row / sheet.getRows()) * 100
+			progressService.setProgressBarValue("cargaExcelProgress", porcentaje)
 			Cell dni = sheet.getCell(COLUMN_DNI, row)
 			Cell firstName = sheet.getCell(COLUMN_NOMBRE, row)
 			Cell lastName = sheet.getCell(COLUMN_APELLIDO, row)
