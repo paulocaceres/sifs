@@ -44,14 +44,31 @@
 				<div class="message" role="status">${emailMessage}</div>
 			</g:if>
 			<g:hasErrors bean="${personaInstance}">
-				<ul class="errors" role="alert">
-					<g:eachError bean="${personaInstance}" var="error">
-						<li>
-							<g:if test="${error in org.springframework.validation.FieldError}"></g:if>
-							<g:message error="${error}" />
-						</li>
-					</g:eachError>
-				</ul>
+			<div id="erroresPersona">
+					<ul class="errors" role="alert">
+						<g:eachError bean="${personaInstance}" var="error">
+							<li>
+								<g:if test="${error in org.springframework.validation.FieldError}"></g:if>
+								<g:message error="${error}" />
+							</li>
+						</g:eachError>
+					</ul>
+					</div>
+		
+			<script>
+			  $(function() {
+			    $( "#erroresPersona" ).dialog({
+			      modal: true,
+			      width: 500,
+			      buttons: {
+			        Ok: function() {
+			          $( this ).dialog( "close" );
+			        }
+			      }
+			    });
+			  });
+		  </script>	
+					
 			</g:hasErrors>
 			<g:form url="[resource:personaInstance, action:'save']">
 				<fieldset class="form">
