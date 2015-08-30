@@ -64,7 +64,7 @@
         <label for="status"   style="left: 0px; position: relative; max-width: 100px">
 	        <g:message code="dictado.status.label" default="Estado" />
 	    </label>
-	    <g:select id="status" name="status.id" from="${ar.org.scouts.sifs.DictadoStatus.findByNombre('ABIERTO')}" optionKey="id" value="${dictadoInstance?.status?.id}" class="many-to-one" noSelection="['null': '']"/>
+	    <g:select id="status" name="status.id" from="${ar.org.scouts.sifs.DictadoStatus.findByNombre('ABIERTO')}" optionKey="id" value="${ar.org.scouts.sifs.DictadoStatus.findByNombre('ABIERTO')?.id}" class="many-to-one" />
 	</div>
 	
 	<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'recursos', 'error')} ">
