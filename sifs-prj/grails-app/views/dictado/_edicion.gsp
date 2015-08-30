@@ -4,7 +4,6 @@
   		<ul>
     		<li><a href="#tabs-1">Datos de Formador</a></li>
     		<li><a href="#tabs-2">Datos de Curso</a></li>
-
   		</ul>
 
 <g:set var="userId" value="${sec.loggedInUserInfo(field: 'id')}" />
