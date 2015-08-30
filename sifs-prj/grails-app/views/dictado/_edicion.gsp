@@ -10,14 +10,7 @@
 <g:set var="userId" value="${sec.loggedInUserInfo(field: 'id')}" />
 
 <div id="tabs-1" style="font-size:14px;">	
-		<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'formador', 'error')} ">
-		        <label for="formador">
-		                <g:message code="dictado.formador.label" default="Formador" />
-		
-		        </label>
-		        <g:select id="formador" name="formador.id" from="${ar.org.scouts.sifs.Persona.listarPorRol('ROLE_FORMADOR')}" optionKey="id" value="${dictadoInstance?.formador?.id}" class="many-to-one" noSelection="['null': '']"/>
-		</div>
-		
+
 		<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'zona', 'error')} ">
 			<label for="zona">
 				<g:message code="dictado.zona.label" default="Zona" />
@@ -26,6 +19,16 @@
 			<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.listarPorPersona(userId)}" optionKey="id" value="${dictadoInstance?.zona?.id}" class="many-to-one" noSelection="['null': '']"/>
 		
 		</div>
+		
+		<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'formador', 'error')} ">
+		        <label for="formador">
+		                <g:message code="dictado.formador.label" default="Formador" />
+		
+		        </label>
+		        <g:select id="formador" name="formador.id" from="${ar.org.scouts.sifs.Persona.listarPorRol('ROLE_FORMADOR')}" optionKey="id" value="${dictadoInstance?.formador?.id}" class="many-to-one" noSelection="['null': '']"/>
+		</div>
+		
+
 </div>
 
 <div id="tabs-2" style="font-size:14px;">
