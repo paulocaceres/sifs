@@ -25,8 +25,6 @@
 		        </label>
 		        <g:select id="formador" name="formador.id" from="${ar.org.scouts.sifs.Persona.listarPorRol('ROLE_FORMADOR')}" optionKey="id" value="${dictadoInstance?.formador?.id}" class="many-to-one" noSelection="['null': '']"/>
 		</div>
-		
-
 </div>
 
 <div id="tabs-2" style="font-size:14px;">
