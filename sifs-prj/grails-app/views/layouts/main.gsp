@@ -97,43 +97,24 @@
 					</ul>
 				</div></li>
 		</sec:ifAllGranted>
-		<%--			<sec:ifAllGranted roles="ROLE_DNF">--%>
-		<%--				<li><a href="#" class="parent"><span>Director Nac. Formacion</span></a>--%>
-		<%--					<div><ul>--%>
-		<%--						<li><a href="${createLink(controller: 'curso')}"><span>Cursos</span></a></li>--%>
-		<%--						<li><a href="${createLink(controller: 'plan')}"><span>Planes</span></a></li>--%>
-		<%--						<li><a href="${createLink(controller: 'titulo')}"><span>Titulos</span></a></li>--%>
-		<%--						<li><a href="#"><span>Contenidos</span></a></li>--%>
-		<%--					</ul></div>--%>
-		<%--				</li>--%>
-		<%--			</sec:ifAllGranted>--%>
-		<%--			<sec:ifAllGranted roles="ROLE_DNRA">--%>
-		<%--				<li><a href="#" class="parent"><span>Seguridad</span></a>--%>
-		<%--					<div><ul>--%>
-		<%--						<li><a href="#"><span>Esquema Bloqueo de Usuarios</span></a></li>--%>
-		<%--						<li><a href="#"><span>Autorizaciones</span></a></li>--%>
-		<%--					</ul></div>--%>
-		<%--				</li>--%>
-		<%--			</sec:ifAllGranted>--%>
+
 		<sec:ifAllGranted roles="ROLE_ADMIN">
-			<li><a href="#" class="parent"><span>Administradores</span></a>
+			<li><a href="#" class="parent"><span>Administrador</span></a>
 				<div>
 					<ul>
-<%--						<li><a href="#" class="parent"><span>Cursante</span></a>--%>
-<%--							<div>--%>
-<%--								<ul>--%>
-<%--									--%>
-<%--									<li><a--%>
-<%--										href="${createLink(controller: 'inscripcionCurso')}"><span>Inscripcion--%>
-<%--												a Cursos</span></a></li>--%>
+						<li><a href="#" class="parent"><span>Cursante</span></a>
+							<div>
+								<ul>
+			            			<li><a href="${createLink(controller: 'persona', action: 'show')}"><span>Mi
+									Perfil</span></a></li>
+									<li><a href="${createLink(controller: 'inscripcionCurso')}"><span>Inscripcion a Cursos</span></a></li>
 <%--									<li><a href="#"><span>Habilitaciones</span></a></li>--%>
-<%--									<li><a--%>
-<%--										href="${createLink(controller: 'cursosAprobados', action: 'anotados')}"><span>Cursos--%>
-<%--												Anotados</span></a></li>--%>
-<%--									<li><a href="${createLink(controller: 'cursosAprobados')}"><span>Cursos--%>
-<%--												Aprobados</span></a></li>--%>
-<%--								</ul>--%>
-<%--							</div></li>--%>
+									<li><a href="${createLink(controller: 'cursosAprobados', action: 'anotados')}"><span>Cursos
+												Anotados</span></a></li>
+									<li><a href="${createLink(controller: 'cursosAprobados')}"><span>Cursos
+												Aprobados</span></a></li>
+								</ul>
+							</div></li>
 
 <%--						<li><a href="#" class="parent"><span>Supervisor</span></a>--%>
 <%--							<div>--%>
@@ -161,9 +142,9 @@
 						<%--							</ul></div>--%>
 						<%--						</li>--%>
 
-<%--						<li><a href="#" class="parent"><span>ABM</span></a>--%>
-<%--							<div>--%>
-<%--								<ul>--%>
+						<li><a href="#" class="parent"><span>Datos Maestros</span></a>
+							<div>
+								<ul>
 								    <li><a href="${createLink(controller: 'persona')}"><span>AM Perfiles de Usuarios</span></a></li>
 <%--									<li><a href="${createLink(controller: 'titulo')}"><span>Titulos</span></a></li>--%>
 <%--								<li><a href="#"><span>Contenidos</span></a></li>--%>
@@ -171,8 +152,8 @@
 									<li><a href="${createLink(controller: 'distrito')}"><span>ABM Distritos</span></a></li>
 									<li><a href="${createLink(controller: 'grupo')}"><span>ABM Grupos</span></a></li>
 <%--									<li><a href="${createLink(controller: 'nivel')}"><span>Niveles</span></a></li>--%>
-<%--								</ul>--%>
-<%--							</div></li>--%>
+								</ul>
+							</div></li>
 					</ul>
 				</div></li>
 		</sec:ifAllGranted>
