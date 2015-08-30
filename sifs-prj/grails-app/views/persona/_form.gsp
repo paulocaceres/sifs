@@ -229,14 +229,13 @@
 			<div class="fieldcontain ${hasErrors(bean: personaInstance, field: 'roles', 'error')} ">
 				<label for="roles">
 					<g:message code="persona.roles.label" default="Roles" />
-					<span class="required-indicator">*</span>
 				</label>
 								
 			</div>
 		
 			<g:each var="rol" in="${ar.org.scouts.sifs.security.Rol.list()}">
 				<sec:ifAnyGranted roles="ROLE_SUPERVISOR,ROLE_ADMIN">
-					<g:if test="${(rol.authority == 'ROLE_FORMADOR') || (rol.authority == 'ROLE_SUPERVISOR')}">
+					<g:if test="${(rol.authority == 'ROLE_FORMADOR') || (rol.authority == 'ROLE_SUPERVISOR') || (rol.authority == 'ROLE_DISENADOR')}">
 							<div class="fieldcontain ">
 								<label for="rolRaw[${rol.id}]"></label>
 								<g:checkBox name="rolRaw[${rol.id}]" value="${rol.authority}" checked="${personaInstance.hasRol(rol)}" />${rol.name}
@@ -252,7 +251,7 @@
 					</g:if>
 				</sec:ifAnyGranted>
 			</g:each>
-<%--			--%>
+<%--			|| (rol.authority == 'ROLE_DISENADOR')--%>
 		</sec:ifAnyGranted>
 	</div>
 	</div>
