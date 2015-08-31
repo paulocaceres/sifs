@@ -7,7 +7,7 @@
 		<g:message code="distrito.zona.label" default="Zona" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="zona" name="zona.id" style="width: 208px" from="${ar.org.scouts.sifs.Zona.list(sort:'numero')}" optionKey="id" noSelection="['null': '']" required="" value="${grupoInstance?.distrito?.zona?.id}" class="many-to-one" />(Obligatorio)
+	<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.list(sort:'numero')}" optionKey="id" noSelection="['null': '']" required="" value="${grupoInstance?.distrito?.zona?.id}" class="many-to-one" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'distrito', 'error')} required">
@@ -15,15 +15,14 @@
 		<g:message code="grupo.distrito.label" default="Distrito" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="distrito" name="distrito.id" style="width: 208px" from="${[]}" optionKey="id" noSelection="['null': '']" required="" value="${grupoInstance?.distrito?.id}" class="many-to-one" />(Obligatorio)
+	<g:select id="distrito" name="distrito.id" from="${ar.org.scouts.sifs.Distrito.list(sort:'nombre')}" optionKey="id" noSelection="['null': '']" required="" value="${grupoInstance?.distrito?.id}" class="many-to-one" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'numero', 'error')} ">
 	<label for="numero">
 		<g:message code="grupo.numero.label" default="Numero" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="numero" maxlength="4" size="4" required="" pattern="${grupoInstance.constraints.numero.matches}" value="${grupoInstance?.numero}" />(Obligatorio)
+	<g:textField name="numero" maxlength="4" size="4" pattern="${grupoInstance.constraints.numero.matches}" value="${grupoInstance?.numero}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'nombre', 'error')} required">
@@ -31,7 +30,7 @@
 		<g:message code="grupo.nombre.label" default="Nombre" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="nombre" size="20" required="" value="${grupoInstance?.nombre}" />(Obligatorio)
+	<g:textField name="nombre" size="20" required="" value="${grupoInstance?.nombre}" />
 </div>
 
 

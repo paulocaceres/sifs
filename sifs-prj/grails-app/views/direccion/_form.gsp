@@ -34,7 +34,7 @@
 		<g:message code="direccion.codigoPostal.label" default="Codigo Postal" />
 		
 	</label>
-	<g:textField name="codigoPostal" size="4" maxlength= "4" value="${direccionInstance?.codigoPostal}"/>
+	<g:textField name="codigoPostal" size="4" value="${direccionInstance?.codigoPostal}"/>
 
 </div>
 
