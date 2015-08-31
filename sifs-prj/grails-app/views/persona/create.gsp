@@ -44,7 +44,7 @@
 				<div class="message" role="status">${emailMessage}</div>
 			</g:if>
 			<g:hasErrors bean="${personaInstance}">
-			<div id="erroresPersona">
+			<div id="erroresPersona" title="Lista de errores">
 					<ul class="errors" role="alert">
 						<g:eachError bean="${personaInstance}" var="error">
 							<li>
