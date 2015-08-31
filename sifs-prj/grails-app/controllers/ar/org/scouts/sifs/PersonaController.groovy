@@ -154,7 +154,7 @@ class PersonaController {
 		if (!checkPasswordMinLength(pass) ||
 			!checkPasswordMaxLength(pass) ||
 			!checkPasswordRegex(pass)) {
-			personaInstance.errors.rejectValue('password', 'command.nombre.error.strength',
+			personaInstance.errors.rejectValue('password', 'command.password.error.strength',
 				'El password no cumple con lo requisitos')
 		}
 		
