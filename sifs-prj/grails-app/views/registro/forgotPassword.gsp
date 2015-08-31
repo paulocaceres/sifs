@@ -34,7 +34,7 @@
 		<table>
 			<tr>
 				<td><label for="username"><g:message code='spring.security.ui.forgotPassword.username'/></label></td>
-				<td><g:textField name="username" size="25" /></td>
+				<td><g:textField name="username" size="8" /></td>
 			</tr>
 		</table>
 	
