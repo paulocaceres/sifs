@@ -154,10 +154,16 @@ class PersonaController {
 		if (!checkPasswordMinLength(pass) ||
 			!checkPasswordMaxLength(pass) ||
 			!checkPasswordRegex(pass)) {
-			personaInstance.errors.rejectValue('password', 'command.password.error.strength',
+			personaInstance.errors.rejectValue('password', 'command.nombre.error.strength',
 				'El password no cumple con lo requisitos')
 		}
 		
+			def nombre = params.get('nombre');
+			if (!checkNombreRegex(nombre)) {
+				personaInstance.errors.rejectValue('nombre', 'ar.org.scouts.sifs.Persona.nombre.error',
+					'El nombre no cumple con lo requisitos')
+			}
+			
 		def dniParam = params.int('documentoNumero');
 		if (!checkDocumentoNumeroValue(dniParam)) {
 			personaInstance.errors.rejectValue('documentoNumero', 'ar.org.scouts.sifs.Persona.documentoNumero.Min',
@@ -539,6 +545,11 @@ class PersonaController {
 	static boolean checkPasswordRegex(String password) {
 		String passValidationRegex = '^.*(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$'
 		password && password.matches(passValidationRegex)
+	}
+	
+	static boolean checkNombreRegex(String nombre) {
+		String nombreValidationRegex = '^.*(aábcdeéfghiíjklmnñoópqrstuúüvwxyzAÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ\\s,.-).*$'
+		nombre && nombre.matches(nombreValidationRegex)
 	}
 	
 	static boolean checkDocumentoNumeroValue(Integer documentoNumero) {
