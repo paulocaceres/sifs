@@ -328,6 +328,10 @@ class PersonaController {
 		def persona = null
 		def passGenerica = 'password1#'
 		def porcentaje = 0
+		def procesados = 0
+		def conErrores = 0
+		def totalRows = sheet.getRows()
+		def filasConErrores = [:]
 		
 		// skip first row (row 0) by starting from 1
 		for (int row = 1; row < sheet.getRows(); row++) {
@@ -353,6 +357,8 @@ class PersonaController {
 			
 			if(Persona.findByDocumentoNumero(dni.getContents())) {
 				log.error("La persona dni: " + dni.getContents() + " ya existe");
+				conErrores++
+				filasConErrores.put(sheet.getCell(COLUMN_DNI, row), "DNI duplicado - El numero de documento ya existe")
 			} else {
 				try {
 					def xZona = Zona.findByNumero(numZona.getContents())
@@ -388,6 +394,8 @@ class PersonaController {
 				} catch(Exception e) {
 					log.error("Error al crear la persona con dni: " + dni.getContents());
 					success = false
+					conErrores++
+					filasConErrores.put(sheet.getCell(COLUMN_DNI, row), "No se pudo crear el registro - Verifique la informacion provista")
 				}
 			} 
 			if(success) {
@@ -411,6 +419,8 @@ class PersonaController {
 					log.error("Error durante el envio de email de notificacion de creacion de persona", e)
 				}
 			}
+			procesados++
+			
 		}
 		redirect (action:'index')
 	}
@@ -548,8 +558,8 @@ class PersonaController {
 	}
 	
 	static boolean checkNombreRegex(String nombre) {
-		String nombreValidationRegex = '^.*(aábcdeéfghiíjklmnñoópqrstuúüvwxyzAÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ\\s,.-).*$'
-		nombre && nombre.matches(nombreValidationRegex)
+		def pattern = ~/[aÃ¡bcdeÃ©fghiÃ­jklmnÃ±oÃ³pqrstuÃºÃ¼vwxyzAÃBCDEÃ‰FGHIÃJKLMNÃ‘OÃ“PQRSTUÃšÃœVWXYZ\\s,.-].*$/
+		nombre && pattern.matcher(nombre).matches()
 	}
 	
 	static boolean checkDocumentoNumeroValue(Integer documentoNumero) {

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 	<head>
 		<meta name="layout" content="main">
@@ -13,12 +14,43 @@
 	  		$(function() {
 	    		$( "#tabs" ).tabs();
 	  		});
+
+
+	  		$(function() {
+	  		    $( "#testDiv" ).dialog({
+	  		      autoOpen: false,  
+	  		      resizable: false,
+	  		      height:140,
+	  		      modal: true,
+	  		      open: function(event, ui){
+	  		      setTimeout("$('#testDiv').dialog('close')",3000);
+	  		      },
+	  		      buttons: {
+	  		        "Si si": function() {
+	  		          $( "#testDiv" ).dialog( "close" );
+	  		        },
+	  		        Cancel: function() {
+	  		          $( "#testDiv" ).dialog( "close" );
+	  		        }
+	  		      }
+	  		    });
+
+	  		  });
+
+	  		
 	  	</script>	
 	</head>
 	<body>
 		<a href="#create-persona" class="skip" tabindex="-1">
 			<g:message code="default.link.skip.label" default="Skip to content&hellip;" />
 		</a>
+		
+		<div id="testDiv" title="TestDiv">
+			<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+				These items will be permanently deleted and cannot be recovered. Are you sure?
+			</p>
+		</div>
+		
 		<div class="nav" role="navigation">
 			<ul>
 				<li>
@@ -76,6 +108,7 @@
 				</fieldset>
 				<fieldset class="buttons">
 					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:link id="opener" action="index" class="edit" onclick="\$('#testDiv').dialog('open')">Cancelar</g:link>
 				</fieldset>
 			</g:form>
 		</div>
