@@ -7,7 +7,7 @@
 		<g:message code="distrito.zona.label" default="Zona" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.list(sort:'numero')}" optionKey="id" noSelection="['null': '']" required="" value="${grupoInstance?.distrito?.zona?.id}" class="many-to-one" />
+	<g:select id="zona" name="zona.id" style="width: 208px" from="${ar.org.scouts.sifs.Zona.list(sort:'numero')}" optionKey="id" noSelection="['null': '']" required="" value="${grupoInstance?.distrito?.zona?.id}" class="many-to-one" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'distrito', 'error')} required">
@@ -15,7 +15,7 @@
 		<g:message code="grupo.distrito.label" default="Distrito" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="distrito" name="distrito.id" from="${ar.org.scouts.sifs.Distrito.list(sort:'nombre')}" optionKey="id" noSelection="['null': '']" required="" value="${grupoInstance?.distrito?.id}" class="many-to-one" />
+	<g:select id="distrito" name="distrito.id" style="width: 208px" from="${[]}" optionKey="id" noSelection="['null': '']" required="" value="${grupoInstance?.distrito?.id}" class="many-to-one" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'numero', 'error')} ">
