@@ -14,10 +14,43 @@
 	  		$(function() {
 	    		$( "#tabs" ).tabs();
 	  		});
+
+
+	  		$(function() {
+	  		    $( "#testDiv" ).dialog({
+	  		      autoOpen: false,  
+	  		      resizable: false,
+	  		      height:240,
+	  		      width: 450,
+	  		      modal:true,
+	  		      buttons: {
+	  		        "Si": function() {
+	  		          $( "#testDiv" ).dialog( "close" );
+	  		          parent.history.back();
+	  				  return false;
+	  		        },
+	  		        "No": function() {
+	  		          $( "#testDiv" ).dialog( "close" );
+	  		        }
+	  		      }
+	  		    });
+	  		  });
+
+	  		$( "#opener" ).click(function() {
+	  	      $( "#testDiv" ).dialog( "open" );
+	  	    });
+	  		
 	  	</script>	
 	</head>
 	<body>
 		<a href="#edit-persona" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;" /></a>
+		
+		<div id="testDiv" title="Cancelar Edicion de Persona">
+			<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+				Si realizo cambios, los mismos se perderan si no han sido grabados. Esta seguro?
+			</p>
+		</div>
+		
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label" /></a></li>
@@ -33,7 +66,7 @@
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<g:hasErrors bean="${personaInstance}">
-			<div id="erroresPersona">
+			<div id="erroresPersona" title="Lista de errores">
 				<ul class="errors" role="alert">
 					<g:eachError bean="${personaInstance}" var="error">
 						<li><g:if test="${error in org.springframework.validation.FieldError}"></g:if>
@@ -65,6 +98,7 @@
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<a onclick="$( '#testDiv' ).dialog( 'open' );" class="edit">Cancelar</a>
 				</fieldset>
 			</g:form>
 		</div>

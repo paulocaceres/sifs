@@ -20,24 +20,26 @@
 	  		    $( "#testDiv" ).dialog({
 	  		      autoOpen: false,  
 	  		      resizable: false,
-	  		      height:140,
-	  		      modal: true,
-	  		      open: function(event, ui){
-	  		      setTimeout("$('#testDiv').dialog('close')",3000);
-	  		      },
+	  		      height:240,
+	  		      width: 450,
+	  		      modal:true,
 	  		      buttons: {
-	  		        "Si si": function() {
+	  		        "Si": function() {
 	  		          $( "#testDiv" ).dialog( "close" );
+	  		          parent.history.back();
+	  				  return false;
 	  		        },
-	  		        Cancel: function() {
+	  		        "No": function() {
 	  		          $( "#testDiv" ).dialog( "close" );
 	  		        }
 	  		      }
 	  		    });
-
 	  		  });
 
-	  		
+	  		$( "#opener" ).click(function() {
+	  	      $( "#testDiv" ).dialog( "open" );
+	  	    });
+	  	    
 	  	</script>	
 	</head>
 	<body>
@@ -45,9 +47,9 @@
 			<g:message code="default.link.skip.label" default="Skip to content&hellip;" />
 		</a>
 		
-		<div id="testDiv" title="TestDiv">
+		<div id="testDiv" title="Cancelar Alta de Persona">
 			<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
-				These items will be permanently deleted and cannot be recovered. Are you sure?
+				Si realizo cambios, los mismos se perderan si no han sido grabados. Esta seguro?
 			</p>
 		</div>
 		
@@ -108,7 +110,7 @@
 				</fieldset>
 				<fieldset class="buttons">
 					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-					<g:link id="opener" action="index" class="edit" onclick="\$('#testDiv').dialog('open')">Cancelar</g:link>
+					<a onclick="$( '#testDiv' ).dialog( 'open' );" class="edit">Cancelar</a>
 				</fieldset>
 			</g:form>
 		</div>
