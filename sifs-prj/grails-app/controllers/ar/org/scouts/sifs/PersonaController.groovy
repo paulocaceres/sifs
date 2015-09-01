@@ -164,6 +164,13 @@ class PersonaController {
 					'El nombre no cumple con lo requisitos')
 			}
 			
+			def apellido = params.get('apellido');
+			if (!checkNombreRegex(apellido)) {
+				personaInstance.errors.rejectValue('apellido', 'ar.org.scouts.sifs.Persona.apellido.error',
+					'El apellido no cumple con lo requisitos')
+			}
+			
+			
 		def dniParam = params.int('documentoNumero');
 		if (!checkDocumentoNumeroValue(dniParam)) {
 			personaInstance.errors.rejectValue('documentoNumero', 'ar.org.scouts.sifs.Persona.documentoNumero.Min',
