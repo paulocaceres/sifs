@@ -565,7 +565,7 @@ class PersonaController {
 	}
 	
 	static boolean checkNombreRegex(String nombre) {
-		def pattern = ~/[aábcdeéfghiíjklmnñoópqrstuúüvwxyzAÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ\\s,.-].*$/
+		def pattern = ~/^\s*[a-zA-ZáéíñóúüÁÉÍÑÓÚÜ,\s]+\s*$/
 		nombre && pattern.matcher(nombre).matches()
 	}
 	
