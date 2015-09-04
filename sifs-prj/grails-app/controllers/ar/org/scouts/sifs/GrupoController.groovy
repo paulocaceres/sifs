@@ -35,6 +35,12 @@ class GrupoController {
 			return
 		}
 
+		def nombre = params.get('nombre');
+		if (!checkNombreRegex(nombre)) {
+			grupoInstance.errors.rejectValue('nombre', 'ar.org.scouts.sifs.Grupo.nombre.error',
+				'El nombre no cumple con lo requisitos')
+		}
+		
 		if (grupoInstance.hasErrors()) {
 			respond grupoInstance.errors, view:'create'
 			return
@@ -113,7 +119,11 @@ class GrupoController {
 		}
 	}
 
-
+	static boolean checkNombreRegex(String nombre) {
+		def pattern = ~/^\s*[a-zA-ZáéíñóúüÁÉÍÑÓÚÜ0123456789,\s]+\s*$/
+		nombre && pattern.matcher(nombre).matches()
+	}
+	
 	def jsonZonaDistrito() {
 		
 		Zona zona = null;

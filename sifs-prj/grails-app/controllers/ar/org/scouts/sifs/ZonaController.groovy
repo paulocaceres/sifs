@@ -32,6 +32,13 @@ class ZonaController {
             return
         }
 
+		
+         def nombre = params.get('nombre');
+         if (!checkNombreRegex(nombre)) {
+			zonaInstance.errors.rejectValue('nombre', 'ar.org.scouts.sifs.Zona.nombre.error',
+					'El nombre no cumple con lo requisitos')
+			}
+		
         if (zonaInstance.hasErrors()) {
             respond zonaInstance.errors, view:'create'
             return
@@ -114,4 +121,9 @@ class ZonaController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	static boolean checkNombreRegex(String nombre) {
+		def pattern = ~/^\s*[a-zA-ZáéíñóúüÁÉÍÑÓÚÜ0123456789,\s]+\s*$/
+		nombre && pattern.matcher(nombre).matches()
+	}
 }

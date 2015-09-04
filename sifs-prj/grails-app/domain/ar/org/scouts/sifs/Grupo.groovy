@@ -21,7 +21,7 @@ class Grupo {
 	
 		
     static constraints = {
-		nombre(blank: false,matches: "[a-z\\sA-Z\\s0-9]+");
+		nombre(blank: false);
 		numero(nullable: false, matches:"^[0-9]\\d*", unique: true, maxSize:4 );
 	}
 
