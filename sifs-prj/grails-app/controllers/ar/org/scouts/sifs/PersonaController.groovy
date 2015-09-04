@@ -52,16 +52,17 @@ class PersonaController {
 	@Secured(['ROLE_SUPERVISOR','ROLE_ADMIN'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-		params.sort = params.sort ?: "id"
+   		params.sort = params.sort ?: "id"
 		params.order = params.order ?: "desc"
-		if (!springSecurityService.currentUser.hasRol(Rol.findByAuthority('ROLE_ADMIN'))) {
-			def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
-			respond lista, model:[personaInstanceCount: lista.size]
-		} else {
-			respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
-		}
+			if (!springSecurityService.currentUser.hasRol(Rol.findByAuthority('ROLE_ADMIN'))) {
+				def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
+				respond lista, model:[personaInstanceCount: lista.size]
+			} else {
+				respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
+			}
     }
 
+	
 	def indexSupervised(Integer max) {
 		params.sort = params.sort ?: "id"
 		params.order = params.order ?: "desc"
@@ -69,7 +70,7 @@ class PersonaController {
 		def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
 		redirect(action: 'index', params: [personaInstanceList: lista, personaInstanceCount: lista.size])
 	}
-
+	
 
 	@Secured(['ROLE_CURSANTE','ROLE_SUPERVISOR','ROLE_ADMIN'])
     def show(Persona personaInstance) {
@@ -95,6 +96,12 @@ class PersonaController {
             notFound()
             return
         }
+		
+		if (!(params.get('verpassword'))) {
+			if (!(params.get('password').equals(params.get('password2')))) {
+				personaInstance.errors.rejectValue('password', 'ar.org.scouts.sifs.Persona.password.match.error', 'Las contraseñas no coinciden')
+			}
+		}
 
 		//Grupo, Zona y Distrito son obligatorios
 		def rolesList = []
