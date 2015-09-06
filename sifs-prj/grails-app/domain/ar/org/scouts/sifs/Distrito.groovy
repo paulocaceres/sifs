@@ -20,7 +20,7 @@ class Distrito {
 	
     
 	static constraints = {
-		nombre(blank: false,matches: "[a-z\\sA-Z\\s0-9]+");
+		nombre(blank: false);
     }
 
 	
