@@ -16,7 +16,8 @@
 				<g:message code="dictado.zona.label" default="Zona" />
 				
 			</label>
-			<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.listarPorPersona(userId)}" optionKey="id" value="${dictadoInstance?.zona?.id}" class="many-to-one" noSelection="['null': '']"/>(Obligatorio)
+<%--			<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.listarPorPersona(userId)}" optionKey="id" value="${dictadoInstance?.zona?.id}" class="many-to-one" noSelection="['null': '']"/>(Obligatorio)--%>
+		   <g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.listarPorPersona(userId)}" optionKey="id" value="${dictadoInstance?.zona?.id}" class="many-to-one"/>(Obligatorio)
 		
 		</div>
 		
@@ -59,7 +60,7 @@
 			<label for="cupo">
 				<g:message code="dictado.cupo.label" default="Cupo" />
 			</label>
-			<g:field name="cupo" type="number" default="1" value="${dictadoInstance.cupo}" min="0" max="30"/>
+			<g:field name="cupo" type="number" value="${dictadoInstance.cupo}" min="0" max="30"/>
              <label for="status"   style="left: 0px; position: relative; max-width: 100px">
  		                <g:message code="dictado.status.label" default="Status" />
 		        </label>
