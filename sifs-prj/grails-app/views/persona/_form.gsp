@@ -1,17 +1,7 @@
 <%@ page import="ar.org.scouts.sifs.Persona"%>
 
-<div id="tabs" style="max-width: 900px; left: 140px; position: relative">
-	<ul>
 
-		<li><a href="#tabs-1">Datos Personales</a>		</li>
-		<li><a href="#tabs-2">Direccion</a>		</li>
-		<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
-			<li><a href="#tabs-3">Informacion Scout</a></li>
-			<li><a href="#tabs-4">Seguridad</a></li>
-		</sec:ifAnyGranted>
-	</ul>
 
-	<div id="tabs-1" style="font-size: 14px;">
 		<div 
 			class="fieldcontain ${hasErrors(bean: personaInstance, field: 'documentoNumero', 'error')} required">
 			<label for="documentoNumero"><g:message 
@@ -28,26 +18,38 @@
 				<g:textField name="documentoNumero" maxlength="8" size="8" 
 					required="" value="${personaInstance?.documentoNumero}" />(Obligatorio)
 			</sec:ifAnyGranted>
-		</div>
-
-		<div 
-		class="fieldcontain ${hasErrors(bean: personaInstance, field: 'nombre', 'error')} ">
-			<label for="nombre"><g:message code="persona.nombre.label" 
+<%--		</div>--%>
+<%----%>
+<%--		<div --%>
+<%--		class="fieldcontain ${hasErrors(bean: personaInstance, field: 'nombre', 'error')} ">--%>
+			<label for="nombre" style="left: 0px; position: relative; max-width: 100px"><g:message code="persona.nombre.label" 
 					default="Nombre" />
 			</label>
 			<g:textField name="nombre" size="20" 
 				value="${personaInstance?.nombre}" />
-		</div>
-
-		<div 
-			class="fieldcontain ${hasErrors(bean: personaInstance, field: 'apellido', 'error')} ">
-			<label for="apellido"><g:message 
-				code="persona.apellido.label" default="Apellido" />
+<%--		</div>--%>
+<%----%>
+<%--		<div --%>
+<%--			class="fieldcontain ${hasErrors(bean: personaInstance, field: 'apellido', 'error')} ">--%>
+			<label for="apellido"style="left: 0px; position: relative; max-width: 100px">
+			<g:message code="persona.apellido.label" default="Apellido" />
 			</label>
 			<g:textField name="apellido" size="20" 
 				value="${personaInstance?.apellido}" />
 		</div>
 
+<div id="tabs" style="max-width: 900px; left: 140px; position: relative">
+	<ul>
+
+		<li><a href="#tabs-1">Datos Personales</a>		</li>
+		<li><a href="#tabs-2">Direccion</a>		</li>
+		<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR">
+			<li><a href="#tabs-3">Informacion Scout</a></li>
+			<li><a href="#tabs-4">Seguridad</a></li>
+		</sec:ifAnyGranted>
+	</ul>
+
+	<div id="tabs-1" style="font-size: 14px;">
 
 		<div 
 			class="fieldcontain ${hasErrors(bean: personaInstance, field: 'mail', 'error')} ">
@@ -55,7 +57,7 @@
 					default="Mail" />
 			</label>
 			<g:field type="email" name="mail" size="40" 
-				value="${personaInstance?.mail}" />
+				value="${personaInstance?.mail}" />(Obligatorio)
 		</div>
 
 		<div 
@@ -75,7 +77,7 @@
 				code="persona.direccion.calle.label" default="Calle" />
 			</label>
 			<g:textField name="direccion.calle" size="60" 
-				value="${personaInstance?.direccion?.calle}" />
+				value="${personaInstance?.direccion?.calle}" />(Obligatorio)
 		</div>
 		<div 
 			class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
@@ -83,7 +85,7 @@
 				code="persona.direccion.numero.label" default="Numero" />
 			</label>
 			<g:textField name="direccion.numero" size="5" 
-				value="${personaInstance?.direccion?.numero}" />
+				value="${personaInstance?.direccion?.numero}" />(Obligatorio)
 			<label for="direccion" 
 				style="left: 0px; position: relative; max-width: 100px"><g:message 
 					code="persona.direccion.adicional.label" default="Adicional" />
@@ -100,7 +102,7 @@
 				code="persona.direccion.codigoPostal.label" default="Codigo Postal" />
 			</label>
 			<g:textField name="direccion.codigoPostal" size="4" 
-				value="${personaInstance?.direccion?.codigoPostal}" />
+				value="${personaInstance?.direccion?.codigoPostal}" />(Obligatorio)
 		</div>
 		<div 
 			class="fieldcontain ${hasErrors(bean: personaInstance, field: 'direccion', 'error')} required">
@@ -108,7 +110,7 @@
 				code="persona.direccion.ciudad.label" default="Ciudad" />
 			</label>
 			<g:textField name="direccion.ciudad" size="20" 
-				value="${personaInstance?.direccion?.ciudad}" />
+				value="${personaInstance?.direccion?.ciudad}" />(Obligatorio)
 			<label for="direccion" 
 				style="left: 0px; position: relative; max-width: 100px"><g:message 
 					code="persona.direccion.provincia.label" default="Provincia" />
@@ -297,12 +299,12 @@
 				</label>
 				<g:checkBox name="enabled" value="${personaInstance?.enabled}" 
 					checked="true" readonly="true" />
-			</div>
-
-			<div 
-				class="fieldcontain ${hasErrors(bean: personaInstance, field: 'accountLocked', 'error')} ">
-				<label for="accountLocked"><g:message 
-					code="persona.accountLocked.label" default="Cuenta Bloqueada" />
+<%--			</div>--%>
+<%----%>
+<%--			<div --%>
+<%--				class="fieldcontain ${hasErrors(bean: personaInstance, field: 'accountLocked', 'error')} ">--%>
+				<label for="accountLocked" style="left: 0px; position: relative; max-width: 150px">
+				<g:message 	code="persona.accountLocked.label" default="Cuenta Bloqueada" />
 				</label>
 				<g:checkBox name="accountLocked" 
 					value="${personaInstance?.accountLocked}" />
@@ -355,6 +357,7 @@
 					</g:if>
 				</sec:ifAnyGranted>
 			</g:each>
+<%--			</div>--%>
 			<%-- || (rol.authority == 'ROLE_DISENADOR')--%>
 		</sec:ifAnyGranted>
 	</div>
