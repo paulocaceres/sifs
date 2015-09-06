@@ -14,7 +14,7 @@
 	  		});
 	  		$(document).ready(function()
 	  		        {
-	  		          $("#datepicker").datepicker({minDate: +1, dateFormat: 'dd/mm/yy'});
+	  		          $("#datepicker").datepicker({defaultDate: +2,minDate: +2, dateFormat: 'dd/mm/yy'});
 	  		          $("#datepicker").datepicker($.datepicker.regional["es"]);
 	  		          $("div.ui-datepicker").css({fontSize: '13px'});
 	  		        })

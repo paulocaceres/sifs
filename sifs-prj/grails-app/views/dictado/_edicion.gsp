@@ -16,7 +16,7 @@
 				<g:message code="dictado.zona.label" default="Zona" />
 				
 			</label>
-			<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.listarPorPersona(userId)}" optionKey="id" value="${dictadoInstance?.zona?.id}" class="many-to-one" noSelection="['null': '']"/>
+			<g:select id="zona" name="zona.id" from="${ar.org.scouts.sifs.Zona.listarPorPersona(userId)}" optionKey="id" value="${dictadoInstance?.zona?.id}" class="many-to-one" noSelection="['null': '']"/>(Obligatorio)
 		
 		</div>
 		
@@ -25,7 +25,7 @@
 		                <g:message code="dictado.formador.label" default="Formador" />
 		
 		        </label>
-		        <g:select id="formador" name="formador.id" from="${ar.org.scouts.sifs.Persona.listarPorRol('ROLE_FORMADOR')}" optionKey="id" value="${dictadoInstance?.formador?.id}" class="many-to-one" noSelection="['null': '']"/>
+		        <g:select id="formador" name="formador.id" from="${ar.org.scouts.sifs.Persona.listarPorRol('ROLE_FORMADOR')}" optionKey="id" value="${dictadoInstance?.formador?.id}" class="many-to-one" noSelection="['null': '']"/>(Obligatorio)
 		</div>
 		
 
@@ -37,7 +37,7 @@
 				<g:message code="dictado.nombre.label" default="Nombre" />
 				
 			</label>
-			<g:field name="nombre" type="text" size="20" value="${dictadoInstance.nombre}"/>
+			<g:field name="nombre" type="text" size="20" value="${dictadoInstance.nombre}"/>(Obligatorio)
 			<label for="curso" style="left: 0px; position: relative; max-width: 100px">
 				<g:message code="dictado.curso.label" default="Curso" />
 				
@@ -59,7 +59,7 @@
 			<label for="cupo">
 				<g:message code="dictado.cupo.label" default="Cupo" />
 			</label>
-			<g:field name="cupo" type="number" value="${dictadoInstance.cupo}" min="0" max="30"/>
+			<g:field name="cupo" type="number" default="1" value="${dictadoInstance.cupo}" min="0" max="30"/>
              <label for="status"   style="left: 0px; position: relative; max-width: 100px">
  		                <g:message code="dictado.status.label" default="Status" />
 		        </label>
@@ -68,13 +68,13 @@
 		
 
 		
-		<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'recursos', 'error')} ">
-			<label for="recursos">
-				<g:message code="dictado.recursos.label" default="Recursos" />		
-			</label>
-			<g:select name="recursos" from="${ar.org.scouts.sifs.Recurso.list()}" multiple="multiple" optionKey="id" size="5" value="${dictadoInstance?.recursos*.id}" class="many-to-many"/>
-		
-		</div>
+<%--		<div class="fieldcontain ${hasErrors(bean: dictadoInstance, field: 'recursos', 'error')} ">--%>
+<%--			<label for="recursos">--%>
+<%--				<g:message code="dictado.recursos.label" default="Recursos" />		--%>
+<%--			</label>--%>
+<%--			<g:select name="recursos" from="${ar.org.scouts.sifs.Recurso.list()}" multiple="multiple" optionKey="id" size="5" value="${dictadoInstance?.recursos*.id}" class="many-to-many"/>--%>
+<%--		--%>
+<%--		</div>--%>
 		
 
 </div>

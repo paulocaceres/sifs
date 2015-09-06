@@ -7,7 +7,7 @@ class Dictado {
 	Curso curso
 	Zona zona
 	@BindingFormat('dd/MM/yyyy')
-	Date fecha = new Date()
+	Date fecha = new Date() + 2
 	Integer cupo
 	Persona formador
 	DictadoStatus status
