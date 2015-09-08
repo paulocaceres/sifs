@@ -30,6 +30,30 @@ class Direccion {
 		}
 		//"$calle, $numero, $adicional, $codigoPostal, $ciudad, $provincia"
 	}
+	
+	def String safeAddress() {
+		def dirString = "";
+					if(calle && calle != 'null') {
+						dirString = dirString + calle + " " 
+					}
+					if(numero && numero != 'null') {
+						dirString = dirString + numero + " " 
+					}
+					if(adicional && adicional != 'null') {
+						dirString = dirString + adicional + ", "
+					}
+					if(codigoPostal && codigoPostal != 'null') {
+						dirString = dirString + codigoPostal + " "
+					}
+					if(ciudad && ciudad != 'null') {
+						dirString = dirString + ciudad + ", "
+					}	 
+				    
+					if(provincia && provincia !='null') {
+						dirString = dirString + provincia.descripcion
+					}
+		return dirString
+	}
 
 static mapping = {
 	calle defaultvalue: "'rio'"

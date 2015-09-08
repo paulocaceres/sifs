@@ -9,6 +9,9 @@ import grails.transaction.Transactional
 import groovy.text.SimpleTemplateEngine
 import ar.org.scouts.sifs.security.PersonaRol
 import ar.org.scouts.sifs.security.Rol
+import org.grails.plugin.easygrid.Easygrid
+import org.grails.plugin.easygrid.Filter
+import static org.grails.plugin.easygrid.GormUtils.applyFilter
 
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
@@ -20,9 +23,9 @@ import jxl.Workbook
 import jxl.Cell
 
 
-
 @Transactional(readOnly = true)
 @Secured(['IS_AUTHENTICATED_FULLY'])
+@Easygrid
 class PersonaController {
 
 	def springSecurityService
@@ -48,17 +51,66 @@ class PersonaController {
 	private final static int COLUMN_GRUPO = 13
 	private final static int COLUMN_SUPERVISOR = 14
 	private final static int COLUMN_ROL = 15
+	
+	
+	def personasGrid =  {
+		domainClass Persona
+		gridImpl 'jqgrid'
+		inlineEdit false
+//		jqgrid {
+//				sortname 'id'
+//				sortorder 'desc'
+//		}
+		columns {
+			id {
+				jqgrid {
+					hidden true
+				}
+			}
+			documentoNumero
+			nombre
+			apellido
+			mail
+			direccion {
+//				jqgrid {
+//					sortable false
+//				}
+				value { persona ->
+					persona.direccion?.safeAddress()
+				}
+				filterClosure { Filter filter ->
+					direccion {
+						or {
+							applyFilter(delegate, filter.operator, 'calle', filter.value)
+							applyFilter(delegate, filter.operator, 'numero', filter.value)
+							applyFilter(delegate, filter.operator, 'codigoPostal', filter.value)
+							applyFilter(delegate, filter.operator, 'ciudad', filter.value)
+							provincia {
+								applyFilter(delegate, filter.operator, 'descripcion', filter.value)
+							}	
+						}
+					}
+				}
+			}
+			telefono
+		}
+	}
 
+	
 	@Secured(['ROLE_SUPERVISOR','ROLE_ADMIN'])
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-		if (!springSecurityService.currentUser.hasRol(Rol.findByAuthority('ROLE_ADMIN'))) {
-			def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
-			respond lista, model:[personaInstanceCount: lista.size]
-		} else {
-			respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
-		}
+//        params.max = Math.min(max ?: 10, 100)
+//		params.sort = params.sort ?: "id"
+//		params.order = params.order ?: "desc"
+//		if (!springSecurityService.currentUser.hasRol(Rol.findByAuthority('ROLE_ADMIN'))) {
+//			def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
+//			respond lista, model:[personaInstanceCount: lista.size]
+//		} else {
+//			respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
+//		}
     }
+	
+	
 
 	def indexSupervised(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
