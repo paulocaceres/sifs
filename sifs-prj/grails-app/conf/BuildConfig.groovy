@@ -40,6 +40,8 @@ grails.project.dependency.resolution = {
         mavenLocal()
         grailsCentral()
         mavenCentral()
+		// required by a dependency of the export plugin
+		mavenRepo "http://repo.grails.org/grails/core"
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -87,6 +89,14 @@ grails.project.dependency.resolution = {
 		//compile ":contact-form:1.0.7"
 		compile ":jquery-ui:1.10.4"
 		compile ":jprogress:0.2"
+		// EasyGrid plugin http://grails.org/plugin/easygrid
+		compile ":easygrid:1.6.6"
+		// For minimum functionality you need: jquery-ui and the export plugins.
+		// Export Plugin http://grails.org/plugin/export
+		compile ":export:1.6"
+		// For google visualization you also need google-visualization
+		// Google Visualization API Plugin http://grails.org/plugin/google-visualization
+		compile ":google-visualization:0.7"
 		
     }
 }

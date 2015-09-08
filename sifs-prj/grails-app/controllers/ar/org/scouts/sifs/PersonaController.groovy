@@ -19,10 +19,14 @@ import jxl.Sheet
 import jxl.Workbook
 import jxl.Cell
 
+import org.grails.plugin.easygrid.Easygrid
+import org.grails.plugin.easygrid.Filter
+import static org.grails.plugin.easygrid.GormUtils.applyFilter
 
 
 @Transactional(readOnly = true)
 @Secured(['IS_AUTHENTICATED_FULLY'])
+@Easygrid
 class PersonaController {
 
 	def springSecurityService
@@ -51,16 +55,59 @@ class PersonaController {
 
 	@Secured(['ROLE_SUPERVISOR','ROLE_ADMIN'])
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-   		params.sort = params.sort ?: "id"
-		params.order = params.order ?: "desc"
-			if (!springSecurityService.currentUser.hasRol(Rol.findByAuthority('ROLE_ADMIN'))) {
-				def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
-				respond lista, model:[personaInstanceCount: lista.size]
-			} else {
-				respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
-			}
+//        params.max = Math.min(max ?: 10, 100)
+//   		params.sort = params.sort ?: "id"
+//		params.order = params.order ?: "desc"
+//			if (!springSecurityService.currentUser.hasRol(Rol.findByAuthority('ROLE_ADMIN'))) {
+//				def lista = Persona.findAllBySupervisor(springSecurityService.currentUser, params)
+//				respond lista, model:[personaInstanceCount: lista.size]
+//			} else {
+//				respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
+//			}
     }
+	
+	def personasGrid = {
+		domainClass Persona
+				gridImpl 'jqgrid'
+				inlineEdit false
+		//		jqgrid {
+		//				sortname 'id'
+		//				sortorder 'desc'
+		//		}
+				columns {
+					id {
+						jqgrid {
+							hidden true
+						}
+					}
+					documentoNumero
+					nombre
+					apellido
+					mail
+					direccion {
+		//				jqgrid {
+		//					sortable false
+		//				}
+						value { persona ->
+							persona.direccion?.safeAddress()
+						}
+						filterClosure { Filter filter ->
+							direccion {
+								or {
+									applyFilter(delegate, filter.operator, 'calle', filter.value)
+									applyFilter(delegate, filter.operator, 'numero', filter.value)
+									applyFilter(delegate, filter.operator, 'codigoPostal', filter.value)
+									applyFilter(delegate, filter.operator, 'ciudad', filter.value)
+									provincia {
+										applyFilter(delegate, filter.operator, 'descripcion', filter.value)
+									}
+								}
+							}
+						}
+					}
+					telefono
+				}
+	}
 
 	
 	def indexSupervised(Integer max) {

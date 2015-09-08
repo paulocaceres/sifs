@@ -39,6 +39,9 @@ grails.mime.types = [ // the first one is the default format
     json:          ['application/json', 'text/json'],
     multipartForm: 'multipart/form-data',
     rss:           'application/rss+xml',
+	pdf          : 'application/pdf',
+	excel        : 'application/vnd.ms-excel',
+	ods          : 'application/vnd.oasis.opendocument.spreadsheet',
     text:          'text/plain',
     hal:           ['application/hal+json','application/hal+xml'],
     xml:           ['text/xml', 'application/xml']
