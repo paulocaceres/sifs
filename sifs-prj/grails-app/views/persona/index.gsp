@@ -66,7 +66,7 @@
 	<r:script>
 			
 		function customShowFormat(cellvalue, options, rowObject) {
-            return "<a href='${g.createLink(controller: "persona", action: "show")}/" + cellvalue + "'>" + cellvalue + "</a> ";
+            return "<a href='${g.createLink(controller: "persona", action: "show")}/" + rowObject[0] + "'>" + cellvalue + "</a> ";
         }
         
         $(document).ready(function() { 

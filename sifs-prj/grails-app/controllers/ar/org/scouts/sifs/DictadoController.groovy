@@ -89,7 +89,7 @@ class DictadoController {
 			def notaId = params.get('nota_' + i.personaId) 
 			def aprobado = false
 			if(notaId != i.nota?.id) {
-				if(notaId == null) {
+				if(notaId == null || notaId == "null" || notaId == "") {
 					i.nota = null
 				} else {
 					i.nota = Calificacion.get(notaId)

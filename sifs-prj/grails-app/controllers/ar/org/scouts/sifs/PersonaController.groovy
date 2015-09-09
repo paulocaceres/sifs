@@ -174,7 +174,7 @@ class PersonaController {
 				'El campo Zona es obligatorio')
 			} else {
 				if (personaInstance.zona == null) {
-					personaInstance.properties = [zona:[id: zona]];
+					//personaInstance.properties = [zona:[id: zona]];
 				}
 			}
 			if(distrito=='null' || distrito=='' || distrito==null) {
@@ -182,15 +182,15 @@ class PersonaController {
 				'El campo Distrito es obligatorio')
 			} else {
 				if (personaInstance.distrito == null) {
-					personaInstance.properties = [distrito:[id: distrito]];
+					//personaInstance.properties = [distrito:[id: distrito]];
 				}
 			}
-			if(grupo=='null' || grupo=='' || grupo==null) {
+			if(grupo=='null' || grupo=="" || grupo==null) {
 				personaInstance.errors.rejectValue('grupo.id', 'ar.org.scouts.sifs.Persona.grupo.nullable',
 				'El campo Grupo es obligatorio')
 			} else {
 				if (personaInstance.grupo == null) {
-					personaInstance.properties = [grupo:[id: grupo]];
+					//personaInstance.properties = [grupo:[id: grupo]];
 				}
 			}
 			if(!rolesList?.contains(supervRol) && (supervisor=='null' || supervisor=='' || supervisor==null)) {
@@ -198,7 +198,7 @@ class PersonaController {
 					'El campo Supervisor es obligatorio')
 			} else {
 				if (personaInstance.supervisor == null) {
-					personaInstance.properties = [supervisor:[id: supervisor]];
+					//personaInstance.properties = [supervisor:[id: supervisor]];
 				}
 			}
 		}
@@ -313,7 +313,14 @@ class PersonaController {
 			}
 		}
 		
+		//Se validan errores antes de grabar
+		if (personaInstance.hasErrors()) {
+			respond personaInstance.errors, view:'edit'
+			return
+		}
+		
 		PersonaRol.removeAll(personaInstance)
+		
 		personaInstance.save flush:true
 		
 		rolesList.each {
