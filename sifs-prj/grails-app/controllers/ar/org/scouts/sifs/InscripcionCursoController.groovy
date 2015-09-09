@@ -37,8 +37,9 @@ class InscripcionCursoController {
 					if(planCurso.curso != null && !planCurso.curso.dictados.isEmpty()) {
 						//TODO: Ver este each() anidado
 						planCurso.curso.dictados.each {
-							if(persona.id != it.formador.id && !resultList?.contains(planCurso.curso)) {
-								resultList.add(planCurso.curso)
+							if(persona.id != it.formador.id && !it.status?.nombre == 'CERRADO' && 
+								!resultList?.contains(planCurso.curso) ) {
+									resultList.add(planCurso.curso)
 							}
 						}
 					}	
@@ -53,6 +54,9 @@ class InscripcionCursoController {
 						not {'in'("id",dictadosAprobadosIds)}	
 						ne("cupo", 0)
 						ge("fecha", new Date().clearTime()+1)
+						status {
+							ne("nombre", 'CERRADO')
+						}
 				}
 				listaDictados?.each() {
 					if(persona.id != it.formador.id && !idsCursosTentativos?.contains(it.curso.id)) {
