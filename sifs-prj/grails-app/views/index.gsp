@@ -23,7 +23,7 @@
 			}
 
 			.ie6 #status {
-				display: inline; /* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
+				display: inline; /*   +++ float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
 			}
 
 			#status ul {

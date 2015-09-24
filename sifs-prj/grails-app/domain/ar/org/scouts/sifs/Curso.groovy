@@ -13,6 +13,10 @@ class Curso {
 		contenidos: Contenido,
 		dictados: Dictado
 	];
+	
+	static mapping = {
+		dictados lazy: false
+	}
 
 	static constraints = {
 //		contenidos(nullable: true);

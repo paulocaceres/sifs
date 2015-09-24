@@ -32,13 +32,16 @@ class InscripcionCursoController {
 				def criteria = PlanCurso.createCriteria()
 				inscripcionPlanCursoResultList = criteria.list {
 					sizeEq("correlativas", 0)
+					curso {
+						sizeNe("dictados",0)
+					}
 				}
 				inscripcionPlanCursoResultList.each { planCurso ->
 					if(planCurso.curso != null && !planCurso.curso.dictados.isEmpty()) {
 						//TODO: Ver este each() anidado
 						planCurso.curso.dictados.each {
-							if(persona.id != it.formador.id && !it.status?.nombre == 'CERRADO' && 
-								!resultList?.contains(planCurso.curso) ) {
+							//def a2 = resultList?.contains(planCurso.curso)
+							if(persona.id != it.formador.id && it.status?.nombre == 'ABIERTO' && !(resultList?.contains(planCurso.curso))) {
 									resultList.add(planCurso.curso)
 							}
 						}

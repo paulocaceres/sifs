@@ -24,13 +24,10 @@
 								  			!usuarioLogueado.dictadosAprobados?.contains(it.label.id) && 
 								  			!usuarioLogueado.dictadosAnotados?.contains(it.label.id)}">	
     							${it.radio}
-<%--    							<label class="long" >--%>
-<%--    								<strong>${it.label.nombre}, &nbsp; ${it.label.fecha}  &nbsp;${it.label.zona?.nombre} - ${it.label.formador?.nombre}&nbsp;${it.label.formador?.apellido}</strong>--%>
-<%--    							</label><br/>--%>
-                                   <label class="long">
-    								<strong><g:formatDate format="dd/MM/yyyy" date="${it.label.fecha}" /> - ${it.label.nombre}, &nbsp;${it.label.zona?.nombre} - ${it.label.formador?.nombre}&nbsp;${it.label.formador?.apellido}</strong>	
-    							</label><br/>
-    						</g:if>
+                                   	<label class="long">
+    									<strong><g:formatDate format="dd/MM/yyyy" date="${it.label.fecha}" /> - ${it.label.nombre}, &nbsp;${it.label.zona?.nombre} - ${it.label.formador?.nombre}&nbsp;${it.label.formador?.apellido}</strong>	
+    								</label><br/>
+    							</g:if>
 							</g:radioGroup>
 				  	         <g:hiddenField name="cursosDisponiblesIds" value="${cursoInstance.id}"/>
 				    	</div>

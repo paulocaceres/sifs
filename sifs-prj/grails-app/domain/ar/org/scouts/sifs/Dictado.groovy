@@ -21,6 +21,11 @@ class Dictado {
 		recursos: Recurso,
 		inscriptos: Inscripto
 	]
+	
+	static mapping = {
+		formador lazy: false
+		status lazy: false
+	}
 
 	static constraints = {
 		zona(nullable:false)
